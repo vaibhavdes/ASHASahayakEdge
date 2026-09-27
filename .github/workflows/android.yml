@@ -1,11 +1,14 @@
 name: Android APK
 
-# Builds the arm64 APK and publishes it on this repository's Releases page.
-#   push to main   -> "Latest build" pre-release (replaced on every push)
-#   tag v*         -> a permanent release for that version
-#   manual run     -> same as push to main
+# Tauri generates the Android Gradle project during CI; there is no root gradlew.
+# PRs build an APK, main publishes a replaceable preview, and v* tags publish releases.
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "app/**"
+      - "data/**"
+      - ".github/workflows/android.yml"
   push:
     branches: [main]
     tags: ["v*"]
@@ -15,7 +18,7 @@ on:
       - ".github/workflows/android.yml"
 
 permissions:
-  contents: write # needed to create releases and upload the APK
+  contents: read
 
 concurrency:
   group: android-${{ github.ref }}
@@ -23,8 +26,8 @@ concurrency:
 
 jobs:
   apk:
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
     defaults:
       run:
         working-directory: app
@@ -36,9 +39,16 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-      # The Ubuntu runner already ships the Android SDK; only the NDK version is pinned.
-      - name: Install Android NDK
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;27.1.12297006" > /dev/null
+      - name: Install Android SDK packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          # Tauri's generated project uses API 36; the local voice plugin uses API 35.
+          "$sdkmanager" --install "platforms;android-35" "platforms;android-36" "build-tools;36.0.0" "ndk;27.1.12297006"
+          ndk_home="$ANDROID_HOME/ndk/27.1.12297006"
+          test -d "$ndk_home"
+          echo "NDK_HOME=$ndk_home" >> "$GITHUB_ENV"
 
       - uses: dtolnay/rust-toolchain@stable
         with:
@@ -57,57 +67,80 @@ jobs:
       - name: Install JS dependencies
         run: npm ci
 
-      - name: Type-check
+      - name: Type-check frontend
         run: npx tsc --noEmit
 
-      - name: Icons and Android project
+      - name: Generate icons and Android project
         run: |
           npx tauri icon app-icon.png
-          [ -d src-tauri/gen/android ] || npx tauri android init --ci
+          npx tauri android init --ci
 
-      - name: Build APK (arm64)
+      - name: Build installable arm64 APK
+        # A debug APK uses Android's debug signing key; release signing is not configured.
         env:
-          NDK_HOME: ${{ env.ANDROID_HOME }}/ndk/27.1.12297006
           VITE_CLOUD_URL: ${{ vars.CLOUD_URL }}
-        # A debug build is signed with the standard debug key, so it installs on any phone directly.
         run: npx tauri android build --apk --target aarch64 --debug --ci
 
-      - name: Name the APK
-        id: apk
+      - name: Collect APK
+        shell: bash
         run: |
-          src=$(find src-tauri/gen/android/app/build/outputs/apk -name "*.apk" | head -n 1)
-          if [ -z "$src" ]; then echo "No APK produced"; exit 1; fi
-          if [[ "$GITHUB_REF" == refs/tags/* ]]; then label="${GITHUB_REF_NAME}"; else label="$(git rev-parse --short HEAD)"; fi
-          out="$RUNNER_TEMP/sahayak-edge-${label}.apk"
-          cp "$src" "$out"
-          echo "path=$out" >> "$GITHUB_OUTPUT"
-          echo "size=$(du -h "$out" | cut -f1)" >> "$GITHUB_OUTPUT"
+          set -euo pipefail
+          apk_dir=src-tauri/gen/android/app/build/outputs/apk
+          mapfile -t apks < <(find "$apk_dir" -type f -name '*debug*.apk' | sort)
+          if (( ${#apks[@]} != 1 )); then
+            printf 'Expected one debug APK, found %s:\n' "${#apks[@]}"
+            printf '%s\n' "${apks[@]}"
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/android-apk"
+          cp "${apks[0]}" "$RUNNER_TEMP/android-apk/sahayak-edge-arm64.apk"
+          ls -lh "$RUNNER_TEMP/android-apk/sahayak-edge-arm64.apk"
+
+      - name: Keep APK with workflow run
+        uses: actions/upload-artifact@v7
+        with:
+          name: sahayak-edge-arm64-apk
+          path: ${{ runner.temp }}/android-apk/sahayak-edge-arm64.apk
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    needs: apk
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          name: sahayak-edge-arm64-apk
+          path: android-apk
 
       - name: Publish version release
         if: startsWith(github.ref, 'refs/tags/v')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" "${{ steps.apk.outputs.path }}" \
-            --title "Sahayak Edge $GITHUB_REF_NAME" \
-            --notes "Android APK (arm64, ${{ steps.apk.outputs.size }}). Install it directly on the phone; allow installs from this source when Android asks." \
-            --verify-tag
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" android-apk/sahayak-edge-arm64.apk \
+              --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" android-apk/sahayak-edge-arm64.apk \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Sahayak Edge $GITHUB_REF_NAME" \
+              --notes "Installable arm64 Android debug APK. Allow installs from this source when Android asks." \
+              --verify-tag
+          fi
 
-      - name: Publish latest build
+      - name: Publish latest main build
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete latest-build --yes --cleanup-tag || true
-          gh release create latest-build "${{ steps.apk.outputs.path }}" \
+          gh release delete latest-build --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
+          gh release create latest-build android-apk/sahayak-edge-arm64.apk \
+            --repo "$GITHUB_REPOSITORY" \
             --prerelease \
             --target "$GITHUB_SHA" \
-            --title "Latest build ($(git rev-parse --short HEAD))" \
-            --notes "Built automatically from \`$(git rev-parse --short HEAD)\` on $(date -u '+%d %b %Y %H:%M UTC'). Android APK (arm64, ${{ steps.apk.outputs.size }}). Install it directly on the phone."
-
-      - name: Keep the APK with the run
-        uses: actions/upload-artifact@v7
-        with:
-          name: sahayak-edge-apk
-          path: ${{ steps.apk.outputs.path }}
-          retention-days: 14
+            --title "Latest build (${GITHUB_SHA:0:7})" \
+            --notes "Installable arm64 Android debug APK from commit $GITHUB_SHA."
