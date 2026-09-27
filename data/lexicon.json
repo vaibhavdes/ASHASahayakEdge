@@ -39,7 +39,14 @@
       "patle dast",
       "diarrhea",
       "diarrhoea",
-      "pechish"
+      "pechish",
+      "patla paikhana",
+      "pani jaisa paikhana",
+      "paani jaisa paikhana",
+      "पतला पाखाना",
+      "पानी जैसा पाखाना",
+      "watery stool",
+      "watery stools"
     ],
     "vomiting": [
       "ulti",
@@ -121,7 +128,14 @@
       "doodh nahi",
       "दूध नहीं",
       "not feeding",
-      "not sucking"
+      "not sucking",
+      "kuch pee nahi",
+      "pee nahi pa raha",
+      "pee nahi pa rahi",
+      "पी नहीं पा रहा",
+      "पी नहीं पा रही",
+      "unable to drink",
+      "cannot drink"
     ],
     "headache": [
       "sar dard",
@@ -283,6 +297,37 @@
       "heat stroke",
       "heatstroke",
       "sunstroke"
+    ],
+    "malnutrition": [
+      "muac",
+      "kuposhan",
+      "kuposhit",
+      "कुपोषण",
+      "कुपोषित",
+      "malnutrition",
+      "malnourished",
+      "severe acute malnutrition",
+      "bahut dubla",
+      "बहुत दुबला"
+    ],
+    "mosquito": [
+      "machhar",
+      "machchar",
+      "मच्छर",
+      "mosquito",
+      "dengue",
+      "डेंगू",
+      "malaria",
+      "मलेरिया"
+    ],
+    "breastfeeding": [
+      "stanpan",
+      "स्तनपान",
+      "breastfeeding",
+      "breast feeding",
+      "maa ka doodh",
+      "माँ का दूध",
+      "मां का दूध"
     ]
   },
   "syndromes": {
@@ -349,6 +394,18 @@
         "convulsions",
         "breathing"
       ]
+    },
+    "danger_child": {
+      "label_en": "Child danger sign",
+      "label_hi": "बच्चे में खतरे का संकेत",
+      "danger": true,
+      "all": [
+        "child"
+      ],
+      "any": [
+        "convulsions",
+        "not_feeding"
+      ]
     }
   },
   "signal_words": {
@@ -359,7 +416,8 @@
     "cough_2w": "cough more than two weeks",
     "jaundice": "jaundice yellow eyes",
     "danger_pregnancy": "pregnancy danger sign",
-    "danger_newborn": "newborn danger sign"
+    "danger_newborn": "newborn danger sign",
+    "danger_child": "child danger sign"
   },
   "prototypes": {
     "fever": [
@@ -389,6 +447,10 @@
     "danger_newborn": [
       "newborn baby not feeding, convulsions or fast breathing",
       "नवजात शिशु दूध नहीं पी रहा, झटके"
+    ],
+    "danger_child": [
+      "young child with convulsions or unable to drink",
+      "बच्चे को झटके आ रहे हैं, कुछ पी नहीं पा रहा"
     ]
   },
   "activities": {

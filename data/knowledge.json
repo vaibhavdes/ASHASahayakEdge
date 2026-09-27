@@ -28,7 +28,7 @@
    "topic": "pregnancy",
    "title": "Routine antenatal care",
    "source": "MoHFW ANC guidance (summary)",
-   "text": "Encourage at least four ANC check-ups, blood pressure and weight at each visit, iron-folic acid (IFA) tablets daily, calcium, TT/Td injections as scheduled, and planning for institutional delivery. गर्भावस्था में कम से कम चार जांच और रोज़ IFA गोली।"
+   "text": "Encourage at least four ANC check-ups, blood pressure and weight at each visit, iron-folic acid (IFA) tablets daily, calcium, two Td injections (or one booster if vaccinated in the last three years), and planning for institutional delivery. गर्भावस्था में कम से कम चार जांच और रोज़ IFA गोली।"
   },
   {
    "id": "b1c0a000-0000-4000-8000-000000000005",
@@ -63,28 +63,28 @@
    "topic": "jaundice",
    "title": "Jaundice",
    "source": "WHO hepatitis fact sheets (summary)",
-   "text": "Yellow eyes and dark urine suggest jaundice. Advise safe drinking water and rest, avoid unprescribed medicines, and refer for testing. Refer urgently if the person is confused, very drowsy, bleeding, or pregnant. Several cases in one area may mean contaminated water: inform the ANM."
+   "text": "Yellow eyes and dark urine suggest jaundice. Advise safe drinking water and rest, avoid unprescribed medicines, and refer for testing. Refer urgently if the person is confused, very drowsy, bleeding, or pregnant. Several cases in one area may mean contaminated water: inform the ANM. आंखें पीली हों तो साफ़ पानी, आराम और जांच; गर्भवती हो तो तुरंत रेफर करें।"
   },
   {
    "id": "b1c0a000-0000-4000-8000-00000000000a",
    "topic": "immunization",
    "title": "Routine immunisation schedule (infant)",
    "source": "Universal Immunisation Programme (summary)",
-   "text": "Birth: BCG, OPV-0, Hep B birth dose. 6, 10, 14 weeks: OPV, Pentavalent, Rotavirus, PCV (as per state), fIPV. 9-12 months: MR-1, JE (endemic districts), vitamin A. 16-24 months: MR-2, DPT booster, OPV booster. Track due lists and follow up dropouts."
+   "text": "Birth: BCG, OPV-0, Hepatitis B birth dose. 6, 10 and 14 weeks: OPV, Pentavalent and Rotavirus; fIPV at 6 and 14 weeks; PCV at 6 and 14 weeks where introduced. 9-12 months: MR-1, PCV booster, JE-1 (endemic districts), vitamin A first dose. 16-24 months: MR-2, DPT booster, OPV booster, JE-2. Track due lists and follow up children who missed doses. जन्म पर BCG, OPV-0 और हेपेटाइटिस B; 9 महीने पर खसरा-रूबेला (MR-1) का टीका।"
   },
   {
    "id": "b1c0a000-0000-4000-8000-00000000000b",
    "topic": "dehydration",
    "title": "Signs of severe dehydration",
    "source": "IMNCI guidance (summary)",
-   "text": "Two or more of: lethargic or unconscious, sunken eyes, not able to drink or drinking poorly, skin pinch goes back very slowly. This is an emergency: refer immediately and give ORS sips on the way if the child can drink."
+   "text": "Two or more of: lethargic or unconscious, sunken eyes, not able to drink or drinking poorly, skin pinch goes back very slowly. This is an emergency: refer immediately and give ORS sips on the way if the child can drink. बच्चा सुस्त हो, आंखें धंसी हों या पी न पाए तो तुरंत रेफर करें, रास्ते में ORS दें।"
   },
   {
    "id": "b1c0a000-0000-4000-8000-00000000000c",
    "topic": "outbreak",
    "title": "When cases cluster",
    "source": "IDSP guidance (summary)",
-   "text": "If you see several similar illnesses in a short time (for example fever with rash, loose motions, jaundice) in one village, inform the ANM the same day. Note ages and households, encourage safe water and hygiene, and follow any district alert instructions."
+   "text": "If you see several similar illnesses in a short time (for example fever with rash, loose motions, jaundice) in one village, inform the ANM the same day. Note ages and households, encourage safe water and hygiene, and follow any district alert instructions. एक गाँव में कई मिलते-जुलते केस हों तो उसी दिन ANM को बताएं।"
   },
   {
    "id": "b1c0a000-0000-4000-8000-00000000000d",
@@ -182,7 +182,7 @@
    "topic": "diarrhoea",
    "title": "How much ORS to give a child with diarrhoea?",
    "approved_by": "Dr. (Demo) Block Medical Officer",
-   "text": "Under 2 years: 50-100 ml (a quarter to half cup) after each loose stool. 2 years and older: 100-200 ml after each stool. Give slowly with a spoon; continue breastfeeding. Give zinc for 14 days. Refer if danger signs appear.",
+   "text": "Under 2 years: 50-100 ml (a quarter to half cup) after each loose stool. 2 years and older: 100-200 ml after each stool. Give slowly with a spoon; continue breastfeeding. Give zinc for 14 days. Refer if danger signs appear. 2 साल से छोटे बच्चे को हर दस्त के बाद आधा कप, बड़े को एक कप ORS दें और 14 दिन ज़िंक।",
    "alt_questions": [
     "ORS kitna dena hai",
     "दस्त में ORS कितना दें",
@@ -206,7 +206,7 @@
    "topic": "measles",
    "title": "Child has fever and rash — is it measles?",
    "approved_by": "Dr. (Demo) District Surveillance Officer",
-   "text": "Fever with rash plus cough, runny nose or red eyes is a suspected measles case. Report it to the ANM today, check MR vaccination of children in the household and neighbourhood, and refer if breathing is difficult or the child is dehydrated.",
+   "text": "Fever with rash plus cough, runny nose or red eyes is a suspected measles case. Report it to the ANM today, check MR vaccination of children in the household and neighbourhood, and refer if breathing is difficult or the child is dehydrated. बुखार और दाने हों तो आज ही ANM को बताएं और आसपास के बच्चों का MR टीका जांचें।",
    "alt_questions": [
     "bacche ko bukhar aur daane",
     "बुखार और दाने खसरा तो नहीं",
@@ -218,7 +218,7 @@
    "topic": "tb",
    "title": "Where to send someone with long cough?",
    "approved_by": "Dr. (Demo) Block Medical Officer",
-   "text": "Cough of 2 weeks or more: refer to the nearest PHC/DMC for a free sputum test under NTEP. Note the name in your register and follow up the result.",
+   "text": "Cough of 2 weeks or more: refer to the nearest PHC/DMC for a free sputum test under NTEP. Note the name in your register and follow up the result. दो हफ्ते से ज़्यादा खांसी हो तो PHC पर मुफ़्त बलगम जांच के लिए भेजें।",
    "alt_questions": [
     "khansi wale ko kahan bheje",
     "लंबी खांसी की जांच कहाँ होगी",
@@ -230,7 +230,7 @@
    "topic": "fever",
    "title": "Child has high fever — paracetamol dose?",
    "approved_by": "Dr. (Demo) Block Medical Officer",
-   "text": "Give paracetamol by weight as per your drug kit chart, not more than 4 times a day, and plenty of fluids. Children under 2 months with fever must be referred. Refer if fever lasts more than 7 days or any danger sign is present.",
+   "text": "Give paracetamol by weight as per your drug kit chart, not more than 4 times a day, and plenty of fluids. Children under 2 months with fever must be referred. Refer if fever lasts more than 7 days or any danger sign is present. पैरासिटामोल वज़न के हिसाब से, दिन में 4 बार से ज़्यादा नहीं; 2 महीने से छोटे बच्चे को रेफर करें।",
    "alt_questions": [
     "paracetamol kitni deni hai",
     "बुखार में दवा की खुराक",
@@ -307,6 +307,18 @@
     "bacche ki saans tez chal rahi hai",
     "बच्चे की सांस तेज़ है",
     "child breathing fast"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-00000000000d",
+   "topic": "nutrition",
+   "title": "Child looks very thin or MUAC is red",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Measure MUAC for children aged 6 to 59 months. Red (below 11.5 cm) or swelling of both feet means severe acute malnutrition: refer to the Nutrition Rehabilitation Centre, urgently if the child also has fever, diarrhoea or is not eating. Yellow (11.5 to 12.5 cm): counsel on feeding and link with the Anganwadi. बांह का नाप लाल हो या दोनों पैरों में सूजन हो तो पोषण पुनर्वास केंद्र भेजें।",
+   "alt_questions": [
+    "MUAC laal hai kya karein",
+    "bachcha bahut dubla hai",
+    "कुपोषित बच्चा क्या करें"
    ]
   }
  ]

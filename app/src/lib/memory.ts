@@ -34,7 +34,7 @@ export function ageBand(member: Member, isNewborn = false): string {
 }
 
 export const visitContext = (pregnant: boolean, age: number) =>
-  [pregnant && "pregnant", age === 0 && "newborn"].filter(Boolean).join(" ");
+  [pregnant && "pregnant", age === 0 && "newborn", age >= 1 && age <= 5 && "child"].filter(Boolean).join(" ");
 
 export interface NewVisit {
   household: Household;

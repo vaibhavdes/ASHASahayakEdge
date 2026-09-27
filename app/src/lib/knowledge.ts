@@ -12,9 +12,12 @@ import type { Alert, Hit, KnowledgeDoc, MyQuestion } from "./types";
 
 // Approved-answer cache. One point per approved phrasing, matched question to
 // question without framing words. Held-out tests: right answers 0.76-0.98,
-// closest wrong 0.69. Both questions must share a medical term; with none, 0.80.
+// closest wrong 0.69. Both questions must share a medical term; with none, 0.90
+// (an unknown word like "MUAC" once matched an unrelated answer at 0.85).
 export const ANSWER_CACHE_THRESHOLD = 0.7;
-const NO_TERMS_THRESHOLD = 0.8;
+const NO_TERMS_THRESHOLD = 0.9;
+// Guidance below this meaning similarity is unrelated (measured: related 0.25+, unrelated under 0.2).
+const PASSAGE_MIN_SIMILARITY = 0.22;
 
 
 export const embedText = (d: Pick<KnowledgeDoc, "kind" | "title" | "text" | "question">) =>
@@ -58,14 +61,13 @@ export async function ask(question: string): Promise<AskResult> {
     score_threshold: ANSWER_CACHE_THRESHOLD,
   });
   const answer = candidate && answerIsSafe(question, candidate) ? candidate : undefined;
-  const passages = await edge.query<KnowledgeDoc>("knowledge", {
-    dense,
-    text,
-    filter: and(anyOf("kind", ["protocol", "alert"])),
-    limit: 5,
-    mode: "hybrid",
-    weights: [2, 1],
-  });
+  const guidance = and(anyOf("kind", ["protocol", "alert"]));
+  const [ranked, related] = await Promise.all([
+    edge.query<KnowledgeDoc>("knowledge", { dense, text, filter: guidance, limit: 5, mode: "hybrid", weights: [2, 1] }),
+    edge.query<KnowledgeDoc>("knowledge", { dense, text, filter: guidance, limit: 10, mode: "dense", score_threshold: PASSAGE_MIN_SIMILARITY }),
+  ]);
+  const relatedIds = new Set(related.map((h) => h.id));
+  const passages = ranked.filter((h) => relatedIds.has(h.id));
   const ms = Math.round(performance.now() - t0);
   await logActivity("knowledge", `ask "${question}" → ${answer ? "approved answer" : `${passages.length} passages`}`, ms);
   return { answer: answer ?? null, passages, ms };

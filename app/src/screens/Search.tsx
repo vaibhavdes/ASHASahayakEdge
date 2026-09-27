@@ -255,6 +255,7 @@ export function Guidance() {
               </div>
             </Card>
           ))}
+          {!res.answer && !res.passages.length && <Empty>{tr("इस सवाल पर फ़ोन में जानकारी नहीं है। डॉक्टर से पूछ सकते हैं।", "No guidance on this phone for that question. You can ask a doctor.")}</Empty>}
           {!res.answer && settings && <AskDoctor key={asked} question={asked} village={settings.village} />}
           <p className="px-1 text-xs text-slate-500">{tr("यह सिर्फ़ मदद के लिए है। शक हो तो रेफर करें।", "Guidance summaries for support only. Follow official protocols and refer when in doubt.")}</p>
         </>

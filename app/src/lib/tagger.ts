@@ -63,9 +63,13 @@ export function tagByRules(text: string): Tagging {
   };
 }
 
+// Notes about routine work only ("teeka lagaya, sab theek") are not guessed into symptoms.
+const ROUTINE_TERMS = new Set(["vaccination", "mr_vaccine", "breastfeeding", "give", "dose"]);
+
 export async function tag(text: string, vector?: number[]): Promise<Tagging> {
   const ruled = tagByRules(text);
   if (ruled.syndromes.length) return ruled;
+  if (ruled.terms.some((t) => ROUTINE_TERMS.has(t))) return ruled;
   const v = vector ?? (await embed([text]))[0];
   const best = new Map<string, number>();
   for (const p of await prototypes()) {

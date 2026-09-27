@@ -20,6 +20,7 @@ ACTIONS = {
     "jaundice": "Possible contaminated water: advise boiled water, refer for testing, inform ANM.",
     "danger_pregnancy": "Ensure referral and transport; ANM to follow up today.",
     "danger_newborn": "Ensure referral; ANM to follow up today.",
+    "danger_child": "Ensure urgent referral; ANM to follow up today.",
 }
 
 
