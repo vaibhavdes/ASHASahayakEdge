@@ -5,6 +5,7 @@ import { logActivity } from "./activity";
 import { edge, isNative } from "./bridge";
 import { emit } from "./events";
 import { applyPushResult, mergeFromRegistry, type PushResult } from "./households";
+import { and, eq } from "./filters";
 import { applyAnswers, markQuestionsSent, storeAlerts, upsertDocs } from "./knowledge";
 import { bumpAttempts, listOutbox, removeFromOutbox } from "./outbox";
 import { getSettings, updateSettings } from "./settings";
@@ -107,13 +108,14 @@ export async function runSync(): Promise<SyncReport> {
         `${base}/v1/sync/pull?device_id=${encodeURIComponent(s.deviceId)}&village=${s.village}&since=${s.pullSeq}`,
         { method: "GET", timeoutMs, headers },
       );
+      // Guidance first: a snapshot replaces the knowledge shard, and alerts are stored on top of it.
+      if (pull.knowledge_version > s.knowledgeVersion && !slow) {
+        knowledge = await keepAlerts(() => updateKnowledge(base, pull.knowledge_version, s.deviceToken));
+      }
       await storeAlerts(pull.alerts);
       await applyAnswers(pull.answers ?? []);
       alerts = pull.alerts.length;
       registry = await mergeFromRegistry(pull.households);
-      if (pull.knowledge_version > s.knowledgeVersion && !slow) {
-        knowledge = await updateKnowledge(base, pull.knowledge_version, s.deviceToken);
-      }
       await updateSettings({ pullSeq: pull.seq });
     }
 
@@ -139,6 +141,14 @@ export async function runSync(): Promise<SyncReport> {
 
 async function markVisitsSynced(visitIds: string[]) {
   for (const id of visitIds) await edge.setPayload("memory", id, { sync_status: "synced" });
+}
+
+// District alerts live only on the phone; the server's guidance snapshot does not contain them.
+async function keepAlerts<T>(update: () => Promise<T>): Promise<T> {
+  const { points } = await edge.scroll<KnowledgeDoc>("knowledge", 500, null, and(eq("kind", "alert")));
+  const result = await update();
+  if (points.length) await upsertDocs(points.map((p) => ({ ...p.payload, id: p.id })));
+  return result;
 }
 
 async function updateKnowledge(base: string, version: number, token: string): Promise<string> {
