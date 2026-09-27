@@ -1,0 +1,10 @@
+.git
+.github
+app/
+eval/
+cloud/.venv/
+cloud/.qdrant/
+cloud/.cache/
+cloud/models/
+cloud/*.db
+**/__pycache__/

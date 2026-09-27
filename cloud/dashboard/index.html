@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Outbreak Radar</title>
+<style>
+  :root {
+    --bg: #f1f5f4; --card: #fff; --ink: #0f172a; --muted: #64748b; --line: #e2e8f0;
+    --teal: #0f766e; --teal-soft: #ccfbf1; --rose: #e11d48; --rose-soft: #ffe4e6; --amber: #b45309; --amber-soft: #fef3c7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0b1211; --card: #111c1a; --ink: #e2e8f0; --muted: #94a3b8; --line: #1f2e2b; --teal-soft: #134e4a; --rose-soft: #4c0519; --amber-soft: #451a03; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--ink); }
+  header { background: #115e59; color: #fff; padding: 14px 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  header h1 { margin: 0; font-size: 18px; }
+  header .meta { opacity: .85; font-size: 12px; }
+  main { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; padding: 16px 20px; max-width: 1400px; margin: 0 auto; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; padding: 12px; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 10px; }
+  .stack { display: grid; gap: 16px; align-content: start; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .stat b { display: block; font-size: 22px; color: var(--teal); }
+  .stat span { color: var(--muted); font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; }
+  td.num { font-variant-numeric: tabular-nums; }
+  .hot { background: var(--rose-soft); font-weight: 700; color: var(--rose); }
+  .warm { background: var(--amber-soft); color: var(--amber); }
+  .alert { border-left: 4px solid var(--rose); padding: 8px 10px; margin-bottom: 8px; background: var(--rose-soft); border-radius: 8px; }
+  .alert.watch { border-color: var(--amber); background: var(--amber-soft); }
+  .alert b { display: block; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 999px; background: var(--teal-soft); font-size: 12px; margin-right: 4px; }
+  .pill.d { background: var(--rose-soft); color: var(--rose); }
+  button { font: inherit; border: 1px solid var(--teal); background: var(--card); color: var(--ink); border-radius: 10px; padding: 8px 12px; cursor: pointer; }
+  button.primary { background: var(--teal); color: #fff; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; }
+  svg text { fill: var(--ink); font-size: 11px; }
+  .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
+  textarea, input, select { font: inherit; width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); }
+  textarea { min-height: 64px; }
+  .q { border-top: 1px solid var(--line); padding: 10px 0; }
+  .q:first-child { border-top: 0; }
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+  .form { display: grid; gap: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sahayak · District Outbreak Radar</h1>
+  <div class="meta" id="meta">loading…</div>
+</header>
+<main>
+  <div class="stack">
+    <section class="card">
+      <h2>Overview</h2>
+      <div class="stats" id="stats"></div>
+    </section>
+    <section class="card">
+      <h2>Villages · this week vs 8-week baseline (anonymous signals only)</h2>
+      <svg id="map" viewBox="0 0 600 300" width="100%" role="img" aria-label="Village map"></svg>
+    </section>
+    <section class="card">
+      <h2>Syndrome counts · z-score</h2>
+      <table id="z"></table>
+    </section>
+    <section class="card">
+      <h2>Live signal feed (what phones actually send)</h2>
+      <table id="feed"></table>
+    </section>
+  </div>
+  <div class="stack">
+    <section class="card">
+      <h2>Alerts pushed to phones</h2>
+      <div id="alerts"></div>
+    </section>
+    <section class="card">
+      <h2>Devices</h2>
+      <table id="devices"></table>
+    </section>
+    <section class="card">
+      <h2>Questions from the field (names removed on the phone)</h2>
+      <div id="questions"></div>
+    </section>
+    <section class="card">
+      <h2>Reports received (filled automatically from visit notes)</h2>
+      <table id="reports"></table>
+    </section>
+    <section class="card">
+      <h2>Publish guidance to all phones</h2>
+      <div class="form">
+        <select id="g-kind"><option value="protocol">Protocol / advisory</option><option value="answer">Approved answer to a question</option></select>
+        <input id="g-title" placeholder="Title, or the question for an approved answer" />
+        <textarea id="g-text" placeholder="Guidance text (say when to refer)"></textarea>
+        <input id="g-alt" placeholder="Other ways ASHAs ask it, separated by | (answers only)" />
+        <input id="g-exp" type="number" min="0" placeholder="Expires in days (optional, for seasonal advisories)" />
+        <button class="primary" onclick="publishForm()">Publish (new guidance version)</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Demo controls</h2>
+      <div class="controls">
+        <button class="primary" onclick="simulate('LKP')">Lakhanpur ASHA syncs 5 × fever + rash</button>
+        <button onclick="simulate('SNP', ['diarrhoea'], '6-14', 6)">Sonpur: 6 × diarrhoea</button>
+        <button onclick="publish()">Publish guidance update</button>
+        <button onclick="resetLive()">Reset live demo</button>
+      </div>
+      <p class="muted" id="ctl"></p>
+    </section>
+  </div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ago = (iso) => { if (!iso) return "—"; const m = Math.round((Date.now() - new Date(iso)) / 60000); return m < 1 ? "just now" : m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + " h ago" : Math.round(m / 1440) + " d ago"; };
+
+async function load() {
+  const d = await (await fetch("/v1/dashboard/summary")).json();
+  $("meta").textContent = `Week ${d.week} · ${d.storage} · guidance v${d.knowledge_version} · refreshed ${new Date().toLocaleTimeString()}`;
+  $("stats").innerHTML = [
+    ["signals (all)", d.totals.n], ["live signals", d.totals.live ?? 0], ["alerts", d.alerts.length], ["devices", d.devices.length],
+  ].map(([l, v]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+
+  // Map: villages placed by lat/lon; circle size = this week's cases, red ring = alert.
+  const vs = d.villages, lats = vs.map((v) => v.lat), lons = vs.map((v) => v.lon);
+  const [a, b, c, e] = [Math.min(...lats), Math.max(...lats), Math.min(...lons), Math.max(...lons)];
+  const x = (lon) => 60 + ((lon - c) / (e - c || 1)) * 480, y = (lat) => 260 - ((lat - a) / (b - a || 1)) * 220;
+  const week = {}; d.zscores.forEach((r) => { week[r.village] = (week[r.village] || 0) + r.count; });
+  const alerted = new Set(d.alerts.filter((al) => al.severity === "alert").flatMap((al) => al.villages));
+  const hot = new Set(d.zscores.filter((r) => r.z >= 2 && r.count >= 3).map((r) => r.village));
+  $("map").innerHTML = vs.map((v) => {
+    const r = 10 + Math.sqrt(week[v.code] || 0) * 4;
+    const fill = hot.has(v.code) ? "#e11d48" : "#0f766e";
+    return `<g>${alerted.has(v.code) ? `<circle cx="${x(v.lon)}" cy="${y(v.lat)}" r="${r + 8}" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4 3"/>` : ""}
+      <circle cx="${x(v.lon)}" cy="${y(v.lat)}" r="${r}" fill="${fill}" fill-opacity=".75"/>
+      <text x="${x(v.lon)}" y="${y(v.lat) + r + 14}" text-anchor="middle">${esc(v.name)} (${week[v.code] || 0})</text></g>`;
+  }).join("");
+
+  const rows = d.zscores.filter((r) => r.count > 0).sort((p, q) => q.z - p.z);
+  $("z").innerHTML = rows.length ? `<tr><th>Village</th><th>Syndrome</th><th>This week</th><th>Usual</th><th>z</th></tr>` + rows.map((r) => {
+    const cls = r.z >= 2 && r.count >= 3 ? "hot" : r.z >= 1 ? "warm" : "";
+    return `<tr><td>${esc(vs.find((v) => v.code === r.village)?.name || r.village)}</td><td>${esc(r.syndrome)}</td><td class="num">${r.count}</td><td class="num">${r.baseline}</td><td class="num ${cls}">${r.z}</td></tr>`;
+  }).join("") : `<tr><td class="empty">No cases this week yet.</td></tr>`;
+
+  $("feed").innerHTML = d.feed.length ? `<tr><th>When</th><th>Village</th><th>Syndromes</th><th>Age</th><th>Bytes</th></tr>` + d.feed.map((s) =>
+    `<tr><td>${ago(s.received_at)}</td><td>${esc(s.village)}</td><td>${s.syndromes.map((x) => `<span class="pill ${s.danger ? "d" : ""}">${esc(x)}</span>`).join("")}</td><td>${esc(s.age_band)}</td><td class="num">${s.bytes}</td></tr>`
+  ).join("") : `<tr><td class="empty">No live signals yet. Sync a phone.</td></tr>`;
+
+  $("alerts").innerHTML = d.alerts.length ? d.alerts.map((al) =>
+    `<div class="alert ${al.severity === "watch" ? "watch" : ""}"><b>${esc(al.title)}</b>${esc(al.text)}<div class="muted">${ago(al.created_at)} · to: ${al.villages.map(esc).join(", ")} · ${esc(al.kind)} · delivered to ${al.delivered}/${al.targets} phone(s)</div></div>`
+  ).join("") : `<div class="empty">No alerts.</div>`;
+
+  // Questions: keep what the officer is typing across refreshes.
+  const typing = document.activeElement && document.activeElement.dataset && document.activeElement.dataset.q;
+  if (!typing) {
+    $("questions").innerHTML = d.questions.length ? d.questions.map((q) => q.status === "answered"
+      ? `<div class="q"><b>${esc(q.question)}</b><div class="muted">${esc(q.village)} · answered by ${esc(q.answered_by)} ${ago(q.answered_at)}</div><div>${esc(q.answer_text)}</div></div>`
+      : `<div class="q"><b>${esc(q.question)}</b><div class="muted">${esc(q.village)} · asked ${ago(q.asked_at)}</div>
+          <textarea data-q="${esc(q.id)}" id="a-${esc(q.id)}" placeholder="Answer (becomes an approved answer on every phone)"></textarea>
+          <div class="row"><button class="primary" onclick="answer('${esc(q.id)}')">Approve &amp; send answer</button></div></div>`
+    ).join("") : `<div class="empty">No questions yet.</div>`;
+  }
+
+  $("reports").innerHTML = d.reports.length ? `<tr><th>Report</th><th>Village</th><th>Period</th><th>Summary</th><th>Received</th></tr>` + d.reports.map((r) => {
+    const summary = r.kind === "s_form"
+      ? r.data.filter((x) => x.under5 + x.over5 > 0).map((x) => `${x.key} ${x.under5 + x.over5}`).join(", ") || "no cases"
+      : Object.entries(r.data).slice(0, 4).map(([k, v]) => `${k} ${v}`).join(", ");
+    return `<tr><td>${r.kind === "s_form" ? "S-form" : "Monthly"}</td><td>${esc(r.village)}</td><td>${esc(r.period)}</td><td>${esc(summary)}</td><td>${ago(r.received_at)}</td></tr>`;
+  }).join("") : `<tr><td class="empty">No reports yet.</td></tr>`;
+
+  $("devices").innerHTML = d.devices.length ? `<tr><th>Device</th><th>Role</th><th>Village</th><th>Last seen</th><th>Sent</th><th>Waiting</th><th>Guidance</th></tr>` + d.devices.map((v) =>
+    `<tr><td>${esc(v.id.slice(0, 8))}</td><td>${esc(v.role)}</td><td>${esc(v.village)}</td><td>${ago(v.last_seen)}</td><td class="num">${v.pushed}</td><td class="num">${v.pending ?? "–"}</td><td class="${(v.knowledge_version || 0) < d.knowledge_version ? "warm" : ""}">v${v.knowledge_version || "?"}</td></tr>`
+  ).join("") : `<tr><td class="empty">No phone has synced yet.</td></tr>`;
+}
+
+async function post(url, body) {
+  const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) });
+  const j = await r.json();
+  $("ctl").textContent = JSON.stringify(j).slice(0, 200);
+  if (document.activeElement) document.activeElement.blur();
+  load();
+  return j;
+}
+const simulate = (village, syndromes = ["fever", "rash"], age_band = "0-5", count = 5) => post("/v1/admin/simulate", { village, syndromes, age_band, count });
+const publish = () => post("/v1/admin/knowledge", {
+  kind: "protocol", topic: "measles", title: "Measles-Rubella catch-up drive",
+  text: "District MR catch-up campaign this month: list every child 9 months to 15 years without two MR doses and bring them to the Tuesday session. Report every fever-with-rash case the same day.",
+  source: "District Immunisation Officer", expires_in_days: 30,
+});
+const answer = (id) => {
+  const text = $("a-" + id).value.trim();
+  if (text) post(`/v1/admin/questions/${id}/answer`, { text, approved_by: "District medical officer" });
+};
+const publishForm = () => {
+  const body = {
+    kind: $("g-kind").value, title: $("g-title").value, text: $("g-text").value,
+    alt_questions: $("g-alt").value.split("|").map((x) => x.trim()).filter(Boolean),
+    expires_in_days: Number($("g-exp").value) || null, approved_by: "District medical officer",
+  };
+  if (body.title && body.text) post("/v1/admin/knowledge", body).then(() => ["g-title", "g-text", "g-alt", "g-exp"].forEach((i) => ($(i).value = "")));
+};
+const resetLive = () => confirm("Clear live signals and alerts?") && post("/v1/admin/reset-live");
+
+load();
+setInterval(load, 3000);
+</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+{
+ "_about": "Starter knowledge (version 1). Short summaries written for this demo from public MoHFW ASHA training modules, HBNC / IMNCI guidance and WHO fact sheets. Not a substitute for official protocols or clinical judgement; every item ends with when to refer. Each approved answer lists alternative phrasings; every phrasing is stored as its own vector pointing to the same answer (semantic answer cache).",
+ "version": 1,
+ "protocols": [
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000001",
+   "topic": "newborn",
+   "title": "Newborn danger signs",
+   "source": "MoHFW HBNC guidance (summary)",
+   "text": "Refer a newborn to the nearest facility immediately if any of these are present: not able to feed or suck well, convulsions (fits), fast breathing (60 or more breaths per minute), severe chest indrawing, body feels cold or very hot, no movement unless stimulated, yellow palms or soles, bleeding from the umbilical stump or pus/redness spreading around it. नवजात में ये खतरे के संकेत हों तो तुरंत अस्पताल भेजें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000002",
+   "topic": "newborn",
+   "title": "Keeping the newborn warm",
+   "source": "MoHFW HBNC guidance (summary)",
+   "text": "Dry the baby, keep skin-to-skin contact with the mother (kangaroo care), cover the head, delay bathing. A baby whose feet feel cold needs warming; if the baby stays cold or stops feeding, refer. शिशु को माँ की छाती से लगाकर गर्म रखें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000003",
+   "topic": "pregnancy",
+   "title": "Pregnancy danger signs",
+   "source": "MoHFW ANC guidance (summary)",
+   "text": "Refer a pregnant woman urgently for: vaginal bleeding, convulsions, severe headache with blurred vision, high blood pressure (140/90 or more), swelling of face and hands, severe abdominal pain, fever, reduced or no fetal movement, leaking of water. Arrange transport (108/102) and inform the ANM. गर्भवती को खून बहना, झटके, तेज सिर दर्द हो तो तुरंत रेफर करें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000004",
+   "topic": "pregnancy",
+   "title": "Routine antenatal care",
+   "source": "MoHFW ANC guidance (summary)",
+   "text": "Encourage at least four ANC check-ups, blood pressure and weight at each visit, iron-folic acid (IFA) tablets daily, calcium, TT/Td injections as scheduled, and planning for institutional delivery. गर्भावस्था में कम से कम चार जांच और रोज़ IFA गोली।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000005",
+   "topic": "diarrhoea",
+   "title": "Diarrhoea in children: ORS and zinc",
+   "source": "IMNCI / WHO diarrhoea guidance (summary)",
+   "text": "Give ORS after every loose stool and zinc for 14 days; continue breastfeeding and feeding. Refer if the child is lethargic, cannot drink, has sunken eyes, skin pinch goes back very slowly, has blood in stool, or diarrhoea lasts 14 days or more. दस्त में ORS और 14 दिन ज़िंक दें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000006",
+   "topic": "fever",
+   "title": "Fever in children",
+   "source": "IMNCI guidance (summary)",
+   "text": "Check for danger signs, stiff neck, rash and breathing. In malaria-endemic areas test with an RDT. Give paracetamol for high fever and fluids. Refer if fever lasts more than 7 days, the child is under 2 months, or any danger sign is present. बच्चे को 7 दिन से ज़्यादा बुखार हो तो रेफर करें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000007",
+   "topic": "measles",
+   "title": "Fever with rash: suspected measles",
+   "source": "WHO measles fact sheet / MR surveillance (summary)",
+   "text": "Fever with a red rash, plus cough, runny nose or red eyes, may be measles. Report every suspected case to the ANM for surveillance, check MR vaccination of all children nearby, give vitamin A as advised, and refer if there is difficulty breathing, dehydration or convulsions. बुखार और दाने वाले हर केस की सूचना दें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000008",
+   "topic": "tb",
+   "title": "Cough for more than two weeks",
+   "source": "NTEP guidance (summary)",
+   "text": "Anyone with cough for two weeks or more, fever, night sweats or weight loss is a presumptive TB case: refer for sputum test (free under NTEP) and support treatment adherence. दो हफ्ते से ज़्यादा खांसी हो तो बलगम की जांच करवाएं।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000009",
+   "topic": "jaundice",
+   "title": "Jaundice",
+   "source": "WHO hepatitis fact sheets (summary)",
+   "text": "Yellow eyes and dark urine suggest jaundice. Advise safe drinking water and rest, avoid unprescribed medicines, and refer for testing. Refer urgently if the person is confused, very drowsy, bleeding, or pregnant. Several cases in one area may mean contaminated water: inform the ANM."
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-00000000000a",
+   "topic": "immunization",
+   "title": "Routine immunisation schedule (infant)",
+   "source": "Universal Immunisation Programme (summary)",
+   "text": "Birth: BCG, OPV-0, Hep B birth dose. 6, 10, 14 weeks: OPV, Pentavalent, Rotavirus, PCV (as per state), fIPV. 9-12 months: MR-1, JE (endemic districts), vitamin A. 16-24 months: MR-2, DPT booster, OPV booster. Track due lists and follow up dropouts."
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-00000000000b",
+   "topic": "dehydration",
+   "title": "Signs of severe dehydration",
+   "source": "IMNCI guidance (summary)",
+   "text": "Two or more of: lethargic or unconscious, sunken eyes, not able to drink or drinking poorly, skin pinch goes back very slowly. This is an emergency: refer immediately and give ORS sips on the way if the child can drink."
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-00000000000c",
+   "topic": "outbreak",
+   "title": "When cases cluster",
+   "source": "IDSP guidance (summary)",
+   "text": "If you see several similar illnesses in a short time (for example fever with rash, loose motions, jaundice) in one village, inform the ANM the same day. Note ages and households, encourage safe water and hygiene, and follow any district alert instructions."
+  }
+ ],
+ "answers": [
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000001",
+   "topic": "newborn",
+   "title": "Newborn not feeding — what should I do?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Not feeding is a danger sign. Keep the baby warm (skin-to-skin), do not give anything other than breast milk, and arrange immediate referral to the nearest facility (call 108/102). Inform the ANM. नवजात दूध नहीं पी रहा है तो तुरंत रेफर करें।",
+   "alt_questions": [
+    "navjat shishu doodh nahi pee raha kya karein",
+    "नवजात दूध नहीं पी रहा",
+    "baby not breastfeeding"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000002",
+   "topic": "diarrhoea",
+   "title": "How much ORS to give a child with diarrhoea?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Under 2 years: 50-100 ml (a quarter to half cup) after each loose stool. 2 years and older: 100-200 ml after each stool. Give slowly with a spoon; continue breastfeeding. Give zinc for 14 days. Refer if danger signs appear.",
+   "alt_questions": [
+    "ORS kitna dena hai",
+    "दस्त में ORS कितना दें",
+    "ORS ki matra bachhe ke liye"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000003",
+   "topic": "pregnancy",
+   "title": "Pregnant woman has high BP and headache",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "BP 140/90 or more with headache, blurred vision or swelling can be pre-eclampsia. Refer urgently to the FRU/CHC with transport (108). Do not wait for the next visit. Inform the ANM. गर्भवती को तेज़ सिर दर्द और बीपी ज़्यादा हो तो तुरंत रेफर करें।",
+   "alt_questions": [
+    "garbhvati ko BP zyada aur sar dard",
+    "गर्भवती का बीपी बढ़ा हुआ है",
+    "pregnant lady headache swelling"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000004",
+   "topic": "measles",
+   "title": "Child has fever and rash — is it measles?",
+   "approved_by": "Dr. (Demo) District Surveillance Officer",
+   "text": "Fever with rash plus cough, runny nose or red eyes is a suspected measles case. Report it to the ANM today, check MR vaccination of children in the household and neighbourhood, and refer if breathing is difficult or the child is dehydrated.",
+   "alt_questions": [
+    "bacche ko bukhar aur daane",
+    "बुखार और दाने खसरा तो नहीं",
+    "fever rash measles suspect"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000005",
+   "topic": "tb",
+   "title": "Where to send someone with long cough?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Cough of 2 weeks or more: refer to the nearest PHC/DMC for a free sputum test under NTEP. Note the name in your register and follow up the result.",
+   "alt_questions": [
+    "khansi wale ko kahan bheje",
+    "लंबी खांसी की जांच कहाँ होगी",
+    "TB test kahan hota hai"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000006",
+   "topic": "fever",
+   "title": "Child has high fever — paracetamol dose?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Give paracetamol by weight as per your drug kit chart, not more than 4 times a day, and plenty of fluids. Children under 2 months with fever must be referred. Refer if fever lasts more than 7 days or any danger sign is present.",
+   "alt_questions": [
+    "paracetamol kitni deni hai",
+    "बुखार में दवा की खुराक",
+    "fever medicine dose for child"
+   ]
+  }
+ ]
+}

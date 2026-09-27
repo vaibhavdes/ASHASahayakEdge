@@ -1,0 +1,5 @@
+"$schema" = "schemas/schema.json"
+
+[default]
+description = "Speech on the device: listen (speech-to-text), read aloud (text-to-speech), and download the offline language pack."
+permissions = ["allow-status", "allow-listen", "allow-stop", "allow-download-language", "allow-speak", "allow-stop-speaking"]

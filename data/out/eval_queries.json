@@ -1,0 +1,269 @@
+[
+ {
+  "q": "bacche ko dast",
+  "rel": {
+   "syndromes_any": [
+    "diarrhoea"
+   ],
+   "age_band": [
+    "0-5",
+    "6-14"
+   ]
+  }
+ },
+ {
+  "q": "loose motion ORS",
+  "rel": {
+   "syndromes_any": [
+    "diarrhoea"
+   ]
+  }
+ },
+ {
+  "q": "दस्त उल्टी",
+  "rel": {
+   "syndromes_any": [
+    "diarrhoea"
+   ]
+  }
+ },
+ {
+  "q": "bukhar aur daane",
+  "rel": {
+   "syndromes_all": [
+    "fever",
+    "rash"
+   ]
+  }
+ },
+ {
+  "q": "fever with rash",
+  "rel": {
+   "syndromes_all": [
+    "fever",
+    "rash"
+   ]
+  }
+ },
+ {
+  "q": "बुखार दाने",
+  "rel": {
+   "syndromes_all": [
+    "fever",
+    "rash"
+   ]
+  }
+ },
+ {
+  "q": "measles jaisa",
+  "rel": {
+   "syndromes_all": [
+    "fever",
+    "rash"
+   ]
+  }
+ },
+ {
+  "q": "high fever paracetamol",
+  "rel": {
+   "syndromes_any": [
+    "fever"
+   ]
+  }
+ },
+ {
+  "q": "tez bukhar",
+  "rel": {
+   "syndromes_any": [
+    "fever"
+   ]
+  }
+ },
+ {
+  "q": "long cough TB suspect",
+  "rel": {
+   "syndromes_any": [
+    "cough_2w"
+   ]
+  }
+ },
+ {
+  "q": "khansi 3 hafte",
+  "rel": {
+   "syndromes_any": [
+    "cough_2w"
+   ]
+  }
+ },
+ {
+  "q": "yellow eyes",
+  "rel": {
+   "syndromes_any": [
+    "jaundice"
+   ]
+  }
+ },
+ {
+  "q": "peeliya",
+  "rel": {
+   "syndromes_any": [
+    "jaundice"
+   ]
+  }
+ },
+ {
+  "q": "pregnant high BP headache",
+  "rel": {
+   "scenario": [
+    "anc_danger"
+   ]
+  }
+ },
+ {
+  "q": "garbhvati khoon beh raha",
+  "rel": {
+   "scenario": [
+    "anc_danger"
+   ]
+  }
+ },
+ {
+  "q": "pregnancy danger signs",
+  "rel": {
+   "scenario": [
+    "anc_danger"
+   ]
+  }
+ },
+ {
+  "q": "newborn not feeding",
+  "rel": {
+   "scenario": [
+    "newborn_danger"
+   ]
+  }
+ },
+ {
+  "q": "navjat jhatke",
+  "rel": {
+   "scenario": [
+    "newborn_danger"
+   ]
+  }
+ },
+ {
+  "q": "baby fast breathing",
+  "rel": {
+   "scenario": [
+    "newborn_danger"
+   ]
+  }
+ },
+ {
+  "q": "ANC checkup IFA",
+  "rel": {
+   "scenario": [
+    "anc_normal"
+   ]
+  }
+ },
+ {
+  "q": "garbhvati mahila routine",
+  "rel": {
+   "scenario": [
+    "anc_normal",
+    "anc_danger"
+   ]
+  }
+ },
+ {
+  "q": "teekakaran",
+  "rel": {
+   "scenario": [
+    "immunization"
+   ]
+  }
+ },
+ {
+  "q": "MR vaccine vitamin A",
+  "rel": {
+   "scenario": [
+    "immunization"
+   ]
+  }
+ },
+ {
+  "q": "Penta OPV",
+  "rel": {
+   "scenario": [
+    "immunization"
+   ]
+  }
+ },
+ {
+  "q": "child passing watery stool again and again",
+  "rel": {
+   "syndromes_any": [
+    "diarrhoea"
+   ]
+  }
+ },
+ {
+  "q": "spots on skin along with high temperature",
+  "rel": {
+   "syndromes_all": [
+    "fever",
+    "rash"
+   ]
+  }
+ },
+ {
+  "q": "expecting mother with severe head pain and puffy legs",
+  "rel": {
+   "scenario": [
+    "anc_danger"
+   ]
+  }
+ },
+ {
+  "q": "infant refusing milk and body cold",
+  "rel": {
+   "scenario": [
+    "newborn_danger"
+   ]
+  }
+ },
+ {
+  "q": "person coughing for a month and losing weight",
+  "rel": {
+   "syndromes_any": [
+    "cough_2w"
+   ]
+  }
+ },
+ {
+  "q": "whites of eyes turned yellow",
+  "rel": {
+   "syndromes_any": [
+    "jaundice"
+   ]
+  }
+ },
+ {
+  "q": "shots given to the baby today",
+  "rel": {
+   "scenario": [
+    "immunization"
+   ]
+  }
+ },
+ {
+  "q": "मां बनने वाली महिला की जांच",
+  "rel": {
+   "scenario": [
+    "anc_normal",
+    "anc_danger"
+   ]
+  }
+ }
+]

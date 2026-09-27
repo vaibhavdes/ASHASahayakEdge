@@ -1,0 +1,36 @@
+import json
+import os
+import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+CLOUD = Path(__file__).resolve().parent.parent
+ROOT = CLOUD.parent
+DATA = ROOT / "data"
+load_dotenv(CLOUD / ".env")
+
+# Shared with the app and the benchmark.
+sys.path.insert(0, str(DATA))
+from normalize import Normalizer  # noqa: E402
+
+QDRANT_URL = os.getenv("QDRANT_URL", "").strip()
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY", "").strip() or None
+ZSCORE_THRESHOLD = float(os.getenv("ZSCORE_THRESHOLD", "2.0"))
+MIN_CASES = int(os.getenv("MIN_CASES", "3"))
+ALERT_RADIUS_KM = float(os.getenv("ALERT_RADIUS_KM", "6"))
+
+LOCAL_QDRANT = CLOUD / ".qdrant"
+CACHE = CLOUD / ".cache"
+MODELS = CLOUD / "models"
+
+LEXICON = json.loads((DATA / "lexicon.json").read_text(encoding="utf-8"))
+VILLAGES = json.loads((DATA / "out" / "villages.json").read_text(encoding="utf-8"))
+NORMALIZER = Normalizer(LEXICON["terms"], LEXICON.get("question_frame"))
+SIGNAL_WORDS = {k: v for k, v in LEXICON["signal_words"].items() if not k.startswith("_")}
+SYNDROMES = LEXICON["syndromes"]
+
+
+def signal_sentence(syndromes: list[str], age_band: str) -> str:
+    """Same fixed, PII-free sentence the phone builds (app/src/lib/policy.ts)."""
+    return f"{', '.join(SIGNAL_WORDS.get(s, s) for s in syndromes)} | age {age_band}"

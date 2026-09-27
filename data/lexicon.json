@@ -1,0 +1,510 @@
+{
+  "_about": "Hindi / Hinglish / English term normalisation shared by the app and the benchmark. Each canonical term lists the words ASHAs actually write. Normalisation appends canonical terms, it never deletes the original words.",
+  "terms": {
+    "fever": [
+      "bukhar",
+      "bukhaar",
+      "बुखार",
+      "tap",
+      "taap",
+      "jwar",
+      "ज्वर",
+      "temperature",
+      "garam",
+      "fever",
+      "feverish",
+      "high temperature",
+      "फीवर"
+    ],
+    "rash": [
+      "daane",
+      "dane",
+      "दाने",
+      "chhale",
+      "lal daane",
+      "spots",
+      "rashes",
+      "khasra",
+      "खसरा",
+      "measles",
+      "rash",
+      "red spots",
+      "रैश"
+    ],
+    "diarrhoea": [
+      "dast",
+      "दस्त",
+      "loose motion",
+      "loose motions",
+      "patle dast",
+      "diarrhea",
+      "diarrhoea",
+      "pechish"
+    ],
+    "vomiting": [
+      "ulti",
+      "ultee",
+      "उल्टी",
+      "vomit",
+      "vomiting"
+    ],
+    "cough": [
+      "khansi",
+      "khaansi",
+      "खांसी",
+      "खाँसी",
+      "cough",
+      "balgam",
+      "बलगम",
+      "coughing"
+    ],
+    "jaundice": [
+      "peeliya",
+      "piliya",
+      "पीलिया",
+      "peeli",
+      "पीली",
+      "yellow eyes",
+      "jaundice"
+    ],
+    "pregnant": [
+      "garbhvati",
+      "garbhwati",
+      "गर्भवती",
+      "pregnant",
+      "pregnancy",
+      "anc",
+      "prasav"
+    ],
+    "newborn": [
+      "navjat",
+      "नवजात",
+      "shishu",
+      "शिशु",
+      "newborn",
+      "baby"
+    ],
+    "child": [
+      "baccha",
+      "bachcha",
+      "bacche",
+      "bachche",
+      "बच्चा",
+      "बच्चे",
+      "child",
+      "kid"
+    ],
+    "bleeding": [
+      "khoon",
+      "खून",
+      "bleeding",
+      "khoon beh",
+      "रक्तस्राव"
+    ],
+    "convulsions": [
+      "jhatke",
+      "झटके",
+      "fits",
+      "convulsion",
+      "convulsions",
+      "mirgi"
+    ],
+    "breathing": [
+      "saans",
+      "सांस",
+      "breathing",
+      "tez saans",
+      "fast breathing",
+      "chest indrawing"
+    ],
+    "not_feeding": [
+      "doodh nahi",
+      "दूध नहीं",
+      "not feeding",
+      "not sucking"
+    ],
+    "headache": [
+      "sar dard",
+      "sir dard",
+      "सिर दर्द",
+      "headache"
+    ],
+    "blurred_vision": [
+      "dhundhla",
+      "धुंधला",
+      "blurred vision"
+    ],
+    "swelling": [
+      "sujan",
+      "soojan",
+      "सूजन",
+      "swelling",
+      "edema"
+    ],
+    "vaccination": [
+      "teeka",
+      "tika",
+      "टीका",
+      "teekakaran",
+      "टीकाकरण",
+      "vaccine",
+      "immunization",
+      "immunisation",
+      "penta",
+      "opv",
+      "mr-1",
+      "bcg"
+    ],
+    "weeks": [
+      "hafte",
+      "hafta",
+      "हफ्ते",
+      "weeks",
+      "week",
+      "two weeks",
+      "2 weeks",
+      "hafton"
+    ],
+    "weight_loss": [
+      "vajan kam",
+      "वजन कम",
+      "weight loss"
+    ],
+    "how_much": [
+      "kitna",
+      "kitni",
+      "कितना",
+      "कितनी",
+      "how much"
+    ],
+    "dose": [
+      "khurak",
+      "खुराक",
+      "dose",
+      "dosage"
+    ],
+    "give": [
+      "dena",
+      "deni",
+      "dein",
+      "देना",
+      "दें"
+    ],
+    "where": [
+      "kahan",
+      "कहाँ",
+      "कहां"
+    ],
+    "what_to_do": [
+      "kya kare",
+      "kya karein",
+      "kya karna",
+      "क्या करें"
+    ],
+    "refer": [
+      "bheje",
+      "bhejein",
+      "bhejna",
+      "भेजें",
+      "refer",
+      "108",
+      "102",
+      "refer kiya",
+      "रेफर",
+      "referred"
+    ],
+    "mr_vaccine": [
+      "mr-1",
+      "mr-2",
+      "mr1",
+      "mr2",
+      "mr vaccine",
+      "khasra ka teeka",
+      "khasra ka tika",
+      "khasre ka teeka",
+      "खसरा का टीका",
+      "measles vaccine",
+      "measles-rubella",
+      "measles rubella"
+    ],
+    "snake_bite": [
+      "saanp",
+      "saap",
+      "sanp",
+      "सांप",
+      "साँप",
+      "snake",
+      "snakebite",
+      "snake bite",
+      "सर्पदंश"
+    ],
+    "dog_bite": [
+      "kutte ne kaat",
+      "kutte ne kaata",
+      "kutta kaat",
+      "कुत्ते ने काट",
+      "कुत्ते ने काटा",
+      "dog bite",
+      "dog bit",
+      "rabies"
+    ],
+    "burn": [
+      "jal gaya",
+      "jal gayi",
+      "jalna",
+      "जल गया",
+      "जल गई",
+      "burn",
+      "burns",
+      "burnt"
+    ],
+    "poisoning": [
+      "zeher",
+      "zahar",
+      "ज़हर",
+      "जहर",
+      "poison",
+      "poisoning",
+      "keetnashak",
+      "कीटनाशक",
+      "pesticide"
+    ],
+    "hiccups": [
+      "hichki",
+      "hichkiyan",
+      "हिचकी",
+      "hiccup",
+      "hiccups"
+    ],
+    "heat_stroke": [
+      "loo lag",
+      "loo lagi",
+      "लू लग",
+      "heat stroke",
+      "heatstroke",
+      "sunstroke"
+    ]
+  },
+  "syndromes": {
+    "fever": {
+      "label_en": "Fever",
+      "label_hi": "बुखार",
+      "all": [
+        "fever"
+      ]
+    },
+    "rash": {
+      "label_en": "Rash",
+      "label_hi": "दाने",
+      "all": [
+        "rash"
+      ]
+    },
+    "diarrhoea": {
+      "label_en": "Diarrhoea",
+      "label_hi": "दस्त",
+      "all": [
+        "diarrhoea"
+      ]
+    },
+    "cough_2w": {
+      "label_en": "Cough > 2 weeks",
+      "label_hi": "2 हफ्ते से खांसी",
+      "all": [
+        "cough",
+        "weeks"
+      ]
+    },
+    "jaundice": {
+      "label_en": "Jaundice",
+      "label_hi": "पीलिया",
+      "all": [
+        "jaundice"
+      ]
+    },
+    "danger_pregnancy": {
+      "label_en": "Pregnancy danger sign",
+      "label_hi": "गर्भावस्था खतरे का संकेत",
+      "danger": true,
+      "all": [
+        "pregnant"
+      ],
+      "any": [
+        "bleeding",
+        "convulsions",
+        "blurred_vision",
+        "headache",
+        "swelling"
+      ]
+    },
+    "danger_newborn": {
+      "label_en": "Newborn danger sign",
+      "label_hi": "नवजात खतरे का संकेत",
+      "danger": true,
+      "all": [
+        "newborn"
+      ],
+      "any": [
+        "not_feeding",
+        "convulsions",
+        "breathing"
+      ]
+    }
+  },
+  "signal_words": {
+    "_about": "Anonymous signals carry this fixed sentence, never the note. Phone and cloud build it the same way.",
+    "fever": "fever",
+    "rash": "skin rash",
+    "diarrhoea": "diarrhoea loose stools",
+    "cough_2w": "cough more than two weeks",
+    "jaundice": "jaundice yellow eyes",
+    "danger_pregnancy": "pregnancy danger sign",
+    "danger_newborn": "newborn danger sign"
+  },
+  "prototypes": {
+    "fever": [
+      "patient has high fever and body ache",
+      "तेज बुखार है"
+    ],
+    "rash": [
+      "red rash spots on the body",
+      "शरीर पर लाल दाने"
+    ],
+    "diarrhoea": [
+      "loose watery stools many times a day",
+      "बार बार पतले दस्त"
+    ],
+    "cough_2w": [
+      "cough for more than two weeks with weight loss",
+      "दो हफ्ते से ज्यादा खांसी"
+    ],
+    "jaundice": [
+      "yellow eyes and dark yellow urine",
+      "आँखें और पेशाब पीला"
+    ],
+    "danger_pregnancy": [
+      "pregnant woman with bleeding or severe headache and blurred vision",
+      "गर्भवती महिला को खून बहना या तेज सिर दर्द"
+    ],
+    "danger_newborn": [
+      "newborn baby not feeding, convulsions or fast breathing",
+      "नवजात शिशु दूध नहीं पी रहा, झटके"
+    ]
+  },
+  "activities": {
+    "_about": "What was done in a visit, used for the auto-filled monthly summary and for planning. Derived from canonical terms and the household record.",
+    "anc": {
+      "label_en": "Antenatal check",
+      "label_hi": "गर्भावस्था जांच",
+      "any": [
+        "pregnant"
+      ],
+      "pregnant_member": true
+    },
+    "immunization": {
+      "label_en": "Immunisation",
+      "label_hi": "टीकाकरण",
+      "any": [
+        "vaccination",
+        "mr_vaccine"
+      ]
+    },
+    "mr_vaccine": {
+      "label_en": "MR vaccine given",
+      "label_hi": "खसरा-रूबेला टीका",
+      "any": [
+        "mr_vaccine"
+      ]
+    },
+    "newborn_care": {
+      "label_en": "Newborn care",
+      "label_hi": "नवजात देखभाल",
+      "any": [
+        "newborn"
+      ]
+    },
+    "referral": {
+      "label_en": "Referral",
+      "label_hi": "रेफर",
+      "any": [
+        "refer"
+      ],
+      "danger": true
+    }
+  },
+  "question_frame": {
+    "_about": "Words that shape a question but carry no medical meaning. Removed before matching a question against approved answers, so 'X ko ... kya karein?' doesn't match every other 'kya karein?' question.",
+    "phrases": [
+      "kya karein",
+      "kya kare",
+      "kya karu",
+      "kya karna hai",
+      "kya karna chahiye",
+      "what should i do",
+      "what to do",
+      "what do i do",
+      "क्या करें",
+      "क्या करना है",
+      "क्या करना चाहिए",
+      "please tell",
+      "batayein",
+      "bataiye",
+      "बताइए"
+    ],
+    "words": [
+      "ko",
+      "ka",
+      "ki",
+      "ke",
+      "ne",
+      "hai",
+      "hain",
+      "ho",
+      "raha",
+      "rahi",
+      "rahe",
+      "aa",
+      "se",
+      "aur",
+      "mein",
+      "me",
+      "ek",
+      "yeh",
+      "ye",
+      "wo",
+      "is",
+      "the",
+      "a",
+      "an",
+      "to",
+      "my",
+      "of",
+      "for",
+      "with",
+      "what",
+      "should",
+      "i",
+      "do",
+      "कोई",
+      "को",
+      "का",
+      "की",
+      "के",
+      "ने",
+      "है",
+      "हैं",
+      "हो",
+      "रहा",
+      "रही",
+      "रहे",
+      "से",
+      "और",
+      "में",
+      "यह",
+      "वह",
+      "[नाम]",
+      "[घर]",
+      "[नंबर]"
+    ]
+  }
+}

@@ -1,0 +1,6152 @@
+{
+ "RMP": [
+  {
+   "id": "1e230aa3-2fe3-437b-bc94-c162a7ac15e4",
+   "household_id": "818d1429-a201-493f-bedf-6d370a4eaf32",
+   "member_id": "64cdb909-2f97-4a84-b147-2a8f9c2a7d2c",
+   "member_name": "Mukesh Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-27T12:01:00Z",
+   "text": "Fever with red rash spreading from face to body in Mukesh, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "84679d7d-f89d-4d4d-a0be-0eb8b46fad3d",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "f54fb7c9-182c-4a97-9334-43521ae69202",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-27T17:55:00Z",
+   "text": "Sita ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "67c3b690-127b-4ed1-b710-2ff98ff9ed80",
+   "household_id": "e0c48f44-c4df-45b4-88fa-20303c88bed9",
+   "member_id": "43bb5d1f-856b-4445-9b44-957fbe918340",
+   "member_name": "Sita Devi Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-27T15:53:00Z",
+   "text": "Routine ANC check for Sita, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "21f11954-15e8-4c53-8336-9f548417b8be",
+   "household_id": "0d966567-0645-4985-9337-b8402c97a10f",
+   "member_id": "b412e6e5-44ae-47d0-966a-9b8302e028a5",
+   "member_name": "Rajesh Yadav",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-27T11:39:00Z",
+   "text": "Rajesh ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "83779c29-b22b-461c-adbf-0ccc5fa22700",
+   "household_id": "63058cf0-cf57-4ee2-ac6e-346f7abd8a0f",
+   "member_id": "b7e2fab8-956f-4ead-8701-5a49e4843195",
+   "member_name": "Aman Gupta",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-27T12:50:00Z",
+   "text": "Aman ko bukhar ke saath poore sharir par laal daane",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "de9f887a-3fde-4b21-ac69-7db984bfbca4",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "d76ac892-35e4-416b-96c4-b155a6cab83a",
+   "member_name": "Sita Devi Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-26T10:05:00Z",
+   "text": "Fever with red rash spreading from face to body in Sita, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4516eda7-f248-4383-9a82-b59e81437376",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "79a2bd0f-957d-4cb0-a333-7ef77d23bc0c",
+   "member_name": "Meena Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-26T11:08:00Z",
+   "text": "Meena ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "a3dab212-0877-49f7-951b-17b1112c6e4e",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "6bed62cf-16a6-4519-bba1-6c618816f464",
+   "member_name": "Aman Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-26T12:58:00Z",
+   "text": "Aman ka navjat doodh nahi pee raha, sharir thanda, sust",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "54f14398-e215-4abe-858b-f4c9ad9c13ee",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "1a95d992-c4c2-4977-99c7-d06cf1f3e343",
+   "member_name": "Mukesh Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-26T13:51:00Z",
+   "text": "Immunization for Mukesh: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "93c6db35-083d-473e-9524-027c9e08ca30",
+   "household_id": "e6ee5313-6b88-4ac6-bd35-02e15e2a84ee",
+   "member_id": "eaa808b8-4917-4627-90ea-fe88598b6b20",
+   "member_name": "Rohit Maurya",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-26T14:54:00Z",
+   "text": "Rohit को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "f5a8de63-b401-4aa8-a540-a6ae96f38d75",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "fa6d003b-4d43-48f5-80c3-748094fff41d",
+   "member_name": "Meena Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-25T14:00:00Z",
+   "text": "Meena ko bukhar ke saath poore sharir par laal daane",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "ee4ba2fd-733f-4522-a0c0-b310e37cdbea",
+   "household_id": "fa02b265-a93e-4c5a-a991-14c5f27e479a",
+   "member_id": "1c35c99d-67c3-4468-92bd-9280ec682321",
+   "member_name": "Aman Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-25T12:37:00Z",
+   "text": "Fever with red rash spreading from face to body in Aman, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "316dc0df-f598-4873-80da-58ba11462f6a",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "95455215-fee4-445c-8b11-668a572c10e1",
+   "member_name": "Mukesh Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-25T15:01:00Z",
+   "text": "Mukesh को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "ea54f002-46e8-4884-91a0-9b4482ab6df1",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "8a739a5c-52a8-4e98-b258-80a8608c792a",
+   "member_name": "Kiran Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-25T17:14:00Z",
+   "text": "Kiran गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "b0345318-8205-46dd-8486-698de4a2f1aa",
+   "household_id": "4147e064-0831-4766-8b2d-e95a7849c4f6",
+   "member_id": "08aba595-9325-4839-82fa-55440a7f32e2",
+   "member_name": "Geeta Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-25T12:41:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "943bc1c9-4d04-4750-9d16-06222a728c2b",
+   "household_id": "029f0b54-26e4-4950-831b-4122e19da442",
+   "member_id": "171adcf8-7552-4424-8cfb-6b33a14987ae",
+   "member_name": "Ravi Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-24T08:02:00Z",
+   "text": "Ravi को बुखार और शरीर पर दाने, आँखें लाल",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "9a093603-407a-4c3f-a3f8-5f9c42c0cbd2",
+   "household_id": "bba94aa6-60e6-4c61-a129-3c038b7e73b9",
+   "member_id": "5c5af105-1eb3-4e3f-8ac7-faa8ff50fdd8",
+   "member_name": "Ravi Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-24T11:56:00Z",
+   "text": "Ravi ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "80bcedca-3991-4406-b6da-a37cb4a3a901",
+   "household_id": "818d1429-a201-493f-bedf-6d370a4eaf32",
+   "member_id": "47a53d8b-8723-4eb8-a9e2-9b31aaa72765",
+   "member_name": "Radha Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-24T16:26:00Z",
+   "text": "Radha की आँखें पीली, कमजोरी, पीलिया का शक",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "420ecc7a-9759-41f0-9294-916b81939870",
+   "household_id": "929c4a5d-aaa5-479b-931b-561bbacfb2eb",
+   "member_id": "0940dd5f-ab30-4553-93db-afcc71dd9782",
+   "member_name": "Meena Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-24T09:53:00Z",
+   "text": "Meena गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "ce3d7283-f0b8-49d0-b395-0d8b7a9f2aed",
+   "household_id": "029f0b54-26e4-4950-831b-4122e19da442",
+   "member_id": "32d84353-011e-4ae6-931f-b555ca9390a7",
+   "member_name": "Priya Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-24T13:13:00Z",
+   "text": "Priya ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a1120c5b-5e22-4066-90fb-572b1d923008",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "d76ac892-35e4-416b-96c4-b155a6cab83a",
+   "member_name": "Sita Devi Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-23T13:06:00Z",
+   "text": "Sita को बुखार और शरीर पर दाने, आँखें लाल",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "dec82315-8b2e-4ecd-813c-22e6271a46f7",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "6bed62cf-16a6-4519-bba1-6c618816f464",
+   "member_name": "Aman Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-23T14:17:00Z",
+   "text": "Aman ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "69df4106-e9f5-432b-8e8b-8c8e27bbbf48",
+   "household_id": "fa02b265-a93e-4c5a-a991-14c5f27e479a",
+   "member_id": "1c35c99d-67c3-4468-92bd-9280ec682321",
+   "member_name": "Aman Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-23T11:41:00Z",
+   "text": "Aman ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "aed4dccb-521e-48f2-9ac6-96bef2087f69",
+   "household_id": "10270329-ced0-4d85-be8c-1014bbe2c36f",
+   "member_id": "07feaad2-e1e7-4825-a5ca-d03822fb6b79",
+   "member_name": "Radha Singh",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-23T13:15:00Z",
+   "text": "Radha ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "26073bfc-b485-4782-b677-173fb5de8e01",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "fa6d003b-4d43-48f5-80c3-748094fff41d",
+   "member_name": "Meena Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-23T11:52:00Z",
+   "text": "Immunization for Meena: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "ba129dca-627a-4cf2-bdde-4e706aac6411",
+   "household_id": "9982b86a-deb8-49ee-9460-b198961b8421",
+   "member_id": "78ab7c25-7692-4453-93b6-bed2f3f302fb",
+   "member_name": "Meena Gupta",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-22T10:08:00Z",
+   "text": "Meena को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "528e492a-6573-4ad7-a1a6-3c8dfe4cd243",
+   "household_id": "9cf3769a-26e9-457f-b52e-e07dc97f4c5c",
+   "member_id": "904ff46e-5ea3-479e-b1b5-f9d284db9cd4",
+   "member_name": "Mohan Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-22T08:08:00Z",
+   "text": "Yellow eyes and dark urine in Mohan, suspected jaundice",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "6fe4561c-63e1-4f57-994b-3e0b843d80fd",
+   "household_id": "6a800b96-ac4c-4309-b515-26334abf41b1",
+   "member_id": "a33938c5-835b-49c3-80b5-23815b7a37c0",
+   "member_name": "Sita Devi Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-22T10:16:00Z",
+   "text": "Sita ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "0f56943f-30cd-4413-b8d4-dbb1439a3810",
+   "household_id": "029f0b54-26e4-4950-831b-4122e19da442",
+   "member_id": "38b0d24c-5499-4dc7-baa1-c10a2350674e",
+   "member_name": "Rekha Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-22T09:30:00Z",
+   "text": "Rekha ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "65f98c50-f180-4f03-8876-580cd30ce12a",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "95455215-fee4-445c-8b11-668a572c10e1",
+   "member_name": "Mukesh Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-21T16:14:00Z",
+   "text": "Mukesh ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "107939ec-f861-4dbf-919f-091dc0312bff",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "a83df83e-f1f8-4cc3-8b66-d3b5f9dac794",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-21T08:03:00Z",
+   "text": "Arjun को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "e389a35f-011f-423c-b5ce-ad49da348195",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "f54fb7c9-182c-4a97-9334-43521ae69202",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-21T09:31:00Z",
+   "text": "Immunization for Sita: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "d02f09c5-6477-4021-8186-f17d8dfb99ce",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "8f0b0004-ff89-443c-9cec-701c4f7b42da",
+   "member_name": "Geeta Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-21T09:20:00Z",
+   "text": "Geeta ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "aa20c2a2-647e-462a-8ad3-84e127961c97",
+   "household_id": "e6ee5313-6b88-4ac6-bd35-02e15e2a84ee",
+   "member_id": "e2931279-90df-4fef-8d76-9dc36b3a8f77",
+   "member_name": "Savitri Maurya",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-20T12:39:00Z",
+   "text": "Savitri ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "29e07a68-62e5-481e-8fd1-906a56140cd8",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "8a739a5c-52a8-4e98-b258-80a8608c792a",
+   "member_name": "Kiran Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-20T13:24:00Z",
+   "text": "Routine ANC check for Kiran, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "d3b17f47-169d-475a-ad8e-76a8d2c104de",
+   "household_id": "4147e064-0831-4766-8b2d-e95a7849c4f6",
+   "member_id": "2edd71ee-5a2e-4580-80ca-42a0aa4b4f7b",
+   "member_name": "Radha Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-20T09:54:00Z",
+   "text": "Radha ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "d656fd4e-532d-4b83-b60e-5328e65a02fe",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "8a739a5c-52a8-4e98-b258-80a8608c792a",
+   "member_name": "Kiran Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-20T11:27:00Z",
+   "text": "Routine ANC check for Kiran, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "63308c9b-f003-4f4e-bffd-62827f910ea6",
+   "household_id": "0d966567-0645-4985-9337-b8402c97a10f",
+   "member_id": "86a75145-a0be-4a5c-8fc6-60ffb6263eff",
+   "member_name": "Mohan Yadav",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-19T15:25:00Z",
+   "text": "Loose motions 4 times since morning in Mohan, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a2a9ee84-97cc-4d8c-809a-9f40af5b3cd1",
+   "household_id": "7b624a93-61a3-487d-85e0-3124e1931fe7",
+   "member_id": "37c22a0c-8dce-4b39-8b5f-8de18607e9be",
+   "member_name": "Anita Kumar",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-19T13:42:00Z",
+   "text": "Anita ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "e1706696-27ae-47b3-936a-8c3f9568c22e",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "554f1c8c-5113-4587-8b95-fde09cd9b5bc",
+   "member_name": "Radha Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-19T09:05:00Z",
+   "text": "Radha ko bukhar ke saath poore sharir par laal daane",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "fbccfb4b-cb34-4373-a4fa-023a8ae9264d",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "86445d36-c45d-49db-a4e0-0153058c0bf2",
+   "member_name": "Geeta Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-19T17:35:00Z",
+   "text": "Geeta ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d6c378dd-5d2b-44f1-b5c2-00760e293308",
+   "household_id": "fa02b265-a93e-4c5a-a991-14c5f27e479a",
+   "member_id": "d14386bb-48cf-4fd0-8c51-bd76f5d3f8be",
+   "member_name": "Savitri Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-18T13:55:00Z",
+   "text": "Savitri गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "be43ac3f-b5e1-425d-adea-f2113556d765",
+   "household_id": "0db7c012-c667-4700-8c7e-5cb861706d58",
+   "member_id": "a0be095f-200b-45f3-8053-9b37e2502a8f",
+   "member_name": "Kiran Maurya",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-18T08:18:00Z",
+   "text": "Routine ANC check for Kiran, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "3ef89f43-b3ec-470f-bd43-6546427acb8a",
+   "household_id": "3e8ebca5-4c4c-4bd2-91d1-f769fe1ad31f",
+   "member_id": "c96c4386-6502-4dea-9deb-c2b89bf663a3",
+   "member_name": "Geeta Verma",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-18T17:32:00Z",
+   "text": "Geeta ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "afd431de-8171-413f-a6b0-3e7ceaa115d1",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "86ab3899-844a-4871-9bf8-b03179c29dc1",
+   "member_name": "Neha Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-18T13:54:00Z",
+   "text": "Neha ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "33aaafb7-fe87-45c3-bf39-950a9c2feba7",
+   "household_id": "fa02b265-a93e-4c5a-a991-14c5f27e479a",
+   "member_id": "d14386bb-48cf-4fd0-8c51-bd76f5d3f8be",
+   "member_name": "Savitri Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-17T17:14:00Z",
+   "text": "Savitri गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "557f01cc-0630-4def-b1cb-dd97059eb368",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "fa6d003b-4d43-48f5-80c3-748094fff41d",
+   "member_name": "Meena Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-17T12:01:00Z",
+   "text": "Newborn of Meena not feeding since morning, fast breathing, chest indrawing",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "09960c38-4992-4175-a75f-99d500777e07",
+   "household_id": "4ce5985e-82b1-4bd8-a9d2-f33a1b7aa63a",
+   "member_id": "4c474679-fe7d-42f3-9eb9-cf8b61a2e3e7",
+   "member_name": "Savitri Verma",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-17T08:11:00Z",
+   "text": "High fever since yesterday in Savitri, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a5d707d4-753a-4990-9c46-02ccba8a12a3",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "f54fb7c9-182c-4a97-9334-43521ae69202",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-17T08:05:00Z",
+   "text": "Sita ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "6232b1cf-0bb4-4d3f-8df4-1861be744275",
+   "household_id": "0d66a262-1525-48e7-950c-a9c811649149",
+   "member_id": "f6c0b882-1442-4395-93a3-c0aa4cb7b3d1",
+   "member_name": "Kiran Rawat",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-16T14:29:00Z",
+   "text": "Kiran गर्भवती, खून बह रहा है, पेट में तेज दर्द",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "5f8d9396-dc02-4d07-8ca1-e83ec2081944",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "3cc731e0-0041-414b-8349-32ebcf2e9128",
+   "member_name": "Ramesh Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-16T17:38:00Z",
+   "text": "Loose motions 4 times since morning in Ramesh, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "268c3e21-3c4e-4e5b-8827-c64e7c934752",
+   "household_id": "e0c48f44-c4df-45b4-88fa-20303c88bed9",
+   "member_id": "43bb5d1f-856b-4445-9b44-957fbe918340",
+   "member_name": "Sita Devi Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-16T17:03:00Z",
+   "text": "Sita को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "0194babf-2a1c-41cb-bf4b-ef9bc16fd0f7",
+   "household_id": "0f95ebe0-e3f4-4fbd-b023-fe08dd0b5686",
+   "member_id": "1c7fce59-4d66-4a24-bab0-dfe41e950bb5",
+   "member_name": "Pooja Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-16T14:31:00Z",
+   "text": "Pooja गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "7c6ccb12-a936-458b-9a61-fab5984d1b9c",
+   "household_id": "029f0b54-26e4-4950-831b-4122e19da442",
+   "member_id": "32d84353-011e-4ae6-931f-b555ca9390a7",
+   "member_name": "Priya Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-15T11:48:00Z",
+   "text": "Priya गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "4cca475a-410e-46ce-8ab1-3940d786d55b",
+   "household_id": "3e8ebca5-4c4c-4bd2-91d1-f769fe1ad31f",
+   "member_id": "c96c4386-6502-4dea-9deb-c2b89bf663a3",
+   "member_name": "Geeta Verma",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-15T12:43:00Z",
+   "text": "Geeta ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "aa3ebc92-bbe4-4352-b7e4-97e55832004d",
+   "household_id": "bba94aa6-60e6-4c61-a129-3c038b7e73b9",
+   "member_id": "35a4c51a-495a-4a3f-afcf-2f36fae9449d",
+   "member_name": "Radha Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-15T12:02:00Z",
+   "text": "Routine ANC check for Radha, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "5df8e850-a3c1-4fe7-80ed-09a2928b085a",
+   "household_id": "9982b86a-deb8-49ee-9460-b198961b8421",
+   "member_id": "5f803f32-fd8f-4a6e-ba62-9bad73dea47a",
+   "member_name": "Mohan Gupta",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-15T11:19:00Z",
+   "text": "Mohan ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7dd05ea5-9869-4af8-bbf5-2d57534e3c47",
+   "household_id": "63058cf0-cf57-4ee2-ac6e-346f7abd8a0f",
+   "member_id": "b7e2fab8-956f-4ead-8701-5a49e4843195",
+   "member_name": "Aman Gupta",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-14T13:07:00Z",
+   "text": "Aman को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "99db602c-51b0-4558-b76c-e7988f775715",
+   "household_id": "0db7c012-c667-4700-8c7e-5cb861706d58",
+   "member_id": "a0be095f-200b-45f3-8053-9b37e2502a8f",
+   "member_name": "Kiran Maurya",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-14T14:34:00Z",
+   "text": "Kiran को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "e81e4954-5090-46f8-ba41-f46cd58cb331",
+   "household_id": "409a65e7-0e03-47be-a167-892827211702",
+   "member_id": "717ff4b3-f69e-4ced-bf34-f79c303e12f8",
+   "member_name": "Sunita Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-14T13:04:00Z",
+   "text": "Routine ANC check for Sunita, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "18c3fba0-6482-45f8-9d39-251cd0efd8aa",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "a83df83e-f1f8-4cc3-8b66-d3b5f9dac794",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-14T15:58:00Z",
+   "text": "Arjun ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "52f69368-370c-428c-be32-82522a6eda8d",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "02d88b7e-f456-4a36-a561-c4ceeb551e9b",
+   "member_name": "Ramesh Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-13T17:25:00Z",
+   "text": "Ramesh ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "31a04e55-2cd2-4920-85d5-ffbff85a7b88",
+   "household_id": "029f0b54-26e4-4950-831b-4122e19da442",
+   "member_id": "32d84353-011e-4ae6-931f-b555ca9390a7",
+   "member_name": "Priya Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-13T09:25:00Z",
+   "text": "Priya गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "9a727240-2ab8-47cc-b069-b09779678975",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "b8658e47-6780-4406-8f86-285fd5c31126",
+   "member_name": "Rekha Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-13T13:05:00Z",
+   "text": "Rekha ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "f10e8afe-cbf1-43ab-96dc-fdee36518a46",
+   "household_id": "7b624a93-61a3-487d-85e0-3124e1931fe7",
+   "member_id": "71e3e98f-a2bc-43a1-8a4f-4d0145957f25",
+   "member_name": "Priya Kumar",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-13T17:25:00Z",
+   "text": "Priya ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "563ab959-50e4-40be-85ba-16c1b45bd78e",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "5b54443f-df9e-4413-9d57-62005e37fdfb",
+   "member_name": "Rekha Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-12T13:14:00Z",
+   "text": "Yellow eyes and dark urine in Rekha, suspected jaundice",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d0e5cb4a-3fa0-488a-913b-8b01b1547517",
+   "household_id": "29ba1ec5-9c0d-44d1-9d42-a2bba7c5e51a",
+   "member_id": "82ead6d3-2c79-4272-b178-4a38a06b314a",
+   "member_name": "Geeta Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-12T16:32:00Z",
+   "text": "Geeta ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "2f231d0f-f1cf-482b-bc32-bd30453e5027",
+   "household_id": "3e8ebca5-4c4c-4bd2-91d1-f769fe1ad31f",
+   "member_id": "c96c4386-6502-4dea-9deb-c2b89bf663a3",
+   "member_name": "Geeta Verma",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-12T11:06:00Z",
+   "text": "Geeta को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7ec477f0-69ee-4f76-8b47-864fac7b7cb5",
+   "household_id": "691597b7-7b1d-4b33-8524-3e2acb2e3229",
+   "member_id": "e1a413e6-4010-441c-80d0-dad07867b590",
+   "member_name": "Rajesh Yadav",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-12T09:11:00Z",
+   "text": "Rajesh को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "271451db-2685-4330-ab1d-8937417e958e",
+   "household_id": "4147e064-0831-4766-8b2d-e95a7849c4f6",
+   "member_id": "2edd71ee-5a2e-4580-80ca-42a0aa4b4f7b",
+   "member_name": "Radha Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-11T17:41:00Z",
+   "text": "Immunization for Radha: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "0d3b14dc-0d46-4796-8848-853e03998c6f",
+   "household_id": "e8f6436c-bbb7-4722-b7f2-514a9a085121",
+   "member_id": "c19232e0-b863-4b55-97ed-76c7e70dc4f2",
+   "member_name": "Geeta Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-11T13:09:00Z",
+   "text": "Geeta गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "3268319a-94a3-418b-afb1-6a11e9ed6e1f",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "554f1c8c-5113-4587-8b95-fde09cd9b5bc",
+   "member_name": "Radha Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-11T12:37:00Z",
+   "text": "Loose motions 4 times since morning in Radha, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "58380519-335f-4baa-82bf-c54305c24046",
+   "household_id": "409a65e7-0e03-47be-a167-892827211702",
+   "member_id": "6adbcac0-6116-4596-bc75-1ea88922b206",
+   "member_name": "Rajesh Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-11T15:28:00Z",
+   "text": "High fever since yesterday in Rajesh, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "5a9317b5-80cc-4cde-9b1b-249670de4cae",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "3cc731e0-0041-414b-8349-32ebcf2e9128",
+   "member_name": "Ramesh Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-10T09:39:00Z",
+   "text": "Ramesh ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "adb74044-e9f6-4710-8e02-a77318d125b5",
+   "household_id": "818d1429-a201-493f-bedf-6d370a4eaf32",
+   "member_id": "47a53d8b-8723-4eb8-a9e2-9b31aaa72765",
+   "member_name": "Radha Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-10T17:35:00Z",
+   "text": "Radha गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "e305bc37-d812-45c7-a0fa-72204ecd5519",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "a83df83e-f1f8-4cc3-8b66-d3b5f9dac794",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-10T11:20:00Z",
+   "text": "Immunization for Arjun: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "5b5b8fcf-cbb4-42e0-8cb7-98e73018b143",
+   "household_id": "409a65e7-0e03-47be-a167-892827211702",
+   "member_id": "717ff4b3-f69e-4ced-bf34-f79c303e12f8",
+   "member_name": "Sunita Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-10T08:28:00Z",
+   "text": "Sunita ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "88814795-9898-48cb-8a56-ab874875edd8",
+   "household_id": "ddcce27a-7e42-4237-a8c2-f5028ad76125",
+   "member_id": "bc2adb33-4855-43ea-b00d-55d80bec90ae",
+   "member_name": "Mahesh Maurya",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-09-09T08:15:00Z",
+   "text": "Mahesh को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4fd68e87-c612-4f06-be3b-0d5bbffe275d",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "8f0b0004-ff89-443c-9cec-701c4f7b42da",
+   "member_name": "Geeta Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-09T16:39:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "6390f748-5961-4981-8ff4-c709515e9412",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "3cc731e0-0041-414b-8349-32ebcf2e9128",
+   "member_name": "Ramesh Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-09T14:49:00Z",
+   "text": "Ramesh ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d7f68b04-4b1a-4197-81eb-0a7d4ac6c50f",
+   "household_id": "9982b86a-deb8-49ee-9460-b198961b8421",
+   "member_id": "5f803f32-fd8f-4a6e-ba62-9bad73dea47a",
+   "member_name": "Mohan Gupta",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-09T09:21:00Z",
+   "text": "Loose motions 4 times since morning in Mohan, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "c26d4fad-17cf-4b07-85c5-019a73afcfdd",
+   "household_id": "818d1429-a201-493f-bedf-6d370a4eaf32",
+   "member_id": "cedd6ea1-9361-4930-9581-2aaf68737a5d",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-08T17:55:00Z",
+   "text": "High fever since yesterday in Arjun, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "eb33c3fb-8876-40fc-9392-6f819386f2d7",
+   "household_id": "d2f3e7fd-c1b9-4df8-ae13-aec376bbc988",
+   "member_id": "1aeb896d-dd92-4c79-92eb-4d4bad6bd2a0",
+   "member_name": "Anita Yadav",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-08T12:41:00Z",
+   "text": "High fever since yesterday in Anita, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "2d619a62-e385-49ac-90b0-41efaae35f9c",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "5b54443f-df9e-4413-9d57-62005e37fdfb",
+   "member_name": "Rekha Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-08T17:45:00Z",
+   "text": "Rekha ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "92c26c7a-1592-4ce9-b8e9-b4833c3a043d",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "e32f6a22-9092-4498-b9dc-32d122c8ff35",
+   "member_name": "Aman Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-08T13:52:00Z",
+   "text": "Immunization for Aman: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "0b16e6cb-cd53-4383-894d-1d3d70120412",
+   "household_id": "97b467e5-5c7f-45af-9f57-f7c104e401a5",
+   "member_id": "b1c0397a-d450-4413-85d7-188a39f3b103",
+   "member_name": "Rohit Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-09-07T16:23:00Z",
+   "text": "Rohit ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "32468de2-bf09-4234-9978-49601a07bf99",
+   "household_id": "4ce5985e-82b1-4bd8-a9d2-f33a1b7aa63a",
+   "member_id": "e6346cc0-a000-4838-b667-ca4f7ca8fa45",
+   "member_name": "Vikas Verma",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-07T13:49:00Z",
+   "text": "Vikas को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "45ddf751-2659-45e7-a81f-21a316db42e7",
+   "household_id": "0d966567-0645-4985-9337-b8402c97a10f",
+   "member_id": "97f7a087-34cb-4eb5-82f1-11c08cd881e0",
+   "member_name": "Aman Yadav",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-07T09:18:00Z",
+   "text": "Aman ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d6e2f132-64a0-4bb7-8986-7790bd46cbd1",
+   "household_id": "7b624a93-61a3-487d-85e0-3124e1931fe7",
+   "member_id": "37c22a0c-8dce-4b39-8b5f-8de18607e9be",
+   "member_name": "Anita Kumar",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-07T13:56:00Z",
+   "text": "Immunization for Anita: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "0a3b80e8-025c-4456-a1e9-32bd4f5d4ef3",
+   "household_id": "63058cf0-cf57-4ee2-ac6e-346f7abd8a0f",
+   "member_id": "dd15d196-91d8-4827-88da-9b7cc94a55b2",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-06T14:09:00Z",
+   "text": "Pregnant Sita, 8th month, severe headache, blurred vision, swelling of feet, BP 150/100",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "e5950985-d1bc-454e-aefd-632bbd8d3387",
+   "household_id": "e8f6436c-bbb7-4722-b7f2-514a9a085121",
+   "member_id": "1630e3d4-55b0-4a2a-8d41-bc635c2d9f90",
+   "member_name": "Arjun Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-06T08:26:00Z",
+   "text": "Arjun ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "f438dda6-508a-465a-a50e-87ffb68d53e9",
+   "household_id": "6a800b96-ac4c-4309-b515-26334abf41b1",
+   "member_id": "a33938c5-835b-49c3-80b5-23815b7a37c0",
+   "member_name": "Sita Devi Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-06T15:14:00Z",
+   "text": "Loose motions 4 times since morning in Sita, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "fc21ea5f-c76b-46f1-b6b8-21ea28f11c15",
+   "household_id": "4ce5985e-82b1-4bd8-a9d2-f33a1b7aa63a",
+   "member_id": "4c474679-fe7d-42f3-9eb9-cf8b61a2e3e7",
+   "member_name": "Savitri Verma",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-06T13:43:00Z",
+   "text": "Savitri ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "be88cd07-2365-47af-9ce9-a58078282e52",
+   "household_id": "4147e064-0831-4766-8b2d-e95a7849c4f6",
+   "member_id": "2edd71ee-5a2e-4580-80ca-42a0aa4b4f7b",
+   "member_name": "Radha Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-05T16:33:00Z",
+   "text": "Radha को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "b217d544-420b-4865-a03d-3b8356c56f08",
+   "household_id": "29ba1ec5-9c0d-44d1-9d42-a2bba7c5e51a",
+   "member_id": "82ead6d3-2c79-4272-b178-4a38a06b314a",
+   "member_name": "Geeta Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-05T12:03:00Z",
+   "text": "Geeta को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "c0cffbfb-3745-405b-818e-1f780d471ef8",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "86445d36-c45d-49db-a4e0-0153058c0bf2",
+   "member_name": "Geeta Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-05T09:45:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "17474fdd-8979-48c4-afd7-658dbc086ab5",
+   "household_id": "0d966567-0645-4985-9337-b8402c97a10f",
+   "member_id": "b412e6e5-44ae-47d0-966a-9b8302e028a5",
+   "member_name": "Rajesh Yadav",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-04T08:26:00Z",
+   "text": "Rajesh को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "abfb840c-28c2-45a8-a04b-8ae0d5339f7b",
+   "household_id": "409a65e7-0e03-47be-a167-892827211702",
+   "member_id": "717ff4b3-f69e-4ced-bf34-f79c303e12f8",
+   "member_name": "Sunita Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-04T14:05:00Z",
+   "text": "Sunita को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "44ae7b87-80ab-45d1-b7c2-66727aedadf5",
+   "household_id": "10270329-ced0-4d85-be8c-1014bbe2c36f",
+   "member_id": "8339b0ef-83f8-4697-8602-a1d27c232896",
+   "member_name": "Ravi Singh",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-04T13:50:00Z",
+   "text": "Ravi ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "06c85782-93ef-47ee-b8e9-1850c2148a23",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "4fe30a0d-a31c-4b23-90ff-eece6f289d18",
+   "member_name": "Rohit Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-04T10:48:00Z",
+   "text": "Rohit ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "df2caa76-1c30-47b7-95f9-769833483292",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "8f0b0004-ff89-443c-9cec-701c4f7b42da",
+   "member_name": "Geeta Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-03T08:57:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "db0836c7-ce45-496b-97b4-0e30d676474e",
+   "household_id": "78e0a239-e16e-416d-8641-3de191a638e9",
+   "member_id": "a3a1fe25-bcb2-4585-8201-0f36e4b462cc",
+   "member_name": "Arjun Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-03T16:46:00Z",
+   "text": "Arjun को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "5c04de92-e4b8-40f0-b6b4-7e80dc9dc6f3",
+   "household_id": "0db7c012-c667-4700-8c7e-5cb861706d58",
+   "member_id": "a0be095f-200b-45f3-8053-9b37e2502a8f",
+   "member_name": "Kiran Maurya",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-03T12:15:00Z",
+   "text": "Kiran ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "cad65b9a-795d-49d2-a424-d33c0063a24b",
+   "household_id": "e0c48f44-c4df-45b4-88fa-20303c88bed9",
+   "member_id": "43bb5d1f-856b-4445-9b44-957fbe918340",
+   "member_name": "Sita Devi Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-03T17:29:00Z",
+   "text": "Sita ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "38ac3745-ea46-4899-a390-959ce14e7105",
+   "household_id": "bba94aa6-60e6-4c61-a129-3c038b7e73b9",
+   "member_id": "07e1e171-e542-456a-aa9f-f353a0d725db",
+   "member_name": "Mukesh Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-02T16:36:00Z",
+   "text": "Mukesh ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "01ce4704-869a-4fef-8859-cc4747195214",
+   "household_id": "0db7c012-c667-4700-8c7e-5cb861706d58",
+   "member_id": "38d307be-eeb5-44de-a0d5-814ff4c2c65e",
+   "member_name": "Suresh Maurya",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-02T11:36:00Z",
+   "text": "Fever with red rash spreading from face to body in Suresh, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "9ac3468f-b092-475e-aa6d-01c912941a7d",
+   "household_id": "d2f3e7fd-c1b9-4df8-ae13-aec376bbc988",
+   "member_id": "40635e7c-f3aa-466f-b472-b35794ca2dab",
+   "member_name": "Rajesh Yadav",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-02T16:34:00Z",
+   "text": "Rajesh ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a3c7ef76-07e9-4d74-aebc-0d34248219ff",
+   "household_id": "409a65e7-0e03-47be-a167-892827211702",
+   "member_id": "6adbcac0-6116-4596-bc75-1ea88922b206",
+   "member_name": "Rajesh Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-02T15:02:00Z",
+   "text": "Rajesh की आँखें पीली, कमजोरी, पीलिया का शक",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "62732adb-121e-43ae-95c0-d104f5d39ad6",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "86445d36-c45d-49db-a4e0-0153058c0bf2",
+   "member_name": "Geeta Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-01T08:22:00Z",
+   "text": "Geeta गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "098bac11-7bdf-44e9-91b6-5a75ca60e2ce",
+   "household_id": "7b624a93-61a3-487d-85e0-3124e1931fe7",
+   "member_id": "37c22a0c-8dce-4b39-8b5f-8de18607e9be",
+   "member_name": "Anita Kumar",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-01T08:22:00Z",
+   "text": "Anita ka navjat doodh nahi pee raha, sharir thanda, sust",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "2757282d-7126-4561-b990-c2aff875c5a0",
+   "household_id": "9cf3769a-26e9-457f-b52e-e07dc97f4c5c",
+   "member_id": "a45daf20-6127-4a62-88a2-da0a67dc846e",
+   "member_name": "Priya Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-01T15:44:00Z",
+   "text": "Routine ANC check for Priya, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "04374d84-92f7-4524-baa5-ccae1715c3b6",
+   "household_id": "9cf3769a-26e9-457f-b52e-e07dc97f4c5c",
+   "member_id": "904ff46e-5ea3-479e-b1b5-f9d284db9cd4",
+   "member_name": "Mohan Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-01T15:02:00Z",
+   "text": "Mohan ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "84f0f874-86eb-4845-a9cd-f5eb9ca958f4",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "d6c154e7-4bd7-4de2-ae14-da67da36484e",
+   "member_name": "Anita Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-31T13:59:00Z",
+   "text": "Anita ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d4af4443-4014-4147-917e-441b35a94217",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "f54fb7c9-182c-4a97-9334-43521ae69202",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-31T12:02:00Z",
+   "text": "Sita ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "78eefaac-e049-420b-b417-954dab02e886",
+   "household_id": "691597b7-7b1d-4b33-8524-3e2acb2e3229",
+   "member_id": "0313ce27-b261-498e-a795-42deebe44511",
+   "member_name": "Sita Devi Yadav",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-31T13:55:00Z",
+   "text": "Sita गर्भवती, खून बह रहा है, पेट में तेज दर्द",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "17d99498-2c90-4a13-a4df-f0233e20bd5f",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "6bed62cf-16a6-4519-bba1-6c618816f464",
+   "member_name": "Aman Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-31T15:57:00Z",
+   "text": "Aman का नवजात शिशु, झटके आ रहे हैं, दूध नहीं पी रहा",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "4ffea93f-b502-4648-9fc0-efff9d0e2c0f",
+   "household_id": "9cf3769a-26e9-457f-b52e-e07dc97f4c5c",
+   "member_id": "5ddfb41e-097d-441a-af24-4b3b1e6dfb7e",
+   "member_name": "Suresh Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-30T15:23:00Z",
+   "text": "Immunization for Suresh: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "6c3ec0e9-e8d5-4f23-a11c-7adf653757da",
+   "household_id": "9982b86a-deb8-49ee-9460-b198961b8421",
+   "member_id": "78ab7c25-7692-4453-93b6-bed2f3f302fb",
+   "member_name": "Meena Gupta",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-30T12:20:00Z",
+   "text": "Immunization for Meena: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "0c85bedc-9912-4876-9362-a8bd84074422",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "d80241c7-9892-4da0-92c0-66472bd7dd94",
+   "member_name": "Aman Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-30T15:38:00Z",
+   "text": "High fever since yesterday in Aman, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "71a95490-4f43-4842-8ae2-5d7fa8e65b3c",
+   "household_id": "29ba1ec5-9c0d-44d1-9d42-a2bba7c5e51a",
+   "member_id": "82ead6d3-2c79-4272-b178-4a38a06b314a",
+   "member_name": "Geeta Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-30T15:22:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "08569cfa-e44a-4eb0-a6cc-f4b2437b0348",
+   "household_id": "3e8ebca5-4c4c-4bd2-91d1-f769fe1ad31f",
+   "member_id": "9b3b1ca8-dc35-467b-bc5d-c3fe016e8c99",
+   "member_name": "Pooja Verma",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-29T12:40:00Z",
+   "text": "Pooja ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4a263472-e321-46e7-a4bb-e8e3bcbc9fc5",
+   "household_id": "e0c48f44-c4df-45b4-88fa-20303c88bed9",
+   "member_id": "8c39c7d8-b43d-400b-be8a-ab72fe63333e",
+   "member_name": "Arjun Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-29T14:23:00Z",
+   "text": "Immunization for Arjun: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "3b008205-cd26-4446-9089-d204e5b19046",
+   "household_id": "29ba1ec5-9c0d-44d1-9d42-a2bba7c5e51a",
+   "member_id": "82ead6d3-2c79-4272-b178-4a38a06b314a",
+   "member_name": "Geeta Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-29T17:43:00Z",
+   "text": "Geeta ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "ce008358-930a-4c6e-8816-12f8ecde149e",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "a83df83e-f1f8-4cc3-8b66-d3b5f9dac794",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-29T11:49:00Z",
+   "text": "Arjun ka navjat doodh nahi pee raha, sharir thanda, sust",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "2fc54d14-d98f-4f54-96d8-a1a4e49db54d",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "86445d36-c45d-49db-a4e0-0153058c0bf2",
+   "member_name": "Geeta Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-28T17:02:00Z",
+   "text": "Geeta गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "d0696abd-f509-424f-8e17-6239efd625cb",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "8f0b0004-ff89-443c-9cec-701c4f7b42da",
+   "member_name": "Geeta Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-28T13:28:00Z",
+   "text": "Geeta गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "52d7368b-9307-483a-bda9-5283be2c3871",
+   "household_id": "4c720ed4-2638-4a26-b155-b2f9114ef1b9",
+   "member_id": "cd6bf005-eee2-4d2a-a8cf-24ef63b8d92f",
+   "member_name": "Anita Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-28T16:23:00Z",
+   "text": "Anita garbhvati, BP 160/110, sar dard aur dhundhla dikh raha, pair mein sujan",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "8723831d-f15d-4d57-ba7c-de67d4dbe5c4",
+   "household_id": "0f95ebe0-e3f4-4fbd-b023-fe08dd0b5686",
+   "member_id": "beecaa40-26bd-4d54-8073-b3dc73faa918",
+   "member_name": "Mahesh Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-28T08:47:00Z",
+   "text": "Mahesh ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "aef8ff69-45fb-4b44-9357-39b0fe19615b",
+   "household_id": "97b467e5-5c7f-45af-9f57-f7c104e401a5",
+   "member_id": "d4d646fe-18db-4335-80e2-c126c77ad11d",
+   "member_name": "Meena Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-27T12:49:00Z",
+   "text": "Meena ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "463ea71a-481a-46cf-b375-3654082e6dc1",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "d76ac892-35e4-416b-96c4-b155a6cab83a",
+   "member_name": "Sita Devi Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-27T15:12:00Z",
+   "text": "Fever with red rash spreading from face to body in Sita, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "0a4ed776-062a-4764-a3cb-4ab2d7db29a1",
+   "household_id": "e6ee5313-6b88-4ac6-bd35-02e15e2a84ee",
+   "member_id": "e2931279-90df-4fef-8d76-9dc36b3a8f77",
+   "member_name": "Savitri Maurya",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-27T15:05:00Z",
+   "text": "Savitri को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "31c91929-299c-40bb-8f30-e572f5862ce9",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "79a2bd0f-957d-4cb0-a333-7ef77d23bc0c",
+   "member_name": "Meena Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-27T09:35:00Z",
+   "text": "Newborn of Meena not feeding since morning, fast breathing, chest indrawing",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "f08e58a9-97de-415d-99a3-6dc80e078169",
+   "household_id": "4ce5985e-82b1-4bd8-a9d2-f33a1b7aa63a",
+   "member_id": "e6346cc0-a000-4838-b667-ca4f7ca8fa45",
+   "member_name": "Vikas Verma",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-26T10:50:00Z",
+   "text": "Yellow eyes and dark urine in Vikas, suspected jaundice",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "489f6d80-e2a5-483d-9f88-8faf7a166b55",
+   "household_id": "0d966567-0645-4985-9337-b8402c97a10f",
+   "member_id": "97f7a087-34cb-4eb5-82f1-11c08cd881e0",
+   "member_name": "Aman Yadav",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-26T10:15:00Z",
+   "text": "Aman को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "b4b500d2-770b-47e6-87bd-7c178a11752e",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "6bed62cf-16a6-4519-bba1-6c618816f464",
+   "member_name": "Aman Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-26T16:08:00Z",
+   "text": "Aman का नवजात शिशु, झटके आ रहे हैं, दूध नहीं पी रहा",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "6d91b805-4900-4a4c-8652-38f652b340a2",
+   "household_id": "d2f3e7fd-c1b9-4df8-ae13-aec376bbc988",
+   "member_id": "1aeb896d-dd92-4c79-92eb-4d4bad6bd2a0",
+   "member_name": "Anita Yadav",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-26T12:25:00Z",
+   "text": "Anita ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "f01d7cff-31dd-42d8-90f8-70afd0e2b200",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "1a95d992-c4c2-4977-99c7-d06cf1f3e343",
+   "member_name": "Mukesh Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-25T17:04:00Z",
+   "text": "Mukesh को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "6846bf50-371b-4614-8296-f51e11dd6279",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "393020ce-8283-4ee8-8f13-1e44e15005c5",
+   "member_name": "Aman Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-25T15:43:00Z",
+   "text": "Aman ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "1cc2f2b4-e875-4167-b866-3d4a2654bb6e",
+   "household_id": "63058cf0-cf57-4ee2-ac6e-346f7abd8a0f",
+   "member_id": "dd15d196-91d8-4827-88da-9b7cc94a55b2",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-25T14:32:00Z",
+   "text": "Sita ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "9cc084c0-6de8-4ab3-8c94-2c78417ca18d",
+   "household_id": "e0c48f44-c4df-45b4-88fa-20303c88bed9",
+   "member_id": "8c39c7d8-b43d-400b-be8a-ab72fe63333e",
+   "member_name": "Arjun Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-25T10:19:00Z",
+   "text": "Immunization for Arjun: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "dfcd7800-debf-4053-9921-240b0bcd763e",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "b8658e47-6780-4406-8f86-285fd5c31126",
+   "member_name": "Rekha Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-24T16:57:00Z",
+   "text": "High fever since yesterday in Rekha, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "2ad26ab8-426b-4e73-9400-bcaec7b506ff",
+   "household_id": "d2f3e7fd-c1b9-4df8-ae13-aec376bbc988",
+   "member_id": "40635e7c-f3aa-466f-b472-b35794ca2dab",
+   "member_name": "Rajesh Yadav",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-24T16:17:00Z",
+   "text": "Rajesh को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "61cf34a9-a74f-4881-8310-027335d76c26",
+   "household_id": "4ce5985e-82b1-4bd8-a9d2-f33a1b7aa63a",
+   "member_id": "e6346cc0-a000-4838-b667-ca4f7ca8fa45",
+   "member_name": "Vikas Verma",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-24T17:37:00Z",
+   "text": "Vikas को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "dbf9c743-80cd-464d-b58f-d1c5576958e2",
+   "household_id": "e8f6436c-bbb7-4722-b7f2-514a9a085121",
+   "member_id": "7840e65b-2ba9-48a7-b0ce-21b3391b6912",
+   "member_name": "Sunita Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-24T17:02:00Z",
+   "text": "High fever since yesterday in Sunita, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a7916a3d-6ec7-48ac-980e-b21e62c9b208",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "a83df83e-f1f8-4cc3-8b66-d3b5f9dac794",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-23T11:49:00Z",
+   "text": "Immunization for Arjun: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "dc0ea54d-ba35-4cd8-89d5-1dea65efc79b",
+   "household_id": "e8f6436c-bbb7-4722-b7f2-514a9a085121",
+   "member_id": "c19232e0-b863-4b55-97ed-76c7e70dc4f2",
+   "member_name": "Geeta Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-23T08:31:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "c8c9a6cf-ddf0-405c-b598-dbd50954d5d9",
+   "household_id": "e009fb89-9cf5-4b12-87c0-04fcc5bea351",
+   "member_id": "e1c7464b-07f2-486d-bbb0-ea27f97fb383",
+   "member_name": "Ravi Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-23T12:30:00Z",
+   "text": "Immunization for Ravi: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "c5b2ef9a-d7b5-4155-8e1f-42165b8de668",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "f54fb7c9-182c-4a97-9334-43521ae69202",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-23T09:44:00Z",
+   "text": "Sita ke chehre par daane, bukhar 2 din se, khansi bhi",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4264fe10-f6b8-404f-84fa-9c6b18939af9",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "8f0b0004-ff89-443c-9cec-701c4f7b42da",
+   "member_name": "Geeta Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-22T15:13:00Z",
+   "text": "Geeta ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "6303ec09-4bd6-4dfc-ba13-55f46051ff76",
+   "household_id": "929c4a5d-aaa5-479b-931b-561bbacfb2eb",
+   "member_id": "0940dd5f-ab30-4553-93db-afcc71dd9782",
+   "member_name": "Meena Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-22T13:25:00Z",
+   "text": "Loose motions 4 times since morning in Meena, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "19fb3e59-7c81-4eda-9765-1bfa49bb3502",
+   "household_id": "57320dda-5cd3-4a0c-bad2-c338f2f4acee",
+   "member_id": "95455215-fee4-445c-8b11-668a572c10e1",
+   "member_name": "Mukesh Rawat",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-22T11:29:00Z",
+   "text": "High fever since yesterday in Mukesh, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "50b6ddea-4ab8-4da5-87ce-ef482981d5ec",
+   "household_id": "8bd11d35-2e34-4eb1-82a1-78c8292343dd",
+   "member_id": "91f355e1-3bc3-42b1-9427-f9cf5ebdfc79",
+   "member_name": "Arjun Pal",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-08-22T09:03:00Z",
+   "text": "Arjun को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7b22ea27-8884-4bd9-8e92-c9726fb90c8b",
+   "household_id": "818d1429-a201-493f-bedf-6d370a4eaf32",
+   "member_id": "64cdb909-2f97-4a84-b147-2a8f9c2a7d2c",
+   "member_name": "Mukesh Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-21T10:52:00Z",
+   "text": "Mukesh को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7bebe74f-c77c-4d50-ad15-04c477029036",
+   "household_id": "4c720ed4-2638-4a26-b155-b2f9114ef1b9",
+   "member_id": "cd6bf005-eee2-4d2a-a8cf-24ef63b8d92f",
+   "member_name": "Anita Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-21T10:31:00Z",
+   "text": "Anita को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "190e9e50-7e23-425f-9889-a4b20d9688cc",
+   "household_id": "4147e064-0831-4766-8b2d-e95a7849c4f6",
+   "member_id": "2edd71ee-5a2e-4580-80ca-42a0aa4b4f7b",
+   "member_name": "Radha Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-21T15:01:00Z",
+   "text": "Radha को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "d82febc9-4086-4216-ac17-7fef65a531cb",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "f54fb7c9-182c-4a97-9334-43521ae69202",
+   "member_name": "Sita Devi Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-21T11:13:00Z",
+   "text": "Sita ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "fef1ec35-618a-442e-a24f-fed59ede0c94",
+   "household_id": "e0c48f44-c4df-45b4-88fa-20303c88bed9",
+   "member_id": "43bb5d1f-856b-4445-9b44-957fbe918340",
+   "member_name": "Sita Devi Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-20T12:31:00Z",
+   "text": "Sita ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "ac64d9ce-cb41-4d36-9d5e-b3b6075af45e",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "86ab3899-844a-4871-9bf8-b03179c29dc1",
+   "member_name": "Neha Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-20T16:00:00Z",
+   "text": "Neha गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "26749c5a-fd69-4982-b0e6-ab2caa77f6d0",
+   "household_id": "63058cf0-cf57-4ee2-ac6e-346f7abd8a0f",
+   "member_id": "b7e2fab8-956f-4ead-8701-5a49e4843195",
+   "member_name": "Aman Gupta",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-20T13:48:00Z",
+   "text": "Immunization for Aman: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "3e5159f4-b111-44e7-a27a-497e5eb6342d",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "a83df83e-f1f8-4cc3-8b66-d3b5f9dac794",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-20T17:35:00Z",
+   "text": "Arjun ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "08228d86-5062-49d3-b84e-99c60c169cd2",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "28c35751-fff3-4467-9f3e-0a0608aa82c8",
+   "member_name": "Rohit Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-19T14:32:00Z",
+   "text": "Rohit ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "5027e277-15f0-4a9b-b745-91aa6d3da848",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "fa6d003b-4d43-48f5-80c3-748094fff41d",
+   "member_name": "Meena Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-19T10:06:00Z",
+   "text": "Meena ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "b7a8abe1-7bf8-4d9b-9a31-a9df1f91c98a",
+   "household_id": "ddcce27a-7e42-4237-a8c2-f5028ad76125",
+   "member_id": "46dc842f-8f65-4eb0-b787-48446e0166ad",
+   "member_name": "Savitri Maurya",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-19T10:12:00Z",
+   "text": "Loose motions 4 times since morning in Savitri, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "74d55772-a2d0-411a-acea-96a41fa9b69e",
+   "household_id": "5a5ca025-a1fb-47ee-b0ff-6240ca466c37",
+   "member_id": "5b54443f-df9e-4413-9d57-62005e37fdfb",
+   "member_name": "Rekha Gupta",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-19T08:02:00Z",
+   "text": "Routine ANC check for Rekha, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "128a8791-7e85-48c0-a3f8-756d57900d43",
+   "household_id": "ddcce27a-7e42-4237-a8c2-f5028ad76125",
+   "member_id": "46dc842f-8f65-4eb0-b787-48446e0166ad",
+   "member_name": "Savitri Maurya",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-18T10:38:00Z",
+   "text": "Savitri ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "41c3c9d7-9795-4f76-bcf1-13d530aeba42",
+   "household_id": "63058cf0-cf57-4ee2-ac6e-346f7abd8a0f",
+   "member_id": "b7e2fab8-956f-4ead-8701-5a49e4843195",
+   "member_name": "Aman Gupta",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-18T13:10:00Z",
+   "text": "Immunization for Aman: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "56f43dab-b44a-4232-8025-dc67a73745bf",
+   "household_id": "e8f6436c-bbb7-4722-b7f2-514a9a085121",
+   "member_id": "7840e65b-2ba9-48a7-b0ce-21b3391b6912",
+   "member_name": "Sunita Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-18T17:21:00Z",
+   "text": "Loose motions 4 times since morning in Sunita, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "5c84368d-dfc0-4b30-b8db-a30f9dcbbbd7",
+   "household_id": "409a65e7-0e03-47be-a167-892827211702",
+   "member_id": "717ff4b3-f69e-4ced-bf34-f79c303e12f8",
+   "member_name": "Sunita Maurya",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-18T17:19:00Z",
+   "text": "Yellow eyes and dark urine in Sunita, suspected jaundice",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "dda4e34f-b78e-44d7-8bda-34a271a8cb14",
+   "household_id": "10270329-ced0-4d85-be8c-1014bbe2c36f",
+   "member_id": "07feaad2-e1e7-4825-a5ca-d03822fb6b79",
+   "member_name": "Radha Singh",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-17T09:26:00Z",
+   "text": "Radha को दो हफ्ते से ज्यादा खांसी, बलगम में खून",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d1d96433-79de-4336-951d-2653e13ceadf",
+   "household_id": "10270329-ced0-4d85-be8c-1014bbe2c36f",
+   "member_id": "07feaad2-e1e7-4825-a5ca-d03822fb6b79",
+   "member_name": "Radha Singh",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-17T15:16:00Z",
+   "text": "Routine ANC check for Radha, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "ea862a10-46dd-41c1-849c-b5b0c161a895",
+   "household_id": "3f99c377-1c61-4247-a7bd-eccdfc09eeed",
+   "member_id": "d0ea97ae-a4f7-4f9a-aad5-568e95b71e3b",
+   "member_name": "Sita Devi Verma",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-17T08:37:00Z",
+   "text": "Immunization for Sita: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "c70221de-0bec-4bc8-9325-e58fd29e9a19",
+   "household_id": "97b467e5-5c7f-45af-9f57-f7c104e401a5",
+   "member_id": "d4d646fe-18db-4335-80e2-c126c77ad11d",
+   "member_name": "Meena Singh",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-17T11:02:00Z",
+   "text": "Meena ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "699f9a92-bf61-4085-94ba-3f3cee04cf05",
+   "household_id": "fa02b265-a93e-4c5a-a991-14c5f27e479a",
+   "member_id": "d14386bb-48cf-4fd0-8c51-bd76f5d3f8be",
+   "member_name": "Savitri Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-16T08:28:00Z",
+   "text": "Savitri ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "057f56fa-915c-4671-912b-a8a325663263",
+   "household_id": "929c4a5d-aaa5-479b-931b-561bbacfb2eb",
+   "member_id": "0940dd5f-ab30-4553-93db-afcc71dd9782",
+   "member_name": "Meena Yadav",
+   "village": "RMP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-16T14:32:00Z",
+   "text": "Meena को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "9e761f9f-cee4-45ea-adfc-2b827150a40b",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "1a95d992-c4c2-4977-99c7-d06cf1f3e343",
+   "member_name": "Mukesh Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-16T10:33:00Z",
+   "text": "Newborn of Mukesh not feeding since morning, fast breathing, chest indrawing",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "24b5ece0-86a1-47c9-9538-0d39ef41fc5d",
+   "household_id": "7b295cda-9be7-475a-a1b5-40ef463c490f",
+   "member_id": "79a2bd0f-957d-4cb0-a333-7ef77d23bc0c",
+   "member_name": "Meena Singh",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-16T13:11:00Z",
+   "text": "Meena ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "f390e292-b85b-4367-a727-8104539e72e2",
+   "household_id": "e009fb89-9cf5-4b12-87c0-04fcc5bea351",
+   "member_id": "e4fe2ef6-817f-4ce1-87e4-08e1d488cff6",
+   "member_name": "Sita Devi Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-15T13:43:00Z",
+   "text": "Cough for more than two weeks in Sita, weight loss, referred for sputum test",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "bdfe0517-abad-4811-aa46-c7ba73581189",
+   "household_id": "78e0a239-e16e-416d-8641-3de191a638e9",
+   "member_id": "eaf4040f-fbfa-4c33-a8c7-39991872d6f7",
+   "member_name": "Sunita Singh",
+   "village": "RMP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-15T15:12:00Z",
+   "text": "Pregnant Sunita, 8th month, severe headache, blurred vision, swelling of feet, BP 150/100",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "d1dc5540-adbe-41df-b6b6-0a84a04b7ee3",
+   "household_id": "410ccde2-8485-492b-a223-9a34f09e0a23",
+   "member_id": "e32f6a22-9092-4498-b9dc-32d122c8ff35",
+   "member_name": "Aman Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-15T12:49:00Z",
+   "text": "Aman ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "95bfbd93-ee92-4369-8f66-82d1b345860d",
+   "household_id": "0d66a262-1525-48e7-950c-a9c811649149",
+   "member_id": "f6c0b882-1442-4395-93a3-c0aa4cb7b3d1",
+   "member_name": "Kiran Rawat",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-15T15:22:00Z",
+   "text": "Loose motions 4 times since morning in Kiran, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "1fb453fd-4615-40ee-9267-e5b2695a4832",
+   "household_id": "0f95ebe0-e3f4-4fbd-b023-fe08dd0b5686",
+   "member_id": "1c7fce59-4d66-4a24-bab0-dfe41e950bb5",
+   "member_name": "Pooja Rawat",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-14T09:36:00Z",
+   "text": "Pooja गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "ac75dee4-1d09-438b-ae79-a257f11c38da",
+   "household_id": "818d1429-a201-493f-bedf-6d370a4eaf32",
+   "member_id": "47a53d8b-8723-4eb8-a9e2-9b31aaa72765",
+   "member_name": "Radha Verma",
+   "village": "RMP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-14T13:49:00Z",
+   "text": "Radha गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "627cff85-ea35-4920-936e-ae8fc83182bc",
+   "household_id": "2ba2a290-340d-4306-af73-8d241aab2718",
+   "member_id": "a83df83e-f1f8-4cc3-8b66-d3b5f9dac794",
+   "member_name": "Arjun Verma",
+   "village": "RMP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-14T09:22:00Z",
+   "text": "Newborn of Arjun not feeding since morning, fast breathing, chest indrawing",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "80c4f8a8-6726-4e14-a9af-65771660477b",
+   "household_id": "db1d73c8-8940-44a9-91aa-9c4d4c2d65a6",
+   "member_id": "1a95d992-c4c2-4977-99c7-d06cf1f3e343",
+   "member_name": "Mukesh Gupta",
+   "village": "RMP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-14T16:17:00Z",
+   "text": "Mukesh ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  }
+ ],
+ "LKP": [
+  {
+   "id": "9d3894ec-8aad-403b-b38b-9fdc2450eee1",
+   "household_id": "daf9f786-66c7-45e6-a9af-b11c4adddbac",
+   "member_id": "63546cc8-bf47-4a66-8607-094a410d533b",
+   "member_name": "Dinesh Maurya",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-27T17:47:00Z",
+   "text": "Dinesh ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "d1e343ea-46e3-4751-a107-d9e4207249b3",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "32020fc9-cbed-4ae3-b4f9-662fdd67b783",
+   "member_name": "Pooja Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-27T16:14:00Z",
+   "text": "Pooja ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "f5390c76-35ec-4acf-9f1c-77ae26594a38",
+   "household_id": "e622fc01-667d-4c44-b0a9-73fa7280903b",
+   "member_id": "62a0c463-cd7a-4280-8cad-9b4da626482a",
+   "member_name": "Savitri Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-27T14:21:00Z",
+   "text": "Savitri ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "81c1d44d-8815-47ab-84ef-40d690bf4f71",
+   "household_id": "48c1719b-6e78-4355-8327-6f56ff1e01a9",
+   "member_id": "b22bd42b-01c9-42cd-960d-b3a230c1b404",
+   "member_name": "Sita Devi Verma",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-26T10:00:00Z",
+   "text": "Routine ANC check for Sita, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "4663019a-d0c9-4f7e-9c72-8ff8601998cd",
+   "household_id": "d51fd367-c5b8-4250-a023-044a24e69319",
+   "member_id": "08ec8f26-dd86-4f25-a20c-e0d47a3a706e",
+   "member_name": "Radha Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-26T15:30:00Z",
+   "text": "Immunization for Radha: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "8d4ef55e-5d7d-42e4-9d30-bc678cbd3ac8",
+   "household_id": "0653e79f-7157-40f5-908f-7ab4cef0cee4",
+   "member_id": "94b8c601-891b-4d05-98e1-67bc55d2d4b5",
+   "member_name": "Geeta Pal",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-26T13:18:00Z",
+   "text": "Geeta गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "41aea6b3-be6e-4e44-9786-78e6deb48dc4",
+   "household_id": "8cef39d3-89c9-45a6-a3a3-ccee9763f83c",
+   "member_id": "ed4ee33f-9ea3-4533-80dd-d9a80dffcfa3",
+   "member_name": "Geeta Maurya",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-25T17:14:00Z",
+   "text": "Geeta ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "5e84aaf3-f98c-4c2f-a03c-84744202fd8d",
+   "household_id": "36c57538-5a86-4762-b393-373b1760377b",
+   "member_id": "14d6c2a8-2a01-4859-8e79-6d5d1cf096df",
+   "member_name": "Dinesh Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-25T14:56:00Z",
+   "text": "Dinesh ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "db5ed717-0b87-4247-bc2b-7528998f7c64",
+   "household_id": "e622fc01-667d-4c44-b0a9-73fa7280903b",
+   "member_id": "eb2170b9-eea2-4e93-80a2-310dae0cfd19",
+   "member_name": "Mahesh Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-25T10:59:00Z",
+   "text": "Mahesh को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "9576d61a-02cd-4a6b-92d6-ac79ee30aeb3",
+   "household_id": "c9ae4ca6-6746-4700-b112-e4ae85c07218",
+   "member_id": "33473c87-f37d-4f3a-8b78-128d963af5b7",
+   "member_name": "Anita Yadav",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-24T08:00:00Z",
+   "text": "Anita गर्भवती, खून बह रहा है, पेट में तेज दर्द",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "5b3e623e-b548-4ffc-af37-f4d51617c318",
+   "household_id": "82c674bd-253e-4d0a-9f28-85ccf857810d",
+   "member_id": "8e29b6ad-1a12-4a7a-b7b7-1b2067e56326",
+   "member_name": "Sita Devi Rawat",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-24T12:29:00Z",
+   "text": "Loose motions 4 times since morning in Sita, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7edec298-907c-45c8-a8dd-0c6fdbe03162",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "0e053daf-e9fb-4331-9e8b-bf7fd7a6e978",
+   "member_name": "Neha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-24T16:29:00Z",
+   "text": "Neha ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "e712f130-d308-49b0-89ea-5c8b51322ac8",
+   "household_id": "8c3f2d63-724c-40b6-886f-1a74e06412ef",
+   "member_id": "bd9f81d7-5316-41f9-917f-59fb92e32a2a",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-23T10:46:00Z",
+   "text": "Loose motions 4 times since morning in Anita, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4ea730d7-104c-4ce2-8d2b-bea2c9f00d5f",
+   "household_id": "daf9f786-66c7-45e6-a9af-b11c4adddbac",
+   "member_id": "54862d06-61a0-4b14-8887-9fbd5e02a1c9",
+   "member_name": "Rohit Maurya",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-23T13:50:00Z",
+   "text": "Rohit ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "310f5c9b-d8a6-455e-9ffe-7c3832e01f0c",
+   "household_id": "04701ac0-b206-4092-9266-e2984dfe3290",
+   "member_id": "b3054f10-31f3-447b-9aa9-1e033ebd4714",
+   "member_name": "Rekha Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-23T17:54:00Z",
+   "text": "Rekha को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "2c3792ed-278c-4b81-91a6-ea44b36d53c5",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "31995064-04cb-4778-b419-726bc9c18d94",
+   "member_name": "Radha Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-22T16:20:00Z",
+   "text": "Radha गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "42e11c5f-d0c8-449e-babf-0a48d95a8213",
+   "household_id": "04701ac0-b206-4092-9266-e2984dfe3290",
+   "member_id": "7cde2e35-2539-465d-8b3c-8aa679b3db93",
+   "member_name": "Ravi Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-09-22T10:30:00Z",
+   "text": "Ravi को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "882ab4f9-07a0-48c2-9ed7-7e37a88d7a6b",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "32020fc9-cbed-4ae3-b4f9-662fdd67b783",
+   "member_name": "Pooja Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-22T14:15:00Z",
+   "text": "Loose motions 4 times since morning in Pooja, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "6441f4c6-508f-4349-94f6-ed6a17e93421",
+   "household_id": "daf9f786-66c7-45e6-a9af-b11c4adddbac",
+   "member_id": "63546cc8-bf47-4a66-8607-094a410d533b",
+   "member_name": "Dinesh Maurya",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-21T17:46:00Z",
+   "text": "Loose motions 4 times since morning in Dinesh, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "bf1c15b6-ee7e-4684-b4cf-05e07557e535",
+   "household_id": "daf9f786-66c7-45e6-a9af-b11c4adddbac",
+   "member_id": "4cb9de30-19b3-49b4-b6fc-016016b65e88",
+   "member_name": "Geeta Maurya",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-21T13:44:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "e21785eb-fd69-46d8-96db-f6e969706641",
+   "household_id": "04701ac0-b206-4092-9266-e2984dfe3290",
+   "member_id": "28fa0811-c3dc-46e4-8c55-2e2910684042",
+   "member_name": "Rekha Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-21T12:10:00Z",
+   "text": "Rekha ke chehre par daane, bukhar 2 din se, khansi bhi",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4ed944e7-f086-4271-8c99-a30fb7c5cf30",
+   "household_id": "02096e64-edcc-4b5a-aac5-6cc90f05cd6f",
+   "member_id": "203bf2fc-b9a3-4287-82e8-aa9f16d76a7c",
+   "member_name": "Radha Yadav",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-20T09:40:00Z",
+   "text": "Loose motions 4 times since morning in Radha, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a659c029-97f7-4248-8968-55e5b95ca39a",
+   "household_id": "59d87947-cafd-4c76-ab9f-9952bcef4960",
+   "member_id": "e978189c-1032-45d9-911f-cdd1b6e69e13",
+   "member_name": "Sunita Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-20T11:14:00Z",
+   "text": "Immunization for Sunita: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "1978b897-9a38-4e9d-a724-1296e15ae305",
+   "household_id": "36c57538-5a86-4762-b393-373b1760377b",
+   "member_id": "b90526b9-39bc-438d-b2cb-ed5dd8a6919d",
+   "member_name": "Arjun Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-20T16:58:00Z",
+   "text": "Arjun को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "08a17c8e-88f2-40f3-bd96-604834ef6957",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "94527e1c-744f-4d20-a59f-2aa5bf2d7c84",
+   "member_name": "Suresh Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-09-19T17:55:00Z",
+   "text": "Suresh ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "dc33cd64-245f-406a-ada0-566ebb4127a7",
+   "household_id": "48c1719b-6e78-4355-8327-6f56ff1e01a9",
+   "member_id": "87ee9903-5a7e-44ce-a078-e90c1ff9081a",
+   "member_name": "Arjun Verma",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-19T16:12:00Z",
+   "text": "Newborn of Arjun not feeding since morning, fast breathing, chest indrawing",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "c2de1080-9e7f-46e0-a698-2e9bc9236bce",
+   "household_id": "b522df8f-f53b-4b28-90eb-603d6bb4bcb2",
+   "member_id": "479b269c-acf2-4497-b423-d28e6dfcc745",
+   "member_name": "Priya Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-19T13:54:00Z",
+   "text": "Priya ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "cea8bb75-65ba-458e-a881-a8cee8ca35ec",
+   "household_id": "48c1719b-6e78-4355-8327-6f56ff1e01a9",
+   "member_id": "893b2153-16d5-4666-b563-312630025395",
+   "member_name": "Sunita Verma",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-18T17:31:00Z",
+   "text": "Sunita ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "3e05d66b-52fb-485a-9cc2-40e2db735015",
+   "household_id": "02096e64-edcc-4b5a-aac5-6cc90f05cd6f",
+   "member_id": "f2f3a14c-3507-4b51-953e-977fbca1c9a9",
+   "member_name": "Savitri Yadav",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-18T15:08:00Z",
+   "text": "Savitri ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "0724a40e-5346-4671-8e01-8677583b1b65",
+   "household_id": "87054b3b-88cf-4fac-a373-e1a4fb55b11d",
+   "member_id": "470e898c-e1db-4ad9-b543-1a3b07898aac",
+   "member_name": "Mahesh Yadav",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-18T15:43:00Z",
+   "text": "Yellow eyes and dark urine in Mahesh, suspected jaundice",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "868a3dcc-505b-479a-ba8a-536e6f0ab280",
+   "household_id": "36c57538-5a86-4762-b393-373b1760377b",
+   "member_id": "b90526b9-39bc-438d-b2cb-ed5dd8a6919d",
+   "member_name": "Arjun Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-17T12:52:00Z",
+   "text": "Arjun का नवजात शिशु, झटके आ रहे हैं, दूध नहीं पी रहा",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "03c21ea0-7a1f-4401-b2cf-729a92417fea",
+   "household_id": "74cfb691-1a0d-4eb0-ba7f-3b12cdc6460a",
+   "member_id": "4537e867-43f8-4695-9e94-9e6d910eff18",
+   "member_name": "Mukesh Singh",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-17T08:27:00Z",
+   "text": "Mukesh ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d3a8ff4e-efb7-4058-b267-aeb57b6616e7",
+   "household_id": "6dc9dc5b-a880-486a-9d29-edb845123570",
+   "member_id": "d28d02f2-9777-4f15-b759-680d17409641",
+   "member_name": "Suresh Singh",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-17T15:02:00Z",
+   "text": "Suresh ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "2ec400d3-82b8-4a43-981a-8a11ec494ca2",
+   "household_id": "d51fd367-c5b8-4250-a023-044a24e69319",
+   "member_id": "0fa3b9ab-6c99-4d5e-be94-674cf06323d6",
+   "member_name": "Dinesh Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-16T13:57:00Z",
+   "text": "Dinesh ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4ef8297d-e9b0-4bb1-9044-7725db800d94",
+   "household_id": "c9ae4ca6-6746-4700-b112-e4ae85c07218",
+   "member_id": "66aca0c0-0306-4593-bcb9-8fd416177674",
+   "member_name": "Mohan Yadav",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-16T09:43:00Z",
+   "text": "Mohan ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "469dfea9-1cb7-4ed6-969e-6a092b8dd211",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "0e053daf-e9fb-4331-9e8b-bf7fd7a6e978",
+   "member_name": "Neha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-16T13:07:00Z",
+   "text": "Immunization for Neha: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "21a3b12b-1ef3-44b5-8c7c-de0e2074d602",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "ccaf5889-a797-4d7a-aaa5-0aefe41e36d6",
+   "member_name": "Dinesh Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-15T11:53:00Z",
+   "text": "Dinesh को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "136f233c-bcda-4b66-8d0d-51605a113b2c",
+   "household_id": "f1acd236-5977-4f45-ac3f-e234fc8676e9",
+   "member_id": "ab596365-e051-48ee-9229-59877950f356",
+   "member_name": "Rohit Gupta",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-15T16:27:00Z",
+   "text": "Rohit ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "cdaad4e2-6728-48bd-a58f-81c8f91aaf1f",
+   "household_id": "dbf3576c-c288-494b-a909-4f5b8601f8e3",
+   "member_id": "8c3cc691-4f0e-4585-8ef7-cb5ae2004489",
+   "member_name": "Rohit Singh",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-15T15:22:00Z",
+   "text": "Rohit ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "e43b4cac-a711-49e2-8cf3-d930f97fd14f",
+   "household_id": "74cfb691-1a0d-4eb0-ba7f-3b12cdc6460a",
+   "member_id": "b6195c73-176a-4eb9-85f9-39b3c28ed6a7",
+   "member_name": "Rohit Singh",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-09-14T14:39:00Z",
+   "text": "Rohit ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "ca888b36-b9f3-4367-bd08-f30432ad1fc0",
+   "household_id": "733f4467-4ce9-4605-b732-670a7af96d58",
+   "member_id": "3a1ed824-cd42-446e-8204-f23f556774a8",
+   "member_name": "Meena Gupta",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-14T11:13:00Z",
+   "text": "Meena garbhvati, BP 160/110, sar dard aur dhundhla dikh raha, pair mein sujan",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "f93e4868-154b-4857-94ac-84f2864d0db1",
+   "household_id": "82c674bd-253e-4d0a-9f28-85ccf857810d",
+   "member_id": "ff1f349e-529c-431d-92ee-3f035067e13f",
+   "member_name": "Aman Rawat",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-09-14T17:43:00Z",
+   "text": "Aman ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "246a6195-04ea-4ee7-8468-cc5575eeb630",
+   "household_id": "e622fc01-667d-4c44-b0a9-73fa7280903b",
+   "member_id": "62a0c463-cd7a-4280-8cad-9b4da626482a",
+   "member_name": "Savitri Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-13T08:25:00Z",
+   "text": "Savitri ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "850612e7-8eff-4eca-81cb-2d1573f002bb",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "d725dd99-661c-48a3-8f44-0f157f0245ee",
+   "member_name": "Anita Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-13T10:32:00Z",
+   "text": "Anita ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a3d5610f-21dd-4cb9-8317-b3145e56752c",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "3fa89f1d-4702-410e-9e23-cf90614ebaf7",
+   "member_name": "Dinesh Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-13T17:49:00Z",
+   "text": "Immunization for Dinesh: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "f26da67f-cf6d-4c8c-aac7-5e81aa67cd88",
+   "household_id": "0556b08b-e435-4ae3-beec-d06914ef2242",
+   "member_id": "184a4ba2-5a75-41ca-a1c4-a860e7422d16",
+   "member_name": "Savitri Yadav",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-12T12:56:00Z",
+   "text": "Savitri ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "15f0bfae-d399-43a2-b468-40e31894afc6",
+   "household_id": "04701ac0-b206-4092-9266-e2984dfe3290",
+   "member_id": "28fa0811-c3dc-46e4-8c55-2e2910684042",
+   "member_name": "Rekha Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-12T14:19:00Z",
+   "text": "Rekha को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d31dcb48-bbb5-4ef8-bf55-f6d22de23a4a",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "ccaf5889-a797-4d7a-aaa5-0aefe41e36d6",
+   "member_name": "Dinesh Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-12T14:35:00Z",
+   "text": "Dinesh को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "fad9d162-b504-44e4-8c38-81a197992ef1",
+   "household_id": "ca9781a2-49c9-407d-b1cb-8668f9b07807",
+   "member_id": "67c04e6a-fda2-4054-9938-a8a974da6952",
+   "member_name": "Meena Singh",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-11T13:44:00Z",
+   "text": "Cough for more than two weeks in Meena, weight loss, referred for sputum test",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "d0c1b447-4d07-4e60-9f79-1a7650e748d1",
+   "household_id": "b522df8f-f53b-4b28-90eb-603d6bb4bcb2",
+   "member_id": "55491669-089d-425d-a0b3-71a5b5985108",
+   "member_name": "Rekha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-11T10:48:00Z",
+   "text": "Rekha ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4c941a09-af40-4f2b-ba66-3e827cdae464",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "32020fc9-cbed-4ae3-b4f9-662fdd67b783",
+   "member_name": "Pooja Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-11T10:51:00Z",
+   "text": "Pooja की आँखें पीली, कमजोरी, पीलिया का शक",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "f09b31a7-2f90-4a06-b9a3-4ee692505322",
+   "household_id": "e622fc01-667d-4c44-b0a9-73fa7280903b",
+   "member_id": "62a0c463-cd7a-4280-8cad-9b4da626482a",
+   "member_name": "Savitri Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-10T16:33:00Z",
+   "text": "Savitri को दो हफ्ते से ज्यादा खांसी, बलगम में खून",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "1240d915-df6e-4044-a3bc-b625ca0dd56f",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "e3475c66-410d-4567-87e4-c6f10db789be",
+   "member_name": "Suresh Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-10T13:41:00Z",
+   "text": "Suresh को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "147a899c-a2f5-4ad4-b74d-ec7a1a855324",
+   "household_id": "87054b3b-88cf-4fac-a373-e1a4fb55b11d",
+   "member_id": "4dcd416b-e102-4f22-b773-463f95e63ce4",
+   "member_name": "Geeta Yadav",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-10T16:46:00Z",
+   "text": "Geeta ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "e4e5a3da-c60b-4c66-95eb-0dfea3386b99",
+   "household_id": "e622fc01-667d-4c44-b0a9-73fa7280903b",
+   "member_id": "eb2170b9-eea2-4e93-80a2-310dae0cfd19",
+   "member_name": "Mahesh Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-09T17:38:00Z",
+   "text": "Mahesh को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "5d83c9a3-af87-4858-b2c1-db74131c563a",
+   "household_id": "6dc9dc5b-a880-486a-9d29-edb845123570",
+   "member_id": "d28d02f2-9777-4f15-b759-680d17409641",
+   "member_name": "Suresh Singh",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-09T15:13:00Z",
+   "text": "Suresh को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "401b5147-34c0-425e-85b8-bff28a8be86e",
+   "household_id": "59d87947-cafd-4c76-ab9f-9952bcef4960",
+   "member_id": "e978189c-1032-45d9-911f-cdd1b6e69e13",
+   "member_name": "Sunita Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-09T11:47:00Z",
+   "text": "Sunita ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "fac7164b-6125-464b-91f5-e89137fd7fc0",
+   "household_id": "0653e79f-7157-40f5-908f-7ab4cef0cee4",
+   "member_id": "0895671d-20d9-4735-8e70-aeb755a51ab7",
+   "member_name": "Neha Pal",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-08T17:45:00Z",
+   "text": "Neha को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "f2100ecd-a3ae-47de-afcf-6bdecb288ba6",
+   "household_id": "8cef39d3-89c9-45a6-a3a3-ccee9763f83c",
+   "member_id": "ed4ee33f-9ea3-4533-80dd-d9a80dffcfa3",
+   "member_name": "Geeta Maurya",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-08T12:24:00Z",
+   "text": "High fever since yesterday in Geeta, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "28aba22f-1798-49de-bd38-fbb7464a3bb6",
+   "household_id": "c172b9e6-a656-4a55-a0a0-ae9b591907a6",
+   "member_id": "419af59c-19f9-409e-88f0-253aaf6ea806",
+   "member_name": "Geeta Gupta",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-08T12:23:00Z",
+   "text": "Geeta को दो हफ्ते से ज्यादा खांसी, बलगम में खून",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "ff036b84-9615-4e32-9c05-6fead33805dc",
+   "household_id": "430dac09-5548-4c74-9725-eadbbc126ae6",
+   "member_id": "472f4938-5313-4e1b-ae63-24805fe95823",
+   "member_name": "Savitri Gupta",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-07T15:48:00Z",
+   "text": "Savitri ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "95b053e3-6ce8-4eec-88d5-eacd9062337b",
+   "household_id": "74cfb691-1a0d-4eb0-ba7f-3b12cdc6460a",
+   "member_id": "607ee51e-5404-47bb-bb41-e91a2d25c007",
+   "member_name": "Suresh Singh",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-07T14:02:00Z",
+   "text": "Suresh को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "cfc7af98-01db-4f00-a6c3-fdef0ff489be",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "32020fc9-cbed-4ae3-b4f9-662fdd67b783",
+   "member_name": "Pooja Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-07T10:01:00Z",
+   "text": "Routine ANC check for Pooja, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "026e31aa-db43-46af-991f-50bfc18bb203",
+   "household_id": "8cef39d3-89c9-45a6-a3a3-ccee9763f83c",
+   "member_id": "9f668012-e8f6-449e-a64b-1c669cb59ed4",
+   "member_name": "Meena Maurya",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-06T10:12:00Z",
+   "text": "Fever with red rash spreading from face to body in Meena, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "ef9bae52-b18e-4ca1-b948-aa4123d4830d",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "f70e325b-64db-4ee9-a55c-c5647e748c9e",
+   "member_name": "Arjun Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-06T15:35:00Z",
+   "text": "Arjun को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "678b67f0-a898-4649-8903-991d4e9ba510",
+   "household_id": "04701ac0-b206-4092-9266-e2984dfe3290",
+   "member_id": "b3054f10-31f3-447b-9aa9-1e033ebd4714",
+   "member_name": "Rekha Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-06T12:48:00Z",
+   "text": "Rekha गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "1b0597a7-342b-4c21-8349-2d48dea171e5",
+   "household_id": "36c57538-5a86-4762-b393-373b1760377b",
+   "member_id": "b90526b9-39bc-438d-b2cb-ed5dd8a6919d",
+   "member_name": "Arjun Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-05T10:46:00Z",
+   "text": "Arjun को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "13af2d56-fd09-4a59-876d-ef915b830f25",
+   "household_id": "d51fd367-c5b8-4250-a023-044a24e69319",
+   "member_id": "5bf37576-b002-427a-964b-bfd843c8b4bc",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-05T16:31:00Z",
+   "text": "Newborn of Anita not feeding since morning, fast breathing, chest indrawing",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "29723678-6f9e-4e40-bfd6-a1000eafe880",
+   "household_id": "733f4467-4ce9-4605-b732-670a7af96d58",
+   "member_id": "0b3550b4-918c-4ab5-bdf3-bf837d426590",
+   "member_name": "Ravi Gupta",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-05T16:02:00Z",
+   "text": "Ravi ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "cb18f440-4e4b-4bf6-8760-2fc783731fdc",
+   "household_id": "e622fc01-667d-4c44-b0a9-73fa7280903b",
+   "member_id": "6c13864e-6013-42ce-84b4-b50fd907812e",
+   "member_name": "Anita Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-04T10:53:00Z",
+   "text": "Anita को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "5c908257-43f0-4d43-b84d-365745d91f6c",
+   "household_id": "6dc9dc5b-a880-486a-9d29-edb845123570",
+   "member_id": "3f0b7809-974c-46a7-bf0a-de5776d05f7a",
+   "member_name": "Geeta Singh",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-04T10:00:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "6b0bf316-eac3-42dd-b032-f0e94a49d699",
+   "household_id": "87054b3b-88cf-4fac-a373-e1a4fb55b11d",
+   "member_id": "4dcd416b-e102-4f22-b773-463f95e63ce4",
+   "member_name": "Geeta Yadav",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-04T17:40:00Z",
+   "text": "Geeta ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "5441866a-c3f7-438d-9d5e-2c59da20b9be",
+   "household_id": "82c674bd-253e-4d0a-9f28-85ccf857810d",
+   "member_id": "8e29b6ad-1a12-4a7a-b7b7-1b2067e56326",
+   "member_name": "Sita Devi Rawat",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-03T15:01:00Z",
+   "text": "Sita गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "0cb487df-6c85-4da6-9e59-cd42f01cd0ec",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "ccaf5889-a797-4d7a-aaa5-0aefe41e36d6",
+   "member_name": "Dinesh Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-03T08:33:00Z",
+   "text": "Dinesh ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "05ea01c5-2c65-4a3a-88b3-289799f99e92",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "d725dd99-661c-48a3-8f44-0f157f0245ee",
+   "member_name": "Anita Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-09-03T08:32:00Z",
+   "text": "Anita गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "1d2ac664-0fbf-4e88-99c4-17bd33a32de7",
+   "household_id": "d51fd367-c5b8-4250-a023-044a24e69319",
+   "member_id": "5bf37576-b002-427a-964b-bfd843c8b4bc",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-02T16:09:00Z",
+   "text": "Anita ka navjat doodh nahi pee raha, sharir thanda, sust",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "e6b7a497-3c24-4a9e-8eab-700e8c4d1972",
+   "household_id": "82c674bd-253e-4d0a-9f28-85ccf857810d",
+   "member_id": "c8f4ae9e-ca3e-40e4-8d35-d31fc45b72f1",
+   "member_name": "Geeta Rawat",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-02T12:50:00Z",
+   "text": "Fever with red rash spreading from face to body in Geeta, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "c7a72b81-7fb6-4f91-87bc-ba0cf87c2b0f",
+   "household_id": "ca9781a2-49c9-407d-b1cb-8668f9b07807",
+   "member_id": "fc47e0a5-44d2-4ceb-8819-53f7982e8d53",
+   "member_name": "Pooja Singh",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-09-02T17:15:00Z",
+   "text": "Pooja ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "06282b5a-8531-40ab-8ca8-419424e3d1d0",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "3fa89f1d-4702-410e-9e23-cf90614ebaf7",
+   "member_name": "Dinesh Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-01T09:41:00Z",
+   "text": "Immunization for Dinesh: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "673b7bc6-eefe-4888-aeef-28af946162f1",
+   "household_id": "0653e79f-7157-40f5-908f-7ab4cef0cee4",
+   "member_id": "1ac6e157-d762-468b-b569-a0b03ed7f00b",
+   "member_name": "Rohit Pal",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-09-01T14:24:00Z",
+   "text": "Rohit ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "c0a3ce97-c8f3-4a64-a84b-21c107a5b8d2",
+   "household_id": "430dac09-5548-4c74-9725-eadbbc126ae6",
+   "member_id": "461bd22f-9d5a-4b0f-8a11-ba571671bdb5",
+   "member_name": "Rohit Gupta",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-09-01T10:05:00Z",
+   "text": "Rohit ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "b93288d8-8ba5-4f2a-b934-c4f4705902e1",
+   "household_id": "c0e19e06-0d85-419b-a722-14a20b61831d",
+   "member_id": "25f6622f-c2b0-429c-b278-406f5c746772",
+   "member_name": "Pooja Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-31T09:57:00Z",
+   "text": "Cough for more than two weeks in Pooja, weight loss, referred for sputum test",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "88738a9b-f6ab-4fa8-aeff-1cc8cbe88629",
+   "household_id": "e622fc01-667d-4c44-b0a9-73fa7280903b",
+   "member_id": "1cac6246-e902-40d0-9dc9-b1c0d87afb28",
+   "member_name": "Ravi Kumar",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-31T17:30:00Z",
+   "text": "Ravi ki aankhein peeli, peshab peela, bhookh nahi",
+   "truth": {
+    "scenario": "jaundice",
+    "syndromes": [
+     "jaundice"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "87d3149b-f044-438a-9af2-40a8cdcf3eab",
+   "household_id": "8cef39d3-89c9-45a6-a3a3-ccee9763f83c",
+   "member_id": "1be4bda5-9a65-4cc4-9c1e-321d2fb551f4",
+   "member_name": "Neha Maurya",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-31T16:36:00Z",
+   "text": "Fever with red rash spreading from face to body in Neha, eyes watery",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "0bd0bdb6-de04-4b9f-bfed-b081ae78044c",
+   "household_id": "d51fd367-c5b8-4250-a023-044a24e69319",
+   "member_id": "ccf076eb-7989-4697-9702-6fe8d5c35fe7",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-30T08:13:00Z",
+   "text": "Anita गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "9e345fda-210f-4534-a267-7044df287f95",
+   "household_id": "0653e79f-7157-40f5-908f-7ab4cef0cee4",
+   "member_id": "94b8c601-891b-4d05-98e1-67bc55d2d4b5",
+   "member_name": "Geeta Pal",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-30T14:59:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "02cf2f21-21ae-4d9c-ab79-db060e2fd4cb",
+   "household_id": "d51fd367-c5b8-4250-a023-044a24e69319",
+   "member_id": "08ec8f26-dd86-4f25-a20c-e0d47a3a706e",
+   "member_name": "Radha Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-30T17:53:00Z",
+   "text": "Radha को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "ee0057d4-5720-4fae-9f5c-0361f35a6920",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "0e053daf-e9fb-4331-9e8b-bf7fd7a6e978",
+   "member_name": "Neha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-29T10:50:00Z",
+   "text": "Neha को खसरा का टीका लगाया, विटामिन A दिया",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "dff51c36-0532-495d-878c-ee7d013b8ff8",
+   "household_id": "36c57538-5a86-4762-b393-373b1760377b",
+   "member_id": "b90526b9-39bc-438d-b2cb-ed5dd8a6919d",
+   "member_name": "Arjun Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-29T13:03:00Z",
+   "text": "Immunization for Arjun: MR-1 and Vitamin A given, next due in 6 months",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "78188256-e15d-42b0-b1b9-ae3953faae78",
+   "household_id": "2834de4d-53e9-4861-b1b6-c9b240c13c33",
+   "member_id": "c98a75ff-7b5c-4b83-8051-a2b311ad6e22",
+   "member_name": "Dinesh Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-08-29T17:49:00Z",
+   "text": "High fever since yesterday in Dinesh, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "b3952129-e04b-4a48-a063-f3a06eb8d11b",
+   "household_id": "82c674bd-253e-4d0a-9f28-85ccf857810d",
+   "member_id": "8e29b6ad-1a12-4a7a-b7b7-1b2067e56326",
+   "member_name": "Sita Devi Rawat",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-28T13:01:00Z",
+   "text": "Sita गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "e478b08e-601b-4dee-9508-4d4e0be5afa5",
+   "household_id": "8c3f2d63-724c-40b6-886f-1a74e06412ef",
+   "member_id": "bd9f81d7-5316-41f9-917f-59fb92e32a2a",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-28T15:14:00Z",
+   "text": "Anita गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "fd6d18fa-4cac-42bd-a93c-1f0daf171148",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "31995064-04cb-4778-b419-726bc9c18d94",
+   "member_name": "Radha Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-28T17:42:00Z",
+   "text": "Radha को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "e9ab2981-fa96-4200-a979-d4e331a81b2c",
+   "household_id": "0653e79f-7157-40f5-908f-7ab4cef0cee4",
+   "member_id": "0895671d-20d9-4735-8e70-aeb755a51ab7",
+   "member_name": "Neha Pal",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-27T09:05:00Z",
+   "text": "Neha को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "5f93f111-8229-4ffe-b44d-875eeb6a84a0",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "f70e325b-64db-4ee9-a55c-c5647e748c9e",
+   "member_name": "Arjun Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-27T13:23:00Z",
+   "text": "Arjun ke chehre par daane, bukhar 2 din se, khansi bhi",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4d4890a0-050a-4832-9586-5c14eca39ee2",
+   "household_id": "f1acd236-5977-4f45-ac3f-e234fc8676e9",
+   "member_id": "ab596365-e051-48ee-9229-59877950f356",
+   "member_name": "Rohit Gupta",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-27T13:48:00Z",
+   "text": "Rohit ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "021e3e07-4903-4aa6-aae2-40e26ec57692",
+   "household_id": "b522df8f-f53b-4b28-90eb-603d6bb4bcb2",
+   "member_id": "55491669-089d-425d-a0b3-71a5b5985108",
+   "member_name": "Rekha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-26T14:28:00Z",
+   "text": "Rekha को बुखार और शरीर पर दाने, आँखें लाल",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "222d5fef-e448-432b-8f75-c0ea9dade929",
+   "household_id": "02096e64-edcc-4b5a-aac5-6cc90f05cd6f",
+   "member_id": "f2f3a14c-3507-4b51-953e-977fbca1c9a9",
+   "member_name": "Savitri Yadav",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-26T09:01:00Z",
+   "text": "Savitri गर्भवती, 7वां महीना, वजन ठीक, टीटी लगा",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "0895f26a-46a1-4f0a-9975-94a0147185c5",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "94527e1c-744f-4d20-a59f-2aa5bf2d7c84",
+   "member_name": "Suresh Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-08-26T14:00:00Z",
+   "text": "High fever since yesterday in Suresh, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "bb16e3c1-9619-4c79-81b1-67205b8aef27",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "913d518a-fe21-409f-b8bc-b6424477be6c",
+   "member_name": "Rajesh Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-25T17:33:00Z",
+   "text": "Rajesh को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "c32cc20d-2dc0-42a4-b2b4-ef8373bc3552",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "913d518a-fe21-409f-b8bc-b6424477be6c",
+   "member_name": "Rajesh Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-25T12:19:00Z",
+   "text": "Rajesh को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "71984426-1c43-4fe2-8664-ff4b80ff5509",
+   "household_id": "b522df8f-f53b-4b28-90eb-603d6bb4bcb2",
+   "member_id": "55491669-089d-425d-a0b3-71a5b5985108",
+   "member_name": "Rekha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-25T14:17:00Z",
+   "text": "Rekha को बुखार और शरीर पर दाने, आँखें लाल",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7fa3bb3f-8981-4acc-a959-8a72ba64f6cf",
+   "household_id": "430dac09-5548-4c74-9725-eadbbc126ae6",
+   "member_id": "461bd22f-9d5a-4b0f-8a11-ba571671bdb5",
+   "member_name": "Rohit Gupta",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-24T12:15:00Z",
+   "text": "Loose motions 4 times since morning in Rohit, started ORS and zinc",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7266ebeb-d1b1-42b6-a1ef-a3874c60578b",
+   "household_id": "430dac09-5548-4c74-9725-eadbbc126ae6",
+   "member_id": "472f4938-5313-4e1b-ae63-24805fe95823",
+   "member_name": "Savitri Gupta",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-24T17:12:00Z",
+   "text": "Routine ANC check for Savitri, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "fe144775-0faf-4e34-b120-9956c46189c7",
+   "household_id": "b522df8f-f53b-4b28-90eb-603d6bb4bcb2",
+   "member_id": "479b269c-acf2-4497-b423-d28e6dfcc745",
+   "member_name": "Priya Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-24T14:21:00Z",
+   "text": "Priya ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "07107451-4285-4f46-9b5b-4b996047d513",
+   "household_id": "82c674bd-253e-4d0a-9f28-85ccf857810d",
+   "member_id": "8e29b6ad-1a12-4a7a-b7b7-1b2067e56326",
+   "member_name": "Sita Devi Rawat",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-23T12:20:00Z",
+   "text": "Sita ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "740ad6ab-9421-4234-8cf2-0eac63fdd9d8",
+   "household_id": "7ae4c125-2247-44c7-b7a2-fdaeb2b1ee43",
+   "member_id": "e0c3c1fa-4dbc-4bf4-acf0-4845fd37f781",
+   "member_name": "Pooja Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-23T15:20:00Z",
+   "text": "Pooja ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "d3afd0ed-5e67-4c97-be9d-5ad888d56830",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "31995064-04cb-4778-b419-726bc9c18d94",
+   "member_name": "Radha Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-22T15:36:00Z",
+   "text": "High fever since yesterday in Radha, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a13a86e9-0c88-44f6-be06-c7272e53108f",
+   "household_id": "daf9f786-66c7-45e6-a9af-b11c4adddbac",
+   "member_id": "63546cc8-bf47-4a66-8607-094a410d533b",
+   "member_name": "Dinesh Maurya",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-22T09:59:00Z",
+   "text": "Dinesh का नवजात शिशु, झटके आ रहे हैं, दूध नहीं पी रहा",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "1aaad7d2-b629-40ce-8aac-043b52c46eee",
+   "household_id": "6f9dacd7-3577-4931-9185-fdc7711eeafa",
+   "member_id": "7ba4ffc6-3995-4940-b362-7c172f7b3d8d",
+   "member_name": "Anita Yadav",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-22T10:43:00Z",
+   "text": "Routine ANC check for Anita, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "c7f7e41a-0161-4702-974f-28abc91196bb",
+   "household_id": "f1acd236-5977-4f45-ac3f-e234fc8676e9",
+   "member_id": "2058b573-8eba-4986-8708-9627c50465b4",
+   "member_name": "Pooja Gupta",
+   "village": "LKP",
+   "ward": "1",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-21T15:45:00Z",
+   "text": "Pregnant Pooja, 8th month, severe headache, blurred vision, swelling of feet, BP 150/100",
+   "truth": {
+    "scenario": "anc_danger",
+    "syndromes": [
+     "danger_pregnancy"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "433db752-5198-4ca2-acc3-ec678e9a176d",
+   "household_id": "8c3f2d63-724c-40b6-886f-1a74e06412ef",
+   "member_id": "bd9f81d7-5316-41f9-917f-59fb92e32a2a",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-21T14:43:00Z",
+   "text": "Anita ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a3545023-980f-40e5-966a-2e07848abaa0",
+   "household_id": "c172b9e6-a656-4a55-a0a0-ae9b591907a6",
+   "member_id": "419af59c-19f9-409e-88f0-253aaf6ea806",
+   "member_name": "Geeta Gupta",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-21T12:42:00Z",
+   "text": "Geeta ko 3 hafte se khansi, raat ko pasina, vajan kam",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "52acc472-4350-4e13-b1ac-5b01690f895c",
+   "household_id": "c0e19e06-0d85-419b-a722-14a20b61831d",
+   "member_id": "25f6622f-c2b0-429c-b278-406f5c746772",
+   "member_name": "Pooja Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-20T15:38:00Z",
+   "text": "Pooja ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "2b4982d8-fcd7-4ba1-8f15-8097cec347a3",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "31995064-04cb-4778-b419-726bc9c18d94",
+   "member_name": "Radha Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-20T08:50:00Z",
+   "text": "Cough for more than two weeks in Radha, weight loss, referred for sputum test",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "7b792a47-554c-46c9-9cdb-5efe5c082ebe",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "0e053daf-e9fb-4331-9e8b-bf7fd7a6e978",
+   "member_name": "Neha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-20T11:42:00Z",
+   "text": "Neha ka teekakaran, Penta-2 aur OPV diya, agla 4 hafte baad",
+   "truth": {
+    "scenario": "immunization",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "3e3e8e63-1c38-49df-a948-91d094b89cc5",
+   "household_id": "d51fd367-c5b8-4250-a023-044a24e69319",
+   "member_id": "ccf076eb-7989-4697-9702-6fe8d5c35fe7",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-19T17:02:00Z",
+   "text": "Routine ANC check for Anita, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "66565361-89c7-4b06-8563-5d92ed20dccf",
+   "household_id": "c172b9e6-a656-4a55-a0a0-ae9b591907a6",
+   "member_id": "419af59c-19f9-409e-88f0-253aaf6ea806",
+   "member_name": "Geeta Gupta",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-19T14:48:00Z",
+   "text": "Routine ANC check for Geeta, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "9966da44-7ab2-4534-87b8-8fe468423d99",
+   "household_id": "8c3f2d63-724c-40b6-886f-1a74e06412ef",
+   "member_id": "bd9f81d7-5316-41f9-917f-59fb92e32a2a",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-19T08:06:00Z",
+   "text": "Anita ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "491de8a9-2429-42ea-be19-b335f2fe1d8d",
+   "household_id": "02096e64-edcc-4b5a-aac5-6cc90f05cd6f",
+   "member_id": "203bf2fc-b9a3-4287-82e8-aa9f16d76a7c",
+   "member_name": "Radha Yadav",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-18T13:25:00Z",
+   "text": "Radha ke chehre par daane, bukhar 2 din se, khansi bhi",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "cfd7c369-8f46-4c30-9cfa-9f1eb5fc5e2a",
+   "household_id": "04701ac0-b206-4092-9266-e2984dfe3290",
+   "member_id": "7cde2e35-2539-465d-8b3c-8aa679b3db93",
+   "member_name": "Ravi Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-08-18T08:30:00Z",
+   "text": "Ravi को दो हफ्ते से ज्यादा खांसी, बलगम में खून",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "728a58ba-b169-4918-be02-356c9ca048ed",
+   "household_id": "c0e19e06-0d85-419b-a722-14a20b61831d",
+   "member_id": "0e194a6a-b3ad-42a6-9de2-14f8f659245c",
+   "member_name": "Suresh Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "M",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-18T10:22:00Z",
+   "text": "Suresh ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "547f63d9-4fe6-4b5e-83e8-0c114442e018",
+   "household_id": "87054b3b-88cf-4fac-a373-e1a4fb55b11d",
+   "member_id": "a071fb3c-d697-4224-ae9e-d41986e7db27",
+   "member_name": "Savitri Yadav",
+   "village": "LKP",
+   "ward": "3",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-17T13:30:00Z",
+   "text": "Savitri ko patle dast, pet dard, paani kam pi raha",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "dd6fdd03-3d12-461e-9fa1-c82fdfb6cfa8",
+   "household_id": "36c57538-5a86-4762-b393-373b1760377b",
+   "member_id": "fa04ebca-2f7d-43a7-bc60-b2d6809f1743",
+   "member_name": "Priya Rawat",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-17T09:19:00Z",
+   "text": "High fever since yesterday in Priya, gave paracetamol, advised fluids",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "bd36db7d-8559-4c4b-826e-627a0fea1392",
+   "household_id": "7ae4c125-2247-44c7-b7a2-fdaeb2b1ee43",
+   "member_id": "8d524a93-dcbf-4609-b341-a721e58d7b00",
+   "member_name": "Dinesh Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-08-17T13:41:00Z",
+   "text": "Dinesh ko 3 din se tez bukhar hai, badan dard",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "4ecb8426-a40f-4b1d-b1b6-9142c1b3e410",
+   "household_id": "8c3f2d63-724c-40b6-886f-1a74e06412ef",
+   "member_id": "e31c1aaf-0347-456c-94c6-ebfe00e1382b",
+   "member_name": "Aman Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "50+",
+   "pregnant": false,
+   "visit_at": "2026-08-16T16:11:00Z",
+   "text": "Aman को बुखार है, दो दिन से, पेरासिटामोल दी",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "0771afc3-5eeb-458d-8401-df23eaa9143c",
+   "household_id": "0556b08b-e435-4ae3-beec-d06914ef2242",
+   "member_id": "184a4ba2-5a75-41ca-a1c4-a860e7422d16",
+   "member_name": "Savitri Yadav",
+   "village": "LKP",
+   "ward": "2",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-16T14:29:00Z",
+   "text": "Routine ANC check for Savitri, 5th month, BP normal, IFA given",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "1ac6de7c-8f01-49f5-b81f-bf12ad6a06e8",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "f70e325b-64db-4ee9-a55c-c5647e748c9e",
+   "member_name": "Arjun Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-16T14:25:00Z",
+   "text": "Arjun को बुखार और शरीर पर दाने, आँखें लाल",
+   "truth": {
+    "scenario": "fever_rash",
+    "syndromes": [
+     "fever",
+     "rash"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "469d9041-99d6-454d-8063-4ee83c78b9b6",
+   "household_id": "82c674bd-253e-4d0a-9f28-85ccf857810d",
+   "member_id": "8e29b6ad-1a12-4a7a-b7b7-1b2067e56326",
+   "member_name": "Sita Devi Rawat",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-15T17:27:00Z",
+   "text": "Sita ko bukhar aur thand lag rahi hai raat se",
+   "truth": {
+    "scenario": "fever",
+    "syndromes": [
+     "fever"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "5359b91c-fe87-4fd7-8ae0-e396f12e1ea1",
+   "household_id": "7ae4c125-2247-44c7-b7a2-fdaeb2b1ee43",
+   "member_id": "e0c3c1fa-4dbc-4bf4-acf0-4845fd37f781",
+   "member_name": "Pooja Gupta",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-15T12:48:00Z",
+   "text": "Pooja को दस्त और उल्टी, ORS और जिंक दिया",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "bf1b1a36-54da-4493-9816-9fc98fb8f3d9",
+   "household_id": "8c3f2d63-724c-40b6-886f-1a74e06412ef",
+   "member_id": "bd9f81d7-5316-41f9-917f-59fb92e32a2a",
+   "member_name": "Anita Pal",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": true,
+   "visit_at": "2026-08-15T17:06:00Z",
+   "text": "Anita ANC visit, 6 mahina, BP 110/70, IFA goli de di",
+   "truth": {
+    "scenario": "anc_normal",
+    "syndromes": [],
+    "danger": false
+   }
+  },
+  {
+   "id": "9c676872-bcda-4867-bbca-4964b1919bfb",
+   "household_id": "114638ae-e2e9-4003-9d00-3742324492b8",
+   "member_id": "0e053daf-e9fb-4331-9e8b-bf7fd7a6e978",
+   "member_name": "Neha Rawat",
+   "village": "LKP",
+   "ward": "4",
+   "sex": "F",
+   "age_band": "0-5",
+   "pregnant": false,
+   "visit_at": "2026-08-14T13:12:00Z",
+   "text": "Neha का नवजात शिशु, झटके आ रहे हैं, दूध नहीं पी रहा",
+   "truth": {
+    "scenario": "newborn_danger",
+    "syndromes": [
+     "danger_newborn"
+    ],
+    "danger": true
+   }
+  },
+  {
+   "id": "648a47ee-1f05-461a-88be-5dba34036518",
+   "household_id": "daf9f786-66c7-45e6-a9af-b11c4adddbac",
+   "member_id": "4cb9de30-19b3-49b4-b6fc-016016b65e88",
+   "member_name": "Geeta Maurya",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "F",
+   "age_band": "15-49",
+   "pregnant": false,
+   "visit_at": "2026-08-14T13:38:00Z",
+   "text": "Cough for more than two weeks in Geeta, weight loss, referred for sputum test",
+   "truth": {
+    "scenario": "cough",
+    "syndromes": [
+     "cough_2w"
+    ],
+    "danger": false
+   }
+  },
+  {
+   "id": "a267e276-5266-403a-aa1d-a240f4101e85",
+   "household_id": "910f10f9-692d-4d83-84d4-d86c690cb2d4",
+   "member_id": "f70e325b-64db-4ee9-a55c-c5647e748c9e",
+   "member_name": "Arjun Kumar",
+   "village": "LKP",
+   "ward": "5",
+   "sex": "M",
+   "age_band": "6-14",
+   "pregnant": false,
+   "visit_at": "2026-08-14T13:22:00Z",
+   "text": "Arjun ko subah se 5 baar dast, ORS diya",
+   "truth": {
+    "scenario": "diarrhoea",
+    "syndromes": [
+     "diarrhoea"
+    ],
+    "danger": false
+   }
+  }
+ ]
+}
