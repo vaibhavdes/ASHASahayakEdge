@@ -9,7 +9,7 @@ import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,15 +19,14 @@ from qdrant_client import models
 from starlette.background import BackgroundTask
 
 from . import db, embed, outbreak, registry, store
-from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, MODELS, SYNDROMES, VILLAGES, signal_sentence
+from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, ENROLL_PER_IP_HOUR, MODELS, OPEN_ENROLLMENT, SYNDROMES, VILLAGES, signal_sentence
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     db.init()
     store.ensure_collections()
-    if db.get_meta("knowledge_version") is None:
-        publish_starter_knowledge()
+    publish_starter_knowledge()
     yield
 
 
@@ -58,13 +57,34 @@ class EnrollIn(BaseModel):
     device_id: str
     role: str
     village: str
-    code: str
+    code: str = ""
+
+
+# Enrollments per client address in the current hour. One instance, so memory is enough.
+_enrolled_by_ip: dict[tuple[str, str], int] = {}
+
+
+def client_ip(request: Request) -> str:
+    # Cloud Run appends the real client address to X-Forwarded-For.
+    forwarded = request.headers.get("x-forwarded-for", "")
+    return forwarded.split(",")[0].strip() or (request.client.host if request.client else "unknown")
+
+
+@app.get("/v1/enroll")
+def enroll_mode():
+    return {"code_required": not OPEN_ENROLLMENT}
 
 
 @app.post("/v1/enroll")
-def enroll(body: EnrollIn):
-    if not ENROLL_CODE or not hmac.compare_digest(body.code, ENROLL_CODE):
+def enroll(body: EnrollIn, request: Request):
+    if not OPEN_ENROLLMENT and (not ENROLL_CODE or not hmac.compare_digest(body.code, ENROLL_CODE)):
         raise HTTPException(401, "invalid enrollment code")
+    key = (client_ip(request), datetime.now(timezone.utc).strftime("%Y%m%d%H"))
+    if _enrolled_by_ip.get(key, 0) >= ENROLL_PER_IP_HOUR:
+        raise HTTPException(429, "too many phones registered from this network, try again later")
+    if len(_enrolled_by_ip) > 10_000:
+        _enrolled_by_ip.clear()
+    _enrolled_by_ip[key] = _enrolled_by_ip.get(key, 0) + 1
     if body.village not in {v["code"] for v in VILLAGES} or body.role not in ("ASHA", "ANM"):
         raise HTTPException(400, "invalid area or role")
     # A device receives its own random bearer token; the shared code is never used for sync.
@@ -254,14 +274,19 @@ def answer_variants(a: dict) -> list[dict]:
 
 
 def publish_starter_knowledge():
+    """Publish bundled guidance when it is new or its version changed; district additions are kept."""
     k = json.loads((DATA / "knowledge.json").read_text(encoding="utf-8"))
+    if db.get_meta("starter_version") == k["version"]:
+        return
     published = "2026-09-01T00:00:00Z"
     docs = [{**p, "kind": "protocol", "published_at": published, "version": k["version"], "approved_by": None, "expires_at": None} for p in k["protocols"]]
     docs += [{**v, "kind": "answer", "source": "Starter reference (example)", "published_at": published, "version": k["version"], "expires_at": None}
              for a in k["answers"] for v in answer_variants(a)]
     db.put_many(db.DOCS, docs)
     store.upsert_knowledge(docs)
-    db.set_meta("knowledge_version", k["version"])
+    current = db.get_meta("knowledge_version")
+    db.set_meta("knowledge_version", k["version"] if current is None else int(current) + 1)
+    db.set_meta("starter_version", k["version"])
 
 
 @app.get("/v1/knowledge/docs")

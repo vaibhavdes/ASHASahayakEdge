@@ -1,6 +1,6 @@
 {
- "_about": "Starter knowledge (version 1). Short summaries written for this demo from public MoHFW ASHA training modules, HBNC / IMNCI guidance and WHO fact sheets. Not a substitute for official protocols or clinical judgement; every item ends with when to refer. Each approved answer lists alternative phrasings; every phrasing is stored as its own vector pointing to the same answer (semantic answer cache).",
- "version": 1,
+ "_about": "Starter knowledge (version 2). Short summaries written for this demo from public MoHFW ASHA training modules, HBNC / IMNCI guidance and WHO fact sheets. Not a substitute for official protocols or clinical judgement; every item ends with when to refer. Each approved answer lists alternative phrasings; every phrasing is stored as its own vector pointing to the same answer (semantic answer cache).",
+ "version": 2,
  "protocols": [
   {
    "id": "b1c0a000-0000-4000-8000-000000000001",
@@ -85,6 +85,83 @@
    "title": "When cases cluster",
    "source": "IDSP guidance (summary)",
    "text": "If you see several similar illnesses in a short time (for example fever with rash, loose motions, jaundice) in one village, inform the ANM the same day. Note ages and households, encourage safe water and hygiene, and follow any district alert instructions."
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-00000000000d",
+   "topic": "postpartum",
+   "title": "Danger signs after delivery",
+   "source": "MoHFW HBPNC guidance (summary)",
+   "text": "After delivery, refer the mother immediately (call 108/102) if there is heavy bleeding (soaking a pad in a few minutes or passing large clots), fits, fever with foul-smelling discharge, severe headache or blurred vision, difficulty breathing, or severe pain or swelling in one leg. Visit on days 1, 3, 7, 14, 21, 28 and 42 after a home delivery. प्रसव के बाद ज़्यादा खून, झटके या तेज़ बुखार हो तो तुरंत अस्पताल भेजें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-00000000000e",
+   "topic": "pregnancy",
+   "title": "Anaemia in pregnancy and IFA tablets",
+   "source": "MoHFW Anemia Mukt Bharat (summary)",
+   "text": "Every pregnant woman should take one iron and folic acid (IFA) tablet daily from the fourth month for at least 180 days, and continue for 180 days after delivery. Take it after food, not with tea. Encourage green leafy vegetables, pulses and jaggery. Check haemoglobin at every antenatal visit. Refer if she is very pale, breathless at rest, or haemoglobin is below 7 g/dL. गर्भवती रोज़ एक आयरन की गोली खाए; बहुत कमज़ोरी या सांस फूले तो रेफर करें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-00000000000f",
+   "topic": "pneumonia",
+   "title": "Fast breathing in children: possible pneumonia",
+   "source": "IMNCI guidance (summary)",
+   "text": "Count breaths for one full minute while the child is calm. Fast breathing is 60 or more (under 2 months), 50 or more (2 to 12 months) or 40 or more (1 to 5 years). A child with cough and fast breathing needs to see the ANM or doctor the same day. Refer immediately if there is chest indrawing, the child cannot drink, is very sleepy, or has fits. बच्चे की सांस तेज़ हो या पसली चले तो उसी दिन दिखाएं, पसली धंसे तो तुरंत रेफर करें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000010",
+   "topic": "fever",
+   "title": "Fever with mosquitoes: malaria and dengue",
+   "source": "NVBDCP guidance (summary)",
+   "text": "For any fever during the mosquito season, do a malaria rapid test if you have kits and start treatment only as per the result and protocol. For suspected dengue give paracetamol and plenty of fluids; do not give aspirin or ibuprofen. Refer urgently if there is severe abdominal pain, repeated vomiting, bleeding from gums or nose, black stools, or the person is very weak or restless. Remove standing water around homes. मच्छर वाले मौसम में बुखार हो तो जांच करें; खून आए या पेट में तेज़ दर्द हो तो तुरंत रेफर करें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000011",
+   "topic": "nutrition",
+   "title": "Malnutrition in children (MUAC)",
+   "source": "MoHFW / ICDS guidance (summary)",
+   "text": "Measure mid-upper arm circumference (MUAC) for children aged 6 to 59 months. Red (below 11.5 cm) or swelling of both feet means severe acute malnutrition: refer to the Nutrition Rehabilitation Centre. Yellow (11.5 to 12.5 cm) means moderate malnutrition: counsel on feeding and link with the Anganwadi. Refer immediately if a malnourished child also has fever, diarrhoea or is not eating. बांह का नाप लाल हो या दोनों पैरों में सूजन हो तो पोषण पुनर्वास केंद्र भेजें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000012",
+   "topic": "newborn",
+   "title": "Breastfeeding",
+   "source": "MoHFW MAA programme (summary)",
+   "text": "Start breastfeeding within one hour of birth and give the first milk (colostrum). Give only breast milk for six months: no water, honey, ghutti or animal milk. From six months add soft home food and continue breastfeeding up to two years. If the baby cannot suck or feed, that is a danger sign: refer. जन्म के एक घंटे में स्तनपान शुरू करें और छह महीने तक सिर्फ़ मां का दूध दें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000013",
+   "topic": "emergency",
+   "title": "Snake bite",
+   "source": "WHO / MoHFW first aid guidance (summary)",
+   "text": "Keep the person calm and still. Keep the bitten limb still, like a fracture, and remove rings, bangles or tight clothing. Do not cut the wound, suck it, tie a tight band, apply ice or use herbal remedies. Take the person immediately to a facility that has anti-snake venom (call 108) and note the time of the bite. सांप काटे तो अंग को हिलने न दें, काटें या चूसें नहीं, तुरंत 108 से अस्पताल ले जाएं।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000014",
+   "topic": "emergency",
+   "title": "Dog bite and rabies",
+   "source": "WHO / MoHFW first aid guidance (summary)",
+   "text": "Wash the wound at once with soap and running water for 15 minutes, then apply an antiseptic. Do not apply chilli, turmeric, oil or tight bandages. Send the person the same day to the PHC for anti-rabies vaccine; deep or bleeding bites also need immunoglobulin. All vaccine doses must be completed. कुत्ते के काटने पर घाव को 15 मिनट साबुन-पानी से धोएं और उसी दिन रेबीज़ का टीका लगवाएं।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000015",
+   "topic": "emergency",
+   "title": "Burns",
+   "source": "WHO / MoHFW first aid guidance (summary)",
+   "text": "Cool the burn under clean running water for 20 minutes. Remove rings and clothing that are not stuck to the skin. Cover loosely with a clean cloth. Do not apply ice, toothpaste, oil, ghee or ink. Refer if the burn is larger than the person's palm, is on the face, hands, feet, genitals or joints, is from electricity or chemicals, or the person is a young child or elderly. जलने पर 20 मिनट साफ़ पानी डालें, कुछ और न लगाएं; बड़ा या चेहरे का जला हो तो रेफर करें।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000016",
+   "topic": "emergency",
+   "title": "Pesticide or poison swallowed",
+   "source": "WHO / MoHFW first aid guidance (summary)",
+   "text": "Move the person away from the poison, remove contaminated clothing and wash the skin with water. Do not make the person vomit and do not give anything by mouth if drowsy. If drowsy, lay them on their side. Keep the container or label to show the doctor. Take them to hospital immediately (call 108). ज़हर या कीटनाशक पी लिया हो तो उल्टी न कराएं, डिब्बा साथ लेकर तुरंत 108 से अस्पताल ले जाएं।"
+  },
+  {
+   "id": "b1c0a000-0000-4000-8000-000000000017",
+   "topic": "emergency",
+   "title": "Heat stroke",
+   "source": "WHO / MoHFW first aid guidance (summary)",
+   "text": "Move the person to shade, loosen clothing, and cool them with wet cloths and fanning. If fully awake, give sips of water or ORS. Refer urgently (call 108) if the person is confused, unconscious, has fits, or has very hot dry skin. Prevent: drink water often, avoid work in the afternoon sun, cover the head. लू लगे तो छांव में लिटाएं, गीले कपड़े से ठंडा करें; बेहोशी या झटके हों तो तुरंत 108।"
   }
  ],
  "answers": [
@@ -158,6 +235,78 @@
     "paracetamol kitni deni hai",
     "बुखार में दवा की खुराक",
     "fever medicine dose for child"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000007",
+   "topic": "emergency",
+   "title": "Someone bitten by a snake — what to do?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Keep the person calm and the limb still. Do not cut, suck or tie a tight band. Remove bangles or rings. Take them to hospital with anti-snake venom right away (call 108) and note the time of the bite. सांप काटे तो अंग स्थिर रखें, काटें या चूसें नहीं, तुरंत 108 से अस्पताल ले जाएं।",
+   "alt_questions": [
+    "saanp ne kaat liya kya karein",
+    "सांप ने काटा क्या करें",
+    "snake bite first aid"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000008",
+   "topic": "emergency",
+   "title": "Dog bite — what should I do?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Wash the wound with soap and running water for 15 minutes and apply antiseptic. Do not put chilli, turmeric or oil. Send the person to the PHC the same day for anti-rabies vaccine and complete all doses. कुत्ते के काटने पर घाव धोएं और उसी दिन रेबीज़ का टीका लगवाएं।",
+   "alt_questions": [
+    "kutte ne kaat liya kya karein",
+    "कुत्ते ने काटा",
+    "dog bit a child"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-000000000009",
+   "topic": "emergency",
+   "title": "Child got burnt — first aid?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Cool the burn under clean running water for 20 minutes and cover it with a clean cloth. Do not apply toothpaste, ice, oil or ghee. Refer if it is bigger than the child's palm, on the face, hands or genitals, or from electricity. जले हुए हिस्से पर 20 मिनट पानी डालें; बड़ा जला हो तो रेफर करें।",
+   "alt_questions": [
+    "bacha jal gaya kya lagayein",
+    "जल गया क्या करें",
+    "burn first aid"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-00000000000a",
+   "topic": "emergency",
+   "title": "Someone drank pesticide — what to do?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Do not make them vomit. Remove contaminated clothes, wash the skin, lay them on their side if drowsy, and take them to hospital immediately with the container (call 108). कीटनाशक पी लिया हो तो उल्टी न कराएं, डिब्बा साथ लेकर तुरंत अस्पताल ले जाएं।",
+   "alt_questions": [
+    "keetnashak pee liya",
+    "ज़हर खा लिया क्या करें",
+    "poison swallowed"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-00000000000b",
+   "topic": "emergency",
+   "title": "Heat stroke — what to do?",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Move the person to shade, loosen clothes, cool with wet cloths and fanning, and give sips of water or ORS if awake. If confused, unconscious or having fits, call 108 now. लू लगे तो छांव में ठंडा करें; बेहोशी हो तो तुरंत 108।",
+   "alt_questions": [
+    "loo lag gayi kya karein",
+    "लू लग गई",
+    "sunstroke in summer"
+   ]
+  },
+  {
+   "id": "a1c0a000-0000-4000-8000-00000000000c",
+   "topic": "pneumonia",
+   "title": "Child has cough and fast breathing",
+   "approved_by": "Dr. (Demo) Block Medical Officer",
+   "text": "Count breaths for a full minute. Fast breathing with cough means the child must see the ANM or doctor today. If the chest pulls in, the child cannot drink or is very sleepy, refer immediately (call 108). खांसी के साथ सांस तेज़ हो तो आज ही दिखाएं; पसली धंसे तो तुरंत रेफर करें।",
+   "alt_questions": [
+    "bacche ki saans tez chal rahi hai",
+    "बच्चे की सांस तेज़ है",
+    "child breathing fast"
    ]
   }
  ]

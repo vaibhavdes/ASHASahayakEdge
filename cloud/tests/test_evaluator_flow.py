@@ -86,6 +86,22 @@ class EvaluatorFlow(unittest.TestCase):
         alerts = self.api.get("/v1/sync/pull", params={"device_id": "phone-b", "village": "MDH", "since": 0}, headers=b).json()["alerts"]
         self.assertTrue(any(al["title"].startswith("Cluster of") for al in alerts))
 
+    def test_open_enrollment_needs_no_code_but_is_rate_limited(self):
+        body = {"device_id": "phone-x", "role": "ASHA", "village": "MDH"}
+        self.assertEqual(self.api.get("/v1/enroll").json()["code_required"], True)
+        self.assertEqual(self.api.post("/v1/enroll", json=body).status_code, 401)
+        main.OPEN_ENROLLMENT, main.ENROLL_PER_IP_HOUR = True, 2
+        main._enrolled_by_ip.clear()
+        try:
+            self.assertEqual(self.api.get("/v1/enroll").json()["code_required"], False)
+            token = self.api.post("/v1/enroll", json=body).json()["token"]
+            pulled = self.api.get("/v1/sync/pull", params={"device_id": "phone-x", "village": "MDH", "since": 0}, headers={"Authorization": f"Bearer {token}"})
+            self.assertEqual(pulled.status_code, 200)
+            self.assertEqual(self.api.post("/v1/enroll", json=body).status_code, 200)
+            self.assertEqual(self.api.post("/v1/enroll", json=body).status_code, 429)
+        finally:
+            main.OPEN_ENROLLMENT, main.ENROLL_PER_IP_HOUR = False, 30
+
 
 if __name__ == "__main__":
     unittest.main()

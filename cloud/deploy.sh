@@ -12,6 +12,8 @@ SECRET=sahayak-qdrant-api-key
 ENROLL_SECRET=sahayak-enroll-code
 ADMIN_SECRET=sahayak-admin-token
 COLLECTION_PREFIX=eval1_
+# Phones register themselves during evaluation; set OPEN_ENROLLMENT=false to require the code.
+OPEN_ENROLLMENT="${OPEN_ENROLLMENT:-true}"
 SERVICE_ACCOUNT="sahayak-cloud@$PROJECT.iam.gserviceaccount.com"
 
 if [[ -z "${QDRANT_URL:-}" ]]; then
@@ -40,7 +42,7 @@ gcloud run deploy sahayak-cloud \
   --service-account "$SERVICE_ACCOUNT" \
   --memory 2Gi --cpu 1 \
   --min-instances 1 --max-instances 1 \
-  --set-env-vars "QDRANT_URL=$QDRANT_URL,COLLECTION_PREFIX=$COLLECTION_PREFIX" \
+  --set-env-vars "QDRANT_URL=$QDRANT_URL,COLLECTION_PREFIX=$COLLECTION_PREFIX,OPEN_ENROLLMENT=$OPEN_ENROLLMENT" \
   --set-secrets "QDRANT_API_KEY=$SECRET:latest,ENROLL_CODE=$ENROLL_SECRET:latest,ADMIN_TOKEN=$ADMIN_SECRET:latest"
 
 gcloud run services describe sahayak-cloud --project "$PROJECT" --region "$REGION" --format "value(status.url)"

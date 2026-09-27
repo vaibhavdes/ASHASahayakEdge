@@ -4,16 +4,16 @@
 
 The Android app stores visit notes in Qdrant Edge on the phone. Family registry fields sync between enrolled phones assigned to the same area. Cloud Run uses the `eval1_` Qdrant collections; startup creates empty collections and starter guidance only. Earlier demo collections remain separate. The dashboard needs an admin token. There is no public simulate or reset action.
 
-Use **fictional people** for the evaluation. The current device store has no at-rest encryption or staff identity management. Enrollment uses a shared event code to issue a token bound to one device and area. Family names, member names, house references and optional phone numbers are in the cloud registry for same-area sync. Visit text and exact GPS stay local; symptom signals carry a device ID and coarse area. Doctor questions require the worker to edit and check a preview; automatic text replacement cannot guarantee anonymity. Do not enter real patient identities during testing.
+Use **fictional people** for the evaluation. The current device store has no at-rest encryption or staff identity management. Each phone registers itself on first setup and receives a token bound to that device and area (registrations are limited per network per hour; set `OPEN_ENROLLMENT=false` to require a shared code instead). Family names, member names, house references and optional phone numbers are in the cloud registry for same-area sync. Visit text and exact GPS stay local; symptom signals carry a device ID and coarse area. Doctor questions require the worker to edit and check a preview; automatic text replacement cannot guarantee anonymity. Do not enter real patient identities during testing.
 
 ## Prepare
 
 1. Install the new Android APK on both phones. For a clean trial, clear older Sahayak app data first; old sample records and settings are local to the phone.
-2. Have internet for first setup so each phone can enroll and download the offline embedding model. Enter the same assigned area, such as **Mumbai · Dharavi**, on both phones and use the event enrollment code. No ASHA account is needed.
+2. Have internet for first setup so each phone can enroll and download the offline embedding model. Enter the same assigned area, such as **Mumbai · Dharavi**, on both phones. No account or code is needed. The app opens in Hindi; the **EN / हि** button in the header switches language.
 3. Open the [district dashboard](https://sahayak-cloud-362605925833.asia-south1.run.app/dashboard/) and enter the separate admin token. The new workspace should show zero families, zero signals and no devices until a phone syncs.
 4. Keep the actual Android app visible for the video. The browser preview uses a stand-in store and cannot demonstrate Qdrant Edge.
 
-The enrollment code and admin token are stored in Google Secret Manager (`sahayak-enroll-code` and `sahayak-admin-token`) in project `codecubileproject`. Authorized project members can retrieve them with `gcloud secrets versions access latest --secret=SECRET_NAME --project=codecubileproject`. Do not put either in GitHub variables or an APK.
+The admin token (and the optional enrollment code) are stored in Google Secret Manager (`sahayak-enroll-code` and `sahayak-admin-token`) in project `codecubileproject`. Authorized project members can retrieve them with `gcloud secrets versions access latest --secret=SECRET_NAME --project=codecubileproject`. Do not put either in GitHub variables or an APK.
 
 ## Ten-minute demo journey
 
