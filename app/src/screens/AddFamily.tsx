@@ -5,9 +5,8 @@ import { Button, Card } from "../components/ui";
 import { createHousehold } from "../lib/households";
 import { useSettings } from "../lib/hooks";
 import { useNav } from "../lib/nav";
-import { isNative } from "../lib/bridge";
+import { currentPosition } from "../lib/location";
 import { VILLAGES } from "../lib/villages";
-import { checkPermissions, getCurrentPosition, requestPermissions } from "@tauri-apps/plugin-geolocation";
 
 export default function AddFamily() {
   const nav = useNav();
@@ -18,32 +17,20 @@ export default function AddFamily() {
   const [memberName, setMemberName] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState<"F" | "M">("F");
+  const [pregnant, setPregnant] = useState(false);
   const [gps, setGps] = useState<{ lat: number; lon: number } | null>(null);
   const [locationMessage, setLocationMessage] = useState(tr("क्षेत्र की अनुमानित लोकेशन ली जाएगी।", "Using the selected area's approximate location."));
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const canBePregnant = sex === "F" && Number(age) >= 12 && Number(age) <= 55;
   if (!settings) return null;
   const area = settings.village;
   const selected = VILLAGES.find((v) => v.code === area)!;
 
   async function locate() {
-    if (isNative) {
-      try {
-        let permissions = await checkPermissions();
-        if (permissions.location === "prompt" || permissions.location === "prompt-with-rationale") permissions = await requestPermissions(["location"]);
-        if (permissions.location !== "granted") throw new Error("permission denied");
-        const pos = await getCurrentPosition({ enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 });
-        setGps({ lat: pos.coords.latitude, lon: pos.coords.longitude });
-        setLocationMessage(tr("लोकेशन सिर्फ़ इस फ़ोन पर सेव हुई।", "Phone location saved on this phone only."));
-      } catch { setGps(null); setLocationMessage(tr("लोकेशन नहीं मिली, क्षेत्र की लोकेशन ली जाएगी।", "Location unavailable. Your selected area will be used.")); }
-      return;
-    }
-    if (!navigator.geolocation) { setLocationMessage(tr("लोकेशन नहीं मिली, क्षेत्र की लोकेशन ली जाएगी।", "Location unavailable. Your selected area will be used.")); return; }
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => { setGps({ lat: coords.latitude, lon: coords.longitude }); setLocationMessage(tr("लोकेशन सिर्फ़ इस फ़ोन पर सेव हुई।", "Phone location saved on this phone only.")); },
-      () => { setGps(null); setLocationMessage(tr("लोकेशन नहीं मिली, क्षेत्र की लोकेशन ली जाएगी।", "Location unavailable. Your selected area will be used.")); },
-      { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 },
-    );
+    const pos = await currentPosition();
+    setGps(pos);
+    setLocationMessage(pos ? tr("लोकेशन सिर्फ़ इस फ़ोन पर सेव हुई।", "Phone location saved on this phone only.") : tr("लोकेशन नहीं मिली, क्षेत्र की लोकेशन ली जाएगी।", "Location unavailable. Your selected area will be used."));
   }
 
   async function save() {
@@ -51,7 +38,7 @@ export default function AddFamily() {
     if (!head.trim() || !memberName.trim() || !age.trim()) return;
     setBusy(true); setError("");
     try {
-      const result = await createHousehold({ village: area, locality, houseNo, head, memberName, memberAge: Number(age), memberSex: sex, lat: gps?.lat ?? selected.lat, lon: gps?.lon ?? selected.lon, deviceId: settings.deviceId });
+      const result = await createHousehold({ village: area, locality, houseNo, head, members: [{ name: memberName, age: Number(age), sex, pregnant: canBePregnant && pregnant }], lat: gps?.lat ?? selected.lat, lon: gps?.lon ?? selected.lon, deviceId: settings.deviceId });
       nav.setTab("households");
       nav.push({ screen: "visit", householdId: result.household.id, memberId: result.memberId });
     } catch (e) { setError(String(e)); setBusy(false); }
@@ -87,6 +74,12 @@ export default function AddFamily() {
           <select value={sex} onChange={(e) => setSex(e.target.value as "F" | "M")} className="mt-1 min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3"><option value="F">{tr("महिला", "Female")}</option><option value="M">{tr("पुरुष", "Male")}</option></select>
         </label>
       </div>
+      {canBePregnant && (
+        <label className="flex items-center gap-3 text-sm font-semibold">
+          <input type="checkbox" checked={pregnant} onChange={(e) => setPregnant(e.target.checked)} className="h-6 w-6 accent-violet-600" />
+          {tr("गर्भवती है", "Currently pregnant")}
+        </label>
+      )}
     </Card>
     {error && <p className="text-sm text-rose-700">{error}</p>}
     <Button className="w-full" disabled={busy || !head.trim() || !memberName.trim() || !age.trim() || Number(age) < 0 || Number(age) > 120} onClick={save}><Plus size={18} /> {tr("सेव करें और विज़िट दर्ज करें", "Save family & record visit")}</Button>

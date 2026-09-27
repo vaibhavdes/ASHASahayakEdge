@@ -29,23 +29,42 @@ export async function saveHouseholds(list: Household[]) {
   await save(store);
 }
 
-export async function createHousehold(input: { village: string; locality: string; houseNo: string; head: string; memberName: string; memberAge: number; memberSex: "M" | "F"; lat: number; lon: number; deviceId: string }) {
+type NewMember = { name: string; age: number; sex: "M" | "F"; pregnant?: boolean };
+
+export async function createHousehold(input: { village: string; locality: string; houseNo: string; head: string; members: NewMember[]; edd?: string | null; lat: number; lon: number; deviceId: string }) {
   const id = crypto.randomUUID();
-  const memberId = crypto.randomUUID();
+  const members = input.members.map((m) => ({ id: crypto.randomUUID(), name: m.name.trim(), sex: m.sex, age: m.age }));
+  const pregnantIndex = input.members.findIndex((m) => m.pregnant);
   const version = <T,>(value: T): Versioned<T> => ({ value, ts: 0, base: 0, dev: input.deviceId, dirty: true });
   const h: Household = {
     id, village: input.village, ward: input.locality.trim() || VILLAGES.find((v) => v.code === input.village)?.name || input.village, house_no: input.houseNo.trim() || `Home ${id.slice(0, 5)}`,
     lat: input.lat, lon: input.lon,
     fields: {
       head: version(input.head.trim()), phone: version(""),
-      members: version([{ id: memberId, name: input.memberName.trim(), sex: input.memberSex, age: input.memberAge }]),
-      pregnant_member: version(null), edd: version(null), high_risk: version(false),
+      members: version(members),
+      pregnant_member: version(pregnantIndex >= 0 ? members[pregnantIndex].id : null), edd: version(pregnantIndex >= 0 ? input.edd ?? null : null), high_risk: version(false),
     },
   };
   await saveHouseholds([h]);
   await enqueue(registryItem(h));
   await logActivity("visit", `${h.house_no}: family created (pending registry)`);
-  return { household: h, memberId };
+  return { household: h, memberId: members[0].id };
+}
+
+/** A fictional family for trying the app: a pregnant mother, a small child and the father. */
+export async function createSampleFamily(village: string, deviceId: string) {
+  const area = VILLAGES.find((v) => v.code === village);
+  const edd = new Date(Date.now() + 40 * 86_400_000).toISOString().slice(0, 10);
+  return createHousehold({
+    village, locality: "", houseNo: "Sample house 1", head: "Kamla Devi (sample)", edd,
+    members: [
+      { name: "Kamla Devi", age: 26, sex: "F", pregnant: true },
+      { name: "Raju", age: 3, sex: "M" },
+      { name: "Ramesh", age: 30, sex: "M" },
+    ],
+    // Slightly off the area centre so it does not sit exactly on the area marker.
+    lat: (area?.lat ?? 0) + 0.002, lon: (area?.lon ?? 0) + 0.002, deviceId,
+  });
 }
 
 function registryItem(h: Household) {

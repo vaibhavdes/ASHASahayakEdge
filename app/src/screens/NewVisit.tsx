@@ -1,5 +1,6 @@
 import { tr } from "../lib/i18n";
 import { AlertTriangle, ArrowLeft, Lock, Save, Send } from "lucide-react";
+import { StartCard } from "../components/StartCard";
 import { useMemo, useState } from "react";
 import { Badge, Bi, Button, Card, Section, Spinner, SyncBadge, SyndromeBadges } from "../components/ui";
 import { ListenButton } from "../components/ListenButton";
@@ -100,7 +101,7 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
 
         <div className="grid grid-cols-2 gap-3">
           <Button variant="secondary" onClick={() => { setResult(null); setText(""); }}>
-            {tr("+ एक और", "Another")}
+            {tr("+ एक और", "+ Another")}
           </Button>
           <Button onClick={() => (householdId ? nav.back() : nav.setTab("home"))}>{tr("हो गया", "Done")}</Button>
         </div>
@@ -121,10 +122,7 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
 
       {!household ? (
         <Section title={<Bi hi="परिवार चुनें" en="Choose household" />}>
-          {!Object.keys(households ?? {}).length && <Card className="space-y-3">
-            <p className="text-sm text-slate-600">{tr("अभी कोई परिवार नहीं है। पहले परिवार जोड़ें।", "No families yet. Add one member, then record this visit.")}</p>
-            <Button className="w-full" onClick={() => nav.push({ screen: "addFamily" })}>+ {tr("नया परिवार", "Add family")}</Button>
-          </Card>}
+          {households && !Object.keys(households).length && <StartCard />}
           <input value={find} onChange={(e) => setFind(e.target.value)} placeholder={tr("नाम / घर नंबर", "name / house no.")} className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3" />
           {matches.map((h) => (
             <Card key={h.id} onClick={() => setHid(h.id)} className="py-3">

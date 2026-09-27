@@ -39,10 +39,6 @@ function EditVisit({ visit, household, onDone }: { visit: Visit; household: Hous
   );
 }
 
-function VersionTag({ f }: { f: Versioned }) {
-  return f.dirty ? <Badge tone="amber">{tr("भेजना है", "to send")}</Badge> : null;
-}
-
 function EditableField({ label, f, onSave, type = "text" }: { label: { hi: string; en: string }; f: Versioned<string | null>; onSave: (v: string) => void; type?: string }) {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(f.value ?? "");
@@ -55,7 +51,6 @@ function EditableField({ label, f, onSave, type = "text" }: { label: { hi: strin
         ) : (
           <div className="font-medium">{f.value || "—"}</div>
         )}
-        <VersionTag f={f} />
       </div>
       {editing ? (
         <Button
@@ -90,7 +85,7 @@ export default function HouseholdDetail({ id }: { id: string }) {
   if (!h || !settings) return null;
 
   const save = <K extends HouseholdField>(field: K, value: never) => editField(id, field, value, settings.deviceId);
-  const pregnantName = h.fields.members.value.find((m) => m.id === h.fields.pregnant_member.value)?.name;
+  const pending = Object.values(h.fields).some((f) => (f as Versioned).dirty);
 
   return (
     <div className="space-y-4">
@@ -102,6 +97,7 @@ export default function HouseholdDetail({ id }: { id: string }) {
         <p className="text-sm text-slate-600">
           {h.house_no} · {h.ward}
         </p>
+        {pending && <Badge tone="amber" className="mt-1">{tr("बदलाव अगले सिंक में भेजे जाएंगे", "Changes go with the next sync")}</Badge>}
       </div>
 
       <Section title={<Bi hi="परिवार का रिकॉर्ड" en="Household record" />}>
@@ -112,17 +108,9 @@ export default function HouseholdDetail({ id }: { id: string }) {
           <div className="flex items-center gap-2 py-2">
             <div className="flex-1">
               <Bi hi="हाई रिस्क" en="High risk" className="text-xs text-slate-500" />
-              <div>
-                <VersionTag f={h.fields.high_risk} />
-              </div>
             </div>
             <input type="checkbox" checked={h.fields.high_risk.value} onChange={(e) => save("high_risk", e.target.checked as never)} className="h-6 w-6 accent-rose-600" />
           </div>
-          {pregnantName && (
-            <div className="py-2 text-sm">
-              <Badge tone="violet">{tr("गर्भवती", "pregnant")}</Badge> <span className="font-medium">{pregnantName}</span>
-            </div>
-          )}
         </Card>
       </Section>
 
@@ -135,6 +123,14 @@ export default function HouseholdDetail({ id }: { id: string }) {
                 <div className="text-xs text-slate-500">
                   {m.sex === "F" ? tr("महिला", "Female") : tr("पुरुष", "Male")} · {m.age} {tr("साल", "yrs")}
                 </div>
+                {m.sex === "F" && m.age >= 12 && m.age <= 55 && (
+                  <button
+                    onClick={() => save("pregnant_member", (h.fields.pregnant_member.value === m.id ? null : m.id) as never)}
+                    className={h.fields.pregnant_member.value === m.id ? "mt-1 rounded-full bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-800" : "mt-1 rounded-full px-2 py-0.5 text-xs text-violet-700 ring-1 ring-violet-200"}
+                  >
+                    {h.fields.pregnant_member.value === m.id ? tr("✓ गर्भवती", "✓ Pregnant") : tr("गर्भवती है?", "Mark pregnant")}
+                  </button>
+                )}
               </div>
               <Button variant="secondary" className="min-h-10 px-3 text-sm" onClick={() => nav.push({ screen: "visit", householdId: h.id, memberId: m.id })}>
                 <Plus size={16} /> {tr("विज़िट", "Visit")}

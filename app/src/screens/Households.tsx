@@ -1,5 +1,6 @@
 import { tr } from "../lib/i18n";
 import { ChevronRight, Plus, Search } from "lucide-react";
+import { StartCard } from "../components/StartCard";
 import { useState } from "react";
 import { Badge, Button, Card, Empty } from "../components/ui";
 import { allHouseholds } from "../lib/households";
@@ -32,17 +33,18 @@ export default function Households() {
         />
       </div>
       <div className="px-1 text-xs text-slate-500">{list.length} {tr("परिवार", "families")}</div>
-      {list.length === 0 && <Empty>{tr("अभी कोई परिवार नहीं। परिवार जोड़ें और पहली विज़िट दर्ज करें।", "No families yet. Add a family and record the first visit.")}</Empty>}
+      {data && !Object.keys(data).length && <StartCard />}
+      {data && !!Object.keys(data).length && !list.length && <Empty>{tr("कोई परिवार नहीं मिला।", "No family found.")}</Empty>}
       {list.map((h) => {
         const dirty = Object.values(h.fields).some((f) => (f as Versioned).dirty);
         const pregnant = h.fields.pregnant_member.value;
         return (
           <Card key={h.id} onClick={() => nav.push({ screen: "household", id: h.id })} className="flex items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-xs font-bold text-teal-800">{h.house_no.split("-")[1]}</div>
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-xs font-bold text-teal-800">{h.fields.head.value.trim().charAt(0).toUpperCase() || "#"}</div>
             <div className="min-w-0 flex-1">
               <div className="truncate font-semibold">{h.fields.head.value}</div>
               <div className="text-xs text-slate-500">
-                {h.house_no} · {h.ward} · {h.fields.members.value.length} members
+                {h.house_no} · {h.ward} · {h.fields.members.value.length} {tr("सदस्य", "members")}
               </div>
               <div className="mt-1 flex flex-wrap gap-1">
                 {pregnant && <Badge tone="violet">{tr("गर्भवती", "Pregnant")}</Badge>}

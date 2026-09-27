@@ -90,7 +90,7 @@ export default function Inspector() {
         <ArrowLeft size={18} /> {tr("वापस", "Back")}
       </button>
       <h1 className="text-xl font-bold">
-        <Bi hi="डिवाइस मेमोरी" en="Device memory inspector" />
+        <Bi hi="फ़ोन के अंदर" en="Under the hood" />
       </h1>
       <Card className="space-y-1 text-xs text-slate-600">
         <div>

@@ -46,7 +46,7 @@ export default function Reports() {
       <Card className="space-y-2">
         <div className="flex items-center justify-between text-sm">
           <span className="font-semibold">{period.label}</span>
-          <span className="text-xs text-slate-500">{kind === "s_form" ? `from ${form?.visits ?? "…"} visits` : ""}</span>
+          <span className="text-xs text-slate-500">{kind === "s_form" ? tr(`${form?.visits ?? "…"} विज़िट से`, `from ${form?.visits ?? "…"} visits`) : ""}</span>
         </div>
         {kind === "s_form" ? (
           <table className="w-full text-sm">

@@ -1,11 +1,12 @@
 import { CheckCircle2, Download } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bi, Button, Card, Progress, Segmented, Spinner } from "../components/ui";
 import { VoiceSetup } from "../components/VoiceSetup";
 import { logActivity } from "../lib/activity";
 import { loadModel } from "../lib/embedder";
 import { useSettings } from "../lib/hooks";
 import { tr, type Lang } from "../lib/i18n";
+import { currentPosition, DEFAULT_AREA, nearestArea } from "../lib/location";
 import { loadStarterKnowledge } from "../lib/starter";
 import { updateSettings } from "../lib/settings";
 import type { Role } from "../lib/types";
@@ -24,9 +25,11 @@ async function enroll(cloudUrl: string, body: { device_id: string; role: Role; v
 
 export default function Setup() {
   const settings = useSettings();
-  const [role, setRole] = useState<Role>("ASHA");
+  const role: Role = "ASHA";
   const [name, setName] = useState("");
-  const [village, setVillage] = useState("MDH");
+  const [village, setVillage] = useState(DEFAULT_AREA);
+  const [areaNote, setAreaNote] = useState<"looking" | "gps" | "far" | "none">("looking");
+  const areaChosen = useRef(false);
   const [cloudUrl, setCloudUrl] = useState(import.meta.env.VITE_CLOUD_URL || "https://sahayak-cloud-362605925833.asia-south1.run.app");
   const [enrollCode, setEnrollCode] = useState("");
   const [needsCode, setNeedsCode] = useState(false);
@@ -34,6 +37,15 @@ export default function Setup() {
   const [label, setLabel] = useState("");
   const [pct, setPct] = useState(0);
   const [error, setError] = useState("");
+
+  // Pre-select the nearest work area from GPS. Outside our areas, keep the shared default.
+  useEffect(() => {
+    currentPosition().then((pos) => {
+      const near = pos && nearestArea(pos);
+      if (near && !areaChosen.current) setVillage(near.code);
+      setAreaNote(near ? "gps" : pos ? "far" : "none");
+    });
+  }, []);
 
   async function start() {
     setPhase("working");
@@ -103,22 +115,25 @@ export default function Setup() {
 
       <Card className="space-y-4">
         <label className="block space-y-1">
-          <Bi hi="आप कौन हैं?" en="Your role" className="text-sm font-semibold" />
-          <Segmented<Role> value={role} onChange={setRole} options={[{ value: "ASHA", label: "ASHA" }, { value: "ANM", label: tr("ANM (सुपरवाइज़र)", "ANM (supervisor)") }]} />
-        </label>
-        <label className="block space-y-1">
-          <Bi hi="नाम" en="Name" className="text-sm font-semibold" />
+          <Bi hi="आपका नाम" en="Your name" className="text-sm font-semibold" />
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Sunita" className="min-h-12 w-full rounded-xl border border-slate-300 px-3 text-base" />
         </label>
         <label className="block space-y-1">
-          <Bi hi="क्षेत्र" en="Assigned area" className="text-sm font-semibold" />
-          <select value={village} onChange={(e) => setVillage(e.target.value)} className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base">
+          <Bi hi="आपका क्षेत्र" en="Your work area" className="text-sm font-semibold" />
+          <select value={village} onChange={(e) => { areaChosen.current = true; setVillage(e.target.value); }} className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base">
             {VILLAGES.map((v) => (
               <option key={v.code} value={v.code}>
                 {v.name}
               </option>
             ))}
           </select>
+          <p className="text-xs text-slate-500">
+            {areaNote === "looking" && tr("लोकेशन देख रहे हैं…", "Checking your location…")}
+            {areaNote === "gps" && tr("आपकी लोकेशन से चुना गया।", "Picked from your location.")}
+            {areaNote === "far" && tr("आप इन क्षेत्रों से दूर हैं, इसलिए Mumbai · Dharavi चुना गया।", "You are away from these areas, so Mumbai · Dharavi is selected.")}
+            {areaNote === "none" && tr("लोकेशन नहीं मिली, इसलिए Mumbai · Dharavi चुना गया।", "Location unavailable, so Mumbai · Dharavi is selected.")}{" "}
+            {tr("एक ही क्षेत्र के फ़ोन आपस में परिवार की जानकारी सिंक करते हैं।", "Phones in the same area share family records.")}
+          </p>
         </label>
         {needsCode && (
           <label className="block space-y-1">

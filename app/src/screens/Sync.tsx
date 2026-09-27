@@ -10,7 +10,8 @@ import { listOutbox } from "../lib/outbox";
 import { updateSettings } from "../lib/settings";
 import { runSync, slowConnection, type SyncReport } from "../lib/sync";
 import { ago } from "../lib/time";
-import type { NetworkMode } from "../lib/types";
+import { syndromeLabel } from "../lib/tagger";
+import type { NetworkMode, OutboxItem } from "../lib/types";
 
 const PRIORITY = [
   { hi: "तुरंत", en: "Urgent danger signs", tone: "rose" as const },
@@ -19,6 +20,17 @@ const PRIORITY = [
 ];
 
 const show = (v: unknown) => (typeof v === "boolean" ? (v ? "yes" : "no") : v == null || v === "" ? "—" : String(v));
+
+// What each queued item is, in the worker's words.
+function itemLabel(i: OutboxItem) {
+  const p = i.payload;
+  const symptoms = (list: unknown) => ((list as string[] | undefined) ?? []).map((s) => syndromeLabel(s)).join(" + ");
+  if (i.kind === "signal") return tr(`${symptoms(p.syndromes)} (बिना नाम)`, `${symptoms(p.syndromes)} (no name)`);
+  if (i.kind === "household") return tr(`${p.house_no}: परिवार की जानकारी`, `${p.house_no}: family details`);
+  if (i.kind === "retract") return tr("पुरानी लक्षण रिपोर्ट वापस", "Withdraw an old symptom report");
+  if (i.kind === "report") return p.kind === "s_form" ? tr("साप्ताहिक S-फ़ॉर्म", "Weekly S-form") : tr("मासिक सारांश", "Monthly summary");
+  return tr(`डॉक्टर से सवाल: ${String(p.question).slice(0, 40)}`, `Question: ${String(p.question).slice(0, 40)}`);
+}
 
 export default function SyncScreen() {
   const settings = useSettings();
@@ -99,7 +111,7 @@ export default function SyncScreen() {
             </div>
             {items.slice(0, 4).map((i) => (
               <div key={i.id} className="flex items-center justify-between text-xs text-slate-600">
-                <span className="truncate">{i.label}</span>
+                <span className="truncate">{itemLabel(i)}</span>
               </div>
             ))}
             {items.length > 4 && <div className="text-xs text-slate-400">+{items.length - 4} {tr("और", "more")}</div>}

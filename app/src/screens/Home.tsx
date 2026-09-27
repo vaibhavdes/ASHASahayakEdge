@@ -1,8 +1,10 @@
 import { tr } from "../lib/i18n";
 import { AlertTriangle, BookOpen, ClipboardList, CloudOff, FileText, ListChecks, Plus, ShieldCheck, Users } from "lucide-react";
 import { ListenButton } from "../components/ListenButton";
+import { StartCard } from "../components/StartCard";
 import { TaskList } from "../components/TaskList";
 import { Badge, Bi, Button, Card, Empty, Section, Stat, SyndromeBadges, cx } from "../components/ui";
+import { allHouseholds } from "../lib/households";
 import { useData, useSettings } from "../lib/hooks";
 import { activeAlerts } from "../lib/knowledge";
 import { recentVisits, weekSummary } from "../lib/memory";
@@ -42,6 +44,7 @@ export default function Home() {
   const { data: recent } = useData(() => recentVisits(5), ["memory"]);
   const { data: today } = useData(() => todaysPlan(village), ["memory", "households"], [village]);
   const { data: rises } = useData(() => localAnomalies(village), ["memory"], [village]);
+  const { data: households } = useData(allHouseholds, ["households"]);
   if (!settings) return null;
 
   return (
@@ -52,6 +55,8 @@ export default function Home() {
       </div>
 
       <SyncFreshness lastSync={settings.lastSync} knowledgeAt={settings.knowledgeSyncedAt} />
+
+      {households && !Object.keys(households).length && <StartCard />}
 
       {!!rises?.length && (
         <Section title={<Bi hi="फ़ोन ने देखा: असामान्य बढ़त" en="Unusual rise in my village" />}>
