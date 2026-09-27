@@ -10,7 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from fastapi.testclient import TestClient
 from qdrant_client import QdrantClient
-from app import db, main, store
+from app import db, main, outbreak, store
+from datetime import datetime, timezone
 
 
 class EvaluatorFlow(unittest.TestCase):
@@ -67,6 +68,23 @@ class EvaluatorFlow(unittest.TestCase):
         self.assertEqual(guidance.status_code, 200, guidance.text)
         self.assertEqual(self.api.get("/v1/sync/pull", params={"device_id": "phone-b", "village": "MDH", "since": 0}, headers=b).json()["knowledge_version"], 2)
         self.assertEqual(self.api.post("/v1/admin/reset-live", headers=admin).status_code, 404)
+
+    def test_new_area_cluster_alerts_without_history(self):
+        a = self.enroll("phone-a", "MDH")
+        b = self.enroll("phone-b", "MDH")
+        week = outbreak.iso_week(datetime.now(timezone.utc))
+
+        def report(syndromes, n):
+            signals = [{"id": str(uuid.uuid4()), "village": "MDH", "week": week, "age_band": "0-5", "syndromes": syndromes, "sentence": "x"} for _ in range(n)]
+            return self.api.post("/v1/sync/push", headers=a, json={"device_id": "phone-a", "role": "ASHA", "village": "MDH", "signals": signals})
+
+        # Plain fever is common: no alert without history.
+        self.assertEqual(report(["fever"], 4).json()["alerts_created"], 0)
+        # Fever with rash is unusual on its own: three reports raise a cluster to verify.
+        self.assertEqual(report(["fever", "rash"], 2).json()["alerts_created"], 0)
+        self.assertEqual(report(["fever", "rash"], 1).json()["alerts_created"], 1)
+        alerts = self.api.get("/v1/sync/pull", params={"device_id": "phone-b", "village": "MDH", "since": 0}, headers=b).json()["alerts"]
+        self.assertTrue(any(al["title"].startswith("Cluster of") for al in alerts))
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
-import { ArrowLeft, Database, Wand2 } from "lucide-react";
+import { ArrowLeft, Database } from "lucide-react";
 import { useState } from "react";
-import { Badge, Bi, Button, Card, Section, Segmented, Stat, SyncBadge } from "../components/ui";
+import { Badge, Bi, Card, Section, Segmented, Stat, SyncBadge } from "../components/ui";
 import { SettingsCard } from "../components/SettingsCard";
 import { VoiceSetup } from "../components/VoiceSetup";
 import { getActivity } from "../lib/activity";
@@ -13,9 +13,8 @@ import type { Shard } from "../lib/types";
 const kb = (b: number) => (b > 1_048_576 ? `${(b / 1_048_576).toFixed(1)} MB` : `${Math.round(b / 1024)} KB`);
 
 function ShardPanel({ shard }: { shard: Shard }) {
-  const { data: info, reload } = useData(() => edge.info(shard), ["memory", "alerts", "sync"], [shard]);
+  const { data: info } = useData(() => edge.info(shard), ["memory", "alerts", "sync"], [shard]);
   const { data: page } = useData(() => edge.scroll(shard, 25, null, null), ["memory", "alerts", "sync"], [shard]);
-  const [optimising, setOptimising] = useState(false);
   return (
     <div className="space-y-3">
       <Card className="space-y-3">
@@ -44,19 +43,6 @@ function ShardPanel({ shard }: { shard: Shard }) {
                 : "households, outbox, settings, activity log, conflicts, questions"}
           </div>
         </div>
-        <Button
-          variant="secondary"
-          className="w-full"
-          disabled={optimising}
-          onClick={async () => {
-            setOptimising(true);
-            await edge.optimize(shard);
-            setOptimising(false);
-            reload();
-          }}
-        >
-          <Wand2 size={18} /> Optimise segments
-        </Button>
       </Card>
       <Section title={`First ${page?.points.length ?? 0} points`}>
         {page?.points.map((p) => (

@@ -104,13 +104,13 @@ export default function Setup() {
 
       <Card className="space-y-4">
         <label className="block space-y-1">
-          <Bi hi="ज़िला सर्वर" en="District sync server (can change later)" className="text-sm font-semibold" />
-          <input value={cloudUrl} onChange={(e) => setCloudUrl(e.target.value)} className="min-h-12 w-full rounded-xl border border-slate-300 px-3 font-mono text-sm" />
-        </label>
-        <label className="block space-y-1">
           <Bi hi="फ़ोन जोड़ने का कोड" en="Enrollment code (one time per phone)" className="text-sm font-semibold" />
           <input value={enrollCode} onChange={(e) => setEnrollCode(e.target.value)} autoCapitalize="off" autoCorrect="off" className="min-h-12 w-full rounded-xl border border-slate-300 px-3 font-mono text-base" />
         </label>
+        <details className="text-sm">
+          <summary className="cursor-pointer text-slate-500">Advanced: district server</summary>
+          <input value={cloudUrl} onChange={(e) => setCloudUrl(e.target.value)} className="mt-2 min-h-12 w-full rounded-xl border border-slate-300 px-3 font-mono text-sm" />
+        </details>
       </Card>
 
       <VoiceSetup />

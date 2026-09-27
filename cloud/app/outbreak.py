@@ -10,6 +10,8 @@ from . import db, store
 from .config import ALERT_RADIUS_KM, MIN_CASES, SYNDROMES, VILLAGES, ZSCORE_THRESHOLD
 
 VILLAGE = {v["code"]: v for v in VILLAGES}
+# Weekly reports that justify a check even with no history (IDSP-style cluster rule).
+COLD_START_CASES = {"fever+rash": 3, "jaundice": 3, "diarrhoea": 5}
 ACTIONS = {
     "fever": "Check for danger signs, test for malaria where advised, report to ANM if cases keep rising.",
     "rash": "Suspected measles if with fever: report every case, check MR vaccination of children nearby.",
@@ -96,22 +98,36 @@ def scan() -> list[dict]:
     created = []
     # 1. Count anomalies.
     for r in z_scores():
-        if r["baseline_weeks"] >= 3 and r["count"] >= MIN_CASES and r["z"] >= ZSCORE_THRESHOLD and not r["syndrome"].startswith("danger"):
-            syn = r["syndrome"]
-            parts = syn.split("+")
-            name = VILLAGE[r["village"]]["name"]
-            action = " ".join(ACTIONS.get(p, "") for p in parts).strip()
-            a = create_alert(
-                kind="count",
-                title=f"Reports of {' + '.join(label(p) for p in parts)} rising in {name} — review",
-                text=f"{r['count']} reports this week in {name} vs prior weekly average {r['baseline']} (z={r['z']}). Verify reports and assess locally. {action}",
-                severity="watch",
-                villages=nearby([r["village"]]),
-                syndromes=parts,
-                dedupe=f"count:{r['village']}:{syn}:{r['week']}",
-            )
-            if a:
-                created.append(a)
+        syn = r["syndrome"]
+        if syn.startswith("danger") or r["count"] < MIN_CASES:
+            continue
+        has_baseline = r["baseline_weeks"] >= 3
+        rising = has_baseline and r["z"] >= ZSCORE_THRESHOLD
+        # A new area has no history to compare with; flag patterns that are unusual on their own.
+        cluster = not has_baseline and r["count"] >= COLD_START_CASES.get(syn, 10**6)
+        if not (rising or cluster):
+            continue
+        parts = syn.split("+")
+        name = VILLAGE[r["village"]]["name"]
+        action = " ".join(ACTIONS.get(p, "") for p in parts).strip()
+        labels = " + ".join(label(p) for p in parts)
+        if rising:
+            title = f"Reports of {labels} rising in {name} — review"
+            text = f"{r['count']} reports this week in {name} vs prior weekly average {r['baseline']} (z={r['z']}). Verify reports and assess locally. {action}"
+        else:
+            title = f"Cluster of {labels} in {name} — verify"
+            text = f"{r['count']} reports this week in {name}. There is no history for this area yet, so this is flagged as a cluster to verify. {action}"
+        a = create_alert(
+            kind="count" if rising else "cluster-new-area",
+            title=title,
+            text=text,
+            severity="watch",
+            villages=nearby([r["village"]]),
+            syndromes=parts,
+            dedupe=f"count:{r['village']}:{syn}:{r['week']}",
+        )
+        if a:
+            created.append(a)
 
     # 2. Cross-village semantic clusters over the last 14 days.
     since = (datetime.now(timezone.utc) - timedelta(days=14)).strftime("%Y-%m-%dT%H:%M:%SZ")

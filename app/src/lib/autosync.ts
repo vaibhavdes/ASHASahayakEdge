@@ -1,11 +1,22 @@
 // Sync when the network returns, when the app is opened, and every 10 minutes.
+// Local shards are compacted in the background at most once a day.
 import { logActivity } from "./activity";
+import { edge } from "./bridge";
 import { listOutbox } from "./outbox";
 import { getSettings } from "./settings";
 import { isOnline, runSync } from "./sync";
 
 const EVERY_MS = 10 * 60_000;
+const OPTIMIZE_EVERY_MS = 24 * 60 * 60_000;
 let started = false;
+
+// Merges small segments and builds the vector index so search stays fast as notes pile up.
+async function maintain() {
+  const last = (await edge.storeGet<number>("optimized_at")) ?? 0;
+  if (Date.now() - last < OPTIMIZE_EVERY_MS) return;
+  for (const shard of ["memory", "knowledge", "state"] as const) await edge.optimize(shard).catch(() => false);
+  await edge.storeSet("optimized_at", Date.now());
+}
 
 async function attempt(reason: string) {
   const s = await getSettings();
@@ -28,4 +39,5 @@ export function startAutoSync() {
   });
   setInterval(() => attempt("scheduled"), EVERY_MS);
   attempt("start");
+  setTimeout(() => maintain().catch(() => {}), 30_000);
 }
