@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { AlertTriangle, ArrowLeft, Lock, Save, Send } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Badge, Bi, Button, Card, Section, Spinner, SyncBadge, SyndromeBadges } from "../components/ui";
@@ -53,56 +54,55 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
   }
 
   if (result) {
-    const { visit, tagging, ms, guidance } = result;
+    const { visit, guidance } = result;
     const signal = visit.sync_class !== "never" ? buildSignal(visit) : null;
     return (
       <div className="space-y-4">
         {visit.danger && (
           <Card className="border-l-4 border-rose-600 bg-rose-50">
             <div className="flex items-center gap-2 text-lg font-bold text-rose-700">
-              <AlertTriangle /> खतरे का संकेत — तुरंत रेफर करें
+              <AlertTriangle /> {tr("खतरे का संकेत — तुरंत रेफर करें", "Danger sign — refer now")}
             </div>
-            <p className="text-sm text-rose-900">Danger sign detected. Refer now (108/102) and inform the ANM.</p>
+            <p className="text-sm text-rose-900">{tr("108/102 पर कॉल करें और ANM को बताएं।", "Call 108/102 and inform the ANM.")}</p>
             {guidance?.answer && <p className="mt-2 text-sm text-slate-800">{guidance.answer.payload.text}</p>}
             {!guidance?.answer && guidance?.passages[0] && <p className="mt-2 text-sm text-slate-800">{guidance.passages[0].payload.text}</p>}
             {(guidance?.answer ?? guidance?.passages[0]) && <ListenButton className="mt-2" text={(guidance.answer ?? guidance.passages[0]).payload.text} />}
           </Card>
         )}
         <Card className="space-y-2">
-          <div className="font-semibold">✓ सेव हो गया · Saved on this phone ({ms} ms)</div>
+          <div className="font-semibold">✓ {tr("फ़ोन पर सेव हो गया", "Saved on this phone")}</div>
           <div className="text-sm text-slate-600">{visit.member_name}</div>
           <SyndromeBadges syndromes={visit.syndromes} danger={visit.danger} />
-          <div className="text-xs text-slate-500">
-            Tagged by {tagging.method === "rule" ? "Hindi/Hinglish rules" : tagging.method === "ai" ? "on-device AI (zero-shot)" : "—"}
-            {tagging.terms.length ? ` · understood: ${tagging.terms.join(", ")}` : ""}
-          </div>
         </Card>
 
         <Section title={<Bi hi="क्या फ़ोन से बाहर जाएगा?" en="What leaves this phone?" />}>
           <Card className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
-              <Lock size={16} className="text-slate-600" /> The visit note stays on this phone. Family registry details sync to enrolled phones in this area.
+              <Lock size={16} className="text-slate-600" /> {tr("विज़िट नोट इसी फ़ोन पर रहेगा।", "The visit note stays on this phone.")}
             </div>
             {signal ? (
               <>
                 <div className="flex items-center gap-2">
-                  <Send size={16} className="text-teal-700" /> A symptom signal with this device's ID will be sent <SyncBadge cls={visit.sync_class} />
+                  <Send size={16} className="text-teal-700" /> {tr("सिर्फ़ लक्षण ज़िले को जाएंगे, नाम नहीं।", "Only the symptoms go to the district, never the name.")} <SyncBadge cls={visit.sync_class} />
                 </div>
-                <pre className="overflow-x-auto rounded-lg bg-slate-900 p-2 text-[11px] text-emerald-200">
-                  {JSON.stringify({ ...signal, id: "random-uuid", vector_q8: "384 bytes (int8)" }, null, 1)}
-                </pre>
+                <details className="text-xs text-slate-500">
+                  <summary className="cursor-pointer">{tr("देखें क्या भेजा जाएगा", "See exactly what is sent")}</summary>
+                  <pre className="mt-1 overflow-x-auto rounded-lg bg-slate-900 p-2 text-[11px] text-emerald-200">
+                    {JSON.stringify({ ...signal, id: "random-uuid", vector_q8: "384 bytes (int8)" }, null, 1)}
+                  </pre>
+                </details>
               </>
             ) : (
-              <div className="text-slate-600">Routine visit: nothing is sent.</div>
+              <div className="text-slate-600">{tr("सामान्य विज़िट: कुछ नहीं भेजा जाएगा।", "Routine visit: nothing is sent.")}</div>
             )}
           </Card>
         </Section>
 
         <div className="grid grid-cols-2 gap-3">
           <Button variant="secondary" onClick={() => { setResult(null); setText(""); }}>
-            + एक और · Another
+            {tr("+ एक और", "Another")}
           </Button>
-          <Button onClick={() => (householdId ? nav.back() : nav.setTab("home"))}>हो गया · Done</Button>
+          <Button onClick={() => (householdId ? nav.back() : nav.setTab("home"))}>{tr("हो गया", "Done")}</Button>
         </div>
       </div>
     );
@@ -112,7 +112,7 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
     <div className="space-y-4">
       {householdId && (
         <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800">
-          <ArrowLeft size={18} /> वापस · Back
+          <ArrowLeft size={18} /> {tr("वापस", "Back")}
         </button>
       )}
       <h1 className="text-xl font-bold">
@@ -122,10 +122,10 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
       {!household ? (
         <Section title={<Bi hi="परिवार चुनें" en="Choose household" />}>
           {!Object.keys(households ?? {}).length && <Card className="space-y-3">
-            <p className="text-sm text-slate-600">No families yet. Add one member, then record this visit.</p>
-            <Button className="w-full" onClick={() => nav.push({ screen: "addFamily" })}>+ Add family</Button>
+            <p className="text-sm text-slate-600">{tr("अभी कोई परिवार नहीं है। पहले परिवार जोड़ें।", "No families yet. Add one member, then record this visit.")}</p>
+            <Button className="w-full" onClick={() => nav.push({ screen: "addFamily" })}>+ {tr("नया परिवार", "Add family")}</Button>
           </Card>}
-          <input value={find} onChange={(e) => setFind(e.target.value)} placeholder="नाम / घर नंबर" className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3" />
+          <input value={find} onChange={(e) => setFind(e.target.value)} placeholder={tr("नाम / घर नंबर", "name / house no.")} className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3" />
           {matches.map((h) => (
             <Card key={h.id} onClick={() => setHid(h.id)} className="py-3">
               <div className="font-semibold">{h.fields.head.value}</div>
@@ -142,7 +142,7 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
             </div>
             {!householdId && (
               <button className="text-sm text-teal-700" onClick={() => { setHid(""); setMid(""); }}>
-                बदलें · change
+                {tr("बदलें", "change")}
               </button>
             )}
           </Card>
@@ -165,11 +165,11 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
               value={text}
               onChange={(e) => setText(e.target.value)}
               rows={4}
-              placeholder="जैसे: बच्चे को 2 दिन से बुखार और दाने"
+              placeholder={tr("जैसे: बच्चे को 2 दिन से बुखार और दाने", "e.g. child has fever and rash for 2 days")}
               className="w-full rounded-xl border border-slate-300 bg-white p-3 text-base"
             />
             <p className="px-1 text-xs text-slate-500">
-              कीबोर्ड के 🎤 से भी बोल सकते हैं · you can also use the mic on your keyboard
+              {tr("कीबोर्ड के 🎤 से भी बोल सकते हैं", "you can also use the mic on your keyboard")}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {PHRASES.map((p) => (
@@ -180,13 +180,13 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
             </div>
             {preview && (
               <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
-                AI समझा · understood: <SyndromeBadges syndromes={preview.syndromes} danger={preview.danger} />
-                {preview.danger && <Badge tone="rose">खतरा</Badge>}
+                {tr("समझा गया:", "Understood:")} <SyndromeBadges syndromes={preview.syndromes} danger={preview.danger} />
+                {preview.danger && <Badge tone="rose">{tr("खतरा", "danger")}</Badge>}
               </div>
             )}
           </Section>
           <Button className="w-full" disabled={!mid || !text.trim() || saving} onClick={save}>
-            {saving ? <Spinner /> : <Save size={20} />} सेव करें · Save (offline)
+            {saving ? <Spinner /> : <Save size={20} />} {tr("सेव करें", "Save")}
           </Button>
         </>
       )}

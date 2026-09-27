@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { AlertTriangle, ArrowLeft, Lock } from "lucide-react";
 import { TaskList } from "../components/TaskList";
 import { Bi, Card, Spinner } from "../components/ui";
@@ -21,7 +22,7 @@ export function AlertPlan({ id }: { id: string }) {
   return (
     <div className="space-y-4">
       <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800">
-        <ArrowLeft size={18} /> वापस · Back
+        <ArrowLeft size={18} /> {tr("वापस", "Back")}
       </button>
       {alert && (
         <Card className="border-l-4 border-rose-500">
@@ -38,7 +39,7 @@ export function AlertPlan({ id }: { id: string }) {
         </h1>
         <p className="flex items-start gap-1 text-xs text-slate-500">
           <Lock size={12} className="mt-0.5 shrink-0" />
-          Worked out on this phone from your own records. The district sees the pattern, not these names.
+          {tr("आपके अपने रिकॉर्ड से इसी फ़ोन पर बनाया गया। ज़िले को ये नाम नहीं दिखते।", "Worked out on this phone from your own records. The district sees the pattern, not these names.")}
         </p>
       </div>
       {tasks ? <TaskList tasks={tasks} /> : <Spinner className="text-teal-700" />}
@@ -58,13 +59,13 @@ export function LocalAlertPlan({ syndromes, title }: { syndromes: string[]; titl
   return (
     <div className="space-y-4">
       <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800">
-        <ArrowLeft size={18} /> वापस · Back
+        <ArrowLeft size={18} /> {tr("वापस", "Back")}
       </button>
       <Card className="border-l-4 border-amber-500">
         <div className="flex items-center gap-2 font-semibold text-amber-800">
           <AlertTriangle size={18} /> {title}
         </div>
-        <p className="mt-1 text-sm text-slate-700">Spotted on this phone from your own visits, without any network. Tell your ANM; the district will also see it at the next sync.</p>
+        <p className="mt-1 text-sm text-slate-700">{tr("आपकी विज़िट से इसी फ़ोन ने पहचाना, बिना नेटवर्क के। ANM को बताएं।", "Spotted on this phone from your own visits, without any network. Tell your ANM; the district will also see it at the next sync.")}</p>
       </Card>
       {tasks ? <TaskList tasks={tasks} /> : <Spinner className="text-teal-700" />}
     </div>
@@ -78,12 +79,12 @@ export function Today() {
   return (
     <div className="space-y-4">
       <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800">
-        <ArrowLeft size={18} /> वापस · Back
+        <ArrowLeft size={18} /> {tr("वापस", "Back")}
       </button>
       <h1 className="text-lg font-bold">
         <Bi hi="आज के काम" en="Today's visits, most urgent first" />
       </h1>
-      <p className="text-xs text-slate-500">From danger signs, recent fever, pregnancies and immunisations in your records. Works offline.</p>
+      <p className="text-xs text-slate-500">{tr("खतरे के संकेत, हाल का बुखार, गर्भावस्था और टीकाकरण के आधार पर।", "From danger signs, recent fever, pregnancies and immunisations in your records.")}</p>
       {tasks ? <TaskList tasks={tasks} /> : <Spinner className="text-teal-700" />}
     </div>
   );

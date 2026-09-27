@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { lang, tr } from "../lib/i18n";
 import { SYNC_CLASS_INFO } from "../lib/policy";
 import { syndromeLabel } from "../lib/tagger";
 import type { SyncClass, SyncStatus } from "../lib/types";
@@ -7,10 +8,7 @@ export const cx = (...c: (string | false | null | undefined)[]) => c.filter(Bool
 
 export function Bi({ hi, en, className }: { hi: string; en: string; className?: string }) {
   return (
-    <span className={cx("inline-flex flex-col leading-tight", className)}>
-      <span>{hi}</span>
-      <span className="text-[0.72em] font-normal opacity-70">{en}</span>
-    </span>
+    <span className={className}>{tr(hi, en)}</span>
   );
 }
 
@@ -88,12 +86,12 @@ export function Segmented<T extends string>({ value, options, onChange }: { valu
 }
 
 export function SyndromeBadges({ syndromes, danger }: { syndromes: string[]; danger?: boolean }) {
-  if (!syndromes.length) return <Badge>सामान्य · routine</Badge>;
+  if (!syndromes.length) return <Badge>{tr("सामान्य", "routine")}</Badge>;
   return (
     <span className="flex flex-wrap gap-1">
       {syndromes.map((s) => (
         <Badge key={s} tone={s.startsWith("danger") || danger ? "rose" : "amber"}>
-          {syndromeLabel(s, "hi")}
+          {syndromeLabel(s, lang())}
         </Badge>
       ))}
     </span>
@@ -102,7 +100,7 @@ export function SyndromeBadges({ syndromes, danger }: { syndromes: string[]; dan
 
 export function SyncBadge({ cls, status }: { cls: SyncClass; status?: SyncStatus }) {
   const info = SYNC_CLASS_INFO[cls];
-  const label = status === "synced" && cls !== "never" ? "भेजा गया · sent" : info.hi;
+  const label = status === "synced" && cls !== "never" ? tr("भेजा गया", "sent") : tr(info.hi, info.en);
   return <Badge tone={status === "synced" ? "emerald" : (info.tone as Tone)}>{label}</Badge>;
 }
 

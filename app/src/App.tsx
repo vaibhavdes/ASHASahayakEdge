@@ -1,12 +1,13 @@
-import { Cpu, House, Plus, RefreshCw, Search, Users, WifiOff } from "lucide-react";
+import { ArrowLeft, BookOpen, Cpu, House, Plus, RefreshCw, Search, Users, WifiOff } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Badge, Spinner, cx } from "./components/ui";
 import { isNative } from "./lib/bridge";
 import { startAutoSync } from "./lib/autosync";
 import { isModelLoaded, loadModel } from "./lib/embedder";
 import { useSettingsState } from "./lib/hooks";
+import { setLang, tr } from "./lib/i18n";
 import { resetDevice } from "./lib/starter";
-import { resetSettingsCache } from "./lib/settings";
+import { resetSettingsCache, updateSettings } from "./lib/settings";
 import { NavContext, type Route, type Tab } from "./lib/nav";
 import { villageName } from "./lib/villages";
 import Home from "./screens/Home";
@@ -17,7 +18,7 @@ import Inspector from "./screens/Inspector";
 import NewVisit from "./screens/NewVisit";
 import { AlertPlan, LocalAlertPlan, Today } from "./screens/Plans";
 import Reports from "./screens/Reports";
-import SearchScreen from "./screens/Search";
+import SearchScreen, { Guidance } from "./screens/Search";
 import Setup from "./screens/Setup";
 import SyncScreen from "./screens/Sync";
 
@@ -76,6 +77,7 @@ export default function App() {
       </div>
     );
   }
+  setLang(settings.lang);
   if (!settings.setupDone) return <Setup />;
   if (!settings.deviceToken) return <div className="mx-auto flex h-full max-w-md flex-col justify-center gap-4 p-6 text-center">
     <h1 className="text-xl font-bold">Set up the evaluator workspace</h1>
@@ -95,6 +97,10 @@ export default function App() {
   else if (top?.screen === "localAlert") screen = <LocalAlertPlan syndromes={top.syndromes} title={top.title} />;
   else if (top?.screen === "today") screen = <Today />;
   else if (top?.screen === "reports") screen = <Reports />;
+  else if (top?.screen === "guidance") screen = <div className="space-y-4">
+    <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800"><ArrowLeft size={18} /> {tr("वापस", "Back")}</button>
+    <Guidance />
+  </div>;
   else if (top?.screen === "visit") screen = <NewVisit householdId={top.householdId} memberId={top.memberId} />;
   else if (tab === "home") screen = <Home />;
   else if (tab === "households") screen = <Households />;
@@ -118,17 +124,27 @@ export default function App() {
             </div>
             {offline ? (
               <Badge tone="amber">
-                <WifiOff size={12} /> ऑफ़लाइन
+                <WifiOff size={12} /> {tr("ऑफ़लाइन", "Offline")}
               </Badge>
             ) : null}
-            <button onClick={() => nav.push({ screen: "inspector" })} className="rounded-lg p-2 active:bg-teal-700" aria-label="Inspector">
+            <button onClick={() => nav.push({ screen: "guidance" })} className="rounded-lg p-2 active:bg-teal-700" aria-label={tr("स्वास्थ्य जानकारी खोजें", "Search health guidance")}>
+              <BookOpen size={20} />
+            </button>
+            <button
+              onClick={() => updateSettings({ lang: settings.lang === "hi" ? "en" : "hi" })}
+              className="min-w-9 rounded-lg px-2 py-1.5 text-sm font-bold ring-1 ring-teal-500 active:bg-teal-700"
+              aria-label="Language / भाषा"
+            >
+              {settings.lang === "hi" ? "EN" : "हि"}
+            </button>
+            <button onClick={() => nav.push({ screen: "inspector" })} className="rounded-lg p-2 active:bg-teal-700" aria-label={tr("फ़ोन के अंदर", "Under the hood")}>
               <Cpu size={20} />
             </button>
           </div>
-          {!isNative && <div className="bg-amber-400 px-4 py-1 text-center text-xs font-medium text-amber-950">Browser preview — Qdrant Edge runs only in the Android app</div>}
+          {!isNative && <div className="bg-amber-400 px-4 py-1 text-center text-xs font-medium text-amber-950">Browser preview: the offline database runs only in the Android app</div>}
           {modelState !== "ready" && (
             <div className={cx("px-4 py-1 text-center text-xs", modelState === "error" ? "bg-rose-600" : "bg-teal-700")}>
-              {modelState === "error" ? "AI मॉडल लोड नहीं हुआ · AI model failed to load (see Settings)" : "AI मॉडल लोड हो रहा है… · Loading on-device AI…"}
+              {modelState === "error" ? tr("खोज अभी तैयार नहीं है। ऐप फिर से खोलें।", "Search is not ready yet. Reopen the app.") : tr("ऐप तैयार हो रहा है…", "Getting ready…")}
             </div>
           )}
         </header>
@@ -148,8 +164,7 @@ export default function App() {
                 ) : (
                   <Icon size={22} strokeWidth={active ? 2.5 : 2} />
                 )}
-                <span className="font-semibold">{t.hi}</span>
-                <span className="-mt-0.5 opacity-70">{t.en}</span>
+                <span className="font-semibold">{settings.lang === "hi" ? t.hi : t.en}</span>
               </button>
             );
           })}

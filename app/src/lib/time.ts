@@ -1,3 +1,5 @@
+import { tr } from "./i18n";
+
 export const nowIso = () => new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
 
 export const daysAgoIso = (days: number) =>
@@ -13,14 +15,14 @@ export function isoWeek(date: Date | string): string {
 }
 
 export function ago(iso: string | null | undefined): string {
-  if (!iso) return "कभी नहीं · never";
+  if (!iso) return tr("कभी नहीं", "never");
   const mins = Math.round((Date.now() - new Date(iso).getTime()) / 60_000);
-  if (mins < 1) return "अभी · just now";
-  if (mins < 60) return `${mins} मिनट पहले · ${mins} min ago`;
+  if (mins < 1) return tr("अभी", "just now");
+  if (mins < 60) return tr(`${mins} मिनट पहले`, `${mins} min ago`);
   const hours = Math.round(mins / 60);
-  if (hours < 24) return `${hours} घंटे पहले · ${hours} h ago`;
+  if (hours < 24) return tr(`${hours} घंटे पहले`, `${hours} h ago`);
   const days = Math.round(hours / 24);
-  return `${days} दिन पहले · ${days} days ago`;
+  return tr(`${days} दिन पहले`, `${days} days ago`);
 }
 
 export const daysSince = (iso: string | null | undefined) =>

@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { ArrowLeft, Pencil, Plus, Sparkles, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Badge, Bi, Button, Card, Empty, Section, SyncBadge, SyndromeBadges } from "../components/ui";
@@ -18,7 +19,7 @@ function EditVisit({ visit, household, onDone }: { visit: Visit; household: Hous
       <textarea value={text} onChange={(e) => setText(e.target.value)} rows={3} className="w-full rounded-lg border border-slate-300 bg-white p-2 text-sm" />
       <div className="grid grid-cols-2 gap-2">
         <Button variant="secondary" className="min-h-10 text-sm" onClick={onDone}>
-          रद्द · Cancel
+          {tr("रद्द", "Cancel")}
         </Button>
         <Button
           className="min-h-10 text-sm"
@@ -30,16 +31,16 @@ function EditVisit({ visit, household, onDone }: { visit: Visit; household: Hous
             onDone();
           }}
         >
-          सेव · Save
+          {tr("सेव", "Save")}
         </Button>
       </div>
-      <p className="text-xs text-slate-500">If the symptoms change, the old device-linked symptom report is withdrawn and a corrected one is sent.</p>
+      <p className="text-xs text-slate-500">{tr("लक्षण बदले तो पुरानी रिपोर्ट हटाकर सही रिपोर्ट भेजी जाएगी।", "If the symptoms change, the old report is withdrawn and a corrected one is sent.")}</p>
     </div>
   );
 }
 
 function VersionTag({ f }: { f: Versioned }) {
-  return f.dirty ? <Badge tone="amber">भेजना है · pending (base v{f.base ?? f.ts})</Badge> : <span className="text-[11px] text-slate-400">v{f.ts} · {f.dev.slice(0, 8)}</span>;
+  return f.dirty ? <Badge tone="amber">{tr("भेजना है", "to send")}</Badge> : null;
 }
 
 function EditableField({ label, f, onSave, type = "text" }: { label: { hi: string; en: string }; f: Versioned<string | null>; onSave: (v: string) => void; type?: string }) {
@@ -94,7 +95,7 @@ export default function HouseholdDetail({ id }: { id: string }) {
   return (
     <div className="space-y-4">
       <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800">
-        <ArrowLeft size={18} /> वापस · Back
+        <ArrowLeft size={18} /> {tr("वापस", "Back")}
       </button>
       <div>
         <h1 className="text-xl font-bold">{h.fields.head.value}</h1>
@@ -119,7 +120,7 @@ export default function HouseholdDetail({ id }: { id: string }) {
           </div>
           {pregnantName && (
             <div className="py-2 text-sm">
-              <Badge tone="violet">गर्भवती · pregnant</Badge> <span className="font-medium">{pregnantName}</span>
+              <Badge tone="violet">{tr("गर्भवती", "pregnant")}</Badge> <span className="font-medium">{pregnantName}</span>
             </div>
           )}
         </Card>
@@ -132,30 +133,30 @@ export default function HouseholdDetail({ id }: { id: string }) {
               <div className="flex-1">
                 <div className="font-medium">{m.name}</div>
                 <div className="text-xs text-slate-500">
-                  {m.sex === "F" ? "महिला" : "पुरुष"} · {m.age} yrs
+                  {m.sex === "F" ? tr("महिला", "Female") : tr("पुरुष", "Male")} · {m.age} {tr("साल", "yrs")}
                 </div>
               </div>
               <Button variant="secondary" className="min-h-10 px-3 text-sm" onClick={() => nav.push({ screen: "visit", householdId: h.id, memberId: m.id })}>
-                <Plus size={16} /> विज़िट
+                <Plus size={16} /> {tr("विज़िट", "Visit")}
               </Button>
             </div>
           ))}
           {addingMember ? <div className="space-y-2 py-3">
-            <input value={newMemberName} onChange={(e) => setNewMemberName(e.target.value)} placeholder="Member name" className="min-h-10 w-full rounded-lg border border-slate-300 px-2" />
+            <input value={newMemberName} onChange={(e) => setNewMemberName(e.target.value)} placeholder={tr("सदस्य का नाम", "Member name")} className="min-h-10 w-full rounded-lg border border-slate-300 px-2" />
             <div className="grid grid-cols-2 gap-2">
-              <input value={newMemberAge} onChange={(e) => setNewMemberAge(e.target.value)} type="number" min="0" max="120" placeholder="Age" className="min-h-10 rounded-lg border border-slate-300 px-2" />
-              <select value={newMemberSex} onChange={(e) => setNewMemberSex(e.target.value as "F" | "M")} className="rounded-lg border border-slate-300 bg-white px-2"><option value="F">Female</option><option value="M">Male</option></select>
+              <input value={newMemberAge} onChange={(e) => setNewMemberAge(e.target.value)} type="number" min="0" max="120" placeholder={tr("उम्र", "Age")} className="min-h-10 rounded-lg border border-slate-300 px-2" />
+              <select value={newMemberSex} onChange={(e) => setNewMemberSex(e.target.value as "F" | "M")} className="rounded-lg border border-slate-300 bg-white px-2"><option value="F">{tr("महिला", "Female")}</option><option value="M">{tr("पुरुष", "Male")}</option></select>
             </div>
             <div className="flex gap-2"><Button disabled={!newMemberName.trim() || !newMemberAge.trim() || Number(newMemberAge) < 0 || Number(newMemberAge) > 120} onClick={async () => {
               await save("members", [...h.fields.members.value, { id: crypto.randomUUID(), name: newMemberName.trim(), age: Number(newMemberAge), sex: newMemberSex }] as never);
               setNewMemberName(""); setNewMemberAge(""); setAddingMember(false);
-            }}>Save member</Button><Button variant="secondary" onClick={() => setAddingMember(false)}>Cancel</Button></div>
-          </div> : <button onClick={() => setAddingMember(true)} className="flex items-center gap-1 py-3 text-sm font-semibold text-teal-700"><Plus size={17} /> Add member</button>}
+            }}>{tr("सेव करें", "Save member")}</Button><Button variant="secondary" onClick={() => setAddingMember(false)}>{tr("रद्द", "Cancel")}</Button></div>
+          </div> : <button onClick={() => setAddingMember(true)} className="flex items-center gap-1 py-3 text-sm font-semibold text-teal-700"><Plus size={17} /> {tr("सदस्य जोड़ें", "Add member")}</button>}
         </Card>
       </Section>
 
       <Section title={<Bi hi="विज़िट इतिहास" en="Visit history" />}>
-        {!visits?.length && <Empty>No visits yet.</Empty>}
+        {!visits?.length && <Empty>{tr("अभी कोई विज़िट नहीं।", "No visits yet.")}</Empty>}
         {visits?.map((v) => (
           <Card key={v.visit_id} className="space-y-2">
             <div className="flex items-center justify-between text-sm">
@@ -176,13 +177,13 @@ export default function HouseholdDetail({ id }: { id: string }) {
             {editing !== v.visit_id && (
               <div className="flex gap-3 text-xs font-semibold">
                 <button className="flex items-center gap-1 text-teal-700" onClick={() => setEditing(v.visit_id)}>
-                  <Pencil size={13} /> सुधारें · Edit
+                  <Pencil size={13} /> {tr("सुधारें", "Edit")}
                 </button>
                 <button
                   className="flex items-center gap-1 text-rose-700"
-                  onClick={() => confirm("यह विज़िट हटाएं? · Delete this visit?") && deleteVisit(v)}
+                  onClick={() => confirm(tr("यह विज़िट हटाएं?", "Delete this visit?")) && deleteVisit(v)}
                 >
-                  <Trash2 size={13} /> हटाएं · Delete
+                  <Trash2 size={13} /> {tr("हटाएं", "Delete")}
                 </button>
               </div>
             )}
@@ -191,7 +192,7 @@ export default function HouseholdDetail({ id }: { id: string }) {
                 onClick={async () => setSimilar({ for: v.visit_id, hits: await similarVisits(v.visit_id) })}
                 className="flex items-center gap-1 text-xs font-semibold text-teal-700"
               >
-                <Sparkles size={14} /> मिलते-जुलते केस · Similar past cases
+                <Sparkles size={14} /> {tr("मिलते-जुलते केस", "Similar past cases")}
               </button>
             )}
             {similar?.for === v.visit_id && (

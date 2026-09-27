@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSettings } from "../lib/hooks";
@@ -41,7 +42,7 @@ export function SettingsCard() {
       </label>
       <div className="grid grid-cols-2 gap-2">
         <Button variant="secondary" className="min-h-10 text-sm" onClick={test}>
-          जांचें · Test
+          {tr("जांचें", "Test")}
         </Button>
         <Button
           className="min-h-10 text-sm"
@@ -50,7 +51,7 @@ export function SettingsCard() {
             setStatus("✓ saved");
           }}
         >
-          <Save size={16} /> सेव · Save
+          <Save size={16} /> {tr("सेव", "Save")}
         </Button>
       </div>
       {status && <p className="text-xs text-slate-600">{status}</p>}

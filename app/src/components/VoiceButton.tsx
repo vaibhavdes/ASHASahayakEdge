@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { Mic, Square } from "lucide-react";
 import { useState } from "react";
 import { listen, stopListening, type VoiceEvent } from "../lib/voice";
@@ -32,7 +33,7 @@ export function VoiceButton({ onText, compact = false }: { onText: (text: string
       <button
         type="button"
         onClick={busy ? stopListening : start}
-        aria-label="बोलकर लिखें · speak"
+        aria-label={tr("बोलकर लिखें", "speak")}
         className={cx("flex min-h-12 min-w-12 items-center justify-center rounded-xl", busy ? "animate-pulse bg-rose-600 text-white" : "bg-teal-50 text-teal-800 ring-1 ring-teal-200")}
       >
         {busy ? <Square size={18} /> : <Mic size={22} />}
@@ -51,7 +52,7 @@ export function VoiceButton({ onText, compact = false }: { onText: (text: string
         )}
       >
         {busy ? <Square size={24} /> : <Mic size={28} />}
-        {busy ? (state === "processing" ? "समझ रहे हैं… · processing" : "बोलिए… · listening") : "बोलकर लिखें · Speak"}
+        {busy ? (state === "processing" ? tr("समझ रहे हैं…", "processing") : tr("बोलिए…", "listening")) : tr("बोलकर लिखें", "Speak")}
       </button>
       {busy && partial && <p className="rounded-xl bg-teal-50 p-2 text-base text-teal-900">{partial}</p>}
       {error && <p className="rounded-xl bg-amber-50 p-2 text-sm text-amber-900">{error}</p>}

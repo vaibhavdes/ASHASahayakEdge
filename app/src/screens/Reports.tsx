@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { ArrowLeft, CheckCircle2, Send } from "lucide-react";
 import { useState } from "react";
 import { Bi, Button, Card, Segmented } from "../components/ui";
@@ -21,7 +22,7 @@ export default function Reports() {
   return (
     <div className="space-y-4">
       <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800">
-        <ArrowLeft size={18} /> वापस · Back
+        <ArrowLeft size={18} /> {tr("वापस", "Back")}
       </button>
       <h1 className="text-lg font-bold">
         <Bi hi="रिपोर्ट — अपने आप भरी हुई" en="Reports, filled from your visits" />
@@ -38,8 +39,8 @@ export default function Reports() {
         value={offset}
         onChange={setOffset}
         options={[
-          { value: "0", label: kind === "s_form" ? "इस हफ्ते · this week" : "इस महीने · this month" },
-          { value: "1", label: kind === "s_form" ? "पिछला हफ्ता · last week" : "पिछला महीना · last month" },
+          { value: "0", label: kind === "s_form" ? tr("इस हफ्ते", "this week") : tr("इस महीने", "this month") },
+          { value: "1", label: kind === "s_form" ? tr("पिछला हफ्ता", "last week") : tr("पिछला महीना", "last month") },
         ]}
       />
       <Card className="space-y-2">
@@ -51,7 +52,7 @@ export default function Reports() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs text-slate-500">
-                <th className="py-1">लक्षण · syndrome</th>
+                <th className="py-1">{tr("लक्षण", "syndrome")}</th>
                 <th className="py-1 text-right">&lt;5 yr</th>
                 <th className="py-1 text-right">5+ yr</th>
               </tr>
@@ -93,11 +94,11 @@ export default function Reports() {
             </tbody>
           </table>
         )}
-        <p className="text-xs text-slate-500">Counted from the notes already on this phone; each person counts once per syndrome. Only these numbers are sent, never names.</p>
+        <p className="text-xs text-slate-500">{tr("फ़ोन पर दर्ज विज़िट से गिना गया। सिर्फ़ ये गिनती भेजी जाती है, नाम कभी नहीं।", "Counted from the visits on this phone. Only these numbers are sent, never names.")}</p>
       </Card>
       {submitted ? (
         <div className="flex items-center gap-2 rounded-xl bg-emerald-50 p-3 text-sm text-emerald-900">
-          <CheckCircle2 size={18} /> भेजने के लिए तैयार · queued, goes with the next sync
+          <CheckCircle2 size={18} /> {tr("भेजने के लिए तैयार", "queued, goes with the next sync")}
         </div>
       ) : (
         <Button
@@ -105,7 +106,7 @@ export default function Reports() {
           disabled={!village}
           onClick={() => (kind === "s_form" ? submitReport("s_form", village, period, form?.rows ?? [], { deaths }) : submitReport("monthly", village, period, month ?? {}))}
         >
-          <Send size={18} /> जांचा, भेजें · Checked, submit
+          <Send size={18} /> {tr("जांचा, भेजें", "Checked, submit")}
         </Button>
       )}
     </div>

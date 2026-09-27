@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { Download, Mic, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { isNative } from "../lib/bridge";
@@ -19,23 +20,23 @@ export function VoiceSetup() {
         {!status ? (
           <Badge>…</Badge>
         ) : !status.available ? (
-          <Badge tone="amber">not available</Badge>
+          <Badge tone="amber">{tr("उपलब्ध नहीं", "not available")}</Badge>
         ) : status.onDevice && status.languageInstalled === "installed" ? (
           <Badge tone="emerald">
-            <ShieldCheck size={12} /> offline, on phone
+            <ShieldCheck size={12} /> {tr("बिना इंटरनेट", "works offline")}
           </Badge>
         ) : status.languageInstalled === "downloading" ? (
-          <Badge tone="sky">downloading</Badge>
+          <Badge tone="sky">{tr("डाउनलोड हो रहा है", "downloading")}</Badge>
         ) : (
-          <Badge tone={ready ? "teal" : "amber"}>{isNative ? "needs Hindi pack" : "browser (testing)"}</Badge>
+          <Badge tone={ready ? "teal" : "amber"}>{isNative ? tr("हिंदी पैक चाहिए", "needs Hindi pack") : "browser"}</Badge>
         )}
       </div>
       <p className="text-xs text-slate-600">
         {isNative
           ? status?.onDevice
-            ? "Speech is turned into text on this phone. Audio never leaves it."
-            : "This phone has no on-device recogniser; the app asks Android to prefer its offline voice models."
-          : "In a browser the Web Speech API is used, only for testing screens."}
+            ? tr("आवाज़ इसी फ़ोन पर लिखी जाती है, कहीं भेजी नहीं जाती।", "Speech is turned into text on this phone. Audio never leaves it.")
+            : tr("बोलकर लिखने के लिए फ़ोन की हिंदी आवाज़ इस्तेमाल होगी।", "The phone's own Hindi voice typing is used.")
+          : tr("ब्राउज़र में सिर्फ़ जांच के लिए।", "In a browser, for testing screens only.")}
       </p>
       {isNative && needsPack && (
         <Button
@@ -43,15 +44,15 @@ export function VoiceSetup() {
           className="w-full"
           onClick={async () => {
             const r = await downloadHindiVoice().catch((e) => ({ started: false, error: String(e) }) as never);
-            setMsg(r.started ? "Download started. It needs Wi-Fi once." : "Opened voice settings: add Hindi under offline speech recognition.");
+            setMsg(r.started ? tr("डाउनलोड शुरू हुआ। एक बार Wi-Fi चाहिए।", "Download started. It needs Wi-Fi once.") : tr("आवाज़ की सेटिंग खुली: ऑफ़लाइन में हिंदी जोड़ें।", "Opened voice settings: add Hindi under offline speech recognition."));
             setTimeout(reload, 4000);
           }}
         >
-          <Download size={18} /> हिंदी ऑफ़लाइन आवाज़ डाउनलोड करें · Get offline Hindi voice
+          <Download size={18} /> {tr("हिंदी ऑफ़लाइन आवाज़ डाउनलोड करें", "Get offline Hindi voice")}
         </Button>
       )}
       <p className="flex items-start gap-1 text-xs text-slate-500">
-        <Mic size={12} className="mt-0.5 shrink-0" /> The mic on the Gboard keyboard also works in every text box.
+        <Mic size={12} className="mt-0.5 shrink-0" /> {tr("कीबोर्ड का 🎤 भी हर जगह काम करता है।", "The mic on the keyboard also works in every text box.")}
       </p>
       {msg && <p className="rounded-lg bg-sky-50 p-2 text-xs text-sky-900">{msg}</p>}
     </Card>

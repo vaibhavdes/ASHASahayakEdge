@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { ArrowLeft, Database } from "lucide-react";
 import { useState } from "react";
 import { Badge, Bi, Card, Section, Segmented, Stat, SyncBadge } from "../components/ui";
@@ -86,7 +87,7 @@ export default function Inspector() {
   return (
     <div className="space-y-4">
       <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800">
-        <ArrowLeft size={18} /> वापस · Back
+        <ArrowLeft size={18} /> {tr("वापस", "Back")}
       </button>
       <h1 className="text-xl font-bold">
         <Bi hi="डिवाइस मेमोरी" en="Device memory inspector" />

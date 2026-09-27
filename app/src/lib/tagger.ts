@@ -1,4 +1,5 @@
 // Syndrome tagging: lexicon rules first, then similarity to prototype sentences.
+import { lang, type Lang } from "./i18n";
 import lexicon from "../../../data/lexicon.json";
 import { embed } from "./embedder";
 import { canonicalTerms } from "./normalize";
@@ -80,5 +81,5 @@ export async function tag(text: string, vector?: number[]): Promise<Tagging> {
   };
 }
 
-export const syndromeLabel = (s: string, lang: "hi" | "en" = "hi") =>
-  SYNDROMES[s] ? (lang === "hi" ? SYNDROMES[s].label_hi : SYNDROMES[s].label_en) : s;
+export const syndromeLabel = (s: string, language: Lang = lang()) =>
+  SYNDROMES[s] ? (language === "hi" ? SYNDROMES[s].label_hi : SYNDROMES[s].label_en) : s;

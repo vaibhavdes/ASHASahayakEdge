@@ -1,4 +1,5 @@
 import { edge } from "./bridge";
+import type { Lang } from "./i18n";
 import type { NetworkMode, Role } from "./types";
 
 export interface Settings {
@@ -11,6 +12,7 @@ export interface Settings {
   cloudUrl: string;
   modelSource: "huggingface" | "cloud";
   network: NetworkMode;
+  lang: Lang;
   lastSync: string | null;
   knowledgeVersion: number;
   knowledgeSyncedAt: string | null;
@@ -27,6 +29,7 @@ const DEFAULTS: Settings = {
   cloudUrl: import.meta.env.VITE_CLOUD_URL || "https://sahayak-cloud-362605925833.asia-south1.run.app",
   modelSource: "huggingface",
   network: "online",
+  lang: "hi",
   lastSync: null,
   knowledgeVersion: 0,
   knowledgeSyncedAt: null,

@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { Square, Volume2 } from "lucide-react";
 import { useState } from "react";
 import { speakText, stopSpeaking } from "../lib/voice";
@@ -25,7 +26,7 @@ export function ListenButton({ text, className }: { text: string; className?: st
       }}
       className={cx("inline-flex min-h-9 items-center gap-1 rounded-full px-3 text-sm font-semibold ring-1", on ? "bg-teal-700 text-white ring-teal-700" : "bg-white text-teal-800 ring-teal-200", className)}
     >
-      {on ? <Square size={14} /> : <Volume2 size={16} />} {on ? "रोकें · Stop" : "सुनें · Listen"}
+      {on ? <Square size={14} /> : <Volume2 size={16} />} {on ? tr("रोकें", "Stop") : tr("सुनें", "Listen")}
     </button>
   );
 }

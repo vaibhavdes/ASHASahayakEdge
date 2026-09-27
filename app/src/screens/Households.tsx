@@ -1,3 +1,4 @@
+import { tr } from "../lib/i18n";
 import { ChevronRight, Plus, Search } from "lucide-react";
 import { useState } from "react";
 import { Badge, Button, Card, Empty } from "../components/ui";
@@ -20,18 +21,18 @@ export default function Households() {
 
   return (
     <div className="space-y-3">
-      <Button className="w-full" onClick={() => nav.push({ screen: "addFamily" })}><Plus size={18} /> नया परिवार · Add family</Button>
+      <Button className="w-full" onClick={() => nav.push({ screen: "addFamily" })}><Plus size={18} /> {tr("नया परिवार", "Add family")}</Button>
       <div className="relative">
         <Search className="absolute top-3.5 left-3 text-slate-400" size={20} />
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="नाम या घर नंबर · name or house no."
+          placeholder={tr("नाम या घर नंबर", "name or house no.")}
           className="min-h-12 w-full rounded-xl border border-slate-300 bg-white pr-3 pl-10 text-base"
         />
       </div>
-      <div className="px-1 text-xs text-slate-500">{list.length} परिवार · families</div>
-      {list.length === 0 && <Empty>No families yet. Add a family and record the first visit.</Empty>}
+      <div className="px-1 text-xs text-slate-500">{list.length} {tr("परिवार", "families")}</div>
+      {list.length === 0 && <Empty>{tr("अभी कोई परिवार नहीं। परिवार जोड़ें और पहली विज़िट दर्ज करें।", "No families yet. Add a family and record the first visit.")}</Empty>}
       {list.map((h) => {
         const dirty = Object.values(h.fields).some((f) => (f as Versioned).dirty);
         const pregnant = h.fields.pregnant_member.value;
@@ -44,9 +45,9 @@ export default function Households() {
                 {h.house_no} · {h.ward} · {h.fields.members.value.length} members
               </div>
               <div className="mt-1 flex flex-wrap gap-1">
-                {pregnant && <Badge tone="violet">गर्भवती · ANC</Badge>}
-                {h.fields.high_risk.value && <Badge tone="rose">High risk</Badge>}
-                {dirty && <Badge tone="amber">रजिस्टर में भेजना है</Badge>}
+                {pregnant && <Badge tone="violet">{tr("गर्भवती", "Pregnant")}</Badge>}
+                {h.fields.high_risk.value && <Badge tone="rose">{tr("हाई रिस्क", "High risk")}</Badge>}
+                {dirty && <Badge tone="amber">{tr("भेजना है", "to send")}</Badge>}
               </div>
             </div>
             <ChevronRight className="text-slate-400" size={20} />
