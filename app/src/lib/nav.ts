@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 export type Tab = "home" | "households" | "visit" | "search" | "sync";
 
 export type Route =
+  | { screen: "addFamily" }
   | { screen: "household"; id: string }
   | { screen: "inspector" }
   | { screen: "alert"; id: string }

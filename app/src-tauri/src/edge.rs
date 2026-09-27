@@ -612,12 +612,12 @@ impl EdgeState {
     }
 
     /// Download and apply a snapshot: full replaces the shard, partial merges changed segments.
-    pub fn apply_snapshot(&self, shard: &str, url: &str) -> Result<Value, String> {
+    pub fn apply_snapshot(&self, shard: &str, url: &str, token: &str) -> Result<Value, String> {
         self.with_shard(shard, |_| Ok(()))?;
         let tmp_root = self.root.join("tmp");
         fs::create_dir_all(&tmp_root).map_err(|e| e.to_string())?;
         let file = tmp_root.join(format!("{shard}.snapshot"));
-        download(url, &file)?;
+        download(url, &file, token)?;
 
         let unpack = tempfile::Builder::new().tempdir_in(&tmp_root).map_err(|e| e.to_string())?;
         EdgeShard::unpack_snapshot(&file, unpack.path()).map_err(|e| e.to_string())?;
@@ -719,8 +719,8 @@ fn ensure_indexes(shard: &EdgeShard, name: &str) -> Result<(), String> {
     Ok(())
 }
 
-fn download(url: &str, dest: &Path) -> Result<(), String> {
-    let response = ureq::get(url).call().map_err(|e| format!("download failed: {e}"))?;
+fn download(url: &str, dest: &Path, token: &str) -> Result<(), String> {
+    let response = ureq::get(url).header("Authorization", &format!("Bearer {token}")).call().map_err(|e| format!("download failed: {e}"))?;
     let mut reader = response.into_body().into_reader();
     let mut file = fs::File::create(dest).map_err(|e| e.to_string())?;
     std::io::copy(&mut reader, &mut file).map_err(|e| e.to_string())?;

@@ -16,6 +16,11 @@ from normalize import Normalizer  # noqa: E402
 
 QDRANT_URL = os.getenv("QDRANT_URL", "").strip()
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY", "").strip() or None
+COLLECTION_PREFIX = os.getenv("COLLECTION_PREFIX", "eval1_").strip()
+if not COLLECTION_PREFIX or not all(c.isalnum() or c == "_" for c in COLLECTION_PREFIX):
+    raise ValueError("COLLECTION_PREFIX must contain only letters, numbers and underscores")
+ENROLL_CODE = os.getenv("ENROLL_CODE", "").strip()
+ADMIN_TOKEN = os.getenv("ADMIN_TOKEN", "").strip()
 ZSCORE_THRESHOLD = float(os.getenv("ZSCORE_THRESHOLD", "2.0"))
 MIN_CASES = int(os.getenv("MIN_CASES", "3"))
 ALERT_RADIUS_KM = float(os.getenv("ALERT_RADIUS_KM", "6"))

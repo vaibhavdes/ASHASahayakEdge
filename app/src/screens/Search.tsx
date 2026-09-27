@@ -142,11 +142,11 @@ function AskDoctor({ question, village }: { question: string; village: string })
     return (
       <Card className="space-y-2 border-l-4 border-sky-500">
         <div className="text-sm font-semibold">यह भेजा जाएगा · This is what will be sent</div>
-        <p className="rounded-lg bg-slate-50 p-2 text-sm">{preview}</p>
-        <p className="text-xs text-slate-500">Names, phone numbers and house numbers are removed on the phone first.</p>
+        <textarea value={preview} onChange={(e) => setPreview(e.target.value)} rows={4} className="w-full rounded-lg border border-slate-300 bg-white p-2 text-sm" aria-label="Edit the question before sharing" />
+        <p className="text-xs text-slate-500">Check and remove names, phone numbers, addresses and other identifying details before sending. Automatic replacement can miss them, especially in Hindi.</p>
         <div className="grid grid-cols-2 gap-2">
           <Button variant="secondary" onClick={() => setPreview(null)}>रद्द · Cancel</Button>
-          <Button onClick={async () => { await askDoctor(question, village); setSent(true); }}>भेजें · Send</Button>
+          <Button disabled={!preview.trim()} onClick={async () => { await askDoctor(preview, village); setSent(true); }}>भेजें · Send</Button>
         </div>
       </Card>
     );
@@ -227,12 +227,12 @@ function Guidance() {
           {res.answer && (
             <Card className="space-y-1 border-l-4 border-emerald-500">
               <div className="flex items-center gap-1 text-sm font-semibold text-emerald-800">
-                <BadgeCheck size={16} /> डॉक्टर द्वारा स्वीकृत उत्तर · Doctor-approved answer
+                <BadgeCheck size={16} /> मार्गदर्शन उत्तर · Guidance answer (review clinically)
               </div>
               <div className="font-semibold">{res.answer.payload.title}</div>
               <p className="text-sm text-slate-700">{res.answer.payload.text}</p>
               <div className="text-xs text-slate-500">
-                {res.answer.payload.approved_by} · same meaning as your question (similarity {res.answer.score.toFixed(2)})
+                {res.answer.payload.approved_by?.includes("(Demo)") ? "Starter example — not clinician verified" : (res.answer.payload.approved_by || res.answer.payload.source)} · similarity {res.answer.score.toFixed(2)}
               </div>
               <ListenButton text={res.answer.payload.text} />
             </Card>

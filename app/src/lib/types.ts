@@ -68,8 +68,8 @@ export interface Visit {
   loc?: { lat: number; lon: number };
   author_role: Role;
   device_id: string;
-  /** Id of the anonymous signal made from this visit. Kept on the phone only, so a
-   *  correction can retract that signal without the cloud learning whose it was. */
+  /** Id of the symptom signal made from this visit. Kept on the phone so a
+   *  correction can retract it. The cloud still records the sending device. */
   signal_id?: string;
   edited_at?: string;
 }

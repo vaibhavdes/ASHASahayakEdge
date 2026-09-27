@@ -18,7 +18,7 @@ export interface Bridge {
   info(shard: Shard): Promise<ShardInfo>;
   optimize(shard: Shard): Promise<boolean>;
   reset(shard: Shard): Promise<void>;
-  applySnapshot(shard: Shard, url: string): Promise<{ mode: string; points: number }>;
+  applySnapshot(shard: Shard, url: string, token: string): Promise<{ mode: string; points: number }>;
   manifest(shard: Shard): Promise<unknown>;
   storeGet<T>(name: string): Promise<T | null>;
   storeSet(name: string, value: unknown): Promise<void>;
@@ -38,7 +38,7 @@ const native: Bridge = {
   info: (shard) => invoke("edge_info", { shard }),
   optimize: (shard) => invoke("edge_optimize", { shard }),
   reset: (shard) => invoke("edge_reset", { shard }),
-  applySnapshot: (shard, url) => invoke("edge_apply_snapshot", { shard, url }),
+  applySnapshot: (shard, url, token) => invoke("edge_apply_snapshot", { shard, url, token }),
   manifest: (shard) => invoke("edge_manifest", { shard }),
   storeGet: async (name) => ((await invoke("store_get", { name })) ?? null) as never,
   storeSet: (name, value) => invoke("store_set", { name, value }),

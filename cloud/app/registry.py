@@ -1,11 +1,20 @@
 """Household registry with per-field versions (optimistic concurrency)."""
 
+from fastapi import HTTPException
+
 from . import db
+
+FIELDS = {"head", "phone", "members", "pregnant_member", "edd", "high_risk"}
 
 
 def apply_changes(item: dict, device_id: str) -> tuple[list[dict], list[dict]]:
     accepted, conflicts = [], []
-    record = db.get(db.HOUSEHOLDS, item["id"]) or {k: item.get(k) for k in ("village", "ward", "house_no", "lat", "lon")}
+    record = db.get(db.HOUSEHOLDS, item["id"])
+    if record and record["village"] != item["village"]:
+        raise HTTPException(403, "household belongs to another area")
+    if not set(item.get("changes", {})).issubset(FIELDS):
+        raise HTTPException(400, "invalid registry field")
+    record = record or {k: item.get(k) for k in ("village", "ward", "house_no", "lat", "lon")}
     fields = record.get("fields", {})
     for name, change in item.get("changes", {}).items():
         cur = fields.get(name)
@@ -30,14 +39,14 @@ def changed_since(village: str, since: int) -> list[dict]:
 
 
 def seed(households: list[dict]):
-    """The synthetic registry, at the same version 1 the demo phones start from."""
+    """Explicit sample scenario only. Assign sequences so a second phone can pull it."""
 
     def v(value):
         return {"value": value, "ts": 1, "dev": "registry"}
 
     db.put_many(db.HOUSEHOLDS, [
         {
-            "id": h["id"], "village": h["village"], "ward": h["ward"], "house_no": h["house_no"], "lat": h["lat"], "lon": h["lon"], "seq": 0,
+            "id": h["id"], "village": h["village"], "ward": h["ward"], "house_no": h["house_no"], "lat": h["lat"], "lon": h["lon"], "seq": db.next_seq(),
             "fields": {
                 "head": v(h["head"]), "phone": v(h["phone"]), "members": v(h["members"]),
                 "pregnant_member": v(h["pregnant_member"]), "edd": v(None), "high_risk": v(False),

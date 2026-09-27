@@ -85,8 +85,8 @@ async fn edge_reset(edge: State<'_, EdgeState>, shard: String) -> Res<()> {
 }
 
 #[tauri::command]
-async fn edge_apply_snapshot(edge: State<'_, EdgeState>, shard: String, url: String) -> Res<Value> {
-    edge.apply_snapshot(&shard, &url)
+async fn edge_apply_snapshot(edge: State<'_, EdgeState>, shard: String, url: String, token: String) -> Res<Value> {
+    edge.apply_snapshot(&shard, &url, &token)
 }
 
 #[tauri::command]
@@ -114,6 +114,8 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_voice::init())
         .setup(|app| {
+            #[cfg(mobile)]
+            app.handle().plugin(tauri_plugin_geolocation::init())?;
             let dir = app.path().app_data_dir()?;
             std::fs::create_dir_all(&dir)?;
             app.manage(EdgeState::open(&dir)?);

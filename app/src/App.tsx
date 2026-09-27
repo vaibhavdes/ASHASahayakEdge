@@ -5,9 +5,12 @@ import { isNative } from "./lib/bridge";
 import { startAutoSync } from "./lib/autosync";
 import { isModelLoaded, loadModel } from "./lib/embedder";
 import { useSettingsState } from "./lib/hooks";
+import { resetDevice } from "./lib/starter";
+import { resetSettingsCache } from "./lib/settings";
 import { NavContext, type Route, type Tab } from "./lib/nav";
 import { villageName } from "./lib/villages";
 import Home from "./screens/Home";
+import AddFamily from "./screens/AddFamily";
 import HouseholdDetail from "./screens/HouseholdDetail";
 import Households from "./screens/Households";
 import Inspector from "./screens/Inspector";
@@ -33,9 +36,8 @@ export default function App() {
   const [modelState, setModelState] = useState<"loading" | "ready" | "error">(isModelLoaded() ? "ready" : "loading");
 
   useEffect(() => {
-    if (!settings?.setupDone) return;
-    const host = settings.modelSource === "cloud" ? `${settings.cloudUrl.replace(/\/$/, "")}/models/` : undefined;
-    loadModel(undefined, host).then(
+    if (!settings?.setupDone || !settings.deviceToken) return;
+    loadModel().then(
       () => {
         setModelState("ready");
         startAutoSync();
@@ -75,10 +77,19 @@ export default function App() {
     );
   }
   if (!settings.setupDone) return <Setup />;
+  if (!settings.deviceToken) return <div className="mx-auto flex h-full max-w-md flex-col justify-center gap-4 p-6 text-center">
+    <h1 className="text-xl font-bold">Set up the evaluator workspace</h1>
+    <p className="text-sm text-slate-600">This phone has data from an older demo build. Starting fresh removes local demo records and lets the phone enroll securely. This does not change cloud records.</p>
+    <button className="rounded-xl bg-teal-700 px-4 py-3 font-semibold text-white" onClick={async () => {
+      if (!confirm("Clear older data on this phone and set up a fresh evaluator workspace?")) return;
+      await resetDevice(); resetSettingsCache(); location.reload();
+    }}>Start fresh on this phone</button>
+  </div>;
 
   const top = stack[stack.length - 1];
   let screen;
-  if (top?.screen === "household") screen = <HouseholdDetail id={top.id} />;
+  if (top?.screen === "addFamily") screen = <AddFamily />;
+  else if (top?.screen === "household") screen = <HouseholdDetail id={top.id} />;
   else if (top?.screen === "inspector") screen = <Inspector />;
   else if (top?.screen === "alert") screen = <AlertPlan id={top.id} />;
   else if (top?.screen === "localAlert") screen = <LocalAlertPlan syndromes={top.syndromes} title={top.title} />;
@@ -109,8 +120,6 @@ export default function App() {
               <Badge tone="amber">
                 <WifiOff size={12} /> ऑफ़लाइन
               </Badge>
-            ) : settings.network === "2g" ? (
-              <Badge tone="amber">2G</Badge>
             ) : null}
             <button onClick={() => nav.push({ screen: "inspector" })} className="rounded-lg p-2 active:bg-teal-700" aria-label="Inspector">
               <Cpu size={20} />

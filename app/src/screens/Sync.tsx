@@ -8,13 +8,13 @@ import { useData, useSettings } from "../lib/hooks";
 import { useNav } from "../lib/nav";
 import { listOutbox } from "../lib/outbox";
 import { updateSettings } from "../lib/settings";
-import { runSync, type SyncReport } from "../lib/sync";
+import { runSync, slowConnection, type SyncReport } from "../lib/sync";
 import { ago } from "../lib/time";
 import type { NetworkMode } from "../lib/types";
 
 const PRIORITY = [
   { hi: "तुरंत", en: "Urgent danger signs", tone: "rose" as const },
-  { hi: "गुमनाम संकेत", en: "Anonymous signals", tone: "teal" as const },
+  { hi: "लक्षण संकेत", en: "Symptom signals", tone: "teal" as const },
   { hi: "रजिस्टर, रिपोर्ट, सवाल", en: "Registry, reports, questions", tone: "sky" as const },
 ];
 
@@ -59,17 +59,14 @@ export default function SyncScreen() {
           value={settings.network}
           onChange={setNetwork}
           options={[
-            { value: "online", label: "Online" },
-            { value: "2g", label: "2G" },
-            { value: "offline", label: "Offline" },
+            { value: "online", label: "Auto" },
+            { value: "offline", label: "Work offline" },
           ]}
         />
         <p className="px-1 text-xs text-slate-500">
-          {settings.network === "2g"
-            ? "2G: only urgent danger signs are sent, without vectors (~250 bytes each)."
-            : settings.network === "offline"
-              ? "Offline: the app keeps working; everything waits safely in the queue."
-              : "Online: queue is sent in priority order, then alerts and guidance are pulled."}
+          {settings.network === "offline" ? "Everything is saved locally until you reconnect." : slowConnection()
+            ? "Slow network detected: urgent signals go first; other items wait for a better connection."
+            : "Syncs when connected. On a detected slow network, urgent signals go first."}
         </p>
       </Section>
 
@@ -118,7 +115,7 @@ export default function SyncScreen() {
           <Lock className="text-slate-600" size={20} />
           <div className="text-sm">
             <div className="font-semibold">{neverCount ?? "–"} visit notes never leave this phone</div>
-            <div className="text-xs text-slate-500">Names, phone numbers and notes stay here. Only anonymous signals go to the district.</div>
+            <div className="text-xs text-slate-500">Visit notes remain local. Family names, members and contact details sync to enrolled phones in your assigned area. Signals include a device ID.</div>
           </div>
         </Card>
       </Section>

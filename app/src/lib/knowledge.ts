@@ -121,7 +121,7 @@ export const isExpired = (doc: KnowledgeDoc) => !!doc.expires_at && doc.expires_
 
 // ------------------------------ ask a doctor ------------------------------
 
-// Names, phone numbers and house numbers are replaced before a question is sent.
+// A best-effort starting point for a human-reviewed question. It is not a privacy boundary.
 export async function scrubQuestion(question: string): Promise<string> {
   const names = Object.values(await allHouseholds())
     .flatMap((h) => [h.fields.head.value, ...h.fields.members.value.map((m) => m.name)])
@@ -129,7 +129,7 @@ export async function scrubQuestion(question: string): Promise<string> {
     .filter((n) => n && n.length >= 3)
     .sort((a, b) => b.length - a.length);
   let out = question;
-  for (const n of new Set(names)) out = out.replace(new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi"), "[नाम]");
+  for (const n of new Set(names)) out = out.replace(new RegExp(n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), "[नाम]");
   return out
     .replace(/\b\d{6,}\b/g, "[नंबर]")
     .replace(/\b[A-Z]{3}-\d{2,4}\b/g, "[घर]")
@@ -146,7 +146,8 @@ async function saveQuestions(list: MyQuestion[]) {
 }
 
 export async function askDoctor(question: string, village: string) {
-  const clean = await scrubQuestion(question);
+  // The caller must show an editable preview and ask the worker to check it.
+  const clean = question.trim();
   const q: MyQuestion = { id: crypto.randomUUID(), question: clean, asked_at: nowIso(), status: "queued" };
   await enqueue({ id: q.id, kind: "question", priority: 2, created_at: q.asked_at, label: `Question: ${clean.slice(0, 40)}`, payload: { id: q.id, village, question: clean, asked_at: q.asked_at } });
   await saveQuestions([q, ...(await myQuestions())]);

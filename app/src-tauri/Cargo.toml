@@ -19,6 +19,7 @@ qdrant-edge = "0.8.0"
 ureq = "3"
 tempfile = "3"
 tauri-plugin-voice = { path = "plugins/voice" }
+tauri-plugin-geolocation = "2"
 
 # Debug info is most of the build size; the phone build does not need it.
 [profile.dev]

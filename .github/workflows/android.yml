@@ -44,8 +44,8 @@ jobs:
         run: |
           set -euo pipefail
           sdkmanager="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
-          # Tauri's generated project uses API 36; the local voice plugin uses API 35.
-          "$sdkmanager" --install "platforms;android-35" "platforms;android-36" "build-tools;36.0.0" "ndk;27.1.12297006"
+          # Current Tauri generates compileSdk 37; the voice plugin uses API 35.
+          "$sdkmanager" --install "platforms;android-35" "platforms;android-37.0" "build-tools;36.0.0" "ndk;27.1.12297006"
           ndk_home="$ANDROID_HOME/ndk/27.1.12297006"
           test -d "$ndk_home"
           echo "NDK_HOME=$ndk_home" >> "$GITHUB_ENV"
@@ -78,7 +78,7 @@ jobs:
       - name: Build installable arm64 APK
         # A debug APK uses Android's debug signing key; release signing is not configured.
         env:
-          VITE_CLOUD_URL: ${{ vars.CLOUD_URL }}
+          VITE_CLOUD_URL: https://sahayak-cloud-362605925833.asia-south1.run.app
         run: npx tauri android build --apk --target aarch64 --debug --ci
 
       - name: Collect APK

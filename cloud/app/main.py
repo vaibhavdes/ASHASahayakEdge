@@ -1,39 +1,82 @@
 """District cloud: sync API for phones and the dashboard."""
 
-import base64
+import hashlib
+import hmac
 import json
+import re
+import secrets
 import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-import numpy as np
 from pydantic import BaseModel, Field
 
 from qdrant_client import models
 from starlette.background import BackgroundTask
 
-from . import db, demo, embed, outbreak, registry, store
-from .config import CACHE, CLOUD, DATA, MODELS, VILLAGES, signal_sentence
+from . import db, embed, outbreak, registry, store
+from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, MODELS, SYNDROMES, VILLAGES, signal_sentence
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     db.init()
     store.ensure_collections()
-    # Fresh container: load the demo district.
-    if demo.is_empty():
-        demo.seed()
     if db.get_meta("knowledge_version") is None:
         publish_starter_knowledge()
     yield
 
 
 app = FastAPI(title="Sahayak Edge — district cloud", lifespan=lifespan)
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST"], allow_headers=["Authorization", "Content-Type"])
+
+
+def _bearer(authorization: str | None = Header(default=None)) -> str:
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(401, "device or admin token required")
+    return authorization[7:]
+
+
+def device_auth(token: str = Depends(_bearer)) -> dict:
+    digest = hashlib.sha256(token.encode()).hexdigest()
+    device = db.get(db.AUTH, digest)
+    if not device:
+        raise HTTPException(401, "invalid device token")
+    return device
+
+
+def admin_auth(token: str = Depends(_bearer)) -> None:
+    if not ADMIN_TOKEN or not hmac.compare_digest(token, ADMIN_TOKEN):
+        raise HTTPException(401, "invalid admin token")
+
+
+class EnrollIn(BaseModel):
+    device_id: str
+    role: str
+    village: str
+    code: str
+
+
+@app.post("/v1/enroll")
+def enroll(body: EnrollIn):
+    if not ENROLL_CODE or not hmac.compare_digest(body.code, ENROLL_CODE):
+        raise HTTPException(401, "invalid enrollment code")
+    if body.village not in {v["code"] for v in VILLAGES} or body.role not in ("ASHA", "ANM"):
+        raise HTTPException(400, "invalid area or role")
+    # A device receives its own random bearer token; the shared code is never used for sync.
+    token = secrets.token_urlsafe(32)
+    digest = hashlib.sha256(token.encode()).hexdigest()
+    db.put(db.AUTH, digest, {"device_id": body.device_id, "village": body.village, "role": body.role, "enrolled_at": db.now_iso()})
+    return {"token": token}
+
+
+def same_device(device: dict, device_id: str, village: str, role: str | None = None):
+    if device["device_id"] != device_id or device["village"] != village or (role and device["role"] != role):
+        raise HTTPException(403, "device is not assigned to this area")
 
 
 # ----------------------------------- models -----------------------------------
@@ -50,11 +93,6 @@ class SignalIn(BaseModel):
     danger: bool = False
     sentence: str
     vector_q8: dict | None = None  # {"s": scale, "b": base64 int8}; omitted on 2G
-
-
-def dequantize(q: dict) -> list[float]:
-    raw = np.frombuffer(base64.b64decode(q["b"]), dtype=np.int8).astype(np.float32)
-    return (raw * (float(q["s"]) / 127.0)).tolist()
 
 
 class HouseholdIn(BaseModel):
@@ -91,7 +129,7 @@ class PushIn(BaseModel):
     households: list[HouseholdIn] = Field(default_factory=list)
     reports: list[ReportIn] = Field(default_factory=list)
     questions: list[QuestionIn] = Field(default_factory=list)
-    # Corrections: ids of anonymous signals the phone withdraws (edited or deleted visits).
+    # Corrections: ids of device-linked symptom reports withdrawn after edited or deleted visits.
     retractions: list[str] = Field(default_factory=list)
 
 
@@ -99,16 +137,32 @@ class PushIn(BaseModel):
 
 
 @app.post("/v1/sync/push")
-def push(body: PushIn):
+def push(body: PushIn, device: dict = Depends(device_auth)):
+    same_device(device, body.device_id, body.village, body.role)
+    if any(x.village != body.village for x in (*body.signals, *body.households, *body.reports, *body.questions)):
+        raise HTTPException(403, "cross-area upload rejected")
+    for signal in body.signals:
+        if (not signal.syndromes or len(signal.syndromes) > 3 or not set(signal.syndromes).issubset(SYNDROMES)
+                or signal.age_band not in ("0-5", "6-14", "15-49", "50+") or signal.sex not in ("M", "F", None)
+                or not re.fullmatch(r"\d{4}-W\d{2}", signal.week)
+                or (signal.date and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", signal.date))):
+            raise HTTPException(400, "invalid symptom signal")
+    for signal_id in body.retractions:
+        point = store.client.retrieve(store.SIGNALS, [signal_id], with_payload=True)
+        if point and point[0].payload.get("device_id") != body.device_id:
+            raise HTTPException(403, "cannot retract another device's signal")
+    for signal in body.signals:
+        point = store.client.retrieve(store.SIGNALS, [signal.id], with_payload=True)
+        if point and point[0].payload.get("device_id") != body.device_id:
+            raise HTTPException(403, "signal id belongs to another device")
     received = db.now_iso()
     signals = [s.model_dump() for s in body.signals]
     for s in signals:
-        q = s.pop("vector_q8")
-        s["vector"] = dequantize(q) if q else None
-    # 2G signals come without a vector; rebuild it from the same template sentence.
-    missing = [s for s in signals if not s["vector"]]
-    if missing:
-        for s, v in zip(missing, embed.dense([signal_sentence(s["syndromes"], s["age_band"]) for s in missing])):
+        s.pop("vector_q8")
+        s["sentence"] = signal_sentence(s["syndromes"], s["age_band"])
+    # Never persist arbitrary client text or vectors in the surveillance collection.
+    if signals:
+        for s, v in zip(signals, embed.dense([s["sentence"] for s in signals])):
             s["vector"] = v
     for s in signals:
         s["at"] = f"{s['date']}T12:00:00Z" if s.get("date") else received
@@ -145,7 +199,8 @@ def push(body: PushIn):
 
 
 @app.get("/v1/sync/pull")
-def pull(device_id: str, village: str, since: int = 0):
+def pull(device_id: str, village: str, since: int = 0, device: dict = Depends(device_auth)):
+    same_device(device, device_id, village)
     seq = db.current_seq()
     alerts = sorted(db.find(db.ALERTS, [db.eq("villages", village), db.gt("seq", since)]), key=lambda a: a["seq"])
     answers = db.find(db.QUESTIONS, [db.eq("device_id", device_id), db.eq("status", "answered"), db.gt("seq", since)])
@@ -171,8 +226,9 @@ class AckIn(BaseModel):
 
 
 @app.post("/v1/sync/ack")
-def ack(body: AckIn):
+def ack(body: AckIn, device: dict = Depends(device_auth)):
     """The phone reports what it holds (for delivery tracking)."""
+    same_device(device, body.device_id, body.village, body.role)
     now = db.now_iso()
     device = db.get(db.DEVICES, body.device_id) or {"pushed": 0}
     db.put(db.DEVICES, body.device_id, {**device, "role": body.role, "village": body.village, "last_seen": now,
@@ -201,7 +257,7 @@ def publish_starter_knowledge():
     k = json.loads((DATA / "knowledge.json").read_text(encoding="utf-8"))
     published = "2026-09-01T00:00:00Z"
     docs = [{**p, "kind": "protocol", "published_at": published, "version": k["version"], "approved_by": None, "expires_at": None} for p in k["protocols"]]
-    docs += [{**v, "kind": "answer", "source": "Approved answer", "published_at": published, "version": k["version"], "expires_at": None}
+    docs += [{**v, "kind": "answer", "source": "Starter reference (example)", "published_at": published, "version": k["version"], "expires_at": None}
              for a in k["answers"] for v in answer_variants(a)]
     db.put_many(db.DOCS, docs)
     store.upsert_knowledge(docs)
@@ -209,12 +265,12 @@ def publish_starter_knowledge():
 
 
 @app.get("/v1/knowledge/docs")
-def get_docs():
+def get_docs(_device: dict = Depends(device_auth)):
     return {"version": int(db.get_meta("knowledge_version", 1)), "docs": [{k: v for k, v in d.items() if v is not None} for d in knowledge_docs()]}
 
 
 @app.get("/v1/knowledge/snapshot")
-def get_snapshot(version: int | None = None):
+def get_snapshot(version: int | None = None, _device: dict = Depends(device_auth)):
     current = int(db.get_meta("knowledge_version", 1))
     try:
         path = store.knowledge_snapshot(version or current)
@@ -228,7 +284,7 @@ class ManifestIn(BaseModel):
 
 
 @app.post("/v1/knowledge/partial-snapshot")
-def partial_snapshot(body: ManifestIn):
+def partial_snapshot(body: ManifestIn, _device: dict = Depends(device_auth)):
     """Build a partial snapshot for one phone from its manifest; the phone then downloads it."""
     try:
         path = store.knowledge_partial_snapshot(body.manifest)
@@ -238,7 +294,7 @@ def partial_snapshot(body: ManifestIn):
 
 
 @app.get("/v1/knowledge/snapshot-file/{name}")
-def snapshot_file(name: str):
+def snapshot_file(name: str, _device: dict = Depends(device_auth)):
     path = CACHE / name
     if not name.startswith("partial-") or not name.endswith(".snapshot") or not path.exists():
         raise HTTPException(404, "snapshot not found")
@@ -258,7 +314,7 @@ class DocIn(BaseModel):
 
 
 @app.post("/v1/admin/knowledge")
-def publish_doc(doc: DocIn):
+def publish_doc(doc: DocIn, _admin: None = Depends(admin_auth)):
     """Publish guidance. Every phone gets it at its next sync (as a Qdrant snapshot)."""
     version = int(db.get_meta("knowledge_version", 1)) + 1
     now = datetime.now(timezone.utc)
@@ -282,7 +338,7 @@ def publish_doc(doc: DocIn):
 
 
 @app.get("/v1/admin/questions")
-def list_questions():
+def list_questions(_admin: None = Depends(admin_auth)):
     newest_first = sorted(db.find(db.QUESTIONS), key=lambda q: q["asked_at"], reverse=True)
     return sorted(newest_first, key=lambda q: q["status"] == "answered")[:50]
 
@@ -290,84 +346,28 @@ def list_questions():
 class AnswerIn(BaseModel):
     text: str
     title: str | None = None
-    approved_by: str = "District medical officer"
+    approved_by: str = "Evaluator (demo)"
 
 
 @app.post("/v1/admin/questions/{question_id}/answer")
-def answer_question(question_id: str, body: AnswerIn):
+def answer_question(question_id: str, body: AnswerIn, _admin: None = Depends(admin_auth)):
     """Publish a doctor's answer as an approved answer and notify the asking phone."""
     row = db.get(db.QUESTIONS, question_id)
     if not row:
         raise HTTPException(404, "question not found")
     # Placeholders from the phone's name scrubbing read badly in a published answer.
     title = " ".join((body.title or row["question"]).replace("[नाम]", "").replace("[घर]", "").replace("[नंबर]", "").split())
-    published = publish_doc(DocIn(kind="answer", title=title, text=body.text, approved_by=body.approved_by, alt_questions=[row["question"]] if title != row["question"] else []))
+    published = publish_doc(DocIn(kind="answer", title=title, text=body.text, approved_by=body.approved_by, alt_questions=[row["question"]] if title != row["question"] else []), _admin)
     db.put(db.QUESTIONS, question_id, {**row, "status": "answered", "answer_title": title, "answer_text": body.text.strip(),
                                          "answered_by": body.approved_by, "answered_at": db.now_iso(), "seq": db.next_seq()})
     return {"ok": True, "knowledge_version": published["version"]}
-
-
-# ---------------------------------- demo admin --------------------------------
-
-
-class SimulateIn(BaseModel):
-    village: str = "LKP"
-    syndromes: list[str] = ["fever", "rash"]
-    age_band: str = "0-5"
-    count: int = 5
-
-
-@app.post("/v1/admin/simulate")
-def simulate(body: SimulateIn):
-    """Signals as if another ASHA's phone synced them (for the stage demo)."""
-    week = outbreak.iso_week(datetime.now(timezone.utc))
-    sentence = signal_sentence(body.syndromes, body.age_band)
-    vector = embed.dense([sentence])[0]
-    scale = max(abs(x) for x in vector) or 1.0
-    q8 = {"s": scale, "b": base64.b64encode(np.round(np.array(vector) / scale * 127).astype(np.int8).tobytes()).decode()}
-    fake = [
-        {"id": str(uuid.uuid4()), "village": body.village, "week": week, "age_band": body.age_band, "sex": "F",
-         "syndromes": body.syndromes, "danger": False, "sentence": sentence, "vector_q8": q8}
-        for _ in range(body.count)
-    ]
-    return push(PushIn(device_id=f"sim-{body.village}", role="ASHA", village=body.village, signals=[SignalIn(**f) for f in fake]))
-
-
-class EditIn(BaseModel):
-    household_id: str
-    field: str
-    value: object
-    device_id: str = "anm-sunita"
-
-
-@app.post("/v1/admin/registry/edit")
-def registry_edit(body: EditIn):
-    """An edit made by another device (the ANM), to demonstrate conflicts."""
-    try:
-        return registry.edit_as(body.household_id, body.field, body.value, body.device_id)
-    except KeyError:
-        raise HTTPException(404, "household not found")
-
-
-@app.post("/v1/admin/reset-live")
-def reset_live():
-    """Remove demo-time signals and alerts; keep the 8-week history and registry."""
-    live = models.Filter(must=[models.FieldCondition(key="source", match=models.MatchValue(value="device"))])
-    removed = store.count_signals(live.must)
-    store.client.delete(store.SIGNALS, points_selector=models.FilterSelector(filter=live))
-    alert_ids = [a["id"] for a in db.find(db.ALERTS)]
-    if alert_ids:
-        store.client.delete(store.KNOWLEDGE, points_selector=alert_ids)
-    for collection in (db.ALERTS, db.DEVICES, db.REPORTS, db.QUESTIONS):
-        db.clear(collection)
-    return {"removed_signals": removed, "removed_alerts": len(alert_ids)}
 
 
 # ---------------------------------- dashboard ---------------------------------
 
 
 @app.get("/v1/dashboard/summary")
-def summary():
+def summary(_admin: None = Depends(admin_auth)):
     live_filter = [models.FieldCondition(key="source", match=models.MatchValue(value="device"))]
     alerts = sorted(db.find(db.ALERTS), key=lambda a: a["created_at"], reverse=True)[:20]
     devices = sorted(db.find(db.DEVICES), key=lambda d: d.get("last_seen", ""), reverse=True)
@@ -386,7 +386,7 @@ def summary():
         "feed": feed,
         "totals": {"n": store.count_signals(), "live": store.count_signals(live_filter), "households": db.count(db.HOUSEHOLDS)},
         "reports": sorted(db.find(db.REPORTS), key=lambda r: r["received_at"], reverse=True)[:20],
-        "questions": list_questions()[:20],
+        "questions": list_questions(_admin)[:20],
         "knowledge_version": int(db.get_meta("knowledge_version", 1)),
         "storage": store.storage_mode(),
     }

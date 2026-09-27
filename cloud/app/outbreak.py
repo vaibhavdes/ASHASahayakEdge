@@ -88,7 +88,7 @@ def z_scores() -> list[dict]:
         mean = sum(history) / len(history)
         std = math.sqrt(sum((x - mean) ** 2 for x in history) / len(history))
         z = (n - mean) / max(std, 1.0)
-        out.append({"village": village, "syndrome": syndrome, "week": current, "count": n, "baseline": round(mean, 1), "z": round(z, 2)})
+        out.append({"village": village, "syndrome": syndrome, "week": current, "count": n, "baseline": round(mean, 1), "baseline_weeks": sum(x > 0 for x in history), "z": round(z, 2)})
     return out
 
 
@@ -96,16 +96,16 @@ def scan() -> list[dict]:
     created = []
     # 1. Count anomalies.
     for r in z_scores():
-        if r["count"] >= MIN_CASES and r["z"] >= ZSCORE_THRESHOLD and not r["syndrome"].startswith("danger"):
+        if r["baseline_weeks"] >= 3 and r["count"] >= MIN_CASES and r["z"] >= ZSCORE_THRESHOLD and not r["syndrome"].startswith("danger"):
             syn = r["syndrome"]
             parts = syn.split("+")
             name = VILLAGE[r["village"]]["name"]
             action = " ".join(ACTIONS.get(p, "") for p in parts).strip()
             a = create_alert(
                 kind="count",
-                title=f"{' + '.join(label(p) for p in parts)} rising in {name}",
-                text=f"{r['count']} cases this week in {name} vs usual {r['baseline']} (z={r['z']}). {action}",
-                severity="alert",
+                title=f"Reports of {' + '.join(label(p) for p in parts)} rising in {name} — review",
+                text=f"{r['count']} reports this week in {name} vs prior weekly average {r['baseline']} (z={r['z']}). Verify reports and assess locally. {action}",
+                severity="watch",
                 villages=nearby([r["village"]]),
                 syndromes=parts,
                 dedupe=f"count:{r['village']}:{syn}:{r['week']}",
@@ -142,9 +142,9 @@ def scan() -> list[dict]:
             action = " ".join(ACTIONS.get(s, "") for s in syns).strip()
             a = create_alert(
                 kind="cluster",
-                title=f"Similar illness across {names}",
-                text=f"{len(rows)} similar reports ({', '.join(label(s) for s in syns)}) in {len(villages)} villages in 14 days. {action}",
-                severity="alert",
+                title=f"Similar illness reports across {names} — review",
+                text=f"{len(rows)} similar reports ({', '.join(label(s) for s in syns)}) in {len(villages)} areas in 14 days. Verify reports and assess locally. {action}",
+                severity="watch",
                 villages=nearby(villages),
                 syndromes=syns,
                 dedupe=f"cluster:{'|'.join(villages)}:{'|'.join(syns)}:{iso_week(datetime.now(timezone.utc))}",

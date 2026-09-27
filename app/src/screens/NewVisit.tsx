@@ -81,12 +81,12 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
         <Section title={<Bi hi="क्या फ़ोन से बाहर जाएगा?" en="What leaves this phone?" />}>
           <Card className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
-              <Lock size={16} className="text-slate-600" /> नाम और नोट फ़ोन पर ही रहेंगे · Name and note stay on this phone
+              <Lock size={16} className="text-slate-600" /> The visit note stays on this phone. Family registry details sync to enrolled phones in this area.
             </div>
             {signal ? (
               <>
                 <div className="flex items-center gap-2">
-                  <Send size={16} className="text-teal-700" /> Only this anonymous signal will be sent <SyncBadge cls={visit.sync_class} />
+                  <Send size={16} className="text-teal-700" /> A symptom signal with this device's ID will be sent <SyncBadge cls={visit.sync_class} />
                 </div>
                 <pre className="overflow-x-auto rounded-lg bg-slate-900 p-2 text-[11px] text-emerald-200">
                   {JSON.stringify({ ...signal, id: "random-uuid", vector_q8: "384 bytes (int8)" }, null, 1)}
@@ -121,6 +121,10 @@ export default function NewVisit({ householdId, memberId }: { householdId?: stri
 
       {!household ? (
         <Section title={<Bi hi="परिवार चुनें" en="Choose household" />}>
+          {!Object.keys(households ?? {}).length && <Card className="space-y-3">
+            <p className="text-sm text-slate-600">No families yet. Add one member, then record this visit.</p>
+            <Button className="w-full" onClick={() => nav.push({ screen: "addFamily" })}>+ Add family</Button>
+          </Card>}
           <input value={find} onChange={(e) => setFind(e.target.value)} placeholder="नाम / घर नंबर" className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3" />
           {matches.map((h) => (
             <Card key={h.id} onClick={() => setHid(h.id)} className="py-3">

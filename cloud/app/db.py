@@ -7,15 +7,17 @@ from datetime import datetime, timezone
 
 from qdrant_client import models
 
+from .config import COLLECTION_PREFIX
 from .store import IS_CLOUD, client
 
-HOUSEHOLDS = "registry"
-ALERTS = "alerts"
-DEVICES = "devices"
-REPORTS = "reports"
-QUESTIONS = "questions"
-DOCS = "guidance_docs"
-META = "meta"
+HOUSEHOLDS = COLLECTION_PREFIX + "registry"
+ALERTS = COLLECTION_PREFIX + "alerts"
+DEVICES = COLLECTION_PREFIX + "devices"
+REPORTS = COLLECTION_PREFIX + "reports"
+QUESTIONS = COLLECTION_PREFIX + "questions"
+DOCS = COLLECTION_PREFIX + "guidance_docs"
+META = COLLECTION_PREFIX + "meta"
+AUTH = COLLECTION_PREFIX + "device_auth"
 
 K, I = models.PayloadSchemaType.KEYWORD, models.PayloadSchemaType.INTEGER
 INDEXES = {
@@ -26,6 +28,7 @@ INDEXES = {
     QUESTIONS: {"device_id": K, "status": K, "seq": I},
     DOCS: {"kind": K},
     META: {},
+    AUTH: {"village": K},
 }
 
 _seq_lock = threading.Lock()

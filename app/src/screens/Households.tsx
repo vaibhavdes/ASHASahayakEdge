@@ -1,6 +1,6 @@
-import { ChevronRight, Search } from "lucide-react";
+import { ChevronRight, Plus, Search } from "lucide-react";
 import { useState } from "react";
-import { Badge, Card, Empty } from "../components/ui";
+import { Badge, Button, Card, Empty } from "../components/ui";
 import { allHouseholds } from "../lib/households";
 import { useData } from "../lib/hooks";
 import { useNav } from "../lib/nav";
@@ -20,6 +20,7 @@ export default function Households() {
 
   return (
     <div className="space-y-3">
+      <Button className="w-full" onClick={() => nav.push({ screen: "addFamily" })}><Plus size={18} /> नया परिवार · Add family</Button>
       <div className="relative">
         <Search className="absolute top-3.5 left-3 text-slate-400" size={20} />
         <input
@@ -30,7 +31,7 @@ export default function Households() {
         />
       </div>
       <div className="px-1 text-xs text-slate-500">{list.length} परिवार · families</div>
-      {list.length === 0 && <Empty>No households. Load demo data in setup or add from the registry.</Empty>}
+      {list.length === 0 && <Empty>No families yet. Add a family and record the first visit.</Empty>}
       {list.map((h) => {
         const dirty = Object.values(h.fields).some((f) => (f as Versioned).dirty);
         const pregnant = h.fields.pregnant_member.value;
@@ -40,7 +41,7 @@ export default function Households() {
             <div className="min-w-0 flex-1">
               <div className="truncate font-semibold">{h.fields.head.value}</div>
               <div className="text-xs text-slate-500">
-                {h.house_no} · Ward {h.ward} · {h.fields.members.value.length} members
+                {h.house_no} · {h.ward} · {h.fields.members.value.length} members
               </div>
               <div className="mt-1 flex flex-wrap gap-1">
                 {pregnant && <Badge tone="violet">गर्भवती · ANC</Badge>}

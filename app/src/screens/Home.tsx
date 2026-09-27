@@ -25,7 +25,7 @@ function SyncFreshness({ lastSync, knowledgeAt }: { lastSync: string | null; kno
             ? "Everything is saved on this phone. Sync when you get network."
             : stale
               ? "मार्गदर्शन पुराना हो सकता है · Guidance may be outdated. Sync when you can."
-              : "Your notes are safe on this phone; only anonymous signals are shared."}
+              : "Visit notes stay on this phone. Family registry details sync with enrolled phones in your area."}
         </div>
       </div>
     </div>

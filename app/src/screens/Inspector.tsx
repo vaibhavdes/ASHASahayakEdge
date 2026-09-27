@@ -1,4 +1,4 @@
-import { ArrowLeft, Database, Trash2, Wand2 } from "lucide-react";
+import { ArrowLeft, Database, Wand2 } from "lucide-react";
 import { useState } from "react";
 import { Badge, Bi, Button, Card, Section, Segmented, Stat, SyncBadge } from "../components/ui";
 import { SettingsCard } from "../components/SettingsCard";
@@ -7,8 +7,6 @@ import { getActivity } from "../lib/activity";
 import { edge, isNative } from "../lib/bridge";
 import { useData, useSettings } from "../lib/hooks";
 import { useNav } from "../lib/nav";
-import { resetDevice } from "../lib/seed";
-import { resetSettingsCache } from "../lib/settings";
 import { ago } from "../lib/time";
 import type { Shard } from "../lib/types";
 
@@ -129,18 +127,6 @@ export default function Inspector() {
         ]}
       />
       {tab === "activity" ? <ActivityPanel /> : <ShardPanel shard={tab} />}
-      <Button
-        variant="danger"
-        className="w-full"
-        onClick={async () => {
-          if (!confirm("Erase all data on this phone and start again?")) return;
-          await resetDevice();
-          resetSettingsCache();
-          location.reload();
-        }}
-      >
-        <Trash2 size={18} /> Reset device (demo)
-      </Button>
     </div>
   );
 }

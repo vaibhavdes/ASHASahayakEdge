@@ -8,10 +8,10 @@ import numpy as np
 from qdrant_client import QdrantClient, models
 
 from . import embed
-from .config import CACHE, LOCAL_QDRANT, NORMALIZER, QDRANT_API_KEY, QDRANT_URL
+from .config import CACHE, COLLECTION_PREFIX, LOCAL_QDRANT, NORMALIZER, QDRANT_API_KEY, QDRANT_URL
 
-SIGNALS = "signals"
-KNOWLEDGE = "knowledge"
+SIGNALS = COLLECTION_PREFIX + "signals"
+KNOWLEDGE = COLLECTION_PREFIX + "knowledge"
 
 client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY, timeout=60) if QDRANT_URL else QdrantClient(path=str(LOCAL_QDRANT))
 IS_CLOUD = bool(QDRANT_URL)

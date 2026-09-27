@@ -18,9 +18,10 @@ export function SettingsCard() {
   if (!settings) return null;
 
   async function test() {
+    if (!settings) return;
     setStatus("…");
     try {
-      const r = await fetch(`${cloudUrl.replace(/\/$/, "")}/v1/knowledge/docs`, { signal: AbortSignal.timeout(8000) });
+      const r = await fetch(`${cloudUrl.replace(/\/$/, "")}/v1/knowledge/docs`, { signal: AbortSignal.timeout(8000), headers: { Authorization: `Bearer ${settings.deviceToken}` } });
       setStatus(r.ok ? "✓ server reachable" : `server answered ${r.status}`);
     } catch {
       setStatus("✗ not reachable from this phone (check Wi-Fi and the address)");

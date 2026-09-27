@@ -4,20 +4,17 @@ import { Bi, Button, Card, Progress, Segmented, Spinner } from "../components/ui
 import { VoiceSetup } from "../components/VoiceSetup";
 import { logActivity } from "../lib/activity";
 import { loadModel } from "../lib/embedder";
-import { loadDemoData, loadStarterKnowledge } from "../lib/seed";
+import { loadStarterKnowledge } from "../lib/starter";
 import { updateSettings } from "../lib/settings";
 import type { Role } from "../lib/types";
 import { VILLAGES } from "../lib/villages";
 
-const DEMO_VILLAGES = ["RMP", "LKP"];
-
 export default function Setup() {
   const [role, setRole] = useState<Role>("ASHA");
   const [name, setName] = useState("");
-  const [village, setVillage] = useState("RMP");
-  const [cloudUrl, setCloudUrl] = useState(import.meta.env.VITE_CLOUD_URL ?? "http://192.168.1.10:8000");
-  const [modelSource, setModelSource] = useState<"huggingface" | "cloud">("huggingface");
-  const [demo, setDemo] = useState(true);
+  const [village, setVillage] = useState("MDH");
+  const [cloudUrl, setCloudUrl] = useState(import.meta.env.VITE_CLOUD_URL || "https://sahayak-cloud-362605925833.asia-south1.run.app");
+  const [enrollCode, setEnrollCode] = useState("");
   const [phase, setPhase] = useState<"form" | "working" | "error">("form");
   const [label, setLabel] = useState("");
   const [pct, setPct] = useState(0);
@@ -27,21 +24,21 @@ export default function Setup() {
     setPhase("working");
     try {
       const deviceId = crypto.randomUUID();
-      await updateSettings({ deviceId, role, name: name.trim() || role, village, cloudUrl, modelSource });
+      setLabel("Registering this phone");
+      const response = await fetch(`${cloudUrl.replace(/\/$/, "")}/v1/enroll`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ device_id: deviceId, role, village, code: enrollCode.trim() }),
+      });
+      if (!response.ok) throw new Error(response.status === 401 ? "Enrollment code is incorrect." : `Enrollment failed: ${response.status}`);
+      const { token } = await response.json() as { token: string };
+      await updateSettings({ deviceId, deviceToken: token, role, name: name.trim() || role, village, cloudUrl, modelSource: "huggingface" });
       setLabel("ऑफ़लाइन AI डाउनलोड · Downloading offline AI (one time, ~135 MB)");
-      const host = modelSource === "cloud" ? `${cloudUrl.replace(/\/$/, "")}/models/` : undefined;
-      await loadModel((p) => setPct(Math.round(p * 0.6)), host);
+      await loadModel((p) => setPct(Math.round(p * 0.6)));
 
       setLabel("स्वास्थ्य जानकारी · Loading health guidance");
       setPct(62);
       await loadStarterKnowledge();
 
-      if (demo && DEMO_VILLAGES.includes(village)) {
-        await loadDemoData(village as "RMP" | "LKP", role, deviceId, (l, p) => {
-          setLabel(l);
-          setPct(65 + Math.round(p * 0.35));
-        });
-      }
       await logActivity("system", `Device set up: ${role} in ${village}`);
       await updateSettings({ setupDone: true, knowledgeVersion: 1, knowledgeSyncedAt: new Date().toISOString() });
     } catch (e) {
@@ -94,7 +91,7 @@ export default function Setup() {
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Sunita" className="min-h-12 w-full rounded-xl border border-slate-300 px-3 text-base" />
         </label>
         <label className="block space-y-1">
-          <Bi hi="गाँव" en="Village" className="text-sm font-semibold" />
+          <Bi hi="क्षेत्र" en="Assigned area" className="text-sm font-semibold" />
           <select value={village} onChange={(e) => setVillage(e.target.value)} className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base">
             {VILLAGES.map((v) => (
               <option key={v.code} value={v.code}>
@@ -111,25 +108,19 @@ export default function Setup() {
           <input value={cloudUrl} onChange={(e) => setCloudUrl(e.target.value)} className="min-h-12 w-full rounded-xl border border-slate-300 px-3 font-mono text-sm" />
         </label>
         <label className="block space-y-1">
-          <Bi hi="AI मॉडल कहाँ से" en="Download the AI model from" className="text-sm font-semibold" />
-          <Segmented value={modelSource} onChange={setModelSource} options={[{ value: "huggingface", label: "Hugging Face" }, { value: "cloud", label: "District server" }]} />
+          <Bi hi="फ़ोन जोड़ने का कोड" en="Enrollment code (one time per phone)" className="text-sm font-semibold" />
+          <input value={enrollCode} onChange={(e) => setEnrollCode(e.target.value)} autoCapitalize="off" autoCorrect="off" className="min-h-12 w-full rounded-xl border border-slate-300 px-3 font-mono text-base" />
         </label>
-        {DEMO_VILLAGES.includes(village) && (
-          <label className="flex items-center gap-3 text-sm">
-            <input type="checkbox" checked={demo} onChange={(e) => setDemo(e.target.checked)} className="h-5 w-5 accent-teal-700" />
-            <Bi hi="डेमो डेटा लोड करें (काल्पनिक)" en="Load demo households and visits (synthetic)" />
-          </label>
-        )}
       </Card>
 
       <VoiceSetup />
 
-      <Button className="w-full" onClick={start}>
+      <Button className="w-full" disabled={!enrollCode.trim()} onClick={start}>
         <Download size={20} /> शुरू करें · Set up this phone
       </Button>
       <p className="flex items-start gap-2 px-1 text-xs text-slate-500">
         <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-teal-700" />
-        Needs internet once, to download the AI model. Patient notes never leave this phone.
+        Needs internet once for enrollment and AI download. Visit notes stay on this phone; family details sync only with enrolled phones in your area. Use fictional people for evaluation.
       </p>
     </div>
   );

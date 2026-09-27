@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <marker id="ar-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+    </marker>
+    <marker id="ar-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#be123c"/>
+    </marker>
+  </defs>
+
+  <!-- canvas: white so it reads on light and dark GitHub themes -->
+  <rect width="1200" height="760" rx="18" fill="#ffffff"/>
+  <text x="600" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Sahayak Edge — system overview</text>
+  <text x="600" y="68" text-anchor="middle" font-size="13" fill="#64748b">Qdrant is the only database on both sides. Everything left of the dashed line works with no network.</text>
+
+  <!-- ===================== PHONE ===================== -->
+  <rect x="30" y="92" width="470" height="640" rx="16" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+  <text x="54" y="124" font-size="17" font-weight="700" fill="#115e59">ASHA's Android phone</text>
+  <text x="54" y="144" font-size="12" fill="#475569">Tauri 2 app · fully offline</text>
+
+  <!-- UI -->
+  <rect x="54" y="162" width="422" height="74" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="70" y="188" font-size="15" font-weight="600" fill="#0f172a">React UI  (Hindi + English)</text>
+  <text x="70" y="208" font-size="12" fill="#475569">voice or typing · today's visits · alert plans · reports</text>
+  <text x="70" y="225" font-size="12" fill="#475569">search &amp; ask · ask a doctor · sync · inspector</text>
+
+  <!-- AI -->
+  <rect x="54" y="256" width="200" height="92" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="70" y="281" font-size="14" font-weight="600" fill="#0f172a">On-device AI</text>
+  <text x="70" y="300" font-size="12" fill="#475569">multilingual MiniLM</text>
+  <text x="70" y="316" font-size="12" fill="#475569">int8 ONNX, web worker</text>
+  <text x="70" y="332" font-size="12" fill="#475569">note → 384-d vector</text>
+
+  <!-- Rust core -->
+  <rect x="276" y="256" width="200" height="92" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="292" y="281" font-size="14" font-weight="600" fill="#0f172a">Rust core</text>
+  <text x="292" y="300" font-size="12" fill="#475569">Qdrant Edge (in-process)</text>
+  <text x="292" y="316" font-size="12" fill="#475569">built-in BM25 · hybrid query</text>
+  <text x="292" y="332" font-size="12" fill="#475569">snapshots · "state" shard</text>
+
+  <line x1="265" y1="236" x2="265" y2="256" stroke="#334155" stroke-width="1.5"/>
+  <line x1="154" y1="236" x2="154" y2="254" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="376" y1="236" x2="376" y2="254" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- shards (cylinders) -->
+  <g>
+    <path d="M70 392 v74 a82 14 0 0 0 164 0 v-74" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+    <ellipse cx="152" cy="392" rx="82" ry="14" fill="#99f6e4" stroke="#0f766e" stroke-width="1.5"/>
+    <text x="152" y="428" text-anchor="middle" font-size="14" font-weight="700" fill="#115e59">memory shard</text>
+    <text x="152" y="446" text-anchor="middle" font-size="11.5" fill="#115e59">visits · households</text>
+    <text x="152" y="462" text-anchor="middle" font-size="11.5" font-weight="600" fill="#be123c">never leaves the phone</text>
+  </g>
+  <g>
+    <path d="M296 392 v74 a82 14 0 0 0 164 0 v-74" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5"/>
+    <ellipse cx="378" cy="392" rx="82" ry="14" fill="#bae6fd" stroke="#0369a1" stroke-width="1.5"/>
+    <text x="378" y="428" text-anchor="middle" font-size="14" font-weight="700" fill="#075985">knowledge shard</text>
+    <text x="378" y="446" text-anchor="middle" font-size="11.5" fill="#075985">protocols · approved</text>
+    <text x="378" y="462" text-anchor="middle" font-size="11.5" fill="#075985">answers · alerts (read-only)</text>
+  </g>
+  <line x1="340" y1="348" x2="190" y2="376" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="390" y1="348" x2="388" y2="376" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- sync policy + outbox -->
+  <rect x="54" y="510" width="422" height="110" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="70" y="536" font-size="14" font-weight="600" fill="#0f172a">Sync policy → outbox</text>
+  <rect x="70" y="550" width="120" height="26" rx="13" fill="#ffe4e6"/>
+  <text x="130" y="568" text-anchor="middle" font-size="12" fill="#9f1239">1 · urgent</text>
+  <rect x="200" y="550" width="120" height="26" rx="13" fill="#ccfbf1"/>
+  <text x="260" y="568" text-anchor="middle" font-size="12" fill="#115e59">2 · signal</text>
+  <rect x="330" y="550" width="130" height="26" rx="13" fill="#e0f2fe"/>
+  <text x="395" y="568" text-anchor="middle" font-size="12" fill="#075985">3 · registry</text>
+  <text x="70" y="600" font-size="12" fill="#475569">Notes and names are never queued. Signals carry no name, no note,</text>
+  <text x="70" y="614" font-size="12" fill="#475569">a random id and the week (danger signs keep the date).</text>
+  <line x1="152" y1="480" x2="152" y2="508" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- status strip -->
+  <rect x="54" y="640" width="422" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+  <text x="70" y="664" font-size="13" font-weight="600" fill="#0f172a">Always visible to the ASHA</text>
+  <text x="70" y="684" font-size="12" fill="#475569">last synced · items waiting · what leaves the phone</text>
+  <text x="70" y="700" font-size="12" fill="#475569">guidance version · "may be outdated" warning</text>
+
+  <!-- ===================== NETWORK BOUNDARY ===================== -->
+  <line x1="600" y1="92" x2="600" y2="732" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 6"/>
+  <rect x="540" y="96" width="120" height="24" rx="12" fill="#f1f5f9"/>
+  <text x="600" y="113" text-anchor="middle" font-size="12" fill="#475569">network, when any</text>
+
+  <!-- arrows: straight, one per flow, label above each -->
+  <line x1="700" y1="200" x2="480" y2="200" stroke="#0f766e" stroke-width="2.2" marker-end="url(#ar-t)"/>
+  <rect x="514" y="166" width="170" height="24" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+  <text x="599" y="183" text-anchor="middle" font-size="11.5" fill="#115e59"><tspan font-weight="700">pull</tspan> · alerts, changes, answers</text>
+
+  <line x1="700" y1="420" x2="464" y2="420" stroke="#0369a1" stroke-width="2.2" marker-end="url(#ar)"/>
+  <rect x="514" y="386" width="170" height="24" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+  <text x="599" y="403" text-anchor="middle" font-size="11.5" fill="#075985"><tspan font-weight="700">guidance</tspan> · one Qdrant snapshot</text>
+
+  <line x1="478" y1="565" x2="698" y2="565" stroke="#be123c" stroke-width="2.2" marker-end="url(#ar-r)"/>
+  <rect x="514" y="531" width="170" height="24" rx="6" fill="#ffffff" stroke="#fecdd3"/>
+  <text x="599" y="548" text-anchor="middle" font-size="11.5" fill="#9f1239"><tspan font-weight="700">push</tspan> · urgent first</text>
+  <text x="599" y="584" text-anchor="middle" font-size="11" fill="#9f1239">signals · edits · reports · questions</text>
+
+  <line x1="478" y1="676" x2="698" y2="676" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+  <rect x="514" y="642" width="170" height="24" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="599" y="659" text-anchor="middle" font-size="11.5" fill="#334155"><tspan font-weight="700">ack</tspan> · what this phone holds</text>
+
+  <!-- ===================== CLOUD ===================== -->
+  <rect x="700" y="92" width="470" height="640" rx="16" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+  <text x="724" y="124" font-size="17" font-weight="700" fill="#1e293b">District cloud</text>
+  <text x="724" y="144" font-size="12" fill="#475569">Python · runs on a server or a laptop at the PHC</text>
+
+  <rect x="724" y="162" width="422" height="100" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="740" y="188" font-size="15" font-weight="600" fill="#0f172a">FastAPI sync service</text>
+  <text x="740" y="208" font-size="12" fill="#475569">/push  store signals, merge registry edits field by field</text>
+  <text x="740" y="226" font-size="12" fill="#475569">/pull  alerts for the village, changes by other devices</text>
+  <text x="740" y="244" font-size="12" fill="#475569">/ack   delivery status · /knowledge  docs and snapshot</text>
+
+  <g>
+    <path d="M740 300 v70 a86 14 0 0 0 172 0 v-70" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
+    <ellipse cx="826" cy="300" rx="86" ry="14" fill="#ddd6fe" stroke="#6d28d9" stroke-width="1.5"/>
+    <text x="826" y="336" text-anchor="middle" font-size="14" font-weight="700" fill="#5b21b6">Qdrant Cloud</text>
+    <text x="826" y="354" text-anchor="middle" font-size="11.5" fill="#5b21b6">signals · knowledge</text>
+    <text x="826" y="370" text-anchor="middle" font-size="11.5" fill="#5b21b6">distance matrix · snapshots</text>
+  </g>
+  <g>
+    <path d="M958 300 v70 a86 14 0 0 0 172 0 v-70" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+    <ellipse cx="1044" cy="300" rx="86" ry="14" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+    <text x="1044" y="336" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">Qdrant records</text>
+    <text x="1044" y="354" text-anchor="middle" font-size="11.5" fill="#334155">registry · alerts · devices</text>
+    <text x="1044" y="370" text-anchor="middle" font-size="11.5" fill="#334155">reports · questions · guidance</text>
+  </g>
+  <line x1="880" y1="262" x2="840" y2="284" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="990" y1="262" x2="1030" y2="284" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="724" y="410" width="422" height="112" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="740" y="436" font-size="15" font-weight="600" fill="#0f172a">Outbreak radar</text>
+  <text x="740" y="458" font-size="12" fill="#475569">1. this week vs the village's last 8 weeks (z-score)</text>
+  <text x="740" y="476" font-size="12" fill="#475569">2. similar signals across villages (Qdrant distance matrix)</text>
+  <text x="740" y="494" font-size="12" fill="#475569">3. every danger sign notifies its own village</text>
+  <text x="740" y="512" font-size="12" fill="#be123c">→ alert to every village within 6 km</text>
+  <line x1="826" y1="386" x2="826" y2="408" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="1044" y1="386" x2="1044" y2="408" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="724" y="542" width="422" height="92" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="740" y="568" font-size="15" font-weight="600" fill="#0f172a">District dashboard</text>
+  <text x="740" y="590" font-size="12" fill="#475569">village map · counts vs baseline · live signal feed</text>
+  <text x="740" y="608" font-size="12" fill="#475569">alerts with "delivered to 2/3 phones"</text>
+  <text x="740" y="626" font-size="12" fill="#475569">devices: last seen · items waiting · guidance version</text>
+  <line x1="935" y1="522" x2="935" y2="540" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="724" y="650" width="422" height="62" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+  <text x="740" y="674" font-size="13" font-weight="600" fill="#0f172a">Guidance publishing</text>
+  <text x="740" y="694" font-size="12" fill="#475569">field questions → doctor answers → snapshot to all phones</text>
+</svg>

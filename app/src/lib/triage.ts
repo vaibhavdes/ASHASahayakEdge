@@ -38,7 +38,7 @@ export async function localAnomalies(village: string, weeks = 6): Promise<LocalA
     const usual = history.reduce((a, b) => a + b, 0) / history.length;
     const sd = Math.sqrt(history.reduce((a, b) => a + (b - usual) ** 2, 0) / history.length);
     const z = (count - usual) / Math.max(sd, 1);
-    if (count >= 3 && z >= 2) out.push({ key: p.key, syndromes: p.syndromes, count, usual: Math.round(usual * 10) / 10, z: Math.round(z * 10) / 10 });
+    if (history.filter((n) => n > 0).length >= 3 && count >= 3 && z >= 2) out.push({ key: p.key, syndromes: p.syndromes, count, usual: Math.round(usual * 10) / 10, z: Math.round(z * 10) / 10 });
   }
   return out.sort((a, b) => b.z - a.z);
 }

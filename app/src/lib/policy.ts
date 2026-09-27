@@ -1,8 +1,8 @@
 // What may leave the phone:
-//   never     notes, names, phone numbers
-//   registry  structured household record, to the health registry
-//   signal    anonymous symptom signal, to district surveillance
-//   urgent    anonymous danger-sign signal, sent first
+//   never     visit notes
+//   registry  family names, members and contact details, scoped to the assigned area
+//   signal    symptom report linked to a device, sent to district surveillance
+//   urgent    danger-sign report, sent first
 import lexicon from "../../../data/lexicon.json";
 import { isoWeek } from "./time";
 import type { SyncClass, Visit } from "./types";
@@ -43,7 +43,7 @@ export function quantize(v: number[]): { s: number; b: string } {
   return { s, b: btoa(bin) };
 }
 
-// Random id (unlinkable to the visit), week instead of date (danger signs keep the date).
+// Random id is not a visit id; the cloud still records the sending device.
 export function buildSignal(v: Visit, vector?: number[]): Signal {
   return {
     id: crypto.randomUUID(),
@@ -62,6 +62,6 @@ export function buildSignal(v: Visit, vector?: number[]): Signal {
 export const SYNC_CLASS_INFO: Record<SyncClass, { hi: string; en: string; tone: string }> = {
   never: { hi: "फ़ोन पर ही रहेगा", en: "Stays on phone", tone: "slate" },
   registry: { hi: "स्वास्थ्य रजिस्टर", en: "Health registry", tone: "sky" },
-  signal: { hi: "गुमनाम संकेत", en: "Anonymous signal", tone: "teal" },
+  signal: { hi: "लक्षण संकेत", en: "Symptom signal", tone: "teal" },
   urgent: { hi: "तुरंत भेजें", en: "Urgent signal", tone: "rose" },
 };

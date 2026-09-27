@@ -6,6 +6,7 @@ import { emit } from "./events";
 import { enqueue, removeFromOutbox } from "./outbox";
 import { nowIso } from "./time";
 import type { Conflict, Household, HouseholdField, Versioned } from "./types";
+import { VILLAGES } from "./villages";
 
 type Store = Record<string, Household>;
 
@@ -28,6 +29,25 @@ export async function saveHouseholds(list: Household[]) {
   await save(store);
 }
 
+export async function createHousehold(input: { village: string; locality: string; houseNo: string; head: string; memberName: string; memberAge: number; memberSex: "M" | "F"; lat: number; lon: number; deviceId: string }) {
+  const id = crypto.randomUUID();
+  const memberId = crypto.randomUUID();
+  const version = <T,>(value: T): Versioned<T> => ({ value, ts: 0, base: 0, dev: input.deviceId, dirty: true });
+  const h: Household = {
+    id, village: input.village, ward: input.locality.trim() || VILLAGES.find((v) => v.code === input.village)?.name || input.village, house_no: input.houseNo.trim() || `Home ${id.slice(0, 5)}`,
+    lat: input.lat, lon: input.lon,
+    fields: {
+      head: version(input.head.trim()), phone: version(""),
+      members: version([{ id: memberId, name: input.memberName.trim(), sex: input.memberSex, age: input.memberAge }]),
+      pregnant_member: version(null), edd: version(null), high_risk: version(false),
+    },
+  };
+  await saveHouseholds([h]);
+  await enqueue(registryItem(h));
+  await logActivity("visit", `${h.house_no}: family created (pending registry)`);
+  return { household: h, memberId };
+}
+
 function registryItem(h: Household) {
   const changes: Record<string, { value: unknown; base: number }> = {};
   for (const [name, f] of Object.entries(h.fields) as [HouseholdField, Versioned][]) {
@@ -39,7 +59,8 @@ function registryItem(h: Household) {
     priority: 2 as const,
     created_at: nowIso(),
     label: `${h.house_no} · ${Object.keys(changes).join(", ")}`,
-    payload: { id: h.id, village: h.village, ward: h.ward, house_no: h.house_no, lat: h.lat, lon: h.lon, changes },
+    // The registry receives an area centroid. Exact GPS, if present, stays on this phone.
+    payload: { id: h.id, village: h.village, ward: h.ward, house_no: h.house_no, lat: VILLAGES.find((v) => v.code === h.village)?.lat ?? h.lat, lon: VILLAGES.find((v) => v.code === h.village)?.lon ?? h.lon, changes },
   };
 }
 

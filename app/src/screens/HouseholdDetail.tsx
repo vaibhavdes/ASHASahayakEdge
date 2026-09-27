@@ -33,7 +33,7 @@ function EditVisit({ visit, household, onDone }: { visit: Visit; household: Hous
           सेव · Save
         </Button>
       </div>
-      <p className="text-xs text-slate-500">If the symptoms change, the old anonymous signal is withdrawn and a corrected one is sent.</p>
+      <p className="text-xs text-slate-500">If the symptoms change, the old device-linked symptom report is withdrawn and a corrected one is sent.</p>
     </div>
   );
 }
@@ -82,6 +82,10 @@ export default function HouseholdDetail({ id }: { id: string }) {
   const { data: visits } = useData(() => visitsForHousehold(id), ["memory"], [id]);
   const [similar, setSimilar] = useState<{ for: string; hits: Hit<Visit>[] } | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
+  const [addingMember, setAddingMember] = useState(false);
+  const [newMemberName, setNewMemberName] = useState("");
+  const [newMemberAge, setNewMemberAge] = useState("");
+  const [newMemberSex, setNewMemberSex] = useState<"F" | "M">("F");
   if (!h || !settings) return null;
 
   const save = <K extends HouseholdField>(field: K, value: never) => editField(id, field, value, settings.deviceId);
@@ -95,7 +99,7 @@ export default function HouseholdDetail({ id }: { id: string }) {
       <div>
         <h1 className="text-xl font-bold">{h.fields.head.value}</h1>
         <p className="text-sm text-slate-600">
-          {h.house_no} · Ward {h.ward}
+          {h.house_no} · {h.ward}
         </p>
       </div>
 
@@ -136,6 +140,17 @@ export default function HouseholdDetail({ id }: { id: string }) {
               </Button>
             </div>
           ))}
+          {addingMember ? <div className="space-y-2 py-3">
+            <input value={newMemberName} onChange={(e) => setNewMemberName(e.target.value)} placeholder="Member name" className="min-h-10 w-full rounded-lg border border-slate-300 px-2" />
+            <div className="grid grid-cols-2 gap-2">
+              <input value={newMemberAge} onChange={(e) => setNewMemberAge(e.target.value)} type="number" min="0" max="120" placeholder="Age" className="min-h-10 rounded-lg border border-slate-300 px-2" />
+              <select value={newMemberSex} onChange={(e) => setNewMemberSex(e.target.value as "F" | "M")} className="rounded-lg border border-slate-300 bg-white px-2"><option value="F">Female</option><option value="M">Male</option></select>
+            </div>
+            <div className="flex gap-2"><Button disabled={!newMemberName.trim() || !newMemberAge.trim() || Number(newMemberAge) < 0 || Number(newMemberAge) > 120} onClick={async () => {
+              await save("members", [...h.fields.members.value, { id: crypto.randomUUID(), name: newMemberName.trim(), age: Number(newMemberAge), sex: newMemberSex }] as never);
+              setNewMemberName(""); setNewMemberAge(""); setAddingMember(false);
+            }}>Save member</Button><Button variant="secondary" onClick={() => setAddingMember(false)}>Cancel</Button></div>
+          </div> : <button onClick={() => setAddingMember(true)} className="flex items-center gap-1 py-3 text-sm font-semibold text-teal-700"><Plus size={17} /> Add member</button>}
         </Card>
       </Section>
 

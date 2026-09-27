@@ -4,6 +4,7 @@ import type { NetworkMode, Role } from "./types";
 export interface Settings {
   setupDone: boolean;
   deviceId: string;
+  deviceToken: string;
   role: Role;
   name: string;
   village: string;
@@ -19,10 +20,11 @@ export interface Settings {
 const DEFAULTS: Settings = {
   setupDone: false,
   deviceId: "",
+  deviceToken: "",
   role: "ASHA",
   name: "",
-  village: "RMP",
-  cloudUrl: import.meta.env.VITE_CLOUD_URL ?? "http://192.168.1.10:8000",
+  village: "MDH",
+  cloudUrl: import.meta.env.VITE_CLOUD_URL || "https://sahayak-cloud-362605925833.asia-south1.run.app",
   modelSource: "huggingface",
   network: "online",
   lastSync: null,
@@ -35,7 +37,10 @@ let cache: Settings | null = null;
 const listeners = new Set<() => void>();
 
 export async function getSettings(): Promise<Settings> {
-  if (!cache) cache = { ...DEFAULTS, ...((await edge.storeGet<Partial<Settings>>("settings")) ?? {}) };
+  if (!cache) {
+    cache = { ...DEFAULTS, ...((await edge.storeGet<Partial<Settings>>("settings")) ?? {}) };
+    if (cache.network === "2g") cache.network = "online";
+  }
   return cache;
 }
 

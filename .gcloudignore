@@ -1,8 +1,10 @@
 .git
 .github
-app/
+/app/
 eval/
 cloud/.venv/
+cloud/.env
+*.local
 cloud/.qdrant/
 cloud/.cache/
 cloud/models/
