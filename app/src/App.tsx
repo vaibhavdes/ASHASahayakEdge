@@ -1,10 +1,10 @@
 import { Cpu, House, Plus, RefreshCw, Search, Users, WifiOff } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { Badge, cx } from "./components/ui";
+import { Badge, Spinner, cx } from "./components/ui";
 import { isNative } from "./lib/bridge";
 import { startAutoSync } from "./lib/autosync";
 import { isModelLoaded, loadModel } from "./lib/embedder";
-import { useSettings } from "./lib/hooks";
+import { useSettingsState } from "./lib/hooks";
 import { NavContext, type Route, type Tab } from "./lib/nav";
 import { villageName } from "./lib/villages";
 import Home from "./screens/Home";
@@ -27,7 +27,7 @@ const TABS: { id: Tab; hi: string; en: string; icon: typeof House }[] = [
 ];
 
 export default function App() {
-  const settings = useSettings();
+  const { settings, error: startupError, retry } = useSettingsState();
   const [tab, setTab] = useState<Tab>("home");
   const [stack, setStack] = useState<Route[]>([]);
   const [modelState, setModelState] = useState<"loading" | "ready" | "error">(isModelLoaded() ? "ready" : "loading");
@@ -57,7 +57,23 @@ export default function App() {
     [tab],
   );
 
-  if (!settings) return null;
+  if (!settings) {
+    return (
+      <div className="mx-auto flex h-full max-w-md flex-col items-center justify-center gap-4 bg-[#f1f5f4] p-6 text-center">
+        <img src="/icon.svg" className="h-16 w-16" alt="" />
+        <h1 className="text-xl font-bold text-teal-900">Sahayak Edge</h1>
+        {startupError ? (
+          <div className="space-y-3 rounded-xl bg-white p-4 text-sm text-rose-800 shadow-sm">
+            <p>Phone data could not be opened. Your saved data has not been cleared.</p>
+            <p className="break-words text-xs text-slate-600">{startupError}</p>
+            <button className="rounded-lg bg-teal-700 px-4 py-2 font-semibold text-white" onClick={retry}>Try again</button>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 text-sm text-slate-600"><Spinner /> Preparing phone data…</div>
+        )}
+      </div>
+    );
+  }
   if (!settings.setupDone) return <Setup />;
 
   const top = stack[stack.length - 1];

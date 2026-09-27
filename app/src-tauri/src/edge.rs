@@ -237,16 +237,12 @@ fn dir_size(path: &Path) -> u64 {
 
 impl EdgeState {
     pub fn open(root: &Path) -> Result<Self, String> {
-        let state = Self {
+        // Let the web view show its startup screen before first-run shard/index creation.
+        Ok(Self {
             root: root.join("qdrant"),
             shards: Mutex::new(HashMap::new()),
             bm25: bm25_model()?,
-        };
-        for name in SHARDS {
-            let shard = state.load_shard(name)?;
-            state.shards.lock().map_err(|e| e.to_string())?.insert(name.to_string(), shard);
-        }
-        Ok(state)
+        })
     }
 
     fn shard_path(&self, name: &str) -> PathBuf {
@@ -254,6 +250,9 @@ impl EdgeState {
     }
 
     fn load_shard(&self, name: &str) -> Result<EdgeShard, String> {
+        if !SHARDS.contains(&name) {
+            return Err(format!("unknown shard: {name}"));
+        }
         let path = self.shard_path(name);
         fs::create_dir_all(&path).map_err(|e| e.to_string())?;
         let shard = EdgeShard::load(&path, Some(config_for(name)?)).map_err(|e| e.to_string())?;
@@ -262,7 +261,10 @@ impl EdgeState {
     }
 
     fn with_shard<T>(&self, name: &str, f: impl FnOnce(&EdgeShard) -> Result<T, String>) -> Result<T, String> {
-        let shards = self.shards.lock().map_err(|e| e.to_string())?;
+        let mut shards = self.shards.lock().map_err(|e| e.to_string())?;
+        if !shards.contains_key(name) {
+            shards.insert(name.to_string(), self.load_shard(name)?);
+        }
         let shard = shards.get(name).ok_or_else(|| format!("unknown shard: {name}"))?;
         f(shard)
     }
@@ -595,6 +597,9 @@ impl EdgeState {
 
     /// Wipe a shard (demo reset).
     pub fn reset(&self, shard: &str) -> Result<(), String> {
+        if !SHARDS.contains(&shard) {
+            return Err(format!("unknown shard: {shard}"));
+        }
         let mut shards = self.shards.lock().map_err(|e| e.to_string())?;
         drop(shards.remove(shard));
         let path = self.shard_path(shard);
@@ -608,6 +613,7 @@ impl EdgeState {
 
     /// Download and apply a snapshot: full replaces the shard, partial merges changed segments.
     pub fn apply_snapshot(&self, shard: &str, url: &str) -> Result<Value, String> {
+        self.with_shard(shard, |_| Ok(()))?;
         let tmp_root = self.root.join("tmp");
         fs::create_dir_all(&tmp_root).map_err(|e| e.to_string())?;
         let file = tmp_root.join(format!("{shard}.snapshot"));

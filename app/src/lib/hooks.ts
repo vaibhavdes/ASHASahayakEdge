@@ -17,15 +17,40 @@ export function useData<T>(load: () => Promise<T>, topics: Parameters<typeof on>
   return { data, error, reload };
 }
 
-export function useSettings(): Settings | null {
+export function useSettingsState() {
   const [s, setS] = useState<Settings | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
-    const read = () => getSettings().then((x) => setS({ ...x }));
+    let active = true;
+    const read = () => getSettings().then(
+      (x) => {
+        if (active) {
+          setS({ ...x });
+          setError(null);
+        }
+      },
+      (e) => {
+        if (active) setError(String(e));
+      },
+    );
     read();
     const off = onSettings(read);
     return () => {
+      active = false;
       off();
     };
-  }, []);
-  return s;
+  }, [attempt]);
+  return {
+    settings: s,
+    error,
+    retry: () => {
+      setError(null);
+      setAttempt((n) => n + 1);
+    },
+  };
+}
+
+export function useSettings(): Settings | null {
+  return useSettingsState().settings;
 }
