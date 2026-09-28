@@ -10,7 +10,7 @@ export type Route =
   | { screen: "localAlert"; syndromes: string[]; title: string }
   | { screen: "today" }
   | { screen: "reports" }
-  | { screen: "guidance" }
+  | { screen: "guidance"; q?: string }
   | { screen: "visit"; householdId?: string; memberId?: string };
 
 export interface Nav {

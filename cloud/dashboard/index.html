@@ -54,8 +54,8 @@
 <header>
   <h1>Sahayak · District Outbreak Radar</h1>
   <div class="meta" id="meta">loading…</div>
-  <input id="admin-token" type="password" placeholder="Admin access token" style="max-width:220px" aria-label="Admin access token" />
-  <button onclick="unlock()">Open dashboard</button>
+  <input id="admin-token" type="password" placeholder="Admin access token" style="max-width:220px;display:none" aria-label="Admin access token" />
+  <button id="unlock" onclick="unlock()" style="display:none">Open dashboard</button>
 </header>
 <main>
   <div class="stack">
@@ -117,9 +117,14 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 const ago = (iso) => { if (!iso) return "—"; const m = Math.round((Date.now() - new Date(iso)) / 60000); return m < 1 ? "just now" : m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + " h ago" : Math.round(m / 1440) + " d ago"; };
 
 async function load() {
-  if (!adminToken) { document.querySelector("main").style.visibility = "hidden"; $("meta").textContent = "Enter the admin token to see evaluator records"; return; }
-  const response = await fetch("/v1/dashboard/summary", { headers: { Authorization: `Bearer ${adminToken}` } });
-  if (!response.ok) { document.querySelector("main").style.visibility = "hidden"; $("meta").textContent = response.status === 401 ? "Invalid admin token" : `Dashboard error ${response.status}`; return; }
+  // The token is asked for only when the server requires one.
+  const response = await fetch("/v1/dashboard/summary", { headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : {} });
+  if (!response.ok) {
+    document.querySelector("main").style.visibility = "hidden";
+    if (response.status === 401) { $("admin-token").style.display = ""; $("unlock").style.display = ""; }
+    $("meta").textContent = response.status === 401 ? (adminToken ? "Invalid admin token" : "Enter the admin token to see evaluator records") : `Dashboard error ${response.status}`;
+    return;
+  }
   document.querySelector("main").style.visibility = "visible";
   const d = await response.json();
   $("meta").textContent = `Week ${d.week} · ${d.storage} · guidance v${d.knowledge_version} · refreshed ${new Date().toLocaleTimeString()}`;
@@ -180,7 +185,7 @@ async function load() {
 }
 
 async function post(url, body) {
-  const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${adminToken}` }, body: JSON.stringify(body || {}) });
+  const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json", ...(adminToken ? { Authorization: `Bearer ${adminToken}` } : {}) }, body: JSON.stringify(body || {}) });
   const j = await r.json();
   $("ctl").textContent = JSON.stringify(j).slice(0, 200);
   if (!r.ok) return j;

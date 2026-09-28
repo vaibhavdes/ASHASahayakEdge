@@ -6,6 +6,7 @@ import { TaskList } from "../components/TaskList";
 import { Badge, Bi, Button, Card, Empty, Section, Stat, SyndromeBadges, cx } from "../components/ui";
 import { allHouseholds } from "../lib/households";
 import { useData, useSettings } from "../lib/hooks";
+import { dismissNewGuidance, newGuidance } from "../lib/sync";
 import { activeAlerts } from "../lib/knowledge";
 import { recentVisits, weekSummary } from "../lib/memory";
 import { useNav } from "../lib/nav";
@@ -45,6 +46,7 @@ export default function Home() {
   const { data: today } = useData(() => todaysPlan(village), ["memory", "households"], [village]);
   const { data: rises } = useData(() => localAnomalies(village), ["memory"], [village]);
   const { data: households } = useData(allHouseholds, ["households"]);
+  const { data: arrived } = useData(newGuidance, ["guidance"]);
   if (!settings) return null;
 
   return (
@@ -57,6 +59,21 @@ export default function Home() {
       <SyncFreshness lastSync={settings.lastSync} knowledgeAt={settings.knowledgeSyncedAt} />
 
       {households && !Object.keys(households).length && <StartCard />}
+
+      {!!arrived?.length && (
+        <Card className="space-y-2 border-l-4 border-sky-500">
+          <div className="flex items-center justify-between gap-2">
+            <span className="font-semibold text-sky-800">{tr("ज़िले से नई जानकारी", "New from the district")}</span>
+            <Button variant="ghost" className="min-h-8 px-2 text-sm" onClick={dismissNewGuidance}>{tr("ठीक है", "Got it")}</Button>
+          </div>
+          {arrived.map((g) => (
+            <button key={g.id} onClick={() => nav.push({ screen: "guidance", q: g.title })} className="flex w-full items-center gap-2 text-left text-sm text-slate-800">
+              <BookOpen size={16} className="shrink-0 text-sky-700" /> {g.title}
+            </button>
+          ))}
+          <p className="text-xs text-slate-500">{tr("फ़ोन में सेव है, बिना इंटरनेट भी खुलेगा।", "Saved on this phone; opens without internet too.")}</p>
+        </Card>
+      )}
 
       {!!rises?.length && (
         <Section title={<Bi hi="फ़ोन ने देखा: असामान्य बढ़त" en="Unusual rise in my village" />}>

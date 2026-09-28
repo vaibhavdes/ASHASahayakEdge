@@ -1,6 +1,6 @@
 import { tr } from "../lib/i18n";
 import { BadgeCheck, BookOpen, MessageCircleQuestion, Search as SearchIcon, Sparkles, Timer, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Badge, Bi, Button, Card, Empty, Segmented, Spinner, SyndromeBadges } from "../components/ui";
 import { ListenButton } from "../components/ListenButton";
 import { VoiceButton } from "../components/VoiceButton";
@@ -186,7 +186,7 @@ function MyQuestions() {
   );
 }
 
-export function Guidance() {
+export function Guidance({ initial }: { initial?: string } = {}) {
   const settings = useSettings();
   const [q, setQ] = useState("");
   const [asked, setAsked] = useState("");
@@ -204,6 +204,13 @@ export function Guidance() {
       setBusy(false);
     }
   }
+  useEffect(() => {
+    if (initial) {
+      setQ(initial);
+      run(initial);
+    }
+  }, [initial]);
+
 
   return (
     <div className="space-y-3">

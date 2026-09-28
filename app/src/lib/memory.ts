@@ -1,7 +1,7 @@
 // Visit notes in the Qdrant Edge "memory" shard.
 import { logActivity } from "./activity";
 import { edge } from "./bridge";
-import { embed, embedOne } from "./embedder";
+import { embedOne } from "./embedder";
 import { emit } from "./events";
 import { and, eq, since } from "./filters";
 import { expand } from "./normalize";
@@ -153,22 +153,6 @@ export async function weekSummary(village: string) {
     edge.count("memory", and(eq("kind", "visit"), eq("sync_status", "pending"))),
   ]);
   return { syndromes, visits, danger, pending };
-}
-
-// Bulk import: batches of 64, indexes exist before the first write, caller optimizes once at the end.
-export async function bulkInsert(visits: Visit[], onProgress?: (done: number) => void) {
-  const BATCH = 64;
-  for (let i = 0; i < visits.length; i += BATCH) {
-    const batch = visits.slice(i, i + BATCH);
-    const texts = batch.map(memoryText);
-    const vectors = await embed(texts);
-    await edge.upsert(
-      "memory",
-      batch.map((v, j) => ({ id: v.visit_id, dense: vectors[j], text: texts[j], payload: v as never })),
-    );
-    onProgress?.(Math.min(i + BATCH, visits.length));
-  }
-  emit("memory");
 }
 
 // --------------------------- correcting a visit ---------------------------

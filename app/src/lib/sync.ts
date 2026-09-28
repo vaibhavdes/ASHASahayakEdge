@@ -5,10 +5,11 @@ import { logActivity } from "./activity";
 import { edge, isNative } from "./bridge";
 import { emit } from "./events";
 import { applyPushResult, mergeFromRegistry, type PushResult } from "./households";
-import { and, eq } from "./filters";
+import { and, anyOf, eq } from "./filters";
 import { applyAnswers, markQuestionsSent, storeAlerts, upsertDocs } from "./knowledge";
 import { bumpAttempts, listOutbox, removeFromOutbox } from "./outbox";
 import { getSettings, updateSettings } from "./settings";
+import { STARTER_IDS } from "./starter";
 import { nowIso } from "./time";
 import type { Alert, KnowledgeDoc, NetworkMode, OutboxItem } from "./types";
 
@@ -110,7 +111,7 @@ export async function runSync(): Promise<SyncReport> {
       );
       // Guidance first: a snapshot replaces the knowledge shard, and alerts are stored on top of it.
       if (pull.knowledge_version > s.knowledgeVersion && !slow) {
-        knowledge = await keepAlerts(() => updateKnowledge(base, pull.knowledge_version, s.deviceToken));
+        knowledge = await receiveGuidance(() => keepAlerts(() => updateKnowledge(base, pull.knowledge_version, s.deviceToken)));
       }
       await storeAlerts(pull.alerts);
       await applyAnswers(pull.answers ?? []);
@@ -141,6 +142,53 @@ export async function runSync(): Promise<SyncReport> {
 
 async function markVisitsSynced(visitIds: string[]) {
   for (const id of visitIds) await edge.setPayload("memory", id, { sync_status: "synced" });
+}
+
+// ------------------------- new guidance from the district -------------------------
+
+let guidanceUpdating = false;
+export const isGuidanceUpdating = () => guidanceUpdating;
+
+export interface NewGuidance {
+  id: string;
+  title: string;
+  kind: string;
+}
+
+export async function newGuidance(): Promise<NewGuidance[]> {
+  return (await edge.storeGet<NewGuidance[]>("new_guidance")) ?? [];
+}
+
+export async function dismissNewGuidance() {
+  await edge.storeSet("new_guidance", []);
+  emit("guidance");
+}
+
+async function guidanceDocs() {
+  const { points } = await edge.scroll<KnowledgeDoc>("knowledge", 1000, null, and(anyOf("kind", ["protocol", "answer"])));
+  return points;
+}
+
+// Shows progress while guidance downloads, then remembers what arrived so Home can list it.
+async function receiveGuidance<T>(update: () => Promise<T>): Promise<T> {
+  guidanceUpdating = true;
+  emit("guidance");
+  try {
+    const before = new Set((await guidanceDocs()).map((p) => p.id));
+    const result = await update();
+    const titles = new Set((await newGuidance()).map((g) => g.title));
+    const arrived: NewGuidance[] = [];
+    for (const p of await guidanceDocs()) {
+      if (before.has(p.id) || STARTER_IDS.has(p.id) || titles.has(p.payload.title)) continue;
+      titles.add(p.payload.title);
+      arrived.push({ id: p.id, title: p.payload.title, kind: p.payload.kind });
+    }
+    if (arrived.length) await edge.storeSet("new_guidance", [...arrived, ...(await newGuidance())].slice(0, 10));
+    return result;
+  } finally {
+    guidanceUpdating = false;
+    emit("guidance");
+  }
 }
 
 // District alerts live only on the phone; the server's guidance snapshot does not contain them.

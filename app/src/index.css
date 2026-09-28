@@ -25,3 +25,9 @@ body {
 .safe-bottom {
   padding-bottom: max(env(safe-area-inset-bottom), 8px);
 }
+
+/* Indeterminate bar while district guidance downloads. */
+@keyframes slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
+}

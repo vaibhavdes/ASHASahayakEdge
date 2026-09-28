@@ -23,6 +23,8 @@ ENROLL_CODE = os.getenv("ENROLL_CODE", "").strip()
 # Open enrollment: any phone registers itself; the code is only checked when this is off.
 OPEN_ENROLLMENT = os.getenv("OPEN_ENROLLMENT", "false").lower() in ("1", "true", "yes")
 ENROLL_PER_IP_HOUR = int(os.getenv("ENROLL_PER_IP_HOUR", "30"))
+# Open dashboard: the district dashboard and its admin actions need no token (evaluation only).
+OPEN_DASHBOARD = os.getenv("OPEN_DASHBOARD", "false").lower() in ("1", "true", "yes")
 ADMIN_TOKEN = os.getenv("ADMIN_TOKEN", "").strip()
 ZSCORE_THRESHOLD = float(os.getenv("ZSCORE_THRESHOLD", "2.0"))
 MIN_CASES = int(os.getenv("MIN_CASES", "3"))

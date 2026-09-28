@@ -1,5 +1,5 @@
 // Change notifications: data modules emit, screens reload.
-type Topic = "memory" | "outbox" | "households" | "alerts" | "activity" | "sync";
+type Topic = "memory" | "outbox" | "households" | "alerts" | "activity" | "sync" | "guidance";
 
 const listeners = new Map<Topic, Set<() => void>>();
 

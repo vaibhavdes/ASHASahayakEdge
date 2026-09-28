@@ -60,7 +60,7 @@ export default function Setup() {
         setPhase("form");
         return;
       }
-      await updateSettings({ deviceId, deviceToken: token, role, name: name.trim() || role, village, cloudUrl, modelSource: "huggingface" });
+      await updateSettings({ deviceId, deviceToken: token, role, name: name.trim() || role, village, cloudUrl });
       setLabel(tr("ऑफ़लाइन AI डाउनलोड हो रहा है (सिर्फ़ एक बार)", "Downloading offline AI (one time only)"));
       await loadModel((p) => setPct(Math.round(p * 0.6)));
 

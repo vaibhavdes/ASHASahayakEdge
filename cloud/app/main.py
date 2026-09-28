@@ -19,7 +19,7 @@ from qdrant_client import models
 from starlette.background import BackgroundTask
 
 from . import db, embed, outbreak, registry, store
-from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, ENROLL_PER_IP_HOUR, MODELS, OPEN_ENROLLMENT, SYNDROMES, VILLAGES, signal_sentence
+from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, ENROLL_PER_IP_HOUR, MODELS, OPEN_DASHBOARD, OPEN_ENROLLMENT, SYNDROMES, VILLAGES, signal_sentence
 
 
 @asynccontextmanager
@@ -48,7 +48,10 @@ def device_auth(token: str = Depends(_bearer)) -> dict:
     return device
 
 
-def admin_auth(token: str = Depends(_bearer)) -> None:
+def admin_auth(authorization: str | None = Header(default=None)) -> None:
+    if OPEN_DASHBOARD:
+        return
+    token = _bearer(authorization)
     if not ADMIN_TOKEN or not hmac.compare_digest(token, ADMIN_TOKEN):
         raise HTTPException(401, "invalid admin token")
 

@@ -4,7 +4,8 @@ import { Badge, Spinner, cx } from "./components/ui";
 import { isNative } from "./lib/bridge";
 import { startAutoSync } from "./lib/autosync";
 import { isModelLoaded, loadModel } from "./lib/embedder";
-import { useSettingsState } from "./lib/hooks";
+import { useData, useSettingsState } from "./lib/hooks";
+import { isGuidanceUpdating } from "./lib/sync";
 import { setLang, tr } from "./lib/i18n";
 import { resetDevice } from "./lib/starter";
 import { resetSettingsCache, updateSettings } from "./lib/settings";
@@ -34,6 +35,7 @@ export default function App() {
   const { settings, error: startupError, retry } = useSettingsState();
   const [tab, setTab] = useState<Tab>("home");
   const [stack, setStack] = useState<Route[]>([]);
+  const { data: guidanceUpdating } = useData(async () => isGuidanceUpdating(), ["guidance"]);
   const [modelState, setModelState] = useState<"loading" | "ready" | "error">(isModelLoaded() ? "ready" : "loading");
 
   useEffect(() => {
@@ -99,7 +101,7 @@ export default function App() {
   else if (top?.screen === "reports") screen = <Reports />;
   else if (top?.screen === "guidance") screen = <div className="space-y-4">
     <button onClick={nav.back} className="flex items-center gap-1 text-sm font-medium text-teal-800"><ArrowLeft size={18} /> {tr("वापस", "Back")}</button>
-    <Guidance />
+    <Guidance initial={top.q} />
   </div>;
   else if (top?.screen === "visit") screen = <NewVisit householdId={top.householdId} memberId={top.memberId} />;
   else if (tab === "home") screen = <Home />;
@@ -142,6 +144,14 @@ export default function App() {
             </button>
           </div>
           {!isNative && <div className="bg-amber-400 px-4 py-1 text-center text-xs font-medium text-amber-950">Browser preview: the offline database runs only in the Android app</div>}
+          {guidanceUpdating && (
+            <div className="bg-sky-700 px-4 py-1.5 text-center text-xs">
+              {tr("ज़िले से नई जानकारी आ रही है…", "New guidance arriving from the district…")}
+              <div className="mt-1 h-1 overflow-hidden rounded-full bg-sky-900">
+                <div className="h-full w-1/3 animate-[slide_1.2s_ease-in-out_infinite] rounded-full bg-white" />
+              </div>
+            </div>
+          )}
           {modelState !== "ready" && (
             <div className={cx("px-4 py-1 text-center text-xs", modelState === "error" ? "bg-rose-600" : "bg-teal-700")}>
               {modelState === "error" ? tr("खोज अभी तैयार नहीं है। ऐप फिर से खोलें।", "Search is not ready yet. Reopen the app.") : tr("ऐप तैयार हो रहा है…", "Getting ready…")}

@@ -16,6 +16,9 @@ export async function loadStarterKnowledge() {
   await upsertDocs(docs);
 }
 
+/** Ids of the guidance bundled with the app, so only district additions count as new. */
+export const STARTER_IDS = new Set([...knowledge.protocols.map((p) => p.id), ...knowledge.answers.flatMap((a) => answerVariants(a).map((v) => v.id))]);
+
 export async function resetDevice() {
   await edge.reset("memory");
   await edge.reset("knowledge");

@@ -50,7 +50,7 @@
     <path d="M70 392 v74 a82 14 0 0 0 164 0 v-74" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
     <ellipse cx="152" cy="392" rx="82" ry="14" fill="#99f6e4" stroke="#0f766e" stroke-width="1.5"/>
     <text x="152" y="428" text-anchor="middle" font-size="14" font-weight="700" fill="#115e59">memory shard</text>
-    <text x="152" y="446" text-anchor="middle" font-size="11.5" fill="#115e59">visits · households</text>
+    <text x="152" y="446" text-anchor="middle" font-size="11.5" fill="#115e59">visit notes</text>
     <text x="152" y="462" text-anchor="middle" font-size="11.5" font-weight="600" fill="#be123c">never leaves the phone</text>
   </g>
   <g>
@@ -72,8 +72,8 @@
   <text x="260" y="568" text-anchor="middle" font-size="12" fill="#115e59">2 · signal</text>
   <rect x="330" y="550" width="130" height="26" rx="13" fill="#e0f2fe"/>
   <text x="395" y="568" text-anchor="middle" font-size="12" fill="#075985">3 · registry</text>
-  <text x="70" y="600" font-size="12" fill="#475569">Notes and names are never queued. Signals carry no name, no note,</text>
-  <text x="70" y="614" font-size="12" fill="#475569">a random id and the week (danger signs keep the date).</text>
+  <text x="70" y="600" font-size="12" fill="#475569">Notes are never queued. Signals: symptoms, age band, sex, week, area,</text>
+  <text x="70" y="614" font-size="12" fill="#475569">a device id, no name. Family records go only to the area registry.</text>
   <line x1="152" y1="480" x2="152" y2="508" stroke="#334155" stroke-width="1.5" marker-end="url(#ar)"/>
 
   <!-- status strip -->
@@ -135,7 +135,7 @@
 
   <rect x="724" y="410" width="422" height="112" rx="10" fill="#ffffff" stroke="#94a3b8"/>
   <text x="740" y="436" font-size="15" font-weight="600" fill="#0f172a">Outbreak radar</text>
-  <text x="740" y="458" font-size="12" fill="#475569">1. this week vs the village's last 8 weeks (z-score)</text>
+  <text x="740" y="458" font-size="12" fill="#475569">1. rise vs the village's last 8 weeks, or a new-area cluster</text>
   <text x="740" y="476" font-size="12" fill="#475569">2. similar signals across villages (Qdrant distance matrix)</text>
   <text x="740" y="494" font-size="12" fill="#475569">3. every danger sign notifies its own village</text>
   <text x="740" y="512" font-size="12" fill="#be123c">→ alert to every village within 6 km</text>

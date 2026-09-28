@@ -102,6 +102,15 @@ class EvaluatorFlow(unittest.TestCase):
         finally:
             main.OPEN_ENROLLMENT, main.ENROLL_PER_IP_HOUR = False, 30
 
+    def test_open_dashboard_needs_no_token(self):
+        self.assertEqual(self.api.get("/v1/dashboard/summary").status_code, 401)
+        main.OPEN_DASHBOARD = True
+        try:
+            self.assertEqual(self.api.get("/v1/dashboard/summary").status_code, 200)
+            self.assertEqual(self.api.post("/v1/admin/knowledge", json={"title": "Open check", "text": "Refer when in doubt."}).status_code, 200)
+        finally:
+            main.OPEN_DASHBOARD = False
+
 
 if __name__ == "__main__":
     unittest.main()

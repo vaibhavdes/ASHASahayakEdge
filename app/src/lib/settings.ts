@@ -10,7 +10,6 @@ export interface Settings {
   name: string;
   village: string;
   cloudUrl: string;
-  modelSource: "huggingface" | "cloud";
   network: NetworkMode;
   lang: Lang;
   lastSync: string | null;
@@ -27,7 +26,6 @@ const DEFAULTS: Settings = {
   name: "",
   village: "MDH",
   cloudUrl: import.meta.env.VITE_CLOUD_URL || "https://sahayak-cloud-362605925833.asia-south1.run.app",
-  modelSource: "huggingface",
   network: "online",
   lang: "hi",
   lastSync: null,

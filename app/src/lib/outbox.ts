@@ -25,14 +25,6 @@ export async function enqueue(item: Omit<OutboxItem, "bytes" | "attempts">) {
   await save(items);
 }
 
-export async function enqueueMany(batch: Omit<OutboxItem, "bytes" | "attempts">[]) {
-  const items = await listOutbox();
-  for (const item of batch) {
-    items.push({ ...item, attempts: 0, bytes: new Blob([JSON.stringify(item.payload)]).size });
-  }
-  await save(items);
-}
-
 export async function removeFromOutbox(ids: string[]) {
   const drop = new Set(ids);
   await save((await listOutbox()).filter((x) => !drop.has(x.id)));
