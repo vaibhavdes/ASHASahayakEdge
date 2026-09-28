@@ -6,6 +6,7 @@ import json
 import re
 import secrets
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 
@@ -407,30 +408,51 @@ def answer_question(question_id: str, body: AnswerIn, _admin: None = Depends(adm
 # ---------------------------------- dashboard ---------------------------------
 
 
+_summary_pool = ThreadPoolExecutor(max_workers=10)
+
+
 @app.get("/v1/dashboard/summary")
 def summary(_admin: None = Depends(admin_auth)):
     live_filter = [models.FieldCondition(key="source", match=models.MatchValue(value="device"))]
-    alerts = sorted(db.find(db.ALERTS), key=lambda a: a["created_at"], reverse=True)[:20]
-    devices = sorted(db.find(db.DEVICES), key=lambda d: d.get("last_seen", ""), reverse=True)
+    jobs = {
+        "alerts": lambda: db.find(db.ALERTS),
+        "devices": lambda: db.find(db.DEVICES),
+        "feed": lambda: store.signal_payloads(live_filter),
+        "zscores": outbreak.z_scores,
+        "n": store.count_signals,
+        "live": lambda: store.count_signals(live_filter),
+        "households": lambda: db.count(db.HOUSEHOLDS),
+        "reports": lambda: db.find(db.REPORTS),
+        "questions": lambda: list_questions(None),
+        "version": lambda: int(db.get_meta("knowledge_version", 1)),
+    }
+    # Each read is a round trip to Qdrant Cloud, so run them side by side there.
+    if store.IS_CLOUD:
+        futures = {k: _summary_pool.submit(f) for k, f in jobs.items()}
+        got = {k: f.result() for k, f in futures.items()}
+    else:
+        got = {k: f() for k, f in jobs.items()}
+    alerts = sorted(got["alerts"], key=lambda a: a["created_at"], reverse=True)[:20]
+    devices = sorted(got["devices"], key=lambda d: d.get("last_seen", ""), reverse=True)
     # A phone has an alert once it acked a later sequence number.
     for a in alerts:
         targets = [d for d in devices if d.get("village") in a["villages"]]
         a["delivered"] = sum(1 for d in targets if (d.get("acked_seq") or 0) >= a["seq"])
         a["targets"] = len(targets)
-    feed = sorted(store.signal_payloads(live_filter), key=lambda x: x.get("received_at", ""), reverse=True)[:25]
+    feed = sorted(got["feed"], key=lambda x: x.get("received_at", ""), reverse=True)[:25]
     return {
         "villages": VILLAGES,
         "syndromes": {k: v["label_en"] for k, v in SYNDROMES.items()},
         "alert_radius_km": ALERT_RADIUS_KM,
         "week": outbreak.iso_week(datetime.now(timezone.utc)),
-        "zscores": [{**r, "unusual": outbreak.unusual(r)} for r in outbreak.z_scores() if r["count"] or r["baseline"]],
+        "zscores": [{**r, "unusual": outbreak.unusual(r)} for r in got["zscores"] if r["count"] or r["baseline"]],
         "alerts": alerts,
         "devices": devices,
         "feed": feed,
-        "totals": {"n": store.count_signals(), "live": store.count_signals(live_filter), "households": db.count(db.HOUSEHOLDS)},
-        "reports": sorted(db.find(db.REPORTS), key=lambda r: r["received_at"], reverse=True)[:20],
-        "questions": list_questions(_admin)[:20],
-        "knowledge_version": int(db.get_meta("knowledge_version", 1)),
+        "totals": {"n": got["n"], "live": got["live"], "households": got["households"]},
+        "reports": sorted(got["reports"], key=lambda r: r["received_at"], reverse=True)[:20],
+        "questions": got["questions"][:20],
+        "knowledge_version": got["version"],
         "storage": store.storage_mode(),
     }
 

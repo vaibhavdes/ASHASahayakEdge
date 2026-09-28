@@ -57,7 +57,7 @@
 <body>
 <header>
   <h1>Sahayak · District Outbreak Radar</h1>
-  <div class="meta" id="meta">loading…</div>
+  <div class="meta" id="meta">Loading district data…</div>
   <input id="admin-token" type="password" placeholder="Admin access token" style="max-width:220px;display:none" aria-label="Admin access token" />
   <button id="unlock" onclick="unlock()" style="display:none">Open dashboard</button>
 </header>
@@ -313,8 +313,12 @@ const publishForm = () => {
   if (body.title && body.text) post("/v1/admin/knowledge", body).then(() => { ["g-title", "g-text", "g-alt", "g-exp"].forEach((i) => ($(i).value = "")); $("g-sample").value = ""; });
 };
 
-load();
-setInterval(load, 3000);
+// Refresh a few seconds after each answer, so slow responses never pile up.
+async function poll() {
+  try { await load(); } catch (e) { $("meta").textContent = "Cannot reach the server, retrying…"; }
+  setTimeout(poll, 4000);
+}
+poll();
 </script>
 </body>
 </html>
