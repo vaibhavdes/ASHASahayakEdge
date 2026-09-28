@@ -37,32 +37,3 @@ def changed_since(village: str, since: int) -> list[dict]:
     rows = db.find(db.HOUSEHOLDS, [db.eq("village", village), db.gt("seq", since)])
     return [{k: v for k, v in r.items() if k != "seq"} for r in rows]
 
-
-def seed(households: list[dict]):
-    """Explicit sample scenario only. Assign sequences so a second phone can pull it."""
-
-    def v(value):
-        return {"value": value, "ts": 1, "dev": "registry"}
-
-    db.put_many(db.HOUSEHOLDS, [
-        {
-            "id": h["id"], "village": h["village"], "ward": h["ward"], "house_no": h["house_no"], "lat": h["lat"], "lon": h["lon"], "seq": db.next_seq(),
-            "fields": {
-                "head": v(h["head"]), "phone": v(h["phone"]), "members": v(h["members"]),
-                "pregnant_member": v(h["pregnant_member"]), "edd": v(None), "high_risk": v(False),
-            },
-        }
-        for h in households
-    ])
-
-
-def edit_as(household_id: str, field: str, value, device_id: str) -> dict:
-    """An edit made on another device (the ANM), used to demonstrate conflicts."""
-    record = db.get(db.HOUSEHOLDS, household_id)
-    if not record:
-        raise KeyError(household_id)
-    cur = record["fields"].get(field, {"ts": 0})
-    record["fields"][field] = {"value": value, "ts": cur["ts"] + 1, "dev": device_id}
-    record["seq"] = db.next_seq()
-    db.put(db.HOUSEHOLDS, household_id, record)
-    return record["fields"][field]

@@ -595,7 +595,7 @@ impl EdgeState {
 
     // --------------------------- lifecycle / sync -------------------------
 
-    /// Wipe a shard (demo reset).
+    /// Wipe a shard (start fresh on this phone).
     pub fn reset(&self, shard: &str) -> Result<(), String> {
         if !SHARDS.contains(&shard) {
             return Err(format!("unknown shard: {shard}"));

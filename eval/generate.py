@@ -1,13 +1,10 @@
-"""Synthetic data for Sahayak Edge.
+"""Synthetic benchmark data for the search evaluation (eval/bench.py).
 
-Everything here is fictional. Produces:
-  data/out/villages.json         village list with coordinates
-  data/out/demo_households.json  households + members for the two demo devices
-  data/out/demo_visits.json      visit notes (Hindi / Hinglish / English) with ground-truth labels
-  data/out/history_signals.json  8 weeks of anonymous signals for the cloud baseline
-  data/out/eval_queries.json     search benchmark queries with relevance rules
+Everything here is fictional and is never loaded into the app or the cloud. Produces:
+  eval/data/visits.json   visit notes (Hindi / Hinglish / English) with ground-truth labels
+  eval/data/queries.json  search queries with relevance rules
 
-Run:  python data/generate.py
+Run:  python eval/generate.py
 """
 
 import json
@@ -17,7 +14,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 random.seed(42)
-OUT = Path(__file__).parent / "out"
+OUT = Path(__file__).parent / "data"
 NOW = datetime(2026, 9, 27, 9, 0, tzinfo=timezone.utc)
 
 VILLAGES = [
@@ -213,29 +210,6 @@ def make_visits(households, days, per_day, outbreak=None):
     return visits
 
 
-def make_history():
-    """Anonymous weekly signals for 8 past weeks + current week, all villages."""
-    signals = []
-    base = {"fever": 6, "diarrhoea": 4, "fever_rash": 0.4, "cough_2w": 0.6, "jaundice": 0.3}
-    for v in VILLAGES:
-        for w in range(8, 0, -1):
-            week_day = NOW - timedelta(weeks=w)
-            for syn, mean in base.items():
-                count = max(0, int(random.gauss(mean, mean ** 0.5 * 0.6)))
-                for _ in range(count):
-                    signals.append({
-                        "id": str(uuid.uuid4()),
-                        "village": v["code"],
-                        "week": iso_week(week_day),
-                        "at": iso(week_day - timedelta(days=random.randint(0, 6))),
-                        "syndromes": syn.split("_") if syn == "fever_rash" else [syn],
-                        "age_band": random.choice(["0-5", "6-14", "15-49", "50+"]),
-                        "danger": False,
-                        "source": "history",
-                    })
-    return signals
-
-
 EVAL_QUERIES = [
     # q: query text, rel: which ground-truth visits count as relevant
     {"q": "bacche ko dast", "rel": {"syndromes_any": ["diarrhoea"], "age_band": ["0-5", "6-14"]}},
@@ -283,11 +257,8 @@ def main():
     visits_a = make_visits(hh_a, days=45, per_day=4, outbreak={"scenario": "fever_rash", "days": 5, "extra": 1})
     visits_b = make_visits(hh_b, days=45, per_day=3)
 
-    (OUT / "villages.json").write_text(json.dumps(VILLAGES, indent=1, ensure_ascii=False))
-    (OUT / "demo_households.json").write_text(json.dumps({"RMP": hh_a, "LKP": hh_b}, indent=1, ensure_ascii=False))
-    (OUT / "demo_visits.json").write_text(json.dumps({"RMP": visits_a, "LKP": visits_b}, indent=1, ensure_ascii=False))
-    (OUT / "history_signals.json").write_text(json.dumps(make_history(), indent=1))
-    (OUT / "eval_queries.json").write_text(json.dumps(EVAL_QUERIES, indent=1, ensure_ascii=False))
+    (OUT / "visits.json").write_text(json.dumps({"RMP": visits_a, "LKP": visits_b}, indent=1, ensure_ascii=False))
+    (OUT / "queries.json").write_text(json.dumps(EVAL_QUERIES, indent=1, ensure_ascii=False))
     print(f"households: {len(hh_a)}+{len(hh_b)}  visits: {len(visits_a)}+{len(visits_b)}")
 
 

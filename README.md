@@ -111,8 +111,8 @@ We use all four patterns from Qdrant's edge sync guide (snapshot initialisation,
 | Setup | Precision@5 | MRR | Paraphrases P@5 |
 |---|---|---|---|
 | Meaning only, raw notes | 0.67 | 0.73 | 0.75 |
-| Keywords only (BM25), normalised | 0.80 | 0.84 | 0.33 |
-| Hybrid 2:1, normalised | 0.87 | 0.93 | 0.75 |
+| Keywords only (BM25), normalised | 0.80 | 0.85 | 0.33 |
+| Hybrid 2:1, normalised | 0.88 | 0.93 | 0.75 |
 | **Hybrid 2:1, normalised note + tags (shipped)** | **0.93** | **0.97** | **0.80** |
 
 - The biggest gain came from the input, not the model: the Hindi/Hinglish lexicon and embedding each note with its tags.
@@ -212,7 +212,7 @@ Code under the [MIT License](LICENSE). The embedding model is Apache-2.0.
 
 ## Data, credits and sources
 
-All people and visits are synthetic (`data/generate.py` for the benchmark; the in-app sample family is fictional). Guidance texts summarise public MoHFW and WHO material; the app supports, and doesn't replace, clinical judgement.
+The app and the cloud start empty; there is no preloaded patient data. `data/` holds only what they run on (areas, Hindi/Hinglish vocabulary, starter guidance). The synthetic notes behind the search benchmark live separately in `eval/` (`eval/generate.py`), and the in-app sample family is fictional. Guidance texts summarise public MoHFW and WHO material; the app supports, and doesn't replace, clinical judgement.
 
 Built with [Qdrant Edge and Qdrant Cloud](https://qdrant.tech/edge/), [Tauri](https://tauri.app), [transformers.js](https://github.com/huggingface/transformers.js), [ONNX Runtime](https://onnxruntime.ai), [fastembed](https://github.com/qdrant/fastembed), [paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) (Apache-2.0), FastAPI, React, Tailwind CSS and lucide icons.
 

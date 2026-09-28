@@ -4,7 +4,7 @@ Runs the same query design the phone uses (Qdrant Edge: dense + BM25, RRF fusion
 recency formula) on the synthetic visit notes, and compares retrieval modes.
 
     pip install qdrant-edge-py fastembed
-    python data/generate.py
+    python eval/generate.py
     python eval/bench.py
 """
 
@@ -109,9 +109,9 @@ def metrics(ranked_rel, total_rel):
 
 
 def main():
-    visits = json.loads((ROOT / "data/out/demo_visits.json").read_text())
+    visits = json.loads((ROOT / "eval/data/visits.json").read_text())
     visits = visits["RMP"] + visits["LKP"]
-    queries = json.loads((ROOT / "data/out/eval_queries.json").read_text())
+    queries = json.loads((ROOT / "eval/data/queries.json").read_text())
     normalizer = Normalizer.from_file(ROOT / "data/lexicon.json")
 
     print(f"Embedding {len(visits)} notes with {MODEL} ...")

@@ -1,4 +1,4 @@
-import villages from "../../../data/out/villages.json";
+import villages from "../../../data/villages.json";
 
 export interface Village {
   code: string;

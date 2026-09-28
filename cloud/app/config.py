@@ -35,7 +35,7 @@ CACHE = CLOUD / ".cache"
 MODELS = CLOUD / "models"
 
 LEXICON = json.loads((DATA / "lexicon.json").read_text(encoding="utf-8"))
-VILLAGES = json.loads((DATA / "out" / "villages.json").read_text(encoding="utf-8"))
+VILLAGES = json.loads((DATA / "villages.json").read_text(encoding="utf-8"))
 NORMALIZER = Normalizer(LEXICON["terms"], LEXICON.get("question_frame"))
 SIGNAL_WORDS = {k: v for k, v in LEXICON["signal_words"].items() if not k.startswith("_")}
 SYNDROMES = LEXICON["syndromes"]
