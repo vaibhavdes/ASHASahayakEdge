@@ -28,7 +28,7 @@ She needs a memory that lives on the phone, understands how she writes, and shar
 | 5 | 📖 in the header → ask `saanp ne kaat liya`, then again in airplane mode | The approved answer, offline |
 | 6 | **Sync**, then open the [district dashboard](https://sahayak-cloud-362605925833.asia-south1.run.app/dashboard/) | The signal arrives, with no name |
 
-The app opens in Hindi; **EN / हि** in the header switches it to English. The chip icon opens **Under the hood** (the Qdrant Edge shards). The two-phone script with sync and conflicts is in the [evaluator runbook](docs/evaluator-runbook.md).
+The app opens in Hindi; **EN / हि** in the header switches it to English. The chip icon opens **Under the hood** (the Qdrant Edge shards). The two-phone script with sync and conflicts is in the [evaluator runbook](docs/evaluator-runbook.md), and the [code guide](docs/code-guide.md) explains where each feature lives in the code.
 
 **District backend** (FastAPI on Google Cloud Run, data in Qdrant Cloud)
 
