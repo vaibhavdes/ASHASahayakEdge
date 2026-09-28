@@ -7,7 +7,7 @@ import ortWasm from "onnxruntime-web/ort-wasm-simd-threaded.asyncify.wasm?url";
 export const MODEL_ID = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
 
 type In =
-  | { type: "load"; remoteHost?: string }
+  | { type: "load" }
   | { type: "embed"; id: number; texts: string[] };
 
 let extractor: FeatureExtractionPipeline | null = null;
@@ -21,7 +21,6 @@ self.onmessage = async (event: MessageEvent<In>) => {
   const msg = event.data;
   try {
     if (msg.type === "load") {
-      if (msg.remoteHost) env.remoteHost = msg.remoteHost;
       extractor = (await pipeline("feature-extraction", MODEL_ID, {
         dtype: "q8",
         device: "wasm",

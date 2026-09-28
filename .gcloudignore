@@ -7,6 +7,5 @@ cloud/.env
 *.local
 cloud/.qdrant/
 cloud/.cache/
-cloud/models/
 cloud/*.db
 **/__pycache__/

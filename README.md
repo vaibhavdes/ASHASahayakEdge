@@ -83,7 +83,7 @@ flowchart LR
   G --> H[Who to visit,<br/>from local records]
 ```
 
-- **Normalise and tag.** "bukhar" also reads as "fever"; "खसरा का टीका" is a vaccine, not a rash. The note is embedded on the phone together with its tags, and stored with a BM25 vector and indexed details (village, date, age band, syndromes).
+- **Normalise and tag.** "bukhar" also reads as "fever", and so do spellings like "bukar" or "bhukhar"; "खसरा का टीका" is a vaccine, not a rash. The note is embedded on the phone together with its tags, and stored with a BM25 vector and indexed details (village, date, age band, syndromes).
 - **Search.** Dense + BM25 with filters (ACORN when several narrow filters combine), weighted RRF fusion, a recency decay formula, and MMR for variety.
 - **Sync.** Push the outbox by priority; pull alerts, household changes and doctors' answers; fetch new guidance as a partial snapshot built from the phone's manifest; acknowledge what it now holds.
 - **Answer safety.** Question framing ("… ko … kya karein?") is removed before matching; an approved answer needs 0.70 similarity and a shared medical term (0.90 without one). Unrelated protocols are not shown, so an uncovered question offers "ask a doctor" instead of a wrong answer.

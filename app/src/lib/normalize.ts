@@ -2,8 +2,36 @@
 // Appends canonical terms ("bukhar" -> "fever") and keeps the original words.
 import lexicon from "../../../data/lexicon.json";
 
-const variants: [string, string][] = Object.entries(lexicon.terms as Record<string, string[]>)
-  .flatMap(([canonical, words]) => words.map((w) => [w.toLowerCase(), canonical] as [string, string]))
+const NUKTA = /\u093c/g; // "बुख़ार" and "बुखार" are the same word
+
+/** Spelling-insensitive key for Hinglish: bukhar, bukhaar, bukar and bhukaar all become "bukar". */
+export function soundKey(word: string): string {
+  return word
+    .replace(/ee/g, "i").replace(/oo/g, "u").replace(/z/g, "j")
+    .replace(/([bcdgjkpt])h/g, "$1")
+    .replace(/sh/g, "s").replace(/w/g, "v").replace(/q/g, "k").replace(/y/g, "i")
+    .replace(/n(?=[sgkjdt])/g, "")
+    .replace(/(.)\1+/g, "$1");
+}
+
+const TERMS = lexicon.terms as Record<string, string[]>;
+
+// Sound keys of single Latin words; a key shared by two terms is ambiguous and dropped.
+const soundTerms = (() => {
+  const keys = new Map<string, Set<string>>();
+  for (const [canonical, words] of Object.entries(TERMS)) {
+    for (const w of words.map((x) => x.toLowerCase())) {
+      if (!/^[a-z]{4,}$/.test(w) || soundKey(w).length < 4) continue;
+      const k = soundKey(w);
+      if (!keys.has(k)) keys.set(k, new Set());
+      keys.get(k)!.add(canonical);
+    }
+  }
+  return new Map([...keys].filter(([, c]) => c.size === 1).map(([k, c]) => [k, [...c][0]]));
+})();
+
+const variants: [string, string][] = Object.entries(TERMS)
+  .flatMap(([canonical, words]) => words.map((w) => [w.toLowerCase().replace(NUKTA, ""), canonical] as [string, string]))
   .sort((a, b) => b[0].length - a[0].length);
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -15,7 +43,7 @@ const NEGATED_AFTER = /^\s+(nahi|nahin|nahi\b|nai|na|नहीं|नही|न�
 
 // Longest phrases first, then blanked, so "खसरा का टीका" is a vaccine, not a rash.
 export function canonicalTerms(text: string): string[] {
-  let work = text.toLowerCase();
+  let work = text.toLowerCase().replace(NUKTA, "");
   const found: string[] = [];
   for (const [re, canonical] of patterns) {
     re.lastIndex = 0;
@@ -28,6 +56,15 @@ export function canonicalTerms(text: string): string[] {
       return " ".repeat(m.length);
     });
     if (affirmed && !found.includes(canonical)) found.push(canonical);
+  }
+  // Then spelling variants of single words ("bukar", "bhukhar", "khaasi").
+  for (const m of work.matchAll(/(?<![\p{L}\p{N}\p{M}])[a-z]{4,}(?![\p{L}\p{N}\p{M}])/gu)) {
+    const canonical = soundTerms.get(soundKey(m[0]));
+    if (!canonical || found.includes(canonical)) continue;
+    const at = m.index ?? 0;
+    const before = work.slice(Math.max(0, at - 12), at);
+    const after = work.slice(at + m[0].length, at + m[0].length + 8);
+    if (!NEGATED_BEFORE.test(before) && !NEGATED_AFTER.test(after)) found.push(canonical);
   }
   return found;
 }

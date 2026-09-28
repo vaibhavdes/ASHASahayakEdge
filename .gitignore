@@ -7,7 +7,6 @@ dist/
 .DS_Store
 cloud/.qdrant/
 cloud/.cache/
-cloud/models/
 eval/.shard_*/
 app/src-tauri/target/
 app/src-tauri/gen/

@@ -6,7 +6,7 @@ let ready: Promise<void> | null = null;
 let seq = 0;
 const pending = new Map<number, { resolve: (v: number[][]) => void; reject: (e: Error) => void }>();
 
-export function loadModel(onProgress?: (pct: number, label: string) => void, remoteHost?: string): Promise<void> {
+export function loadModel(onProgress?: (pct: number, label: string) => void): Promise<void> {
   if (ready) return ready;
   worker = new Worker(new URL("./embed.worker.ts", import.meta.url), { type: "module" });
   const files = new Map<string, { loaded: number; total: number }>();
@@ -35,7 +35,7 @@ export function loadModel(onProgress?: (pct: number, label: string) => void, rem
       }
     };
   });
-  worker.postMessage({ type: "load", remoteHost });
+  worker.postMessage({ type: "load" });
   return ready;
 }
 

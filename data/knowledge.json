@@ -1,6 +1,6 @@
 {
- "_about": "Starter knowledge (version 2). Short summaries written for this demo from public MoHFW ASHA training modules, HBNC / IMNCI guidance and WHO fact sheets. Not a substitute for official protocols or clinical judgement; every item ends with when to refer. Each approved answer lists alternative phrasings; every phrasing is stored as its own vector pointing to the same answer (semantic answer cache).",
- "version": 2,
+ "_about": "Starter knowledge (version 3). Short summaries written for this demo from public MoHFW ASHA training modules, HBNC / IMNCI guidance and WHO fact sheets. Not a substitute for official protocols or clinical judgement; every item ends with when to refer. Each approved answer lists alternative phrasings; every phrasing is stored as its own vector pointing to the same answer (semantic answer cache).",
+ "version": 3,
  "protocols": [
   {
    "id": "b1c0a000-0000-4000-8000-000000000001",

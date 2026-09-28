@@ -19,7 +19,7 @@ from qdrant_client import models
 from starlette.background import BackgroundTask
 
 from . import db, embed, outbreak, registry, store
-from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, ENROLL_PER_IP_HOUR, MODELS, OPEN_DASHBOARD, OPEN_ENROLLMENT, SYNDROMES, VILLAGES, signal_sentence
+from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, ENROLL_PER_IP_HOUR, OPEN_DASHBOARD, OPEN_ENROLLMENT, SYNDROMES, VILLAGES, signal_sentence
 
 
 @asynccontextmanager
@@ -426,6 +426,3 @@ def root():
 
 
 app.mount("/dashboard", StaticFiles(directory=CLOUD / "dashboard", html=True), name="dashboard")
-# Model mirror (scripts/fetch_model.py).
-MODELS.mkdir(exist_ok=True)
-app.mount("/models", StaticFiles(directory=MODELS), name="models")

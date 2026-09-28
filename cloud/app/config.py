@@ -32,7 +32,6 @@ ALERT_RADIUS_KM = float(os.getenv("ALERT_RADIUS_KM", "6"))
 
 LOCAL_QDRANT = CLOUD / ".qdrant"
 CACHE = CLOUD / ".cache"
-MODELS = CLOUD / "models"
 
 LEXICON = json.loads((DATA / "lexicon.json").read_text(encoding="utf-8"))
 VILLAGES = json.loads((DATA / "villages.json").read_text(encoding="utf-8"))

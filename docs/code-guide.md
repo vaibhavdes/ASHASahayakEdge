@@ -31,8 +31,7 @@ The phone talks to the cloud only through the sync API (`/v1/...`). The diagram 
 │   ├── app/                  FastAPI code (API, radar, storage)
 │   ├── dashboard/index.html  District dashboard (single page, no build step)
 │   ├── tests/                Backend test (two phones, empty workspace, radar, open access)
-│   ├── Dockerfile, cloudbuild.yaml, deploy.sh   Build and deploy to Cloud Run
-│   └── scripts/fetch_model.py   Optional model mirror (not used by the current app)
+│   └── Dockerfile, cloudbuild.yaml, deploy.sh   Build and deploy to Cloud Run
 ├── data/                     Files the app and cloud actually run on
 │   ├── villages.json         Work areas with coordinates
 │   ├── lexicon.json          Hindi/Hinglish terms, syndromes, signal wording
@@ -103,7 +102,7 @@ The AI model runs in a separate web worker (`lib/embed.worker.ts`) so the screen
 
 | File | Purpose |
 |---|---|
-| `normalize.ts` | Adds canonical terms to a note ("bukhar" → fever), handles "bukhar nahi" negation, strips question framing. Must match `data/normalize.py` |
+| `normalize.ts` | Adds canonical terms to a note ("bukhar" → fever), tolerates Hinglish spelling ("bukar", "bhukhar", "khaasi" match through a sound key), handles "bukhar nahi" negation, strips question framing. Must match `data/normalize.py` |
 | `tagger.ts` | Tags a note with syndromes: lexicon rules first, then similarity to prototype sentences (skipped for routine notes) |
 | `embedder.ts`, `embed.worker.ts` | Loads the multilingual MiniLM model (int8 ONNX) once and turns text into 384-number vectors |
 | `queryParser.ts` | Turns "garbhvati mahila pichle hafte" into filters (pregnant, last 7 days) plus the remaining search words |
