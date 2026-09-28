@@ -171,7 +171,7 @@ At startup it creates any missing collections and publishes the starter guidance
 | `registry.py` | Field-by-field merge of family changes; conflicts when two phones changed the same field |
 | `outbreak.py` | The radar: weekly z-score per area and syndrome, new-area cluster rule, similar signals across areas (distance matrix), danger notices; alerts go to areas within 6 km |
 | `embed.py` | Same embeddings as the phone (fastembed MiniLM) and the same BM25 as Qdrant Edge |
-| `dashboard/index.html` | Area tiles grouped by district, live signals, radar table, alerts with delivery, devices, reports, questions, guidance form |
+| `dashboard/index.html` | Map per district (circle = reports, red = unusual, shaded = alert reach, labels placed to avoid overlap), live signals, radar table, alerts with delivery, devices, reports, questions, guidance form with ready samples |
 
 All collection names start with `COLLECTION_PREFIX` (`eval1_` on the live service).
 

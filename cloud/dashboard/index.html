@@ -40,15 +40,10 @@
   button { font: inherit; border: 1px solid var(--teal); background: var(--card); color: var(--ink); border-radius: 10px; padding: 8px 12px; cursor: pointer; }
   button.primary { background: var(--teal); color: #fff; }
   .controls { display: flex; flex-wrap: wrap; gap: 8px; }
-  .district { margin-bottom: 12px; }
-  .district h3 { margin: 0 0 6px; font-size: 13px; }
-  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
-  .tile { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
-  .tile b { display: block; font-size: 20px; color: var(--teal); font-variant-numeric: tabular-nums; }
-  .tile .name { font-weight: 600; }
-  .tile.hot { background: var(--rose-soft); border-color: var(--rose); }
-  .tile.hot b { color: var(--rose); }
-  .tile.alerted { border: 2px dashed var(--rose); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .tabs button { padding: 4px 10px; font-size: 13px; }
+  #map { width: 100%; height: auto; display: block; border-radius: 10px; background: var(--bg); }
+  #map text { font-size: 17px; fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }
   .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
   .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
   textarea, input, select { font: inherit; width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); }
@@ -74,8 +69,9 @@
     </section>
     <section class="card">
       <h2>Areas · symptom reports this week</h2>
-      <div id="areas"></div>
-      <div class="legend muted"><span>Red: unusual this week (rising, or a new-area cluster)</span><span>Dashed border: alert sent</span></div>
+      <div class="tabs" id="district-tabs"></div>
+      <svg id="map" viewBox="0 0 600 340" role="img" aria-label="Map of areas in the selected district"></svg>
+      <div class="legend muted"><span>Circle size: reports this week</span><span>Red: unusual (rising, or a new-area cluster)</span><span>Dashed ring: alert received</span><span>Shaded: alert reach</span></div>
     </section>
     <section class="card">
       <h2>Syndrome counts · z-score</h2>
@@ -106,6 +102,7 @@
     <section class="card">
       <h2>Publish guidance to all phones</h2>
       <div class="form">
+        <select id="g-sample" aria-label="Fill in a sample"></select>
         <select id="g-kind"><option value="protocol">Protocol / advisory</option><option value="answer">Approved answer to a question</option></select>
         <input id="g-title" placeholder="Title, or the question for an approved answer" />
         <textarea id="g-text" placeholder="Guidance text (say when to refer)"></textarea>
@@ -127,6 +124,104 @@ function unlock() { adminToken = $("admin-token").value.trim(); sessionStorage.s
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const ago = (iso) => { if (!iso) return "—"; const m = Math.round((Date.now() - new Date(iso)) / 60000); return m < 1 ? "just now" : m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + " h ago" : Math.round(m / 1440) + " d ago"; };
 
+// ------------------------------- area map -------------------------------
+// One district at a time, each on its own scale, so distant districts never squeeze together.
+let lastMap = null, mapDistrict = null;
+$("district-tabs").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-district]");
+  if (b) { mapDistrict = b.dataset.district; drawMap(); }
+});
+
+function drawMap() {
+  if (!lastMap) return;
+  const { vs, week, phones, alerted, hot, radius } = lastMap;
+  const groups = {};
+  vs.forEach((v) => { (groups[v.district || "Other areas"] ||= []).push(v); });
+  const names = Object.keys(groups);
+  const reports = (n) => groups[n].reduce((s, v) => s + (week[v.code] || 0), 0);
+  const busy = (n) => reports(n) * 10 + groups[n].reduce((s, v) => s + (phones[v.code] || 0), 0);
+  if (!groups[mapDistrict]) mapDistrict = [...names].sort((a, b) => busy(b) - busy(a))[0];
+  $("district-tabs").innerHTML = names.map((n) =>
+    `<button data-district="${esc(n)}" class="${n === mapDistrict ? "primary" : ""}">${esc(n)} · ${reports(n)}</button>`).join("");
+
+  // Positions in km around the district centre, then scaled to fit.
+  const list = groups[mapDistrict], W = 600, H = 340, pad = 70;
+  const lat0 = list.reduce((s, v) => s + v.lat, 0) / list.length, lon0 = list.reduce((s, v) => s + v.lon, 0) / list.length;
+  const kx = 111.32 * Math.cos((lat0 * Math.PI) / 180), ky = 110.57;
+  const km = list.map((v) => ({ v, x: (v.lon - lon0) * kx, y: (v.lat - lat0) * ky }));
+  const xs = km.map((p) => p.x), ys = km.map((p) => p.y);
+  const midX = (Math.min(...xs) + Math.max(...xs)) / 2, midY = (Math.min(...ys) + Math.max(...ys)) / 2;
+  const spanX = Math.max(Math.max(...xs) - Math.min(...xs), 4), spanY = Math.max(Math.max(...ys) - Math.min(...ys), 4);
+  const scale = Math.min((W - 2 * pad) / spanX, (H - 2 * pad) / spanY);
+  const pts = km.map((p) => ({ ...p, X: W / 2 + (p.x - midX) * scale, Y: H / 2 - (p.y - midY) * scale, r: 12 + Math.sqrt(week[p.v.code] || 0) * 6 }));
+
+  // Labels: below, above, right or left of the circle, whichever doesn't collide.
+  const boxes = pts.map((p) => [p.X - p.r, p.Y - p.r, p.X + p.r, p.Y + p.r]);
+  const hits = (b) => boxes.some((o) => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1]);
+  const labels = pts.map((p) => {
+    const text = `${p.v.district && p.v.name.startsWith(`${p.v.district} · `) ? p.v.name.slice(p.v.district.length + 3) : p.v.name} ${week[p.v.code] || 0}`;
+    const w = text.length * 9.4 + 6, h = 19;
+    const spots = [
+      [p.X, p.Y + p.r + 19, "middle", [p.X - w / 2, p.Y + p.r + 3, p.X + w / 2, p.Y + p.r + 3 + h]],
+      [p.X, p.Y - p.r - 6, "middle", [p.X - w / 2, p.Y - p.r - 6 - h, p.X + w / 2, p.Y - p.r - 6]],
+      [p.X + p.r + 6, p.Y + 6, "start", [p.X + p.r + 6, p.Y - h / 2, p.X + p.r + 6 + w, p.Y + h / 2]],
+      [p.X - p.r - 6, p.Y + 6, "end", [p.X - p.r - 6 - w, p.Y - h / 2, p.X - p.r - 6, p.Y + h / 2]],
+    ];
+    const spot = spots.find((sp) => !hits(sp[3])) || spots[0];
+    boxes.push(spot[3]);
+    return `<text x="${spot[0]}" y="${spot[1]}" text-anchor="${spot[2]}">${esc(text)}</text>`;
+  });
+
+  const reach = pts.filter((p) => hot.has(p.v.code)).map((p) =>
+    `<circle cx="${p.X}" cy="${p.Y}" r="${radius * scale}" style="fill:var(--rose-soft);fill-opacity:.55;stroke:var(--rose);stroke-dasharray:6 5"/>`).join("");
+  const dots = pts.map((p) => {
+    const n = week[p.v.code] || 0, ph = phones[p.v.code] || 0;
+    const tip = `${p.v.name}: ${n} report${n === 1 ? "" : "s"} this week, ${ph} phone${ph === 1 ? "" : "s"}${hot.has(p.v.code) ? ", unusual" : ""}${alerted.has(p.v.code) ? ", alert received" : ""}`;
+    return `<g><title>${esc(tip)}</title>${alerted.has(p.v.code) ? `<circle cx="${p.X}" cy="${p.Y}" r="${p.r + 7}" style="fill:none;stroke:var(--rose);stroke-width:2;stroke-dasharray:4 3"/>` : ""}
+      <circle cx="${p.X}" cy="${p.Y}" r="${p.r}" style="fill:${hot.has(p.v.code) ? "var(--rose)" : "var(--teal)"};fill-opacity:.85"/></g>`;
+  }).join("");
+  // Scale bar: the round distance closest to 100 px.
+  const bar = [1, 2, 5, 10, 20, 50].reduce((b, k) => (Math.abs(k * scale - 100) < Math.abs(b * scale - 100) ? k : b), 1);
+  const scaleBar = `<line x1="16" y1="${H - 16}" x2="${16 + bar * scale}" y2="${H - 16}" style="stroke:var(--muted);stroke-width:2"/><text x="16" y="${H - 22}">${bar} km</text>`;
+  $("map").innerHTML = reach + dots + labels.join("") + scaleBar;
+}
+
+// ------------------------------ sample guidance ------------------------------
+// Fills the form with a ready example; nothing is sent until Publish is pressed.
+const SAMPLES = [
+  { label: "Dengue season advisory (30 days)", kind: "protocol", exp: 30, by: "District Malaria Officer",
+    title: "Dengue season: empty stagnant water every week",
+    text: "During the monsoon, check every home for water collected in coolers, tyres, pots and flower vases and empty it once a week. Ask families to sleep under nets. Anyone with fever plus bleeding gums, severe abdominal pain or repeated vomiting must be referred the same day. मानसून में कूलर, टायर और गमलों का पानी हर हफ्ते खाली करवाएं; बुखार के साथ खून आए तो उसी दिन रेफर करें।" },
+  { label: "Dengue: approved answer", kind: "answer", by: "Block Medical Officer",
+    title: "What to do if someone has dengue symptoms?",
+    text: "Give paracetamol for fever and plenty of fluids; do not give aspirin or ibuprofen. Refer the same day for a dengue test. Refer urgently if there is bleeding, severe stomach pain, repeated vomiting or the person is very weak. डेंगू के लक्षण हों तो पैरासिटामोल और खूब पानी दें, उसी दिन जांच के लिए भेजें।",
+    alt: "dengue ke lakshan hain kya karein | machhar wala bukhar | डेंगू में क्या करें" },
+  { label: "Heatwave alert (7 days)", kind: "protocol", exp: 7, by: "District Health Office",
+    title: "Heatwave alert: this week",
+    text: "Temperatures above 44°C are expected. Visit elderly people, pregnant women and small children first. Advise water or ORS every hour and no outdoor work between 12 and 4 pm. Anyone confused or unconscious after heat exposure: call 108. इस हफ्ते लू का खतरा है; बुज़ुर्ग, गर्भवती और छोटे बच्चों को पहले देखें।" },
+  { label: "Cold wave: newborns and the elderly (14 days)", kind: "protocol", exp: 14, by: "District Health Office",
+    title: "Cold wave: keep newborns and the elderly warm",
+    text: "Night temperatures are falling below 5°C. Keep newborns skin-to-skin with the mother, with a cap, socks and a wrap, and keep breastfeeding. If a baby's feet or belly feel cold, is not feeding or is very sleepy, refer at once. Warn families not to sleep with a coal or wood heater (angithi) burning in a closed room. ठंड में नवजात को मां से चिपकाकर, टोपी-मोज़े पहनाकर गर्म रखें; बंद कमरे में अंगीठी जलाकर न सोएं।" },
+  { label: "Winter cough in children: approved answer", kind: "answer", by: "Block Medical Officer",
+    title: "Child has cough and cold in winter — when to refer?",
+    text: "Keep the child warm and keep feeding, including breastfeeding. Count breaths for one full minute: 50 or more (2 to 12 months) or 40 or more (1 to 5 years) is fast breathing and needs the ANM or doctor today. Refer at once if the chest pulls in, the child cannot drink or is very sleepy. सर्दी-खांसी में सांस गिनें; सांस तेज़ हो तो आज ही दिखाएं, पसली धंसे तो तुरंत रेफर करें।",
+    alt: "sardi khansi bachche ko | ठंड में बच्चे को खांसी | bacche ko nimonia" },
+  { label: "COVID-19 and flu advisory (30 days)", kind: "protocol", exp: 30, by: "District Surveillance Officer",
+    title: "COVID-19 and flu: fever with cough",
+    text: "For fever with cough or sore throat, advise a mask around others, hand washing and staying away from elderly and pregnant family members, and test at the PHC as per current guidance. Watch people over 60, pregnant women and those with diabetes or heart disease closely. Refer urgently for breathlessness, chest pain, bluish lips or confusion. बुखार-खांसी में मास्क, हाथ धोना और PHC पर जांच; सांस फूले या सीने में दर्द हो तो तुरंत रेफर करें।" },
+  { label: "COVID-19: approved answer", kind: "answer", by: "District Surveillance Officer",
+    title: "Someone has fever and cough — could it be COVID?",
+    text: "It could be COVID-19, flu or another infection, so send them for a test at the PHC. Until then: mask around others, rest, fluids and paracetamol for fever. Refer urgently if breathless, has chest pain or bluish lips, or is over 60 or pregnant with any worsening. बुखार-खांसी हो तो PHC पर जांच करवाएं; सांस फूले तो तुरंत रेफर करें।",
+    alt: "corona ke lakshan hain | कोरोना जैसे लक्षण | covid test kahan hoga" },
+];
+$("g-sample").innerHTML = `<option value="">Fill in a sample to try…</option>` + SAMPLES.map((x, i) => `<option value="${i}">${esc(x.label)}</option>`).join("");
+$("g-sample").addEventListener("change", () => {
+  const x = SAMPLES[$("g-sample").value];
+  if (!x) return;
+  $("g-kind").value = x.kind; $("g-title").value = x.title; $("g-text").value = x.text;
+  $("g-alt").value = x.alt || ""; $("g-exp").value = x.exp || ""; $("approver").value = x.by;
+});
+
 async function load() {
   // The token is asked for only when the server requires one.
   const response = await fetch("/v1/dashboard/summary", { headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : {} });
@@ -143,21 +238,17 @@ async function load() {
     ["signals (all)", d.totals.n], ["live signals", d.totals.live ?? 0], ["alerts", d.alerts.length], ["devices", d.devices.length],
   ].map(([l, v]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
 
-  // Areas as tiles grouped by district: never overlap, and any number of areas fits.
   const vs = d.villages;
   const area = (code) => esc(vs.find((v) => v.code === code)?.name || code);
   const syn = (key) => esc(key.split("+").map((s) => d.syndromes?.[s] || s).join(" + "));
   const week = {}; d.zscores.forEach((r) => { week[r.village] = (week[r.village] || 0) + r.count; });
   const phones = {}; d.devices.forEach((v) => { phones[v.village] = (phones[v.village] || 0) + 1; });
-  const alerted = new Set(d.alerts.flatMap((al) => al.villages));
-  const hot = new Set(d.zscores.filter((r) => r.unusual).map((r) => r.village));
-  const districts = {}; vs.forEach((v) => { (districts[v.district || "Other areas"] ||= []).push(v); });
-  const short = (v) => (v.district && v.name.startsWith(`${v.district} · `) ? v.name.slice(v.district.length + 3) : v.name);
-  $("areas").innerHTML = Object.entries(districts).map(([name, list]) => `<div class="district"><h3>${esc(name)}</h3><div class="tiles">${
-    list.map((v) => `<div class="tile ${hot.has(v.code) ? "hot" : ""} ${alerted.has(v.code) ? "alerted" : ""}" title="${esc(v.name)}">
-      <div class="name">${esc(short(v))}</div><b>${week[v.code] || 0}</b>
-      <div class="muted">reports · ${phones[v.code] || 0} phone${phones[v.code] === 1 ? "" : "s"}</div></div>`).join("")
-  }</div></div>`).join("");
+  lastMap = {
+    vs, week, phones, radius: d.alert_radius_km || 6,
+    alerted: new Set(d.alerts.flatMap((al) => al.villages)),
+    hot: new Set(d.zscores.filter((r) => r.unusual).map((r) => r.village)),
+  };
+  drawMap();
 
   const rows = d.zscores.filter((r) => r.count > 0).sort((p, q) => q.z - p.z);
   $("z").innerHTML = rows.length ? `<tr><th>Area</th><th>Syndrome</th><th>This week</th><th>Usual</th><th>z</th></tr>` + rows.map((r) => {
@@ -219,7 +310,7 @@ const publishForm = () => {
     alt_questions: $("g-alt").value.split("|").map((x) => x.trim()).filter(Boolean),
     expires_in_days: Number($("g-exp").value) || null, approved_by: approver() || null, source: "District health office",
   };
-  if (body.title && body.text) post("/v1/admin/knowledge", body).then(() => ["g-title", "g-text", "g-alt", "g-exp"].forEach((i) => ($(i).value = "")));
+  if (body.title && body.text) post("/v1/admin/knowledge", body).then(() => { ["g-title", "g-text", "g-alt", "g-exp"].forEach((i) => ($(i).value = "")); $("g-sample").value = ""; });
 };
 
 load();

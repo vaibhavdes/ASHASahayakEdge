@@ -34,7 +34,7 @@ The app opens in Hindi; **EN / हि** in the header switches it to English. Th
 
 | Link | What it shows |
 |---|---|
-| [Dashboard](https://sahayak-cloud-362605925833.asia-south1.run.app/dashboard/) | Village map, live signals, radar counts against baseline, alerts with delivery status, devices, reports, doctor questions, guidance publishing. Open to evaluators, no login |
+| [Dashboard](https://sahayak-cloud-362605925833.asia-south1.run.app/dashboard/) | A map per district (reports per area, unusual areas in red, alert reach), live signals, radar counts against baseline, alerts with delivery status, devices, reports, doctor questions, and guidance publishing with ready samples (dengue, heatwave, cold wave, winter cough, COVID-19). Open to evaluators, no login |
 | [API docs](https://sahayak-cloud-362605925833.asia-south1.run.app/docs) | Every endpoint: enroll, push/pull/ack sync, knowledge docs and (partial) snapshots, admin |
 
 ## What it does

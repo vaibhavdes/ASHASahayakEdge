@@ -63,7 +63,12 @@
       "cough",
       "balgam",
       "बलगम",
-      "coughing"
+      "coughing",
+      "khans raha",
+      "khans rahi",
+      "khans rahe",
+      "खांस रहा",
+      "खांस रही"
     ],
     "jaundice": [
       "peeliya",
@@ -328,6 +333,27 @@
       "maa ka doodh",
       "माँ का दूध",
       "मां का दूध"
+    ],
+    "covid": [
+      "corona",
+      "korona",
+      "covid",
+      "covid-19",
+      "कोरोना",
+      "कोविड"
+    ],
+    "common_cold": [
+      "sardi",
+      "sardi zukam",
+      "zukam",
+      "jukam",
+      "ज़ुकाम",
+      "जुकाम",
+      "सर्दी",
+      "सर्दी-जुकाम",
+      "runny nose",
+      "naak beh raha",
+      "naak beh rahi"
     ]
   },
   "syndromes": {

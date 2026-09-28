@@ -19,7 +19,7 @@ from qdrant_client import models
 from starlette.background import BackgroundTask
 
 from . import db, embed, outbreak, registry, store
-from .config import ADMIN_TOKEN, CACHE, CLOUD, DATA, ENROLL_CODE, ENROLL_PER_IP_HOUR, OPEN_DASHBOARD, OPEN_ENROLLMENT, SYNDROMES, VILLAGES, signal_sentence
+from .config import ADMIN_TOKEN, ALERT_RADIUS_KM, CACHE, CLOUD, DATA, ENROLL_CODE, ENROLL_PER_IP_HOUR, OPEN_DASHBOARD, OPEN_ENROLLMENT, SYNDROMES, VILLAGES, signal_sentence
 
 
 @asynccontextmanager
@@ -421,6 +421,7 @@ def summary(_admin: None = Depends(admin_auth)):
     return {
         "villages": VILLAGES,
         "syndromes": {k: v["label_en"] for k, v in SYNDROMES.items()},
+        "alert_radius_km": ALERT_RADIUS_KM,
         "week": outbreak.iso_week(datetime.now(timezone.utc)),
         "zscores": [{**r, "unusual": outbreak.unusual(r)} for r in outbreak.z_scores() if r["count"] or r["baseline"]],
         "alerts": alerts,
