@@ -82,12 +82,12 @@ export default function App() {
   setLang(settings.lang);
   if (!settings.setupDone) return <Setup />;
   if (!settings.deviceToken) return <div className="mx-auto flex h-full max-w-md flex-col justify-center gap-4 p-6 text-center">
-    <h1 className="text-xl font-bold">Set up the evaluator workspace</h1>
-    <p className="text-sm text-slate-600">This phone has data from an older demo build. Starting fresh removes local demo records and lets the phone enroll securely. This does not change cloud records.</p>
+    <h1 className="text-xl font-bold">{tr("फ़ोन को फिर से शुरू करें", "Start fresh on this phone")}</h1>
+    <p className="text-sm text-slate-600">{tr("इस फ़ोन पर ऐप के पुराने संस्करण का डेटा है। नई शुरुआत से यह डेटा इस फ़ोन से हटेगा और फ़ोन फिर से जुड़ेगा। ज़िले के सर्वर का डेटा नहीं बदलेगा।", "This phone has data from an older version of the app. Starting fresh clears it from this phone and registers the phone again. Records on the district server are not changed.")}</p>
     <button className="rounded-xl bg-teal-700 px-4 py-3 font-semibold text-white" onClick={async () => {
-      if (!confirm("Clear older data on this phone and set up a fresh evaluator workspace?")) return;
+      if (!confirm(tr("पुराना डेटा हटाकर नई शुरुआत करें?", "Clear the older data on this phone and start fresh?"))) return;
       await resetDevice(); resetSettingsCache(); location.reload();
-    }}>Start fresh on this phone</button>
+    }}>{tr("नई शुरुआत करें", "Start fresh")}</button>
   </div>;
 
   const top = stack[stack.length - 1];

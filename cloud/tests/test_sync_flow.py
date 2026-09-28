@@ -1,4 +1,4 @@
-"""Small backend contract test for an empty evaluator workspace and two phones."""
+"""Backend contract test: an empty workspace, two phones, sync, radar and access rules."""
 
 import sys
 import tempfile
@@ -14,7 +14,7 @@ from app import db, main, outbreak, store
 from datetime import datetime, timezone
 
 
-class EvaluatorFlow(unittest.TestCase):
+class SyncFlow(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.qdrant = QdrantClient(path=self.tmp.name)
@@ -110,6 +110,17 @@ class EvaluatorFlow(unittest.TestCase):
             self.assertEqual(self.api.post("/v1/admin/knowledge", json={"title": "Open check", "text": "Refer when in doubt."}).status_code, 200)
         finally:
             main.OPEN_DASHBOARD = False
+
+    def test_guidance_input_is_validated(self):
+        admin = {"Authorization": "Bearer test-admin-token"}
+        bad = [{"title": " ", "text": "x"}, {"title": "x", "text": ""}, {"kind": "alert", "title": "x", "text": "y"}, {"title": "x", "text": "y", "expires_in_days": -1}]
+        for body in bad:
+            self.assertEqual(self.api.post("/v1/admin/knowledge", headers=admin, json=body).status_code, 400, body)
+        ok = self.api.post("/v1/admin/knowledge", headers=admin, json={"title": "Heat advisory", "text": "Drink water often; refer if confused.", "approved_by": "Block Medical Officer"})
+        self.assertEqual(ok.status_code, 200, ok.text)
+        summary = self.api.get("/v1/dashboard/summary", headers=admin).json()
+        self.assertEqual(summary["syndromes"]["danger_child"], "Child danger sign")
+        self.assertTrue(all(v.get("district") for v in summary["villages"]))
 
 
 if __name__ == "__main__":

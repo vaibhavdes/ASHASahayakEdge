@@ -30,7 +30,7 @@ The phone talks to the cloud only through the sync API (`/v1/...`). The diagram 
 ├── cloud/                    District service
 │   ├── app/                  FastAPI code (API, radar, storage)
 │   ├── dashboard/index.html  District dashboard (single page, no build step)
-│   ├── tests/                Backend test (two phones, empty workspace, radar, open access)
+│   ├── tests/                Backend test (two phones, empty workspace, radar, access, input checks)
 │   └── Dockerfile, cloudbuild.yaml, deploy.sh   Build and deploy to Cloud Run
 ├── data/                     Files the app and cloud actually run on
 │   ├── villages.json         Work areas with coordinates
@@ -171,7 +171,7 @@ At startup it creates any missing collections and publishes the starter guidance
 | `registry.py` | Field-by-field merge of family changes; conflicts when two phones changed the same field |
 | `outbreak.py` | The radar: weekly z-score per area and syndrome, new-area cluster rule, similar signals across areas (distance matrix), danger notices; alerts go to areas within 6 km |
 | `embed.py` | Same embeddings as the phone (fastembed MiniLM) and the same BM25 as Qdrant Edge |
-| `dashboard/index.html` | Map, live signals, radar table, alerts with delivery, devices, reports, questions, guidance form |
+| `dashboard/index.html` | Area tiles grouped by district, live signals, radar table, alerts with delivery, devices, reports, questions, guidance form |
 
 All collection names start with `COLLECTION_PREFIX` (`eval1_` on the live service).
 
@@ -202,7 +202,7 @@ All collection names start with `COLLECTION_PREFIX` (`eval1_` on the live servic
 
 | To change | Edit |
 |---|---|
-| Work areas | `data/villages.json` |
+| Work areas | `data/villages.json` (each area has a `district`; the dashboard groups by it) |
 | Hindi/Hinglish words, syndromes, danger rules | `data/lexicon.json` (both app and cloud read it) |
 | Starter guidance | `data/knowledge.json`, and raise its `version` so the cloud republishes it |
 | Screen text | the screen file; every label is `tr("हिंदी", "English")` |

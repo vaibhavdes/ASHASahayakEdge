@@ -1,68 +1,79 @@
 [
-  {
-    "code": "MBD",
-    "name": "Mumbai · Bandra",
-    "lat": 19.0544,
-    "lon": 72.8406
-  },
-  {
-    "code": "MDH",
-    "name": "Mumbai · Dharavi",
-    "lat": 19.038,
-    "lon": 72.8538
-  },
-  {
-    "code": "MKL",
-    "name": "Mumbai · Kurla",
-    "lat": 19.0726,
-    "lon": 72.8845
-  },
-  {
-    "code": "MCH",
-    "name": "Mumbai · Chembur",
-    "lat": 19.0522,
-    "lon": 72.9005
-  },
-  {
-    "code": "MAD",
-    "name": "Mumbai · Andheri",
-    "lat": 19.1136,
-    "lon": 72.8697
-  },
-  {
-    "code": "RMP",
-    "name": "Rampur",
-    "lat": 26.912,
-    "lon": 80.942
-  },
-  {
-    "code": "LKP",
-    "name": "Lakhanpur",
-    "lat": 26.935,
-    "lon": 80.975
-  },
-  {
-    "code": "SNP",
-    "name": "Sonpur",
-    "lat": 26.884,
-    "lon": 80.991
-  },
-  {
-    "code": "DVG",
-    "name": "Devgaon",
-    "lat": 26.861,
-    "lon": 80.921
-  },
-  {
-    "code": "KHD",
-    "name": "Kheda",
-    "lat": 26.958,
-    "lon": 80.903
-  },
-  {
-    "code": "BRL",
-    "name": "Barauli",
-    "lat": 26.829,
-    "lon": 81.034
-  }
+ {
+  "code": "MBD",
+  "name": "Mumbai · Bandra",
+  "lat": 19.0544,
+  "lon": 72.8406,
+  "district": "Mumbai"
+ },
+ {
+  "code": "MDH",
+  "name": "Mumbai · Dharavi",
+  "lat": 19.038,
+  "lon": 72.8538,
+  "district": "Mumbai"
+ },
+ {
+  "code": "MKL",
+  "name": "Mumbai · Kurla",
+  "lat": 19.0726,
+  "lon": 72.8845,
+  "district": "Mumbai"
+ },
+ {
+  "code": "MCH",
+  "name": "Mumbai · Chembur",
+  "lat": 19.0522,
+  "lon": 72.9005,
+  "district": "Mumbai"
+ },
+ {
+  "code": "MAD",
+  "name": "Mumbai · Andheri",
+  "lat": 19.1136,
+  "lon": 72.8697,
+  "district": "Mumbai"
+ },
+ {
+  "code": "RMP",
+  "name": "Rampur",
+  "lat": 26.912,
+  "lon": 80.942,
+  "district": "Lucknow"
+ },
+ {
+  "code": "LKP",
+  "name": "Lakhanpur",
+  "lat": 26.935,
+  "lon": 80.975,
+  "district": "Lucknow"
+ },
+ {
+  "code": "SNP",
+  "name": "Sonpur",
+  "lat": 26.884,
+  "lon": 80.991,
+  "district": "Lucknow"
+ },
+ {
+  "code": "DVG",
+  "name": "Devgaon",
+  "lat": 26.861,
+  "lon": 80.921,
+  "district": "Lucknow"
+ },
+ {
+  "code": "KHD",
+  "name": "Kheda",
+  "lat": 26.958,
+  "lon": 80.903,
+  "district": "Lucknow"
+ },
+ {
+  "code": "BRL",
+  "name": "Barauli",
+  "lat": 26.829,
+  "lon": 81.034,
+  "district": "Lucknow"
+ }
 ]

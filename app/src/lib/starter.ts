@@ -1,16 +1,19 @@
-// Bundled starter guidance for an empty phone. These are reference examples,
-// not a substitute for clinical review.
+// Bundled starter guidance for an empty phone: short summaries of public MoHFW/WHO
+// material, not yet reviewed by a clinician.
 import knowledge from "../../../data/knowledge.json";
 import { edge } from "./bridge";
 import { answerVariants, upsertDocs } from "./knowledge";
 import type { KnowledgeDoc } from "./types";
+
+// Must match STARTER_SOURCE in cloud/app/main.py.
+export const STARTER_SOURCE = "Starter guidance (MoHFW/WHO summary)";
 
 export async function loadStarterKnowledge() {
   const published = "2026-09-01T00:00:00Z";
   const docs: (KnowledgeDoc & { id: string })[] = [
     ...knowledge.protocols.map((p) => ({ ...p, kind: "protocol" as const, published_at: published, version: knowledge.version })),
     ...knowledge.answers.flatMap((a) =>
-      answerVariants(a).map((v) => ({ ...v, kind: "answer" as const, source: "Starter reference (example)", published_at: published, version: knowledge.version })),
+      answerVariants(a).map((v) => ({ ...v, kind: "answer" as const, source: STARTER_SOURCE, published_at: published, version: knowledge.version })),
     ),
   ];
   await upsertDocs(docs);

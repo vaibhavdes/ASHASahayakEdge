@@ -78,6 +78,17 @@ def create_alert(*, kind, title, text, severity, villages, syndromes, dedupe, da
     return alert
 
 
+def unusual(r: dict) -> str | None:
+    """"rising" against the area's own history, "cluster" in an area without history, else None."""
+    syn = r["syndrome"]
+    if syn.startswith("danger") or r["count"] < MIN_CASES:
+        return None
+    if r["baseline_weeks"] >= 3:
+        return "rising" if r["z"] >= ZSCORE_THRESHOLD else None
+    # A new area has no history to compare with; flag patterns that are unusual on their own.
+    return "cluster" if r["count"] >= COLD_START_CASES.get(syn, 10**6) else None
+
+
 def z_scores() -> list[dict]:
     now = datetime.now(timezone.utc)
     current = iso_week(now)
@@ -99,15 +110,10 @@ def scan() -> list[dict]:
     created = []
     # 1. Count anomalies.
     for r in z_scores():
-        syn = r["syndrome"]
-        if syn.startswith("danger") or r["count"] < MIN_CASES:
+        kind = unusual(r)
+        if not kind:
             continue
-        has_baseline = r["baseline_weeks"] >= 3
-        rising = has_baseline and r["z"] >= ZSCORE_THRESHOLD
-        # A new area has no history to compare with; flag patterns that are unusual on their own.
-        cluster = not has_baseline and r["count"] >= COLD_START_CASES.get(syn, 10**6)
-        if not (rising or cluster):
-            continue
+        syn, rising = r["syndrome"], kind == "rising"
         parts = syn.split("+")
         name = VILLAGE[r["village"]]["name"]
         action = " ".join(ACTIONS.get(p, "") for p in parts).strip()

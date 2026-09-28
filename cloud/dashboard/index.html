@@ -40,7 +40,16 @@
   button { font: inherit; border: 1px solid var(--teal); background: var(--card); color: var(--ink); border-radius: 10px; padding: 8px 12px; cursor: pointer; }
   button.primary { background: var(--teal); color: #fff; }
   .controls { display: flex; flex-wrap: wrap; gap: 8px; }
-  svg text { fill: var(--ink); font-size: 11px; }
+  .district { margin-bottom: 12px; }
+  .district h3 { margin: 0 0 6px; font-size: 13px; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+  .tile { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+  .tile b { display: block; font-size: 20px; color: var(--teal); font-variant-numeric: tabular-nums; }
+  .tile .name { font-weight: 600; }
+  .tile.hot { background: var(--rose-soft); border-color: var(--rose); }
+  .tile.hot b { color: var(--rose); }
+  .tile.alerted { border: 2px dashed var(--rose); }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
   .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
   textarea, input, select { font: inherit; width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); }
   textarea { min-height: 64px; }
@@ -64,8 +73,9 @@
       <div class="stats" id="stats"></div>
     </section>
     <section class="card">
-      <h2>Areas · this week vs 8-week baseline (symptom reports)</h2>
-      <svg id="map" viewBox="0 0 600 300" width="100%" role="img" aria-label="Village map"></svg>
+      <h2>Areas · symptom reports this week</h2>
+      <div id="areas"></div>
+      <div class="legend muted"><span>Red: unusual this week (rising, or a new-area cluster)</span><span>Dashed border: alert sent</span></div>
     </section>
     <section class="card">
       <h2>Syndrome counts · z-score</h2>
@@ -94,15 +104,16 @@
       <table id="reports"></table>
     </section>
     <section class="card">
-      <h2>Publish evaluator guidance to all phones</h2>
+      <h2>Publish guidance to all phones</h2>
       <div class="form">
         <select id="g-kind"><option value="protocol">Protocol / advisory</option><option value="answer">Approved answer to a question</option></select>
         <input id="g-title" placeholder="Title, or the question for an approved answer" />
         <textarea id="g-text" placeholder="Guidance text (say when to refer)"></textarea>
         <input id="g-alt" placeholder="Other ways ASHAs ask it, separated by | (answers only)" />
         <input id="g-exp" type="number" min="0" placeholder="Expires in days (optional, for seasonal advisories)" />
-        <button class="primary" onclick="publishForm()">Publish fictional guidance (new version)</button>
-        <p class="muted">Evaluator content is for the demo. A qualified clinician must review guidance before real-world use.</p>
+        <input id="approver" placeholder="Approved by, e.g. Block Medical Officer (shown on phones)" />
+        <button class="primary" onclick="publishForm()">Publish (new version)</button>
+        <p class="muted">Phones receive it at their next sync and can use it offline. Guidance should be reviewed by a clinician before it is published.</p>
       </div>
     </section>
     <p class="muted" id="ctl"></p>
@@ -122,7 +133,7 @@ async function load() {
   if (!response.ok) {
     document.querySelector("main").style.visibility = "hidden";
     if (response.status === 401) { $("admin-token").style.display = ""; $("unlock").style.display = ""; }
-    $("meta").textContent = response.status === 401 ? (adminToken ? "Invalid admin token" : "Enter the admin token to see evaluator records") : `Dashboard error ${response.status}`;
+    $("meta").textContent = response.status === 401 ? (adminToken ? "Invalid admin token" : "Enter the admin token to open the dashboard") : `Dashboard error ${response.status}`;
     return;
   }
   document.querySelector("main").style.visibility = "visible";
@@ -132,55 +143,56 @@ async function load() {
     ["signals (all)", d.totals.n], ["live signals", d.totals.live ?? 0], ["alerts", d.alerts.length], ["devices", d.devices.length],
   ].map(([l, v]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
 
-  // Map: villages placed by lat/lon; circle size = this week's cases, red ring = alert.
-  const vs = d.villages, lats = vs.map((v) => v.lat), lons = vs.map((v) => v.lon);
-  const [a, b, c, e] = [Math.min(...lats), Math.max(...lats), Math.min(...lons), Math.max(...lons)];
-  const x = (lon) => 60 + ((lon - c) / (e - c || 1)) * 480, y = (lat) => 260 - ((lat - a) / (b - a || 1)) * 220;
+  // Areas as tiles grouped by district: never overlap, and any number of areas fits.
+  const vs = d.villages;
+  const area = (code) => esc(vs.find((v) => v.code === code)?.name || code);
+  const syn = (key) => esc(key.split("+").map((s) => d.syndromes?.[s] || s).join(" + "));
   const week = {}; d.zscores.forEach((r) => { week[r.village] = (week[r.village] || 0) + r.count; });
-  const alerted = new Set(d.alerts.filter((al) => al.severity === "alert").flatMap((al) => al.villages));
-  const hot = new Set(d.zscores.filter((r) => r.baseline_weeks >= 3 && r.z >= 2 && r.count >= 3).map((r) => r.village));
-  $("map").innerHTML = vs.map((v) => {
-    const r = 10 + Math.sqrt(week[v.code] || 0) * 4;
-    const fill = hot.has(v.code) ? "#e11d48" : "#0f766e";
-    return `<g>${alerted.has(v.code) ? `<circle cx="${x(v.lon)}" cy="${y(v.lat)}" r="${r + 8}" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4 3"/>` : ""}
-      <circle cx="${x(v.lon)}" cy="${y(v.lat)}" r="${r}" fill="${fill}" fill-opacity=".75"/>
-      <text x="${x(v.lon)}" y="${y(v.lat) + r + 14}" text-anchor="middle">${esc(v.name)} (${week[v.code] || 0})</text></g>`;
-  }).join("");
+  const phones = {}; d.devices.forEach((v) => { phones[v.village] = (phones[v.village] || 0) + 1; });
+  const alerted = new Set(d.alerts.flatMap((al) => al.villages));
+  const hot = new Set(d.zscores.filter((r) => r.unusual).map((r) => r.village));
+  const districts = {}; vs.forEach((v) => { (districts[v.district || "Other areas"] ||= []).push(v); });
+  const short = (v) => (v.district && v.name.startsWith(`${v.district} · `) ? v.name.slice(v.district.length + 3) : v.name);
+  $("areas").innerHTML = Object.entries(districts).map(([name, list]) => `<div class="district"><h3>${esc(name)}</h3><div class="tiles">${
+    list.map((v) => `<div class="tile ${hot.has(v.code) ? "hot" : ""} ${alerted.has(v.code) ? "alerted" : ""}" title="${esc(v.name)}">
+      <div class="name">${esc(short(v))}</div><b>${week[v.code] || 0}</b>
+      <div class="muted">reports · ${phones[v.code] || 0} phone${phones[v.code] === 1 ? "" : "s"}</div></div>`).join("")
+  }</div></div>`).join("");
 
   const rows = d.zscores.filter((r) => r.count > 0).sort((p, q) => q.z - p.z);
-  $("z").innerHTML = rows.length ? `<tr><th>Village</th><th>Syndrome</th><th>This week</th><th>Usual</th><th>z</th></tr>` + rows.map((r) => {
-    const cls = r.baseline_weeks >= 3 && r.z >= 2 && r.count >= 3 ? "hot" : r.z >= 1 ? "warm" : "";
-    return `<tr><td>${esc(vs.find((v) => v.code === r.village)?.name || r.village)}</td><td>${esc(r.syndrome)}</td><td class="num">${r.count}</td><td class="num">${r.baseline}</td><td class="num ${cls}">${r.baseline_weeks >= 3 ? r.z : "—"}</td></tr>`;
+  $("z").innerHTML = rows.length ? `<tr><th>Area</th><th>Syndrome</th><th>This week</th><th>Usual</th><th>z</th></tr>` + rows.map((r) => {
+    const cls = r.unusual ? "hot" : r.z >= 1 ? "warm" : "";
+    return `<tr><td>${area(r.village)}</td><td>${syn(r.syndrome)}</td><td class="num">${r.count}</td><td class="num">${r.baseline}</td><td class="num ${cls}">${r.baseline_weeks >= 3 ? r.z : "—"}</td></tr>`;
   }).join("") : `<tr><td class="empty">No cases this week yet.</td></tr>`;
 
-  $("feed").innerHTML = d.feed.length ? `<tr><th>When</th><th>Village</th><th>Syndromes</th><th>Age</th><th>Bytes</th></tr>` + d.feed.map((s) =>
-    `<tr><td>${ago(s.received_at)}</td><td>${esc(s.village)}</td><td>${s.syndromes.map((x) => `<span class="pill ${s.danger ? "d" : ""}">${esc(x)}</span>`).join("")}</td><td>${esc(s.age_band)}</td><td class="num">${s.bytes}</td></tr>`
+  $("feed").innerHTML = d.feed.length ? `<tr><th>When</th><th>Area</th><th>Syndromes</th><th>Age</th><th>Bytes</th></tr>` + d.feed.map((s) =>
+    `<tr><td>${ago(s.received_at)}</td><td>${area(s.village)}</td><td>${s.syndromes.map((x) => `<span class="pill ${s.danger ? "d" : ""}">${syn(x)}</span>`).join("")}</td><td>${esc(s.age_band)}</td><td class="num">${s.bytes}</td></tr>`
   ).join("") : `<tr><td class="empty">No live signals yet. Sync a phone.</td></tr>`;
 
   $("alerts").innerHTML = d.alerts.length ? d.alerts.map((al) =>
-    `<div class="alert ${al.severity === "watch" ? "watch" : ""}"><b>${esc(al.title)}</b>${esc(al.text)}<div class="muted">${ago(al.created_at)} · to: ${al.villages.map(esc).join(", ")} · ${esc(al.kind)} · delivered to ${al.delivered}/${al.targets} phone(s)</div></div>`
+    `<div class="alert ${al.severity === "watch" ? "watch" : ""}"><b>${esc(al.title)}</b>${esc(al.text)}<div class="muted">${ago(al.created_at)} · to: ${al.villages.map(area).join(", ")} · ${esc(al.kind)} · delivered to ${al.delivered}/${al.targets} phone(s)</div></div>`
   ).join("") : `<div class="empty">No alerts.</div>`;
 
   // Questions: keep what the officer is typing across refreshes.
   const typing = document.activeElement && document.activeElement.dataset && document.activeElement.dataset.q;
   if (!typing) {
     $("questions").innerHTML = d.questions.length ? d.questions.map((q) => q.status === "answered"
-      ? `<div class="q"><b>${esc(q.question)}</b><div class="muted">${esc(q.village)} · answered by ${esc(q.answered_by)} ${ago(q.answered_at)}</div><div>${esc(q.answer_text)}</div></div>`
-      : `<div class="q"><b>${esc(q.question)}</b><div class="muted">${esc(q.village)} · asked ${ago(q.asked_at)}</div>
+      ? `<div class="q"><b>${esc(q.question)}</b><div class="muted">${area(q.village)} · answered by ${esc(q.answered_by)} ${ago(q.answered_at)}</div><div>${esc(q.answer_text)}</div></div>`
+      : `<div class="q"><b>${esc(q.question)}</b><div class="muted">${area(q.village)} · asked ${ago(q.asked_at)}</div>
           <textarea data-q="${esc(q.id)}" id="a-${esc(q.id)}" placeholder="Answer (becomes an approved answer on every phone)"></textarea>
           <div class="row"><button class="primary" onclick="answer('${esc(q.id)}')">Approve &amp; send answer</button></div></div>`
     ).join("") : `<div class="empty">No questions yet.</div>`;
   }
 
-  $("reports").innerHTML = d.reports.length ? `<tr><th>Report</th><th>Village</th><th>Period</th><th>Summary</th><th>Received</th></tr>` + d.reports.map((r) => {
+  $("reports").innerHTML = d.reports.length ? `<tr><th>Report</th><th>Area</th><th>Period</th><th>Summary</th><th>Received</th></tr>` + d.reports.map((r) => {
     const summary = r.kind === "s_form"
       ? r.data.filter((x) => x.under5 + x.over5 > 0).map((x) => `${x.key} ${x.under5 + x.over5}`).join(", ") || "no cases"
       : Object.entries(r.data).slice(0, 4).map(([k, v]) => `${k} ${v}`).join(", ");
-    return `<tr><td>${r.kind === "s_form" ? "S-form" : "Monthly"}</td><td>${esc(r.village)}</td><td>${esc(r.period)}</td><td>${esc(summary)}</td><td>${ago(r.received_at)}</td></tr>`;
+    return `<tr><td>${r.kind === "s_form" ? "S-form" : "Monthly"}</td><td>${area(r.village)}</td><td>${esc(r.period)}</td><td>${esc(summary)}</td><td>${ago(r.received_at)}</td></tr>`;
   }).join("") : `<tr><td class="empty">No reports yet.</td></tr>`;
 
-  $("devices").innerHTML = d.devices.length ? `<tr><th>Device</th><th>Role</th><th>Village</th><th>Last seen</th><th>Sent</th><th>Waiting</th><th>Guidance</th></tr>` + d.devices.map((v) =>
-    `<tr><td>${esc(v.id.slice(0, 8))}</td><td>${esc(v.role)}</td><td>${esc(v.village)}</td><td>${ago(v.last_seen)}</td><td class="num">${v.pushed}</td><td class="num">${v.pending ?? "–"}</td><td class="${(v.knowledge_version || 0) < d.knowledge_version ? "warm" : ""}">v${v.knowledge_version || "?"}</td></tr>`
+  $("devices").innerHTML = d.devices.length ? `<tr><th>Device</th><th>Role</th><th>Area</th><th>Last seen</th><th>Sent</th><th>Waiting</th><th>Guidance</th></tr>` + d.devices.map((v) =>
+    `<tr><td>${esc(v.id.slice(0, 8))}</td><td>${esc(v.role)}</td><td>${area(v.village)}</td><td>${ago(v.last_seen)}</td><td class="num">${v.pushed}</td><td class="num">${v.pending ?? "–"}</td><td class="${v.knowledge_version && v.knowledge_version < d.knowledge_version ? "warm" : ""}">${v.knowledge_version ? `v${v.knowledge_version}` : "–"}</td></tr>`
   ).join("") : `<tr><td class="empty">No phone has synced yet.</td></tr>`;
 }
 
@@ -193,15 +205,19 @@ async function post(url, body) {
   load();
   return j;
 }
+// The approver's name is remembered on this computer and used for answers too.
+const approver = () => $("approver").value.trim();
+try { $("approver").value = localStorage.getItem("sahayak-approver") || ""; } catch {}
+$("approver").addEventListener("change", () => { try { localStorage.setItem("sahayak-approver", approver()); } catch {} });
 const answer = (id) => {
   const text = $("a-" + id).value.trim();
-  if (text) post(`/v1/admin/questions/${id}/answer`, { text, approved_by: "Evaluator (demo)" });
+  if (text) post(`/v1/admin/questions/${id}/answer`, { text, approved_by: approver() || "District doctor" });
 };
 const publishForm = () => {
   const body = {
     kind: $("g-kind").value, title: $("g-title").value, text: $("g-text").value,
     alt_questions: $("g-alt").value.split("|").map((x) => x.trim()).filter(Boolean),
-    expires_in_days: Number($("g-exp").value) || null, approved_by: "Evaluator (demo)", source: "Evaluator scenario",
+    expires_in_days: Number($("g-exp").value) || null, approved_by: approver() || null, source: "District health office",
   };
   if (body.title && body.text) post("/v1/admin/knowledge", body).then(() => ["g-title", "g-text", "g-alt", "g-exp"].forEach((i) => ($(i).value = "")));
 };

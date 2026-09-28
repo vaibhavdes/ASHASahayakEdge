@@ -12,9 +12,9 @@ SECRET=sahayak-qdrant-api-key
 ENROLL_SECRET=sahayak-enroll-code
 ADMIN_SECRET=sahayak-admin-token
 COLLECTION_PREFIX=eval1_
-# Phones register themselves during evaluation; set OPEN_ENROLLMENT=false to require the code.
+# Phones register themselves; set OPEN_ENROLLMENT=false to require the shared code.
 OPEN_ENROLLMENT="${OPEN_ENROLLMENT:-true}"
-# The dashboard opens without the admin token during evaluation; set OPEN_DASHBOARD=false to require it.
+# The dashboard opens without the admin token; set OPEN_DASHBOARD=false to require it.
 OPEN_DASHBOARD="${OPEN_DASHBOARD:-true}"
 SERVICE_ACCOUNT="sahayak-cloud@$PROJECT.iam.gserviceaccount.com"
 

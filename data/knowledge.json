@@ -1,6 +1,6 @@
 {
- "_about": "Starter knowledge (version 3). Short summaries written for this demo from public MoHFW ASHA training modules, HBNC / IMNCI guidance and WHO fact sheets. Not a substitute for official protocols or clinical judgement; every item ends with when to refer. Each approved answer lists alternative phrasings; every phrasing is stored as its own vector pointing to the same answer (semantic answer cache).",
- "version": 3,
+ "_about": "Starter guidance (version 4). Short summaries of public MoHFW ASHA training modules, HBNC / IMNCI guidance and WHO fact sheets, not yet reviewed by a clinician. Not a substitute for official protocols or clinical judgement; every item ends with when to refer. Each answer lists alternative phrasings; every phrasing is stored as its own vector pointing to the same answer (semantic answer cache).",
+ "version": 4,
  "protocols": [
   {
    "id": "b1c0a000-0000-4000-8000-000000000001",
@@ -169,7 +169,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000001",
    "topic": "newborn",
    "title": "Newborn not feeding — what should I do?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Not feeding is a danger sign. Keep the baby warm (skin-to-skin), do not give anything other than breast milk, and arrange immediate referral to the nearest facility (call 108/102). Inform the ANM. नवजात दूध नहीं पी रहा है तो तुरंत रेफर करें।",
    "alt_questions": [
     "navjat shishu doodh nahi pee raha kya karein",
@@ -181,7 +180,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000002",
    "topic": "diarrhoea",
    "title": "How much ORS to give a child with diarrhoea?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Under 2 years: 50-100 ml (a quarter to half cup) after each loose stool. 2 years and older: 100-200 ml after each stool. Give slowly with a spoon; continue breastfeeding. Give zinc for 14 days. Refer if danger signs appear. 2 साल से छोटे बच्चे को हर दस्त के बाद आधा कप, बड़े को एक कप ORS दें और 14 दिन ज़िंक।",
    "alt_questions": [
     "ORS kitna dena hai",
@@ -193,7 +191,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000003",
    "topic": "pregnancy",
    "title": "Pregnant woman has high BP and headache",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "BP 140/90 or more with headache, blurred vision or swelling can be pre-eclampsia. Refer urgently to the FRU/CHC with transport (108). Do not wait for the next visit. Inform the ANM. गर्भवती को तेज़ सिर दर्द और बीपी ज़्यादा हो तो तुरंत रेफर करें।",
    "alt_questions": [
     "garbhvati ko BP zyada aur sar dard",
@@ -205,7 +202,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000004",
    "topic": "measles",
    "title": "Child has fever and rash — is it measles?",
-   "approved_by": "Dr. (Demo) District Surveillance Officer",
    "text": "Fever with rash plus cough, runny nose or red eyes is a suspected measles case. Report it to the ANM today, check MR vaccination of children in the household and neighbourhood, and refer if breathing is difficult or the child is dehydrated. बुखार और दाने हों तो आज ही ANM को बताएं और आसपास के बच्चों का MR टीका जांचें।",
    "alt_questions": [
     "bacche ko bukhar aur daane",
@@ -217,7 +213,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000005",
    "topic": "tb",
    "title": "Where to send someone with long cough?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Cough of 2 weeks or more: refer to the nearest PHC/DMC for a free sputum test under NTEP. Note the name in your register and follow up the result. दो हफ्ते से ज़्यादा खांसी हो तो PHC पर मुफ़्त बलगम जांच के लिए भेजें।",
    "alt_questions": [
     "khansi wale ko kahan bheje",
@@ -229,7 +224,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000006",
    "topic": "fever",
    "title": "Child has high fever — paracetamol dose?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Give paracetamol by weight as per your drug kit chart, not more than 4 times a day, and plenty of fluids. Children under 2 months with fever must be referred. Refer if fever lasts more than 7 days or any danger sign is present. पैरासिटामोल वज़न के हिसाब से, दिन में 4 बार से ज़्यादा नहीं; 2 महीने से छोटे बच्चे को रेफर करें।",
    "alt_questions": [
     "paracetamol kitni deni hai",
@@ -241,7 +235,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000007",
    "topic": "emergency",
    "title": "Someone bitten by a snake — what to do?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Keep the person calm and the limb still. Do not cut, suck or tie a tight band. Remove bangles or rings. Take them to hospital with anti-snake venom right away (call 108) and note the time of the bite. सांप काटे तो अंग स्थिर रखें, काटें या चूसें नहीं, तुरंत 108 से अस्पताल ले जाएं।",
    "alt_questions": [
     "saanp ne kaat liya kya karein",
@@ -253,7 +246,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000008",
    "topic": "emergency",
    "title": "Dog bite — what should I do?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Wash the wound with soap and running water for 15 minutes and apply antiseptic. Do not put chilli, turmeric or oil. Send the person to the PHC the same day for anti-rabies vaccine and complete all doses. कुत्ते के काटने पर घाव धोएं और उसी दिन रेबीज़ का टीका लगवाएं।",
    "alt_questions": [
     "kutte ne kaat liya kya karein",
@@ -265,7 +257,6 @@
    "id": "a1c0a000-0000-4000-8000-000000000009",
    "topic": "emergency",
    "title": "Child got burnt — first aid?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Cool the burn under clean running water for 20 minutes and cover it with a clean cloth. Do not apply toothpaste, ice, oil or ghee. Refer if it is bigger than the child's palm, on the face, hands or genitals, or from electricity. जले हुए हिस्से पर 20 मिनट पानी डालें; बड़ा जला हो तो रेफर करें।",
    "alt_questions": [
     "bacha jal gaya kya lagayein",
@@ -277,7 +268,6 @@
    "id": "a1c0a000-0000-4000-8000-00000000000a",
    "topic": "emergency",
    "title": "Someone drank pesticide — what to do?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Do not make them vomit. Remove contaminated clothes, wash the skin, lay them on their side if drowsy, and take them to hospital immediately with the container (call 108). कीटनाशक पी लिया हो तो उल्टी न कराएं, डिब्बा साथ लेकर तुरंत अस्पताल ले जाएं।",
    "alt_questions": [
     "keetnashak pee liya",
@@ -289,7 +279,6 @@
    "id": "a1c0a000-0000-4000-8000-00000000000b",
    "topic": "emergency",
    "title": "Heat stroke — what to do?",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Move the person to shade, loosen clothes, cool with wet cloths and fanning, and give sips of water or ORS if awake. If confused, unconscious or having fits, call 108 now. लू लगे तो छांव में ठंडा करें; बेहोशी हो तो तुरंत 108।",
    "alt_questions": [
     "loo lag gayi kya karein",
@@ -301,7 +290,6 @@
    "id": "a1c0a000-0000-4000-8000-00000000000c",
    "topic": "pneumonia",
    "title": "Child has cough and fast breathing",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Count breaths for a full minute. Fast breathing with cough means the child must see the ANM or doctor today. If the chest pulls in, the child cannot drink or is very sleepy, refer immediately (call 108). खांसी के साथ सांस तेज़ हो तो आज ही दिखाएं; पसली धंसे तो तुरंत रेफर करें।",
    "alt_questions": [
     "bacche ki saans tez chal rahi hai",
@@ -313,7 +301,6 @@
    "id": "a1c0a000-0000-4000-8000-00000000000d",
    "topic": "nutrition",
    "title": "Child looks very thin or MUAC is red",
-   "approved_by": "Dr. (Demo) Block Medical Officer",
    "text": "Measure MUAC for children aged 6 to 59 months. Red (below 11.5 cm) or swelling of both feet means severe acute malnutrition: refer to the Nutrition Rehabilitation Centre, urgently if the child also has fever, diarrhoea or is not eating. Yellow (11.5 to 12.5 cm): counsel on feeding and link with the Anganwadi. बांह का नाप लाल हो या दोनों पैरों में सूजन हो तो पोषण पुनर्वास केंद्र भेजें।",
    "alt_questions": [
     "MUAC laal hai kya karein",

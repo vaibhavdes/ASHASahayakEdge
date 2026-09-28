@@ -5,7 +5,7 @@ import { VILLAGES, type Village } from "./villages";
 
 export type Position = { lat: number; lon: number };
 
-// Evaluators outside our areas all land in the same default area, so their phones sync together.
+// Phones outside our areas all land in the same default area, so they can share records.
 export const DEFAULT_AREA = "MDH";
 const NEAR_KM = 30;
 

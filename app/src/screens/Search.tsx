@@ -7,6 +7,7 @@ import { VoiceButton } from "../components/VoiceButton";
 import { useData, useSettings } from "../lib/hooks";
 import { ask, askDoctor, isExpired, myQuestions, scrubQuestion, type AskResult } from "../lib/knowledge";
 import { searchVisits, similarVisits, type SearchResult } from "../lib/memory";
+import { STARTER_SOURCE } from "../lib/starter";
 import { useNav } from "../lib/nav";
 import { daysSince, shortDate } from "../lib/time";
 import type { Hit, SearchMode, Visit } from "../lib/types";
@@ -243,7 +244,7 @@ export function Guidance({ initial }: { initial?: string } = {}) {
               <div className="font-semibold">{res.answer.payload.title}</div>
               <p className="text-sm text-slate-700">{res.answer.payload.text}</p>
               <div className="text-xs text-slate-500">
-                {res.answer.payload.approved_by?.includes("(Demo)") ? tr("उदाहरण जानकारी — डॉक्टर से जांची नहीं गई", "Starter example — not clinician verified") : (res.answer.payload.approved_by || res.answer.payload.source)}
+                {res.answer.payload.source === STARTER_SOURCE ? tr("शुरुआती जानकारी (MoHFW/WHO सारांश), डॉक्टर से जांची नहीं गई", "Starter guidance (MoHFW/WHO summary), not reviewed by a clinician") : res.answer.payload.approved_by ? tr(`स्वीकृत: ${res.answer.payload.approved_by}`, `Approved by ${res.answer.payload.approved_by}`) : res.answer.payload.source}
               </div>
               <ListenButton text={res.answer.payload.text} />
             </Card>

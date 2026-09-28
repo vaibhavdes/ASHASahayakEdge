@@ -276,6 +276,10 @@ def answer_variants(a: dict) -> list[dict]:
     return out
 
 
+# Must match STARTER_SOURCE in app/src/lib/starter.ts.
+STARTER_SOURCE = "Starter guidance (MoHFW/WHO summary)"
+
+
 def publish_starter_knowledge():
     """Publish bundled guidance when it is new or its version changed; district additions are kept."""
     k = json.loads((DATA / "knowledge.json").read_text(encoding="utf-8"))
@@ -283,7 +287,7 @@ def publish_starter_knowledge():
         return
     published = "2026-09-01T00:00:00Z"
     docs = [{**p, "kind": "protocol", "published_at": published, "version": k["version"], "approved_by": None, "expires_at": None} for p in k["protocols"]]
-    docs += [{**v, "kind": "answer", "source": "Starter reference (example)", "published_at": published, "version": k["version"], "expires_at": None}
+    docs += [{**v, "kind": "answer", "source": STARTER_SOURCE, "published_at": published, "version": k["version"], "expires_at": None}
              for a in k["answers"] for v in answer_variants(a)]
     db.put_many(db.DOCS, docs)
     store.upsert_knowledge(docs)
@@ -344,6 +348,12 @@ class DocIn(BaseModel):
 @app.post("/v1/admin/knowledge")
 def publish_doc(doc: DocIn, _admin: None = Depends(admin_auth)):
     """Publish guidance. Every phone gets it at its next sync (as a Qdrant snapshot)."""
+    if doc.kind not in ("protocol", "answer"):
+        raise HTTPException(400, "kind must be protocol or answer")
+    if not doc.title.strip() or not doc.text.strip():
+        raise HTTPException(400, "title and text are required")
+    if doc.expires_in_days is not None and doc.expires_in_days < 0:
+        raise HTTPException(400, "expires_in_days cannot be negative")
     version = int(db.get_meta("knowledge_version", 1)) + 1
     now = datetime.now(timezone.utc)
     base = {
@@ -374,7 +384,7 @@ def list_questions(_admin: None = Depends(admin_auth)):
 class AnswerIn(BaseModel):
     text: str
     title: str | None = None
-    approved_by: str = "Evaluator (demo)"
+    approved_by: str = "District doctor"
 
 
 @app.post("/v1/admin/questions/{question_id}/answer")
@@ -383,6 +393,9 @@ def answer_question(question_id: str, body: AnswerIn, _admin: None = Depends(adm
     row = db.get(db.QUESTIONS, question_id)
     if not row:
         raise HTTPException(404, "question not found")
+    if not body.text.strip():
+        raise HTTPException(400, "answer text is required")
+    body.approved_by = body.approved_by.strip() or "District doctor"
     # Placeholders from the phone's name scrubbing read badly in a published answer.
     title = " ".join((body.title or row["question"]).replace("[नाम]", "").replace("[घर]", "").replace("[नंबर]", "").split())
     published = publish_doc(DocIn(kind="answer", title=title, text=body.text, approved_by=body.approved_by, alt_questions=[row["question"]] if title != row["question"] else []), _admin)
@@ -407,8 +420,9 @@ def summary(_admin: None = Depends(admin_auth)):
     feed = sorted(store.signal_payloads(live_filter), key=lambda x: x.get("received_at", ""), reverse=True)[:25]
     return {
         "villages": VILLAGES,
+        "syndromes": {k: v["label_en"] for k, v in SYNDROMES.items()},
         "week": outbreak.iso_week(datetime.now(timezone.utc)),
-        "zscores": [r for r in outbreak.z_scores() if r["count"] or r["baseline"]],
+        "zscores": [{**r, "unusual": outbreak.unusual(r)} for r in outbreak.z_scores() if r["count"] or r["baseline"]],
         "alerts": alerts,
         "devices": devices,
         "feed": feed,
