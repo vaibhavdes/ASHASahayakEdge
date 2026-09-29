@@ -57,86 +57,86 @@ export interface SyncReport {
   ms: number;
 }
 
-let running = false;
+let inflight: Promise<SyncReport> | null = null;
 
-export async function runSync(): Promise<SyncReport> {
-  if (running) throw new Error("sync already running");
-  running = true;
+// A tap on Sync while auto-sync is running joins that round instead of failing.
+export function runSync(): Promise<SyncReport> {
+  if (!inflight) inflight = syncOnce().finally(() => { inflight = null; });
+  return inflight;
+}
+
+async function syncOnce(): Promise<SyncReport> {
   const t0 = performance.now();
-  try {
-    const s = await getSettings();
-    if (!isOnline(s.network)) throw new Error("offline");
-    if (!s.deviceToken) throw new Error("Phone is not enrolled. Complete setup before syncing.");
-    const slow = slowConnection();
-    const timeoutMs = slow ? 30_000 : 10_000;
-    const headers = { Authorization: `Bearer ${s.deviceToken}` };
-    const base = s.cloudUrl.replace(/\/$/, "");
+  const s = await getSettings();
+  if (!isOnline(s.network)) throw new Error("offline");
+  if (!s.deviceToken) throw new Error("Phone is not enrolled. Complete setup before syncing.");
+  const slow = slowConnection();
+  const timeoutMs = slow ? 30_000 : 10_000;
+  const headers = { Authorization: `Bearer ${s.deviceToken}` };
+  const base = s.cloudUrl.replace(/\/$/, "");
 
-    // ---------------- push ----------------
-    const outbox = await listOutbox();
-    const batch = selectForPush(outbox, slow);
-    const signals = batch.filter((i) => i.kind === "signal").map((i) => wire(i, slow));
-    const households = batch.filter((i) => i.kind === "household").map((i) => i.payload);
-    const reports = batch.filter((i) => i.kind === "report").map((i) => i.payload);
-    const questions = batch.filter((i) => i.kind === "question").map((i) => i.payload);
-    const retractions = batch.filter((i) => i.kind === "retract").map((i) => i.payload.signal_id as string);
-    const body = JSON.stringify({ device_id: s.deviceId, role: s.role, village: s.village, signals, households, reports, questions, retractions });
-    let pushed = 0;
-    let conflicts = 0;
-    if (batch.length) {
-      try {
-        const res = await call<{ accepted_signals: string[]; accepted_reports: string[]; accepted_questions: string[]; accepted_retractions: string[]; households: PushResult }>(`${base}/v1/sync/push`, { method: "POST", body, timeoutMs, headers });
-        const sentSignals = new Set(res.accepted_signals);
-        const sent = batch.filter((i) => i.kind === "signal" && sentSignals.has(i.id));
-        await removeFromOutbox([...sent.map((i) => i.id), ...res.accepted_reports, ...res.accepted_questions, ...(res.accepted_retractions ?? []).map((id) => `retract:${id}`)]);
-        await markQuestionsSent(res.accepted_questions);
-        await markVisitsSynced(sent.map((i) => i.ref).filter((r): r is string => !!r));
-        await applyPushResult(res.households);
-        pushed = sentSignals.size + res.households.accepted.length + res.accepted_reports.length + res.accepted_questions.length;
-        conflicts = res.households.conflicts.length;
-      } catch (err) {
-        await bumpAttempts(batch.map((i) => i.id));
-        throw err;
-      }
+  // ---------------- push ----------------
+  const outbox = await listOutbox();
+  const batch = selectForPush(outbox, slow);
+  const signals = batch.filter((i) => i.kind === "signal").map((i) => wire(i, slow));
+  const households = batch.filter((i) => i.kind === "household").map((i) => i.payload);
+  const reports = batch.filter((i) => i.kind === "report").map((i) => i.payload);
+  const questions = batch.filter((i) => i.kind === "question").map((i) => i.payload);
+  const retractions = batch.filter((i) => i.kind === "retract").map((i) => i.payload.signal_id as string);
+  const body = JSON.stringify({ device_id: s.deviceId, role: s.role, village: s.village, signals, households, reports, questions, retractions });
+  let pushed = 0;
+  let conflicts = 0;
+  if (batch.length) {
+    try {
+      const res = await call<{ accepted_signals: string[]; accepted_reports: string[]; accepted_questions: string[]; accepted_retractions: string[]; households: PushResult }>(`${base}/v1/sync/push`, { method: "POST", body, timeoutMs, headers });
+      const sentSignals = new Set(res.accepted_signals);
+      const sent = batch.filter((i) => i.kind === "signal" && sentSignals.has(i.id));
+      await removeFromOutbox([...sent.map((i) => i.id), ...res.accepted_reports, ...res.accepted_questions, ...(res.accepted_retractions ?? []).map((id) => `retract:${id}`)]);
+      await markQuestionsSent(res.accepted_questions);
+      await markVisitsSynced(sent.map((i) => i.ref).filter((r): r is string => !!r));
+      await applyPushResult(res.households);
+      pushed = sentSignals.size + res.households.accepted.length + res.accepted_reports.length + res.accepted_questions.length;
+      conflicts = res.households.conflicts.length;
+    } catch (err) {
+      await bumpAttempts(batch.map((i) => i.id));
+      throw err;
     }
-
-    // ---------------- pull ----------------
-    let alerts = 0;
-    let registry = 0;
-    let knowledge: string | null = null;
-    if (!slow || batch.length === 0) {
-      const pull = await call<{ seq: number; alerts: Alert[]; households: never[]; answers: { question_id: string; title: string; text: string; answered_at: string }[]; knowledge_version: number }>(
-        `${base}/v1/sync/pull?device_id=${encodeURIComponent(s.deviceId)}&village=${s.village}&since=${s.pullSeq}`,
-        { method: "GET", timeoutMs, headers },
-      );
-      // Guidance first: a snapshot replaces the knowledge shard, and alerts are stored on top of it.
-      if (pull.knowledge_version > s.knowledgeVersion && !slow) {
-        knowledge = await receiveGuidance(() => keepAlerts(() => updateKnowledge(base, pull.knowledge_version, s.deviceToken)));
-      }
-      await storeAlerts(pull.alerts);
-      await applyAnswers(pull.answers ?? []);
-      alerts = pull.alerts.length;
-      registry = await mergeFromRegistry(pull.households);
-      await updateSettings({ pullSeq: pull.seq });
-    }
-
-    // Ack: lets the dashboard show which phones have an alert / guidance version.
-    const after = await getSettings();
-    await call(`${base}/v1/sync/ack`, {
-      method: "POST",
-      timeoutMs,
-      headers,
-      body: JSON.stringify({ device_id: s.deviceId, role: s.role, village: s.village, knowledge_version: after.knowledgeVersion, seq: after.pullSeq, pending: (await listOutbox()).length }),
-    }).catch(() => undefined);
-
-    const report: SyncReport = { pushed, bytes: new Blob([body]).size, conflicts, alerts, registry, knowledge, ms: Math.round(performance.now() - t0) };
-    await updateSettings({ lastSync: nowIso() });
-    await logActivity("sync", `sent ${pushed} (${report.bytes} B), ${alerts} alert(s), ${registry} registry update(s)${knowledge ? `, knowledge ${knowledge}` : ""}${conflicts ? `, ${conflicts} conflict(s)` : ""}`, report.ms);
-    emit("sync", "outbox", "memory");
-    return report;
-  } finally {
-    running = false;
   }
+
+  // ---------------- pull ----------------
+  let alerts = 0;
+  let registry = 0;
+  let knowledge: string | null = null;
+  if (!slow || batch.length === 0) {
+    const pull = await call<{ seq: number; alerts: Alert[]; households: never[]; answers: { question_id: string; title: string; text: string; answered_at: string }[]; knowledge_version: number }>(
+      `${base}/v1/sync/pull?device_id=${encodeURIComponent(s.deviceId)}&village=${s.village}&since=${s.pullSeq}`,
+      { method: "GET", timeoutMs, headers },
+    );
+    // Guidance first: a snapshot replaces the knowledge shard, and alerts are stored on top of it.
+    if (pull.knowledge_version > s.knowledgeVersion && !slow) {
+      knowledge = await receiveGuidance(() => keepAlerts(() => updateKnowledge(base, pull.knowledge_version, s.deviceToken)));
+    }
+    await storeAlerts(pull.alerts);
+    await applyAnswers(pull.answers ?? []);
+    alerts = pull.alerts.length;
+    registry = await mergeFromRegistry(pull.households);
+    await updateSettings({ pullSeq: pull.seq });
+  }
+
+  // Ack: lets the dashboard show which phones have an alert / guidance version.
+  const after = await getSettings();
+  await call(`${base}/v1/sync/ack`, {
+    method: "POST",
+    timeoutMs,
+    headers,
+    body: JSON.stringify({ device_id: s.deviceId, role: s.role, village: s.village, knowledge_version: after.knowledgeVersion, seq: after.pullSeq, pending: (await listOutbox()).length }),
+  }).catch(() => undefined);
+
+  const report: SyncReport = { pushed, bytes: new Blob([body]).size, conflicts, alerts, registry, knowledge, ms: Math.round(performance.now() - t0) };
+  await updateSettings({ lastSync: nowIso() });
+  await logActivity("sync", `sent ${pushed} (${report.bytes} B), ${alerts} alert(s), ${registry} registry update(s)${knowledge ? `, knowledge ${knowledge}` : ""}${conflicts ? `, ${conflicts} conflict(s)` : ""}`, report.ms);
+  emit("sync", "outbox", "memory");
+  return report;
 }
 
 
